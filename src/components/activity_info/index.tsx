@@ -1,0 +1,265 @@
+
+const TinTinMeetingType = "TinTinMeeting"
+const latestIssueTinTinMeeting ={
+    id:"TinTinMeeting_14",
+    type:TinTinMeetingType,
+    name:"TinTin Meeting #14",
+    time:"20:00 UTC+8",
+    data:"2022.07.06",
+    h1:"Arbitrum Rollup合约解析",
+    verticalImg:"https://cdn.discordapp.com/attachments/897398778166906911/1002474413863731210/unknown.png",
+    img:"/activity/DTalk/DTalk_3.png",
+    subscriptionLink:"/",
+    more:"https://www.youtube.com/watch?v=9B2BNyAy3Mw&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=15",
+    state:false,
+}
+
+const TinTinMeetingHistory = [
+    {
+        id:"TinTinMeeting_13",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#13",
+        time:"20:00 UTC+8",
+        data:"2022.06.22 ",
+        h1:"Arbitrum Inbox 合约与 Outbox合约源码解读",
+        img:"/activity/TTM/TinTinMeeting_13.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=4ZcNOilnxcw&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=14",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_12",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#12",
+        time:"20:00 UTC+8",
+        data:"2022.06.19",
+        h1:"从Neo黑客松到项目成功搭建，一个项目诞生的过去、现在和未来",
+        img:"/activity/TTM/TinTinMeeting_12.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=EYXzbtRR06U&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=4",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_11",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#11",
+        time:"20:00 UTC+8",
+        data:"2022.06.01",
+        h1:"Arbitrum 与 Ethereum 异同以及 Arbitrum Precompile 合约探解",
+        img:"/activity/TTM/TinTinMeeting_11.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=h_qTidffHGM&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=4",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_10",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#10",
+        time:"20:00 UTC+8",
+        data:"2022.04.24",
+        h1:"从零开启 Neo 智能合约开发之旅",
+        img:"/activity/TTM/TinTinMeeting_10.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=TFdhEp6jdK0&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=3",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_9",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#9",
+        time:"20:00 UTC+8",
+        data:"2022.04.22",
+        h1:"技术分享：DFINITY Canister SDK - DFX入门实操",
+        img:"/activity/TTM/TinTinMeeting_9.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=k3gCHO0pfsg&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=8",
+        state:false,
+    },
+
+    {
+        id:"TinTinMeeting_8",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#8",
+        time:"20:00 UTC+8",
+        data:"2022.04.07",
+        h1:"进军Web3，Neo让开发者无门槛进入区块链",
+        img:"/activity/TTM/TinTinMeeting_8.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=FsXjM7FHSGY&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=9",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_7",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#7",
+        time:"20:00 UTC+8",
+        data:"2022.04.07",
+        h1:"IC存储详解 Canister内存模型与StableMemory管理",
+        img:"/activity/TTM/TinTinMeeting_7.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=xcreGBtFRAM&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=10",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_6",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#6",
+        time:"20:00 UTC+8",
+        data:"2022.03.26",
+        h1:"IC存储详解 Canister内存模型与StableMemory管理",
+        img:"/activity/TTM/TinTinMeeting_6.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=rDh6NEzoFe4&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=14",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_5",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#5",
+        time:"20:00 UTC+8",
+        data:"2022.03.19",
+        h1:"Flow FT与NFT中的最佳实践",
+        img:"/activity/TTM/TinTinMeeting_5.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=0RjA0dRiTUY&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=12",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_4",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#4",
+        time:"20:00 UTC+8",
+        data:"2022.02.26",
+        h1:"Cadence面向资源的编程范式基础介绍",
+        img:"/activity/TTM/TinTinMeeting_4.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=lFZ1jKe7Lw4&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=13",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_3",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting#3",
+        time:"-------",
+        data:"----",
+        h1:"NNS 中的 Registry Canister",
+        img:"/activity/TTM/TinTinMeeting_3.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=4mewPK9h2Fw&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=11",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_2",
+        type:TinTinMeetingType,
+        name:"TinTinMeeting年终聚会",
+        time:"20:00 UTC+8",
+        data:"2022.01.08",
+        h1:"Web3.0拉力赛中，2022年谁将成为领跑者",
+        img:"/activity/TTM/TinTinMeeting_2.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=8-BXS5HkLhs&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=16",
+        state:false,
+    },
+    {
+        id:"TinTinMeeting_1",
+        type:TinTinMeetingType,
+        name:"TinTin_Meeting#1",
+        time:"20:00 UTC+8",
+        data:"2022.01.08",
+        h1:"详解Internet Computer SDK—Agent JS",
+        img:"/activity/TTM/TinTinMeeting_1.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=3OirqVnIknQ&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=18",
+        state:false,
+    },
+
+]
+
+const DTalkType = "DTalk"
+const latestIssueDTalk =
+{
+    id:"DTalk_3",
+    type:DTalkType,
+    name:"DTalk#3",
+    time:"20:00 UTC+8",
+    data:"2022.06.08",
+    h1:"元宇宙项目百家争鸣，DFINITY生态如何扩大势能？",
+    verticalImg:"https://cdn.discordapp.com/attachments/897398778166906911/1002474413863731210/unknown.png",
+    img:"/activity/DTalk/DTalk_3.png",
+    subscriptionLink:"",
+    more:"https://www.youtube.com/watch?v=yRHVAEwabr8&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=6",
+    state:false,
+}
+
+const DTalkHistory = [
+    {
+        id:"DTalk_1",
+        type:DTalkType,
+        name:"DTalk#1",
+        time:"20:00 UTC+8",
+        data:"2022.05.15",
+        h1:"DFINITY 布局DeFi，开发者的机遇是什么？",
+        img:"/activity/DTalk/DTalk_1.png",
+        subscriptionLink:"/home",
+        more:"https://www.youtube.com/watch?v=fZeX01SBcps&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=4",
+        state:false,
+    },{
+        id:"DTalk_2",
+        type:DTalkType,
+        name:"DTalk#2",
+        time:"20:00 UTC+8",
+        data:"2022.06.08",
+        h1:"你与 DFINITY 明星项目的距离只差一个参加黑客松的机会！",
+        img:"/activity/DTalk/DTalk_2.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=cfx0AqU7FOg&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=6",
+        state:false,
+    }
+
+
+]
+
+const TinTinJobFairType = "TinTinJobFair"
+const latestIssueTinTinJobFair ={
+    id:"TinTinJobFair_1",
+    type:TinTinJobFairType,
+    name:"TinTinJobFair#1",
+    time:"20:00 UTC+8",
+    data:"2022.04.16",
+    h1:"All in WEB3 0 线上招聘空中宣讲会",
+    verticalImg:"https://cdn.discordapp.com/attachments/897398778166906911/1002474413863731210/unknown.png",
+    img:"/activity/TTJ/TinTinJobFair_1.png",
+    subscriptionLink:"",
+    more:"https://www.youtube.com/watch?v=rsB-e83TEfI",
+    state:false,
+}
+
+const TinTinJobFairHistory = [
+
+]
+const Activity_Info = {
+        TinTinMeeting:{
+            title:"TinTin Meeting",
+            h1:"TinTin Meeting 是由 TinTinLand 设立的线上直播栏目，聚焦区块链技术领域，邀请行业技术专家及参与者共同探讨区块链技术的实践经验及建设成效，旨在为开发者提供区块链开发的新思路、新方案。",
+            latestIssue:latestIssueTinTinMeeting,
+            history: TinTinMeetingHistory
+        },
+    DTalk:{
+        title:"DTalk",
+        h1:"DTalk 是由 TinTinLand 和 DFINITY 联合举办的线上直播系列活动，旨在为广大开发者提供平台和渠道， 促进开发者和 DFINITY 公链方、项目方、行业大咖面对面交流和沟通。",
+        latestIssue:latestIssueDTalk,
+        history: DTalkHistory
+    },
+    TinTinJobFair:{
+        title:"TinTin Job Fair",
+        h1:"TinTin Job Fair 线上招聘会是 TinTinLand 开发者社区为广大学生群体、互联网从业者和区块链开发者们进行区块链行业求职的绿色通道。 TinTinLand 邀请各大公链的区域负责人，各种项目方的创始人作为嘉宾一起参会，给我们的求职者们分享行业最新最前沿的技术，提供一个求职者和应聘方面对面交流的机会和平台。",
+        latestIssue:latestIssueTinTinJobFair,
+        history: TinTinJobFairHistory
+    },
+
+
+
+}
+
+
+export default  Activity_Info

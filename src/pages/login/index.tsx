@@ -1,0 +1,98 @@
+import Header from "../../components/header";
+import Link from "next/link";
+import Tail from "../../components/tail";
+import React, {useEffect, useState} from "react";
+import {Router, useRouter} from "next/router";
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
+const Login = () =>{
+    const router = useRouter()
+    const [emailType,setEmailType] = useState(true)
+    const [emailNumber,setEmailNumber] =useState(false)
+     function checkemail()
+    {
+        const email = (document.getElementById("email") as HTMLInputElement).value
+        const expression = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        let objExp = new RegExp(expression);
+        if(objExp.test(email)==true){
+            setEmailType(true)
+            setEmailNumber(true)
+        }
+        else{
+            setEmailType(false)
+            setEmailNumber(false)
+        }
+    }
+    const next =async () =>{
+      if(emailNumber){
+        await  router.push(
+              {
+                  pathname:"/login/verify",
+                  query:{email:(document.getElementById("email") as HTMLInputElement).value}
+              }
+          )
+      }else {
+          console.log("sadasd")
+      }
+    }
+
+    return(
+        <>
+            <div className="mx-auto relative h-screen  bg-fixed overflow-hidden"
+                 style={{backgroundImage:"url('/tintin-bg.png')"}}>
+                <Header/>
+                <div className="min-h-full flex flex-col  justify-center py-12 sm:px-6 lg:px-8">
+                    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                        <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                            <div className="text-4xl">
+                                Welcome
+                            </div>
+                            <div className="mt-2 text-sm mb-10 mt-5">
+                                Welcome to TinTinLand! Please login with your email.
+                            </div>
+
+                                <div>
+                                    <label htmlFor="email" className="flex justify-between text-sm font-medium text-gray-700">
+                                        Email address
+                                        <div className={classNames(emailType?"hidden":"text-red-400")}>
+                                            Please enter a valid email.
+                                        </div>
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            autoComplete="email"
+                                            onKeyDown={checkemail}
+                                            onInput={checkemail}
+                                            required
+                                            placeholder="Enter your email"
+                                            className={classNames(emailType?"outline-none":"border-red-400","outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none   sm:text-sm")}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex  justify-end mt-10">
+                                    <button
+                                        type="submit"
+                                        onClick={next}
+                                        className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-24 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium")}
+                                    >
+                                        继续
+                                    </button>
+                                </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </>
+    )
+}
+
+export default Login
