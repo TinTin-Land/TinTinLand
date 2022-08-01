@@ -118,7 +118,7 @@ const Course = () => {
     let index = 0
     function createAuto() {
         return  setInterval(() => {
-            index = index + 40
+            index = index + 26
             run()
         }, 8000)
     }
@@ -127,7 +127,7 @@ const Course = () => {
         clearInterval(autoTimer)
         if(typeof window !== 'undefined'){
             const left = document.getElementById("carousel")
-            if (index <= Number((Course_info.length - Course_info.length/2) * 40)) {
+            if (index <= Number((Course_info.length - Course_info.length/2) * 24)) {
                 left.style.marginLeft  = -index + "rem"
             } else {
                 index = 0
@@ -138,12 +138,12 @@ const Course = () => {
     }
     const left = ()=>{
         if(index !== 0){
-            index = index-40
+            index = index-26
             run()
         }
     }
     const right = ()=>{
-        index = index + 40
+        index = index + 26
         run()
     }
 
@@ -184,7 +184,7 @@ const Course = () => {
                     <div className="flex  "  id="container">
                         {Course_info.map(items=>(
                             <div key={items.id} className="w-full ">
-                                <div  className="rounded-2xl   2xl:w-100 mr-8">
+                                <div  className="rounded-2xl  xl:w-96 2xl:w-99 mr-10">
                                     <img className="rounded-t-2xl " src={items.img} alt=""/>
                                     <div className="px-10 py-8 bg-white rounded-b-2xl">
                                         <div className="flex  h-20 overflow-hidden flex-wrap ">
@@ -194,7 +194,7 @@ const Course = () => {
                                                 </div>
                                             ))}
                                         </div>
-                                            <div className="line-clamp-2 text-2xl h-16 mt-2">
+                                            <div className="line-clamp-2  text-xl h-14 mt-2">
                                                 {items.h1}
                                             </div>
                                         <div className="flex mt-5 w-96">
@@ -233,7 +233,7 @@ const Course = () => {
                                                         </div>
                                                     ))}
                                                 </div>
-                                                    <div className="line-clamp-2 text-2xl h-16 mt-2">
+                                                    <div className="line-clamp-2  h-12 mt-2">
                                                         {items.h1}
                                                     </div>
                                                 <div className="flex mt-5 ">
@@ -452,8 +452,8 @@ const Activity = ()=>{
                             {Activity_Info.TinTinMeeting.latestIssue.h1}
                         </div>
                             <div className="xl:flex 2xl:block w-full">
-                                <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 " src={Activity_Info.DTalk.latestIssue.verticalImg} alt=""/>
-                                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100  " src={Activity_Info.TinTinMeeting.latestIssue.img} alt=""/>
+                                <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 " src={Activity_Info.TinTinMeeting.latestIssue.img_T} alt=""/>
+                                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100  " src={Activity_Info.TinTinMeeting.latestIssue.img_L} alt=""/>
                                 <div className="xl:ml-5  2xl:ml-0  flex  xl:mt-9 xl:justify-end  2xl:justify-start xl:items-end items-center">
                                     <div className="">
                                         <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
@@ -479,7 +479,7 @@ const Activity = ()=>{
                     <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl  items-center">
                         <div className="">
                             <div className="items-end ">
-                              <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={Activity_Info.TinTinMeeting.latestIssue.verticalImg} alt=""/>
+                              <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={Activity_Info.TinTinMeeting.latestIssue.img_T} alt=""/>
                                 <div className="md:hidden flex   mt-9  items-end items-center ">
                                     <div className="">
                                         <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
@@ -499,7 +499,7 @@ const Activity = ()=>{
                             </div>
                         </div>
                         <div className="w-full hidden  md:block xl:hidden">
-                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinMeeting.latestIssue.img} alt=""/>
+                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinMeeting.latestIssue.img_L} alt=""/>
                         </div>
 
                         <div className=" w-full md:pl-6">
@@ -550,7 +550,7 @@ const Activity = ()=>{
                         <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl mx-auto items-center">
                             <div className="">
                                 <div className="    items-end ">
-                                 <img className=" md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={Activity_Info.DTalk.latestIssue.verticalImg} alt=""/>
+                                 <img className=" md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={Activity_Info.DTalk.latestIssue.img_T} alt=""/>
                                     <div className="md:hidden flex mt-9  items-end items-center ">
                                         <div className="">
                                             <Link href={Activity_Info.DTalk.latestIssue.subscriptionLink}>
@@ -570,7 +570,7 @@ const Activity = ()=>{
                                 </div>
                             </div>
                             <div className="w-full hidden  md:block xl:hidden">
-                                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.DTalk.latestIssue.img} alt=""/>
+                                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.DTalk.latestIssue.img_L} alt=""/>
                             </div>
 
                             <div className=" w-full md:pl-6">
@@ -618,7 +618,7 @@ const Activity = ()=>{
                     <div className="relative mt-4 2xl:mt-9  " >
                         <div className="flex flex-col-reverse md:flex-row 2xl:mt-0.5 p-8 bg-white rounded-2xl  items-center">
                             <div className="">
-                                    <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={Activity_Info.TinTinJobFair.latestIssue.verticalImg} alt=""/>
+                                    <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={Activity_Info.TinTinJobFair.latestIssue.img_T} alt=""/>
                                     <div className="md:hidden flex   mt-9  items-end items-center ">
                                         <div className="">
                                             <Link href={Activity_Info.TinTinJobFair.latestIssue.subscriptionLink}>
@@ -637,7 +637,7 @@ const Activity = ()=>{
                                     </div>
                             </div>
                             <div className="w-full hidden  md:block xl:hidden">
-                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinJobFair.latestIssue.img} alt=""/>
+                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinJobFair.latestIssue.img_L} alt=""/>
                             </div>
                             <div className="w-full md:pl-6">
                                 <div className=" flex ">
@@ -1148,7 +1148,7 @@ const Home = () =>{
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
           <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">
-                <div className="bg-white w-full rounded-2xl py-10 px-5  md:px-10 ">
+                <div className="bg-white backdrop-blur-sm bg-white/70 w-full rounded-2xl py-10 px-5  md:px-10 ">
                     <div className="text-2xl md:text-4xl xl:text-6xl ">
                     <div>
                         A Global Web3.0 Dev DAO
