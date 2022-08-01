@@ -110,7 +110,6 @@ const Course = () => {
 
         ]
     useEffect(()=>{
-
         return ()=> {
             clearInterval(autoTimer)
         }
@@ -125,6 +124,7 @@ const Course = () => {
     }
     let autoTimer = createAuto()
     function run() {
+        clearInterval(autoTimer)
         if(typeof window !== 'undefined'){
             const left = document.getElementById("carousel")
             if (index <= Number((Course_info.length - Course_info.length/2) * 40)) {
@@ -133,8 +133,6 @@ const Course = () => {
                 index = 0
                 left.style.marginLeft = 0 + "rem"
             }
-
-            clearInterval(autoTimer)
             autoTimer = createAuto()
         }
     }

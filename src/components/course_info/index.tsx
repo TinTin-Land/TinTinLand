@@ -690,7 +690,7 @@ const Course_info =
         },
         IC_201:{
             id: "IC_201",
-            img: "/course/IC_201.png.png",
+            img: "/course/IC_201.png",
             cycle:"第一期",
             name:"Internet Computer：从核心技术入门到开发实战进阶",
             state: false,
