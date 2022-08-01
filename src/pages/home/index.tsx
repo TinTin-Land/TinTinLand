@@ -310,19 +310,19 @@ const Hackathons = ()=>{
             </div>
             <div className=" xl:flex  justify-between ">
                 {/*大*/}
-                <div className="relative xl:mr-3 xl:w-10/12" >
+                <div className="relative  xl:w-10/12" >
                     <div className={classNames(HackathonsState[Info1.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1   absolute")}>
                         {Info1.state}
                     </div>
                     <img className="rounded-t-2xl" src={Info1.img} alt=""/>
                     <div className="px-10 py-8 bg-white rounded-b-2xl">
-                        <div className="2xl:text-2xl font-light  xl:w-72 truncate">
+                        <div className="2xl:text-xl font-semibold xl:w-72 truncate">
                             {Info1.name}
                         </div>
                         <div className="font-light">
                             {Info1.time}
                         </div>
-                        <div className="flex mt-5 items-center">
+                        <div className="flex mt-5 2xl:mt-10 items-center">
                             <Link href={Info1.signUp}>
                                 <a className={classNames(Info1.signUp?"":"hidden","text-xs 2xl:text-xl bg-black text-white rounded-full   px-8 py-2.5 mr-5")} target="_blank">
                                     立刻报名
@@ -338,7 +338,7 @@ const Hackathons = ()=>{
                     </div>
                 </div>
 
-                <div className="mt-5 xl:mt-0 xl:w-5/12 grid grid-cols-1  gap-4  ">
+                <div className="mt-5 xl:mt-0 xl:w-5/12  xl:ml-4 2xl:ml-9     ">
                     {/*中*/}
                     <div className="">
                         <div className="relative ">
@@ -347,7 +347,7 @@ const Hackathons = ()=>{
                             </div>
                             <img className="rounded-t-2xl  w-full " src={Info2.img} alt=""/>
                             <div className="px-10 py-3  bg-white rounded-b-2xl">
-                                <div className="2xl:text-2xl font-light  truncate">
+                                <div className="2xl:text-xl font-semibold  truncate">
                                     {Info2.name}
                                 </div>
                                 <div className="font-light">
@@ -370,7 +370,7 @@ const Hackathons = ()=>{
                         </div>
                     </div>
                     {/*小*/}
-                    <div className="mt-5 md:mt-0 2xl:-mt-0.5">
+                    <div className="mt-5 2xl:mt-9">
                         <div className="relative w-full ">
                             <div className={classNames(HackathonsState[Info3.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1   absolute")}>
                                Ended
@@ -378,8 +378,8 @@ const Hackathons = ()=>{
                             <div className="xl:flex  xl:items-center xl:justify-between bg-white rounded-2xl">
 
                                 <img className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl  w-full h-80 " src={Info3.img} alt=""/>
-                                <div className="px-10 py-3 xl:py-0    ">
-                                    <div className="2xl:text-2xl  font-light xl:w-40  truncate">
+                                <div className="pl-10 py-3 xl:py-0    ">
+                                    <div className="2xl:text-xl font-semibold xl:w-48 2xl:w-56  truncate">
                                         {Info3.name}
                                     </div>
                                     <div className="font-light">
