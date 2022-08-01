@@ -70,9 +70,9 @@ const Login = () =>{
                                          src={classNames(imgUrl)} alt=""/>
                                 </div>
                                 <div className="relative ">
-                                    <div className="w-16 h-16  p-3  rounded-full border border-gray-300 flex">
-                                        <img className="" src="/上传_upload.png" alt=""/>
-                                        <input onChange={inputImg} type="file" id="file" className="absolute opacity-0 w-full"  accept="image/*"/>
+                                    <div className="w-16 h-16  p-1.5  rounded-full border border-gray-300 flex ">
+                                        <img className=" w-full " src="/上传_upload.png" alt=""/>
+                                        <input onChange={inputImg} type="file" id="file" className="absolute opacity-0  w-14 mt-2.5   flex justify-center "  accept="image/*"/>
                                     </div>
                                 </div>
 
