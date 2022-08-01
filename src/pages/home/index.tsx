@@ -453,7 +453,7 @@ const Activity = ()=>{
                         </div>
                             <div className="xl:flex 2xl:block w-full">
                                 <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 " src={Activity_Info.TinTinMeeting.latestIssue.img_T} alt=""/>
-                                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100  " src={Activity_Info.TinTinMeeting.latestIssue.img_L} alt=""/>
+                                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100  " src={Activity_Info.TinTinMeeting.latestIssue.img} alt=""/>
                                 <div className="xl:ml-5  2xl:ml-0  flex  xl:mt-9 xl:justify-end  2xl:justify-start xl:items-end items-center">
                                     <div className="">
                                         <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
@@ -499,7 +499,7 @@ const Activity = ()=>{
                             </div>
                         </div>
                         <div className="w-full hidden  md:block xl:hidden">
-                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinMeeting.latestIssue.img_L} alt=""/>
+                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinMeeting.latestIssue.img} alt=""/>
                         </div>
 
                         <div className=" w-full md:pl-6">
@@ -570,7 +570,7 @@ const Activity = ()=>{
                                 </div>
                             </div>
                             <div className="w-full hidden  md:block xl:hidden">
-                                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.DTalk.latestIssue.img_L} alt=""/>
+                                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.DTalk.latestIssue.img} alt=""/>
                             </div>
 
                             <div className=" w-full md:pl-6">
@@ -637,7 +637,7 @@ const Activity = ()=>{
                                     </div>
                             </div>
                             <div className="w-full hidden  md:block xl:hidden">
-                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinJobFair.latestIssue.img_L} alt=""/>
+                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinJobFair.latestIssue.img} alt=""/>
                             </div>
                             <div className="w-full md:pl-6">
                                 <div className=" flex ">
