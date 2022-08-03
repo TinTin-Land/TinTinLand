@@ -88,7 +88,7 @@ const Meeting = () =>{
                     <div className="xl:w-9/12  xl:ml-4 mt-10 xl:mt-0 ">
                         <div className="" >
                             <div className="md:flex  w-full   py-8 md:bg-white rounded-2xl">
-                                <img className="rounded-t-2xl md:rounded-xl md:mx-8 w-7/12  " src={type.latestIssue.img} alt=""/>
+                                <img className="rounded-t-2xl md:rounded-xl md:mx-8 md:w-7/12  " src={type.latestIssue.img} alt=""/>
                                 <div className=" bg-white p-5 xl:p-0  rounded-b-2xl ">
                                     <div className="pt-4 md:pt-0 flex ">
                                         <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
@@ -102,12 +102,11 @@ const Meeting = () =>{
                                         {type.latestIssue.data}
                                     </div>
 
-                                    <div className="text-base xl:text-xl font-semibold 2xl:text-2xl pr-1">
-                                        <div className='flex flex-wrap my-9 items-center h-20 md:h-32 xl:h-36 2xl:line-clamp-4  xl:line-clamp-5 '>
+                                        <div className='pr-1 font-semibold  text-xl xl:text-2xl line-clamp-3 xl:line-clamp-5 h-20 xl:h-32 mt-6'>
                                             {type.latestIssue.h1}
                                         </div>
-                                    </div>
-                                    <div className="flex   ">
+
+                                    <div className="flex  pt-6  xl:pt-20">
 
                                         <div className="flex justify-between  items-center">
                                             <div className="">
@@ -140,7 +139,7 @@ const Meeting = () =>{
                     <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 ">
                         {type.history.map(item=>(
                             <div key={item.id} className="rounded-2xl  ">
-                                <img className="rounded-t-2xl" src={item.img} alt=""/>
+                                <img className="rounded-t-2xl w-99 h-52" src={item.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex   flex-wrap">
                                         <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >

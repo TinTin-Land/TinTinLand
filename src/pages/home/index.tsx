@@ -615,7 +615,7 @@ const Activity = ()=>{
 
                     </div>
                     {/*小*/}
-                    <div className="relative mt-4 2xl:mt-9  " >
+                    <div className="relative mt-4 2xl:mt-8  " >
                         <div className="flex flex-col-reverse md:flex-row 2xl:mt-0.5 p-8 bg-white rounded-2xl  items-center">
                             <div className="">
                                     <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={Activity_Info.TinTinJobFair.latestIssue.img_T} alt=""/>

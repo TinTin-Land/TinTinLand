@@ -178,17 +178,17 @@ const TinTinMeetingHistory = [
 const DTalkType = "DTalk"
 const latestIssueDTalk =
 {
-    id:"DTalk_3",
+    id:"DTalk_4",
     type:DTalkType,
-    name:"DTalk#3",
+    name:"DTalk#4",
     time:"20:00 UTC+8",
-    data:"2022.06.08",
-    h1:"元宇宙项目百家争鸣，DFINITY生态如何扩大势能？",
-    img_T:"/activity/DTalk/DTalk_3_T.png",
-    img:"/activity/DTalk/DTalk_3_L.png",
-    subscriptionLink:"",
-    more:"https://www.youtube.com/watch?v=yRHVAEwabr8&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=6",
-    state:false,
+    data:"2022.08.03",
+    h1:"如何构建高质量的DeFi应用？ ",
+    img_T:"/activity/DTalk/DTalk_4_T.png",
+    img:"/activity/DTalk/DTalk_4_L.png",
+    subscriptionLink:"https://youtu.be/ru3CM-cU7Zs",
+    more:"https://youtu.be/ru3CM-cU7Zs",
+    state:true,
 }
 
 const DTalkHistory = [
@@ -213,6 +213,19 @@ const DTalkHistory = [
         img:"/activity/DTalk/DTalk_2.png",
         subscriptionLink:"",
         more:"https://www.youtube.com/watch?v=cfx0AqU7FOg&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=6",
+        state:false,
+    },
+    {
+        id:"DTalk_3",
+        type:DTalkType,
+        name:"DTalk#3",
+        time:"20:00 UTC+8",
+        data:"2022.06.08",
+        h1:"元宇宙项目百家争鸣，DFINITY生态如何扩大势能？",
+        img_T:"/activity/DTalk/DTalk_3_T.png",
+        img:"/activity/DTalk/DTalk_3_L.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=yRHVAEwabr8&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=6",
         state:false,
     }
 
