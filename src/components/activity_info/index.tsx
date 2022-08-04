@@ -188,7 +188,7 @@ const latestIssueDTalk =
     img:"/activity/DTalk/DTalk_4_L.png",
     subscriptionLink:"https://youtu.be/ru3CM-cU7Zs",
     more:"https://youtu.be/ru3CM-cU7Zs",
-    state:true,
+    state:false,
 }
 
 const DTalkHistory = [
