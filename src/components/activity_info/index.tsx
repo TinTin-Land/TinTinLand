@@ -199,7 +199,7 @@ const DTalkHistory = [
         time:"20:00 UTC+8",
         data:"2022.05.15",
         h1:"DFINITY 布局DeFi，开发者的机遇是什么？",
-        img:"/activity/DTalk/DTalk_1.png",
+        img:"/activity/DTalk/D Talk_1.png",
         subscriptionLink:"/home",
         more:"https://www.youtube.com/watch?v=fZeX01SBcps&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=4",
         state:false,

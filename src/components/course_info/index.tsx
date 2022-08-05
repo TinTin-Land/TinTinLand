@@ -409,7 +409,7 @@ const Course_info =
             startTime:"2022.08.23",
             registrationDeadline:"2022.08.23",
             link: "https://hkr.h5.xeknow.com/s/xRaCr",
-            h1:"为了满足中国开发者想快速尝试如何在Flow上搭建自己的首个Dapp，TinTinLand与Flow公链共同推出全球首发《Flow DApp开发入门课程——从初识Cadence到搭建Marketplace》开发课程。我们希望通过这门课程，你可以能够在Flow公链上进行Cadence智能合约语言的开发，熟练使用Flow生态常用的开发工具链，以及掌握使用FCL(Flow Client Library) 前端库开发Flow DApp的知识要点，开始创建基于Flow的第一个Dapp",
+            h1:"全球第一份 DFNITY 官方实战指南《Internet Computer：从核心技术入门到开发实战》课程由TinTinLand与DFINITY联合推出。非常适合想要了解 IC 区块链特点并在这个平台上开发应用的区块链开发者学习。我们希望通过这门课程，开发者可以深入理解 ICP 区块链的特点，并在开发中发挥它的优势，掌握运用智能合约进行组合的设计理念，理解开发大型应用的基础架构。",
             type: [
                 {
                     content: "Motoko"
