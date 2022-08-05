@@ -35,4 +35,6 @@ const detail = {
 
 const Course_Detail = atom(detail)
 
-export {Course_Detail}
+const LogoFavicon = atomWithStorage("LogoFavicon","/tintin-favicon.svg")
+
+export {Course_Detail,LogoFavicon}

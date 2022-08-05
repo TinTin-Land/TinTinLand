@@ -5,18 +5,21 @@ import {useRouter} from "next/router";
 import {useTranslation} from "next-i18next";
 import Link from "next/link";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {useAtom} from "jotai";
+import {LogoFavicon} from "../jotai";
 
 const IndexPage: NextPage = () => {
     const router = useRouter()
     const { t } = useTranslation('common')
     console.log(t('change-locale'))
     console.log(router.locale)
+    const [favicon,setFavicon] = useAtom(LogoFavicon)
   return (
       <main>
         <div>
           <Head>
             <title>TinTinLand|Welcome to Web3 Developer Dao</title>
-            <link rel="icon" href="/tintin-fivicon.svg" />
+            <link rel="icon" href="tintin-favicon.svg" type="image/x-icon" />
           </Head>
               <Home></Home>
         </div>

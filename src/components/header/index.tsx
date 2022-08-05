@@ -42,12 +42,12 @@ const Header = () =>{
     return (
         <header>
             <Popover className="relative bg-white  ">
-                <div className={classNames(scroll?"bg-white backdrop-blur-sm bg-white/90":"",
+                <div className={classNames(scroll?"bg-white backdrop-blur-sm bg-white/95":"",
                     "flex  fixed z-20 inset-x-0    transition duration-700 mb-10 pl-5 mb-5 justify-between items-center  p-3 md:p-3 sm:px-6 lg:justify-end md:space-x-10 lg:px-10 xl:px-20 items-center ")}>
 
                     <div className=" flex  justify-between lg:justify-start">
                         <div className="flex justify-start  ">
-                            <Link  href="/home">
+                            <Link  href="/">
                                 <a>
                                     <span className="sr-only">Workflow</span>
                                     <img
