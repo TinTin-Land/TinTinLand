@@ -539,7 +539,7 @@ const Course_info =
         FLOW_101:{
             id: "FLOW_101",
             img: "/course/FLOW_101.png",
-            cycle:"第三期",
+            cycle:"第一期",
             name:"Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
             state: false,
             startTime:"2022.03.05",
