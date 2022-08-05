@@ -125,7 +125,7 @@ const CourseInfo = () =>{
                     <div className="flex w-full grid grid-cols-2  xl:grid-cols-3 gap-4 mt-3 ">
                         {courseDetail.project_Provider.map(item=>(
                             <div key={item.name} className="flex items-center ">
-                                <img className="rounded-full w-8 xl:w-10" src={item.img} alt=""/>
+                                <img className="rounded-full w-8 xl:w-10 bg-white" src={item.img} alt=""/>
                                 <div className="ml-2 text-black font-semibold">
                                     {item.name}
                                 </div>
@@ -254,9 +254,9 @@ const CourseDetails = () =>{
                             </div>
                         </div>
 
-                        <div className="mt-4 flex grid grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-1 xl:gap-3 ">
+                        <div className="mt-4 flex grid grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-1 xl:gap-2 ">
                             {courseDetail.type.map(list=>(
-                            <div key={list.content} className="bg-white rounded-full text-center text-gray-700  py-1  text-xs xl:text-sm" >
+                            <div key={list.content} className="bg-white rounded-full text-center text-gray-700 px-2  py-1  text-xs xl:text-sm" >
                                 {list.content}
                             </div>
                             ))}
