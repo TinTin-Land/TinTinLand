@@ -13,7 +13,7 @@ module.exports = {
                 "100":"43rem"
             },
             screens: {
-                '3xl': '1600px',
+                '3xl': '1700px',
             },
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
