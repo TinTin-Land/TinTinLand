@@ -288,7 +288,7 @@ const CourseDetails = () =>{
                                     </div>
                                 </div>
                                 <div className="mt-10 xl:mt-0 flex justify-center">
-                                <Link href="https://hkr.h5.xeknow.com/s/2yYwKx">
+                                <Link href={courseDetail.link}>
                                     <a className={classNames(courseDetail.state?"bg-black text-white rounded-full w-36 text-center px-8 py-2.5 ":" hidden")}>
                                         立刻报名
                                     </a>
