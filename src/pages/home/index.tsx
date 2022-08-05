@@ -60,6 +60,31 @@ const Course = () => {
 
             },
             {
+                id: "FLOW_101",
+                img: "/course/FLOW_101.png",
+                type: [
+                    {
+                        content: "Cadence"
+                    },
+                    {
+                        content: "Flow FT"
+                    },
+                    {
+                        content: "Flow NFT"
+                    },
+                    {
+                        content: "NFT Metadata"
+                    },
+                    {
+                        content: "FCL(Flow Client Library)"
+                    },
+                ],
+                h1: "第一期｜Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
+                link: "https://hkr.h5.xeknow.com/s/PGm9a",
+                state: true
+
+            },
+            {
                 id: "IC_201",
                 img: "/course/IC_201.png",
                 type: [
@@ -82,31 +107,7 @@ const Course = () => {
                 state: false
 
             },
-            {
-                id: "FLOW_101",
-                img: "/course/FLOW_101.png",
-                type: [
-                    {
-                        content: "Cadence"
-                    },
-                    {
-                        content: "Flow FT"
-                    },
-                    {
-                        content: "Flow NFT"
-                    },
-                    {
-                        content: "NFT Metadata"
-                    },
-                    {
-                        content: "FCL(Flow Client Library)"
-                    },
-                ],
-                h1: "第一期｜Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
-                link: "",
-                state: false
 
-            },
 
         ]
     useEffect(()=>{
