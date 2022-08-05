@@ -254,9 +254,9 @@ const CourseDetails = () =>{
                             </div>
                         </div>
 
-                        <div className="mt-4 flex grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-1 xl:gap-4 ">
+                        <div className="mt-4 flex grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-1 xl:gap-2 ">
                             {courseDetail.type.map(list=>(
-                            <div key={list.content} className="bg-white rounded-full text-center text-gray-700 px-2 py-1  text-xs xl:text-sm" >
+                            <div key={list.content} className="bg-white rounded-full text-center text-gray-700  py-1  text-xs xl:text-sm" >
                                 {list.content}
                             </div>
                             ))}
