@@ -12,6 +12,9 @@ module.exports = {
                 '99': "30rem",
                 "100":"43rem"
             },
+            screens: {
+                '3xl': '1600px',
+            },
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             },
