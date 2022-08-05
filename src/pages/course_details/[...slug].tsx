@@ -245,16 +245,16 @@ const CourseDetails = () =>{
                             </div>
                         </div>
 
-                        <div className="text-2xl md:text-4xl xl:text-6xl ">
+                        <div className="text-2xl md:text-4xl xl:text-5xl ">
                             {courseDetail.name}
                         </div>
-                        <div className="mt-10 text-sm xl:text-xl font-light">
+                        <div className="mt-10 text-sm xl:text-xl font-light whitespace-pre-line">
                             <div>
                                 {courseDetail.h1}
                             </div>
                         </div>
 
-                        <div className="mt-4 flex grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-1 xl:gap-4 ">
+                        <div className="mt-4 flex grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-1 xl:gap-4 ">
                             {courseDetail.type.map(list=>(
                             <div key={list.content} className="bg-white rounded-full text-center text-gray-700 px-2 py-1  text-xs xl:text-sm" >
                                 {list.content}

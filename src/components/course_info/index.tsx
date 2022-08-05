@@ -27,8 +27,8 @@ const Course_teacher = {
     PaulLiu:{
         img:"/teacher/PaulLiu.png",
         name:"Paul Liu",
-        title:"Difinity核心技术工程师",
-        introduction:"加入DFNITY之前，Paul在英特尔实验室（Intel Labs）的研究科学家岗位工作了7年。在英特尔实验室时期，他为X86架构构建了一个性能高度优化的Haskell编译器。Paul拥有耶鲁大学博士学位，师从Haskell编译器的发明者之一的Paul Hudak博士。Paul是Haskell研讨会和IFL成员，发表过大量学术论文。",
+        title:"DFINITY核心技术工程师",
+        introduction:"加入DFINITY之前，Paul在英特尔实验室（Intel Labs）的研究科学家岗位工作了7年。在英特尔实验室时期，他为X86架构构建了一个性能高度优化的Haskell编译器。Paul拥有耶鲁大学博士学位，师从Haskell编译器的发明者之一的Paul Hudak博士。Paul是Haskell研讨会和IFL成员，发表过大量学术论文。",
     },
 }
 
@@ -124,9 +124,9 @@ const LearningHighlights = {
         icon:"/icon/毕业证书.svg",
         h1:"Flow官方认证毕业证书",
     },
-    DFNITY官方认证毕业证书:{
+    DFINITY官方认证毕业证书:{
         icon:"/icon/毕业证书.svg",
-        h1:"DFNITY官方认证毕业证书",
+        h1:"DFINITY官方认证毕业证书",
     },
     中文授课:{
         icon:"/icon/中文授课.svg",
@@ -406,10 +406,11 @@ const Course_info =
             cycle:"第三期",
             name:"Internet Computer：从核心技术入门到开发实战",
             state: true,
-            startTime:"2022.08.23",
-            registrationDeadline:"2022.08.23",
+            startTime:"2022.08.28",
+            registrationDeadline:"2022.08.28",
             link: "https://hkr.h5.xeknow.com/s/xRaCr",
-            h1:"全球第一份 DFNITY 官方实战指南《Internet Computer：从核心技术入门到开发实战》课程由TinTinLand与DFINITY联合推出。非常适合想要了解 IC 区块链特点并在这个平台上开发应用的区块链开发者学习。我们希望通过这门课程，开发者可以深入理解 ICP 区块链的特点，并在开发中发挥它的优势，掌握运用智能合约进行组合的设计理念，理解开发大型应用的基础架构。",
+            h1:"由 DFINITY 推出的 “互联网计算机” Internet Computer（IC）是世界上第一个以不受限制、以网络速度运行的区块链，被称作为由世界上的数据中心共同组成的虚拟超级主机。IC 建立和部署程序应用的门槛低，并能去除智能合约的局限性、节省交易储存成本。其开创的编程语言Motoko，仅用不到一千行的代码就创造出 Web3.0 的 “抖音”,为开发者提供了从Web2.0 到 Web3.0 过渡的基础设施和技术支持。" +
+                "通过 IC 创建自己的 DApp 能够更好地进入 Web3 行业,把握区块链行业的技术红利，开垦出一片属于 Web 3 的沃土。",
             type: [
                 {
                     content: "Motoko"
@@ -509,7 +510,7 @@ const Course_info =
                 LearningHighlights.每节课后作业实践,
                 LearningHighlights.每周OfficeHour导师直播答疑,
                 LearningHighlights.助教每晚在线解答,
-                LearningHighlights.DFNITY官方认证毕业证书,
+                LearningHighlights.DFINITY官方认证毕业证书,
                 LearningHighlights.中文授课,
             ],
             teacher:[
@@ -792,7 +793,7 @@ const Course_info =
                 LearningHighlights.每节课后作业实践,
                 LearningHighlights.每周OfficeHour导师直播答疑,
                 LearningHighlights.助教每晚在线解答,
-                LearningHighlights.DFNITY官方认证毕业证书,
+                LearningHighlights.DFINITY官方认证毕业证书,
                 LearningHighlights.中文授课,
 
             ],
