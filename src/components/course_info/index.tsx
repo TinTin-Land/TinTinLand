@@ -154,7 +154,7 @@ const projectProvider = {
     },
     FLOW:{
         name:"FLOW",
-        img:"/FLOW.svg",
+        img:"/flow.svg",
     },
     DFINITY:{
         name:"DFINITY",
