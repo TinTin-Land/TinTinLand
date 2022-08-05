@@ -200,13 +200,13 @@ const Course = () => {
                                             </div>
                                         <div className="flex mt-5 w-96">
                                             <Link href={items.link}>
-                                                <a className={items.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"} >
+                                                <a className={items.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"} target="_blank">
                                                     立刻报名
                                                 </a>
                                             </Link>
 
                                             <Link href={`/course_details/${items.id}`}>
-                                                <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5">
+                                                <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5" >
                                                     了解更多
                                                 </a>
                                             </Link>

@@ -289,7 +289,7 @@ const CourseDetails = () =>{
                                 </div>
                                 <div className="mt-10 xl:mt-0 flex justify-center">
                                 <Link href={courseDetail.link}>
-                                    <a className={classNames(courseDetail.state?"bg-black text-white rounded-full w-36 text-center px-8 py-2.5 ":" hidden")}>
+                                    <a className={classNames(courseDetail.state?"bg-black text-white rounded-full w-36 text-center px-8 py-2.5 ":" hidden")} target="_blank">
                                         立刻报名
                                     </a>
                                 </Link>

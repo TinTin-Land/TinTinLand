@@ -111,14 +111,14 @@ const Meeting = () =>{
                                         <div className="flex justify-between  items-center">
                                             <div className="">
                                                 <Link href={type.latestIssue.subscriptionLink}>
-                                                    <a className={classNames(type.latestIssue.state?"bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden")}>
+                                                    <a className={classNames(type.latestIssue.state?"bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden")} target="_blank">
                                                         订阅
                                                     </a>
                                                 </Link>
                                             </div>
                                             <div className="">
                                                 <Link href={type.latestIssue.more}>
-                                                    <a className=" text-black border border-black rounded-full  px-4 py-2.5">
+                                                    <a className=" text-black border border-black rounded-full  px-4 py-2.5" target="_blank">
                                                         了解更多
                                                     </a>
                                                 </Link>
