@@ -125,7 +125,7 @@ const CourseInfo = () =>{
                     <div className="flex w-full grid grid-cols-2  xl:grid-cols-3 gap-4 mt-3 ">
                         {courseDetail.project_Provider.map(item=>(
                             <div key={item.name} className="flex items-center ">
-                                <img className="rounded-full w-8 xl:w-10 bg-white" src={item.img} alt=""/>
+                                <img className="rounded-full w-8 xl:w-10 bg-white/20" src={item.img} alt=""/>
                                 <div className="ml-2 text-black font-semibold">
                                     {item.name}
                                 </div>
