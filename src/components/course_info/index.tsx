@@ -196,6 +196,7 @@ const Course_student = {
       position2:"DFINITY Foundation CTO",
       h1:"我们强烈推荐 Paul Liu 的《Internet Computer：从核心技术入门到开发实战》培训课程。 Paul 是 DFINITY 的高级工程师，也是设计、构建和启动Internet Computer区块链的核心开发者。 作为Intel Labs的前任研究科学家和耶鲁大学的博士、Haskell 发明者 Paul Hudak 博士的学生，他还带来了丰富的计算机科学知识。 这门关于Internet Computer和Motoko编程语言的课程为区块链开发者提供了构建Web3项目的实际操作经验，并有可能改变世界。 最重要的是，Web3 是作为一个社区去构建，课程学员将会有机会接触熟悉 ICP 和 Motoko 的开发者社区，帮助他们在构建无限可扩展的 Web3 应用时解决技术问题。",
 },
+
     DiskC:{
         avatar:"/student/DiskC.png",
         name:"DiskC",
@@ -216,6 +217,53 @@ const Course_student = {
         position:"优秀学员",
         h1:"老师上课言简意赅，都是直达重点内容，很适合不断反复观看去加深理解。",
     },
+
+    张钲浩:{
+        avatar:"/student/张钲浩.png",
+        name:"张钲浩",
+        position:"东北大学ICP Labs成员",
+        h1:"我觉得Paul老师讲的非常细致，内容也有层次。作业让我们掌握了部署的方法和一些细节，老师对同学们的问题回答的也很及时，体验很棒。",
+    },
+
+    Witter:{
+        avatar:"/student/Witter.png",
+        name:"Witter",
+        position:"Deland Labs核心开发者，全栈工程师，连续创业者",
+        h1:"体验不错，从不同的前端编程方式，介绍了前端如何接入，并去除了身份验证部分，降低了初学者的上手难度，难度设定比较合适，作业设定的后端内容和前端结合，是个综合应用的过程，入门开发课的最后一课，综合内容演练是一个良好的结束实践。",
+    },
+
+    郑禹:{
+        avatar:"/student/郑禹.png",
+        name:"郑禹",
+        position:"IC技术爱好者",
+        h1:"要毕业了，很感谢这段时间助教和Paul老师的付出，每当看到Paul老师从早到晚在群里回答同学们的问题，就会觉得老师真的很棒！",
+    },
+
+
+    郭梁:{
+        avatar:"/student/郭梁.png",
+        name:"郭梁",
+        position:"15年+资深游戏开发者，连续创业者",
+        h1:"老师讲解很透彻，有助自己理解底层原理，老师和助教授课都很认真细致。",
+    },
+
+
+    Kevin:{
+        avatar:"/student/Kevin.png",
+        name:"Kevin",
+        position:"独立游戏创作者，全栈开发工程师",
+        h1:"我觉得课程深入浅出，浅显易懂，可以边看边实践，老师的录课方式和内容都是挺不错的，作业设计也很有针对性，很赞！！",
+    },
+
+    张诚:{
+        avatar:"/student/张诚.png",
+        name:"张诚",
+        position:"F996CLUB成员，Z世代00后Web3创业者",
+        h1:"Paul老师讲授方法很好，一步一步带着做，作业的难度对于基础弱的我可能稍大，尤其在 VAR Int 向 Int 转变时卡住了很久。冯力全助教也给我很大信心，在群友交流中也能学到很多东西，困难是我自己的原因导致，我会努力克服的！",
+    },
+
+
+
 
 
 }
@@ -524,7 +572,13 @@ const Course_info =
                 projectProvider.DFINITY,
             ],
             community_recommendation:[
-              Course_student.DominicWilliams_JanCamenisch,
+                Course_student.DominicWilliams_JanCamenisch,
+                Course_student.张钲浩,
+                Course_student.Witter,
+                Course_student.郑禹,
+                Course_student.郭梁,
+                Course_student.Kevin,
+                Course_student.张诚,
             ],
             suitable_ForTheCrowd:[
                 suitableForTheCrowd.区块链开发者,
@@ -808,6 +862,12 @@ const Course_info =
             ],
             community_recommendation:[
                 Course_student.DominicWilliams_JanCamenisch,
+                Course_student.张钲浩,
+                Course_student.Witter,
+                Course_student.郑禹,
+                Course_student.郭梁,
+                Course_student.Kevin,
+                Course_student.张诚,
             ],
             suitable_ForTheCrowd:[
                 {h1:"初步了解 Internet Computer 区块链的基础知识，以及 Motoko 编程语言并在这个平台具备开发和部署简单 DApp 的能力的开发人员"},

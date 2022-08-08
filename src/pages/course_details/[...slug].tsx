@@ -125,7 +125,7 @@ const CourseInfo = () =>{
                     <div className="flex w-full grid grid-cols-2  xl:grid-cols-3 gap-4 mt-3 ">
                         {courseDetail.project_Provider.map(item=>(
                             <div key={item.name} className="flex items-center ">
-                                <img className="rounded-full w-8 xl:w-10 bg-white/20" src={item.img} alt=""/>
+                                <img className="rounded-full w-8 xl:w-10 " src={item.img} alt=""/>
                                 <div className="ml-2 text-black font-semibold">
                                     {item.name}
                                 </div>
@@ -171,12 +171,13 @@ const CourseInfo = () =>{
                     <div className="text-indigo-700 text-2xl  ">
                         课程推荐
                     </div>
+                    <div className="h-96 overflow-x-auto pr-2">
                     <div className=" items-center w-full grid grid-cols-1 gap-4 mt-3 ">
                         {courseDetail.community_recommendation.map(item=>(
                             <div key={item.h1} className="rounded-2xl   ">
                                 <div className="grid xl:grid-cols-2 gap-4">
                                     <div className="flex items-center">
-                                    <img className="rounded-full w-10" src={item.avatar} alt=""/>
+                                    <img className="rounded-full w-10 h-10 bg-white" src={item.avatar} alt=""/>
                                     <div className="ml-2">
                                         <div className=' font-semibold'>
                                             {item.name}
@@ -186,8 +187,8 @@ const CourseInfo = () =>{
                                         </div>
                                     </div>
                                     </div>
-                                    <div className="flex items-center">
-                                        <img className="rounded-full w-10" src={item.avatar2} alt=""/>
+                                    <div className={item.avatar2?"flex items-center":"hidden"}>
+                                        <img className="rounded-full w-10 h-10" src={item.avatar2} alt=""/>
                                         <div className="ml-2">
                                             <div className=' font-semibold'>
                                                 {item.name2}
@@ -203,6 +204,7 @@ const CourseInfo = () =>{
                                 </div>
                             </div>
                         ))}
+                    </div>
                     </div>
                 </div>
             </div>
