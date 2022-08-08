@@ -173,8 +173,9 @@ const CourseInfo = () =>{
                     </div>
                     <div className=" items-center w-full grid grid-cols-1 gap-4 mt-3 ">
                         {courseDetail.community_recommendation.map(item=>(
-                            <div key={item.name} className="rounded-2xl   ">
-                                <div className="flex items-center">
+                            <div key={item.h1} className="rounded-2xl   ">
+                                <div className="grid xl:grid-cols-2 gap-4">
+                                    <div className="flex items-center">
                                     <img className="rounded-full w-10" src={item.avatar} alt=""/>
                                     <div className="ml-2">
                                         <div className=' font-semibold'>
@@ -182,6 +183,18 @@ const CourseInfo = () =>{
                                         </div>
                                         <div className=" text-xs text-gray-600">
                                             {item.position}
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <img className="rounded-full w-10" src={item.avatar2} alt=""/>
+                                        <div className="ml-2">
+                                            <div className=' font-semibold'>
+                                                {item.name2}
+                                            </div>
+                                            <div className=" text-xs text-gray-600">
+                                                {item.position2}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -226,6 +239,7 @@ const CourseDetails = () =>{
                     community_support: Course_info[course].community_support,
                 }
                 setCourseDetail(newDetail)
+                console.log(courseDetail)
             }
             fetchUserBounty()
 
