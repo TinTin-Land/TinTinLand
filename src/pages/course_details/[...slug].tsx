@@ -342,7 +342,7 @@ const CourseDetails = () =>{
                         <div className="fixed inset-0 bg-gray-400 bg-opacity-75 transition-opacity " />
                     </Transition.Child>
 
-                    <div className="fixed z-10 inset-0 overflow-y-auto">
+                    <div className="fixed z-30 inset-0 overflow-y-auto">
                         <div className="flex items-center justify-center min-h-full p-4 text-center sm:p-0">
                             <Transition.Child
                                 as={Fragment}
@@ -358,7 +358,7 @@ const CourseDetails = () =>{
                                    <div className="flex justify-end">
                                        <button onClick={()=>{setOpen(false)}}
                                                className=" text-2xl  font-light">
-                                           <i className="fa fa-times" aria-hidden="true"></i>
+                                           <img className="w-8" src="/common_icons/close.png" alt=""/>
                                        </button>
                                    </div>
                                     <div>

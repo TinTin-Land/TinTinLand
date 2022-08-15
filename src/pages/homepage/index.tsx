@@ -29,7 +29,7 @@ const Experience = [
 
 const UserInfo = () =>{
     const [open, setOpen] = useAtom(UserInfoState)
-    const [imgUrl,setImgUrl] = useState("/头像_avatar.png")
+    const [imgUrl,setImgUrl] = useState("/common_icons/en-cn备份@2x.png")
     const [emailType,setEmailType] = useState(true)
     const [userNameType,setUserNameType] = useState(true)
     const [selectedNation, setSelectedNation] = useState(nation[0])
@@ -107,12 +107,12 @@ const UserInfo = () =>{
                                     <div className="flex justify-between items-center">
                                         <button onClick={()=>{setOpen(false)}}
                                                 className="flex items-center   ">
-                                            <i className="fa fa-arrow-left" aria-hidden="true"></i>
-                                            <div className="ml-2">
+                                            <img className="w-8" src="/common_icons/back.png" alt=""/>
+                                            <div className="ml-2 font-semibold">
                                                 返回我的主页
                                             </div>
                                         </button>
-                                        <button className="text-xs bg-black text-white rounded-full  px-10 py-2 ">
+                                        <button className="text-xs bg-black text-white rounded-full  px-10 py-2.5 ">
                                             保存
                                         </button>
 
@@ -579,7 +579,7 @@ const Homepage= () =>{
 
                             <Link href="">
                                 <a>
-                                    <img src="/icon-twitter.png" alt=""/>
+                                    <img className="w-6" src="/common_icons/icon-twitter@2x.png" alt=""/>
                                 </a>
                             </Link>
                     </div>
@@ -633,7 +633,7 @@ const Homepage= () =>{
                         <Tab.Panel className={classNames('  p-1')}>
                             <div className="flex justify-center my-auto">
                                 <div className="text-center text-gray-500">
-                                    <img className="mt-20"  src="/无简介空状态.png" alt=""/>
+                                    <img className="mt-20 w-32"  src="/common_icons/无简介空状态@2x.png" alt=""/>
                                     暂无个人简介
                                 </div>
                             </div>

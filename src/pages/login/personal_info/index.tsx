@@ -12,7 +12,7 @@ const Personal_info = () =>{
     const [emailType,setEmailType] = useState(true)
     const [emailNumber,setEmailNumber] =useState(false)
 
-    const [imgUrl,setImgUrl] = useState("/头像_avatar.png")
+    const [imgUrl,setImgUrl] = useState("/common_icons/头像_avatar@2x.png")
     const inputImg = () => {
         let fileInput = (document.getElementById('file') as HTMLInputElement).files[0]
         const reader = new FileReader()
@@ -71,7 +71,7 @@ const Personal_info = () =>{
                                 </div>
                                 <div className="relative ">
                                     <div className="w-16 h-16  p-1.5  rounded-full border border-gray-300 flex ">
-                                        <img className=" w-full " src="/上传_upload.png" alt=""/>
+                                        <img className=" w-full " src="/common_icons/上传_upload.png" alt=""/>
                                         <input onChange={inputImg} type="file" id="file" className="absolute opacity-0  w-14 mt-2.5   flex justify-center "  accept="image/*"/>
                                     </div>
                                 </div>

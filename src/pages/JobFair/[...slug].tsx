@@ -11,6 +11,7 @@ import Info from "../../info";
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
+
 const JobFair= () =>{
     const router = useRouter()
 
@@ -44,7 +45,7 @@ const JobFair= () =>{
                     </div>
                 </div>
                 <div className="flex justify-between mt-5">
-                    <div className="w-8/12 ">
+                    <div className="w-8/12 grid grid-cols-1 gap-8 h-105 overflow-y-auto no-scrollbar pr-4">
                         <div className=" bg-white  p-5 rounded-xl">
                             <div className="flex">
                                 <img className="w-14 rounded-full"  src="/tintin-favicon.svg" alt=""/>
@@ -66,16 +67,124 @@ const JobFair= () =>{
                                     <div className="ml-4">
                                         80k-120K｜杭州｜Remote｜全职
                                     </div>
-
                                 </div>
-                               
+                                <div className="flex p-5 ">
+                                    <div className="font-semibold">
+                                        Senior Frontend Engineer, Creator Experience
+                                    </div>
+                                    <div className="ml-4">
+                                        80k-120K｜杭州｜Remote｜全职
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div className=" bg-white  p-5 rounded-xl">
+                            <div className="flex">
+                                <img className="w-14 rounded-full"  src="/tintin-favicon.svg" alt=""/>
+                                <div className="ml-2 w-11/12">
+                                    <div className="text-xl font-semibold">
+                                        TinTin Land
+                                    </div>
+                                    <div className=" truncate text-gray-500">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="border rounded-xl mt-4 divide-y divide-gray-200">
+                                <div className="flex p-5 ">
+                                    <div className="font-semibold">
+                                        Senior Frontend Engineer, Creator Experience
+                                    </div>
+                                    <div className="ml-4">
+                                        80k-120K｜杭州｜Remote｜全职
+                                    </div>
+                                </div>
+                                <div className="flex p-5 ">
+                                    <div className="font-semibold">
+                                        Senior Frontend Engineer, Creator Experience
+                                    </div>
+                                    <div className="ml-4">
+                                        80k-120K｜杭州｜Remote｜全职
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div className=" bg-white  p-5 rounded-xl">
+                            <div className="flex">
+                                <img className="w-14 rounded-full"  src="/tintin-favicon.svg" alt=""/>
+                                <div className="ml-2 w-11/12">
+                                    <div className="text-xl font-semibold">
+                                        TinTin Land
+                                    </div>
+                                    <div className=" truncate text-gray-500">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="border rounded-xl mt-4 divide-y divide-gray-200">
+                                <div className="flex p-5 ">
+                                    <div className="font-semibold">
+                                        Senior Frontend Engineer, Creator Experience
+                                    </div>
+                                    <div className="ml-4">
+                                        80k-120K｜杭州｜Remote｜全职
+                                    </div>
+                                </div>
+                                <div className="flex p-5 ">
+                                    <div className="font-semibold">
+                                        Senior Frontend Engineer, Creator Experience
+                                    </div>
+                                    <div className="ml-4">
+                                        80k-120K｜杭州｜Remote｜全职
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div className=" bg-white  p-5 rounded-xl">
+                            <div className="flex">
+                                <img className="w-14 rounded-full"  src="/tintin-favicon.svg" alt=""/>
+                                <div className="ml-2 w-11/12">
+                                    <div className="text-xl font-semibold">
+                                        TinTin Land
+                                    </div>
+                                    <div className=" truncate text-gray-500">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="border rounded-xl mt-4 divide-y divide-gray-200">
+                                <div className="flex p-5 ">
+                                    <div className="font-semibold">
+                                        Senior Frontend Engineer, Creator Experience
+                                    </div>
+                                    <div className="ml-4">
+                                        80k-120K｜杭州｜Remote｜全职
+                                    </div>
+                                </div>
+                                <div className="flex p-5 ">
+                                    <div className="font-semibold">
+                                        Senior Frontend Engineer, Creator Experience
+                                    </div>
+                                    <div className="ml-4">
+                                        80k-120K｜杭州｜Remote｜全职
+                                    </div>
+                                </div>
 
                             </div>
 
                         </div>
 
                     </div>
-                    <div className="w-1/4 pl-20">
+                    <div className="w-4/12 pl-20">
                         <JobFair_Navigation/>
                     </div>
 

@@ -1,6 +1,10 @@
+
+
+
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
     darkMode: 'media', // or 'media' or 'class'
     theme: {
@@ -13,20 +17,25 @@ module.exports = {
                 "100":"43rem",
                 "105":"46rem",
             },
+
             screens: {
                 '3xl': '1700px',
             },
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             },
+
         },
         variants: {
             extend: {},
         },
 
+
     },
     plugins: [
+
         require('@tailwindcss/line-clamp'),
     ],
 
 }
+

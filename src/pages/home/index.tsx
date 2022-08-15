@@ -269,7 +269,7 @@ const Hackathons = ()=>{
         time:"2022.06.17 - 2022.08.14",
         signUp:"https://wj.qq.com/s2/9919322/2a76/",
         more:"https://tintinland1.notion.site/Web3-Jam-2022-Summer-0a0f85afb0db49cd9980cbdcc61f3101",
-        img:"黑客松-1.png",
+        img:"/hackathons/黑客松-1.png",
 
     }
     const Info2 = {
@@ -278,7 +278,7 @@ const Hackathons = ()=>{
         time:"2022.05.10 - 2022.06.20  ",
         signUp:"",
         more:"https://mp.weixin.qq.com/s/-xWsmrblKv5ygAQluPz-Mw",
-        img:"黑客松-2.png",
+        img:"/hackathons/黑客松-2.png",
     }
     const Info3 = {
         state:"Ended",
@@ -286,7 +286,7 @@ const Hackathons = ()=>{
         time:"2021.11.15 -  2021.12.19 ",
         signUp:"",
         more:"https://mp.weixin.qq.com/s/e0QRDW7kxzBfgfx0NP4HSw",
-        img:"黑客松-3.png",
+        img:"/hackathons/黑客松-3.png",
     }
     return(
         <div id="Hackathons" className="pt-20 ">
@@ -774,35 +774,35 @@ useEffect(()=>{
    const  partner = [
        {
            href:"https://twitter.com/blocklikecom?s=20&t=l_Ve7fQVbE6so0EHlp9FbQ",
-           img:"Blocklike-color.svg",
+           img:"/partner/Blocklike-color.svg",
        },
        {
            href:"https://twitter.com/8BTC_OFFICIAL?s=20&t=16hIrZG9bvB0YvCzXzAerA",
-           img:"defi之道-color.svg",
+           img:"/partner/defi之道-color.svg",
        },
        {
            href:"https://twitter.com/Foresight_News?s=20&t=A51w8xu6srB4VYPSysKX_A",
-           img:"Foresight-News-color.svg",
+           img:"partner/Foresight-News-color.svg",
        },
        {
            href:"https://twitter.com/PANewsCN?s=20&t=A51w8xu6srB4VYPSysKX_A",
-           img:"PANews-color.svg",
+           img:"/partner/PANews-color.svg",
        },
        {
            href:"https://twitter.com/OdailyChina?s=20&t=l_Ve7fQVbE6so0EHlp9FbQ",
-           img:"星球日报-color.svg",
+           img:"/partner/星球日报-color.svg",
        },
        {
            href:"https://twitter.com/TechFlowPost?s=20&t=16hIrZG9bvB0YvCzXzAerA",
-           img:"深潮-color.svg",
+           img:"/partner/深潮-color.svg",
        },
        {
            href:"https://twitter.com/MarsBit_CN?s=20&t=l_Ve7fQVbE6so0EHlp9FbQ",
-           img:"火星财经-color.svg",
+           img:"/partner/火星财经-color.svg",
        },
        {
            href:"https://www.tuoluo.cn/",
-           img:"陀螺科技-color.svg",
+           img:"/partner/陀螺科技-color.svg",
        },
 
 
@@ -887,55 +887,55 @@ const Partner2 = () =>{
     const community = [
         {
             href:"https://learnblockchain.cn/",
-            img:"登链社区-color.svg"
+            img:"/partner/登链社区-color.svg"
         },
         {
             href:"https://www.sunrecruitment.co.nz/",
-            img:"APG-color.svg"
+            img:"/partner/APG-color.svg"
         },
         {
             href:"https://mp.weixin.qq.com/s/o4Q9US-Nl26s7gHhLDnPXw",
-            img:"BTCU-高校区块链技术社区-color.svg"
+            img:"/partner/BTCU-高校区块链技术社区-color.svg"
         },
         {
             href:"https://www.sunrecruitment.co.nz/",
-            img:"SUN-RECRUITMENT-color.svg"
+            img:"/partner/SUN-RECRUITMENT-color.svg"
         },
         {
             href:"https://twitter.com/ICPL_Community",
-            img:"icpl.svg"
+            img:"/partner/icpl.svg"
         },
         {
             href:"https://twitter.com/D_PlusCommunity?s=20&t=dtI_hlfd5jdBlz9weG-aDA",
-            img:"Dplus-color.svg"
+            img:"/partner/Dplus-color.svg"
         },
         {
             href:"https://www.chainnode.com/",
-            img:"ChainNode-color.svg"
+            img:"/partner/ChainNode-color.svg"
         },
         {
             href:"https://twitter.com/EthereumCN?s=20&t=MyUrO-0Dh45O9tBhz7HBwA",
-            img:"ECN-color.svg"
+            img:"/partner/ECN-color.svg"
         },
         {
             href:"https://twitter.com/metatribe6465?s=20&t=-sX_ekTaDtBhgW0vt7JS_Q",
-            img:"Metatribe-color.svg"
+            img:"/partner/Metatribe-color.svg"
         },
         {
             href:"https://twitter.com/OneBlock_?s=20&t=MIkwh32a6Orf2f-2o60yHg",
-            img:"oneblock-color.svg"
+            img:"/partner/oneblock-color.svg"
         },
         {
             href:"https://rebase.network/",
-            img:"rebase-color.svg"
+            img:"/partner/rebase-color.svg"
         },
         {
             href:"https://www.thublockchain.org/",
-            img:"THUBA-color.svg"
+            img:"/partner/THUBA-color.svg"
         },
         {
             href:"https://twitter.com/ipfsnews2",
-            img:"ipfsnews.svg"
+            img:"/partner/ipfsnews.svg"
         },
 
 
