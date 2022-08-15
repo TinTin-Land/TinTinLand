@@ -16,7 +16,7 @@ const navigation = [
     { id:2 ,name: 'Hackathons', href: '/#Hackathons' },
     { id:3 ,name: 'Activities', href: '/#Activities' },
     { id:4 ,name: 'About Us', href: '/#About' },
-    { id:5 ,name: 'Job Fair', href: '/JobFair/开发' },
+    // { id:5 ,name: 'Job Fair', href: '/JobFair/开发' },
 
 ]
 const Header = () =>{
