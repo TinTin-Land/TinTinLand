@@ -140,6 +140,10 @@ const LearningHighlights = {
         icon:"/icon/小组学习.svg",
         h1:"小组学习制模式",
     },
+    毕业标准学费全部返还:{
+        icon:"/icon/结业挑战.svg",
+        h1:"毕业后返还学费",
+    },
 
 }
 
@@ -169,7 +173,7 @@ const Course_student = {
     avatar:"/student/Hunter.png",
     name:"Hunter",
     position:"后端开发，追逐技术浪潮的先锋",
-    h1:"这是一门真正拔高认知的课程，干货满满，如果你是刚入门的小白可能觉得有难度，但是学完之后一定让你精神焕发，收获满满！如果是老手，也可以温故知新，对以太坊智能合约有新的认识。相比于碎片化的知识，这样系统性的课程对于小白和从业者来说更有价值",
+    h1:"这是一门真正拔高认知的课程，干货满满，如果你是刚入门的小白可能觉得有难度，但是学完之后一定让你精神焕发，收获满满！如果是老手，也可以温故知新，对以太坊智能合约有新的认识。相比于碎片化的知识，这样系统性的课程对于小白和从业者来说更有价值。",
     },
 
     CRG:{
@@ -184,7 +188,7 @@ const Course_student = {
     avatar:"/student/Kurtis.png",
     name:"Kurtis",
     position:"Rust开发工程师，区块链爱好者",
-    h1:"Tintin社区的solidity 课程，兼顾理论与实战的平衡，帮助开发者更好更快打下智能合约开发的基础，欢迎各位对区块链开发感兴趣的开发者前来学习。",
+    h1:"TinTinLand社区的 solidity 课程，兼顾理论与实战的平衡，帮助开发者更好更快打下智能合约开发的基础，欢迎各位对区块链开发感兴趣的开发者前来学习。",
 },
 
     DominicWilliams_JanCamenisch: {
@@ -425,6 +429,7 @@ const Course_info =
                 LearningHighlights.结业挑战赛,
                 LearningHighlights.毕业证书,
                 LearningHighlights.中文授课,
+                LearningHighlights.毕业标准学费全部返还,
             ],
             teacher:[
                 Course_teacher.JasonWan,
@@ -563,6 +568,7 @@ const Course_info =
                 LearningHighlights.助教每晚在线解答,
                 LearningHighlights.DFINITY官方认证毕业证书,
                 LearningHighlights.中文授课,
+                LearningHighlights.毕业标准学费全部返还,
             ],
             teacher:[
                 Course_teacher.PaulLiu,
@@ -719,6 +725,7 @@ const Course_info =
                 LearningHighlights.助教每晚在线解答,
                 LearningHighlights.Flow官方认证毕业证书,
                 LearningHighlights.中文授课,
+                LearningHighlights.毕业标准学费全部返还,
             ],
             teacher:[
                 Course_teacher.Bohao,
@@ -851,6 +858,7 @@ const Course_info =
                 LearningHighlights.助教每晚在线解答,
                 LearningHighlights.DFINITY官方认证毕业证书,
                 LearningHighlights.中文授课,
+                LearningHighlights.毕业标准学费全部返还,
 
             ],
             teacher:[
@@ -878,7 +886,8 @@ const Course_info =
                 communitySupport.DFINITY官方认证
             ],
         },
-}
+
+    }
 
 
 export default Course_info

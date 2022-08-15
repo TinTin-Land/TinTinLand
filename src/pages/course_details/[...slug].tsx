@@ -3,7 +3,7 @@ import Tail from "../../components/tail";
 import React, {Fragment, useEffect, useState} from "react";
 import Link from "next/link";
 import ChevronUpIcon from "@heroicons/react/outline/ChevronUpIcon";
-import { Disclosure, Transition } from "@headlessui/react";
+import {Dialog, Disclosure, Transition} from "@headlessui/react";
 import {useRouter} from "next/router";
 import Course_info from "../../components/course_info";
 import {useAtom} from "jotai";
@@ -215,7 +215,11 @@ const CourseInfo = () =>{
 
 const CourseDetails = () =>{
     const router = useRouter()
+    const [open, setOpen] = useState(false)
     const [courseDetail,setCourseDetail] = useAtom(Course_Detail)
+    const WeiXinImg = {
+        img:"/tintinVX.png"
+    }
     useEffect(()=>{
         if (router.isReady){
             const course = router.query.slug[0]
@@ -253,6 +257,9 @@ const CourseDetails = () =>{
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">
+                <button onClick={()=>{setOpen(true)}} className="fixed  z-30 bottom-6 right-6  ">
+                    <img className="w-10 h-10 " src="/tintin-favicon.svg" alt=""/>
+                </button>
                 <div className="   py-10      md:flex justify-between " >
                     <div className="md:w-1/2">
                         <div className="flex mb-2">
@@ -319,7 +326,53 @@ const CourseDetails = () =>{
                 <Details/>
                 <CourseInfo/>
             </div>
+
             <Tail/>
+            <Transition.Root show={open} as={Fragment}>
+                <Dialog as="div" className="relative z-10" onClose={setOpen}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-gray-400 bg-opacity-75 transition-opacity " />
+                    </Transition.Child>
+
+                    <div className="fixed z-10 inset-0 overflow-y-auto">
+                        <div className="flex items-center justify-center min-h-full p-4 text-center sm:p-0">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            >
+                                <Dialog.Panel className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl items-center transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6">
+
+                                   <div className="flex justify-end">
+                                       <button onClick={()=>{setOpen(false)}}
+                                               className=" text-2xl  font-light">
+                                           <i className="fa fa-times" aria-hidden="true"></i>
+                                       </button>
+                                   </div>
+                                    <div>
+                                        <div className="text-center mt-2 text-xl font-semibold">
+                                            加入Web3技术社区，与全球10000+开发者共同交流
+                                        </div>
+                                        <img src={WeiXinImg.img} alt=""/>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition.Root>
         </div>
 
 

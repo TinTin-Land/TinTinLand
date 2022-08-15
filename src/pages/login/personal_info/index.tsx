@@ -7,7 +7,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const Login = () =>{
+const Personal_info = () =>{
     const router = useRouter()
     const [emailType,setEmailType] = useState(true)
     const [emailNumber,setEmailNumber] =useState(false)
@@ -120,4 +120,4 @@ const Login = () =>{
     )
 }
 
-export default Login
+export default Personal_info

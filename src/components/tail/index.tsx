@@ -42,7 +42,7 @@ const ends =[
 
 ]
 const WeiXinImg = {
-    img:"https://cdn.discordapp.com/attachments/876498266550853642/994180553190424676/unknown.png"
+    img:"/tintinVX.png"
 }
 const Tail=()=>{
     const [open, setOpen] = useState(false)
