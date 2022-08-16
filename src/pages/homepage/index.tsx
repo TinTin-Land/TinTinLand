@@ -53,9 +53,9 @@ const UserInfo = () =>{
         }
 
     }
-    function checkemail()
+    function checkEmail()
     {
-        const email = (document.getElementById("email") as HTMLInputElement).value
+        const email = (document.getElementById("userEmail") as HTMLInputElement).value
         const expression = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
         let objExp = new RegExp(expression);
         if(objExp.test(email)==true){
@@ -104,14 +104,11 @@ const UserInfo = () =>{
                             >
                                 <Dialog.Panel className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-auto  shadow-xl items-center transform transition-all sm:my-8 sm:max-w-xl w-full sm:p-6">
 
-                                    <div className="flex justify-between items-center">
-                                        <button onClick={()=>{setOpen(false)}}
-                                                className="flex items-center   ">
+                                        <div className="flex justify-between items-center cursor-pointer" onClick={()=>{setOpen(false)}}>
                                             <img className="w-8" src="/common_icons/back.png" alt=""/>
                                             <div className="ml-2 font-semibold">
                                                 返回我的主页
                                             </div>
-                                        </button>
                                         <button className="text-xs bg-black text-white rounded-full  px-10 py-2.5 ">
                                             保存
                                         </button>
@@ -119,7 +116,7 @@ const UserInfo = () =>{
                                     </div>
                                     <div className="h-105 mt-2 overflow-y-auto">
                                         {/*基本信息*/}
-                                        <div className="bg-rose-100 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
                                         <div className="text-xl font-semibold">
                                             基本信息
                                         </div>
@@ -163,12 +160,12 @@ const UserInfo = () =>{
                                             </label>
                                             <div className="mt-1">
                                                 <input
-                                                    id="email"
+                                                    id="userEmail"
                                                     name="email"
                                                     type="email"
-                                                    autoComplete="email"
-                                                    onKeyDown={checkemail}
-                                                    onInput={checkemail}
+                                                    autoComplete="off"
+                                                    onKeyDown={checkEmail}
+                                                    onInput={checkEmail}
                                                     required
                                                     placeholder="Enter your email"
                                                     className={classNames(emailType?"outline-none":"border-red-400","outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500  sm:text-sm")}
@@ -185,6 +182,7 @@ const UserInfo = () =>{
                                                     rows={4}
                                                     name="comment"
                                                     id="comment"
+                                                    autoComplete="off"
                                                     className="p-1 shadow-sm outline-none block w-full sm:text-sm border-gray-300 rounded-md resize-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                                                     placeholder="请介绍你自己吧"
                                                     defaultValue={''}
@@ -369,7 +367,7 @@ const UserInfo = () =>{
                                         </div>
                                         </div>
                                         {/*成就*/}
-                                        <div className="bg-rose-100 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
                                         <div className="mt-2">
                                             <label htmlFor="email" className=" ">
                                                 <div className=" font-medium text-gray-700">
@@ -384,8 +382,8 @@ const UserInfo = () =>{
                                                     rows={4}
                                                     name="comment"
                                                     id="comment"
+                                                    autoComplete="off"
                                                     className="p-1 shadow-sm outline-none block w-full sm:text-sm border-gray-300 rounded-md resize-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
-                                                    defaultValue={""}
                                                     placeholder="你的经历与成就"
                                                     maxLength= {300}
                                                 />
@@ -393,7 +391,7 @@ const UserInfo = () =>{
                                         </div>
                                             </div>
                                         {/*社交账号*/}
-                                        <div className="bg-rose-100 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
                                             <div className="mt-2">
                                                 <label htmlFor="email" className=" ">
                                                     <div className=" font-medium text-gray-700">
@@ -412,6 +410,7 @@ const UserInfo = () =>{
                                                         <input
                                                             id="twitter"
                                                             required
+                                                            autoComplete="off"
                                                             placeholder="Twitter"
                                                             className="outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500  sm:text-sm"
                                                         />
@@ -426,6 +425,7 @@ const UserInfo = () =>{
                                                         <input
                                                             id="GitHub"
                                                             required
+                                                            autoComplete="off"
                                                             placeholder="GitHub"
                                                             className="outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none  focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                         />
@@ -440,6 +440,7 @@ const UserInfo = () =>{
                                                         <input
                                                             id="Telegram"
                                                             required
+                                                            autoComplete="off"
                                                             placeholder="Telegram"
                                                             className="outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500  sm:text-sm"
                                                         />
@@ -448,7 +449,7 @@ const UserInfo = () =>{
                                             </div>
                                         </div>
                                         {/*隐私*/}
-                                        <div className="bg-rose-100 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
                                             <div className="mt-2">
                                                 <div  className="flex justify-between items-center ">
                                                     <div className=" font-medium text-gray-700">
@@ -623,7 +624,7 @@ const Homepage= () =>{
                             className={classNames('  p-1 ')}>
                             <div className="flex justify-center my-auto">
                                 <div className="text-center text-gray-500">
-                                    <img className="mt-20"  src="/无简介空状态.png" alt=""/>
+                                    <img className="mt-20 w-32"  src="/common_icons/无简介空状态@2x.png" alt=""/>
                                     暂无个人简介
                                 </div>
                             </div>
