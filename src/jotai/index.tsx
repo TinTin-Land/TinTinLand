@@ -43,4 +43,6 @@ const LogoFavicon = atomWithStorage("LogoFavicon","/tintin-favicon.svg")
 
 const UserInfoState = atom(false)
 
-export {Course_Detail,LogoFavicon,UserInfoState}
+const JobFairInfoState = atom(false)
+
+export {Course_Detail,LogoFavicon,UserInfoState,JobFairInfoState}
