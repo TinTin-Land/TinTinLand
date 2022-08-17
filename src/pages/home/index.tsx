@@ -690,32 +690,36 @@ const Activity = ()=>{
 const AboutUs = ()=>{
     return(
         <div id="About" className="pt-20">
-            <div className="xl:flex justify-between">
+            <div className="xl:flex justify-between items-center">
+
                 <div className='xl:w-1/2  xl:mr-9'>
                     <div className="text-indigo-700 text-2xl ">
                         About Us
                     </div>
-                    <div className="text-2xl xl:text-5xl my-5">
+                    <div className="text-2xl xl:text-4xl 2xl:text-5xl my-5">
                         Empowering the Next-Gen
-                        <div>
-                            Web Developers
-                        </div>
+                        Web Developers
                     </div>
-                    <div className="xl:mt-14">
+                    <div className="2xl:mt-14 text-base">
                         <div>
                             TinTinLand 是赋能下一代开发者的技术社区，能够通过聚集、培育、输送
                                 开发者到各开放网络，共同定义并构建未来。
                         </div>
                         <div className="mt-5">
                             我们也将和行业有商业洞察力、有经验的开发者、社区、媒体合作，提供
-
-                                技术课程、技术内容解读、AMA、线下开发者活动等。
+                            技术课程、技术内容解读、AMA、线下开发者活动等。
                         </div>
                     </div>
+                    <p className="mt-4 flex">
+                        联系我们:
+                        <a href="mailto:contact@tintinland.com" className="cursor-pointer ml-1 text-blue-600">
+                        contact@tintinland.com
+                    </a>
+                    </p>
 
                 </div>
 
-                <div className="mt-5 xl:mt-0 xl:w-1/2">
+                <div className="mt-5 xl:w-1/2">
                     <img className="rounded-xl w-full" src="/about us.png" alt=""/>
                 </div>
 
