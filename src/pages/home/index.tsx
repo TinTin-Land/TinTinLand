@@ -700,7 +700,7 @@ const AboutUs = ()=>{
                         Empowering the Next-Gen
                         Web Developers
                     </div>
-                    <div className="2xl:mt-14 text-base">
+                    <div className="2xl:mt-14 text-base 2xl:text-xl">
                         <div>
                             TinTinLand 是赋能下一代开发者的技术社区，能够通过聚集、培育、输送
                                 开发者到各开放网络，共同定义并构建未来。
