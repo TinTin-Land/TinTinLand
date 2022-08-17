@@ -47,7 +47,7 @@ const WeiXinImg = {
 const Tail=()=>{
     const [open, setOpen] = useState(false)
     return(
-        <div className="relative border-t border-gray-400 pt-12 pb-1 px-10   bg-black  rounded-t-3xl">
+        <div className="relative border-t border-gray-400 pt-4 2xl:pt-12 pb-1 px-10   bg-stone-900  rounded-t-3xl">
             <div className="md:hidden">
                 <div className="md:flex justify-between  items-center  mx-auto  ">
                     <div  className="flex justify-center  " >

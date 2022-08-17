@@ -114,9 +114,9 @@ const UserInfo = () =>{
                                         </button>
 
                                     </div>
-                                    <div className="h-105 mt-2 overflow-y-auto">
+                                    <div className=" h-new md:h-105 xl:h-new 2xl:h-105 mt-2 overflow-y-auto">
                                         {/*基本信息*/}
-                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-slate-300 rounded-xl py-2 px-4 mt-4">
                                         <div className="text-xl font-semibold">
                                             基本信息
                                         </div>
@@ -367,7 +367,7 @@ const UserInfo = () =>{
                                         </div>
                                         </div>
                                         {/*成就*/}
-                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-slate-300 rounded-xl py-2 px-4 mt-4">
                                         <div className="mt-2">
                                             <label htmlFor="email" className=" ">
                                                 <div className=" font-medium text-gray-700">
@@ -545,12 +545,13 @@ const Homepage= () =>{
             <Header/>
             <div className=" lg:px-10 xl:px-32 relative px-5 pt-24 pb-96   mx-auto ">
 
-                <div className="flex justify-between items-center">
-                    <div className="flex items-center">
+                    <img className="rounded-lg" src="https://cdn.discordapp.com/attachments/996743003165171723/1009394374100144209/unknown.png" alt=""/>
+                <div className=" -mt-8 flex justify-between items-center">
+                    <div className="flex items-center mx-4">
                         <div>
-                            <img className="w-20 rounded-full" src="https://cdn.discordapp.com/attachments/897398778166906911/978238644810842133/unknown.png" alt=""/>
+                            <img className="w-28 rounded-full" src="https://cdn.discordapp.com/attachments/897398778166906911/978238644810842133/unknown.png" alt=""/>
                         </div>
-                        <div className="ml-10 grid grid-cols-8 gap-2">
+                        <div className=" grid grid-cols-8 gap-2">
                             {usertype.map(item=>(
                             <div key={item.type} className="bg-purple-100 rounded-full text-center text-gray-700 px-4 py-0.5  text-xs " >
                                 {item.type}
@@ -562,16 +563,16 @@ const Homepage= () =>{
                         <button
                             onClick={()=>setOpen(true)}
                             type="submit"
-                            className="w-28 flex justify-center py-1.5 px-3 border border-black  rounded-full shadow-sm text-sm font-medium"
+                            className="w-28 mt-4 flex justify-center py-1.5 px-3 border border-black  rounded-full shadow-sm text-sm font-medium"
                         >
                            Edit profile
                         </button>
                     </div>
 
                 </div>
-                <div className="mt-4">
+                <div className="ml-4 mt-4">
                     <div className="flex items-center">
-                        <div className="font-semibold ">
+                        <div className="font-semibold text-xl">
                             TestUser312
                         </div>
                         <div className="border-r h-4 mx-3 border-black">
@@ -585,7 +586,7 @@ const Homepage= () =>{
                             </Link>
                     </div>
                 </div>
-                <div className="flex items-center mt-3 text-gray-600">
+                <div className="ml-4 flex items-center mt-3 text-gray-600">
                     <div className="flex items-center">
                     <i className="fa fa-briefcase" aria-hidden="true"></i>
                     <div className="text-xs ml-1">
@@ -601,7 +602,7 @@ const Homepage= () =>{
                 </div>
 
                 <Tab.Group>
-                    <Tab.List className="  space-x-1  mt-10 mx-auto  flex justify-between border-b border-gray-300">
+                    <Tab.List className="ml-4  space-x-1  mt-10 mx-auto  flex justify-between border-b border-gray-300">
                         <div>
                             {Object.keys(categories).map((category) => (
                                 <Tab

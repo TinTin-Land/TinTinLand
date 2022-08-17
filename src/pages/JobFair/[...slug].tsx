@@ -63,7 +63,6 @@ const JobFair= () =>{
         },
 
 
-
     ]
     const router = useRouter()
     const [open, setOpen] = useAtom(JobFairInfoState)
