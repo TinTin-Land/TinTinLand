@@ -116,7 +116,7 @@ const UserInfo = () =>{
                                     </div>
                                     <div className=" h-new md:h-105 xl:h-new 2xl:h-105 mt-2 overflow-y-auto">
                                         {/*基本信息*/}
-                                        <div className="bg-slate-300 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
                                         <div className="text-xl font-semibold">
                                             基本信息
                                         </div>
@@ -367,7 +367,7 @@ const UserInfo = () =>{
                                         </div>
                                         </div>
                                         {/*成就*/}
-                                        <div className="bg-slate-300 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
                                         <div className="mt-2">
                                             <label htmlFor="email" className=" ">
                                                 <div className=" font-medium text-gray-700">

@@ -94,8 +94,8 @@ const JobFair_Navigation = () =>{
                 ))}
 
             </div>
-                <div className="xl:mt-56 2xl:mt-96 flex justify-end items-center text-base bg-white p-4 px-6 rounded-xl">
-                   <p className="text-base mr-4 ">
+                <div className="xl:mt-56 2xl:mt-96 flex  items-center text-base  p-4 px-6 rounded-xl justify-center">
+                   <div className="text-base mr-4 ">
                        <div>
                            你的项目也在寻找工作伙伴吗？
                        </div>
@@ -106,7 +106,7 @@ const JobFair_Navigation = () =>{
                            </a>
                            ，你的岗位也将展示在这里。
                        </div>
-                   </p>
+                   </div>
                     <img className="w-12" src="/common_icons/编组 13@2x.png" alt=""/>
                 </div>
             </div>
