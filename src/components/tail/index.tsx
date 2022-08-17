@@ -56,6 +56,8 @@ const Tail=()=>{
                 </div>
                 <div className="    mx-auto ">
                     <div className="">
+                        <Link href="https://discord.gg/6b2QNSYgmz">
+                            <a  target="_blank">
                         <div className="text-white text-3xl flex items-center font-light justify-center" >
                             <div>
                                 Join our Discord
@@ -67,6 +69,8 @@ const Tail=()=>{
                             </svg>
 
                         </div>
+                            </a>
+                        </Link>
                         <div className="my-2 text-gray-500 text-sm flex justify-center  ">
                             Click to join Discord channel
                         </div>
@@ -98,7 +102,7 @@ const Tail=()=>{
                 <div className="md:flex justify-between    mx-auto ">
                     <div className="">
                         <Link href="https://discord.gg/6b2QNSYgmz">
-                            <a  className="text-white text-3xl flex items-center font-light justify-center" >
+                            <a  className="text-white text-3xl flex items-center font-light justify-center"  target="_blank">
                             <div>
                                 Join our Discord
                             </div>
@@ -124,7 +128,7 @@ const Tail=()=>{
                                         <div key={item.h1} className="flex my-3 md:justify-start justify-center  text-gray-400 text-sm transition  duration-300 transform hover:translate-x-1 ">
 
                                             <Link href={item.href}>
-                                                <a>
+                                                <a  target="_blank">
                                                     {item.h1}
                                                 </a>
                                             </Link>

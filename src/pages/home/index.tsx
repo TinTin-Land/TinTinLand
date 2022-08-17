@@ -712,8 +712,8 @@ const AboutUs = ()=>{
                     </div>
                     <p className="mt-4 flex">
                         联系我们:
-                        <a href="mailto:contact@tintinland.com" className="cursor-pointer ml-1 text-blue-600">
-                        contact@tintinland.com
+                        <a href="mailto:tintinland2022@gmail.com" className="cursor-pointer ml-1 text-blue-600">
+                            tintinland2022@gmail.com
                     </a>
                     </p>
 
