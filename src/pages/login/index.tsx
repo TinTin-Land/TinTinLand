@@ -46,7 +46,7 @@ const Login = () =>{
                 <Header/>
                 <div className="min-h-full   flex flex-col  justify-center py-12 px-6 lg:px-8">
                     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
-                        <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow rounded-lg sm:px-10 text-center sm:text-left pb-56 sm:pb-8">
+                        <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow rounded-lg sm:px-10 text-center sm:text-left pb-10 sm:pb-8">
                             <div className="text-4xl">
                                 Welcome
                             </div>
@@ -75,7 +75,7 @@ const Login = () =>{
                                         />
                                     </div>
                                 </div>
-                                <div className="flex justify-center sm:justify-end mt-5 sm:mt-10">
+                                <div className="flex justify-center sm:justify-end mt-10">
                                     <button
                                         type="submit"
                                         onClick={next}
