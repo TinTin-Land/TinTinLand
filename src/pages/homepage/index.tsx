@@ -112,7 +112,7 @@ const UserInfo = () =>{
                                                 </div>
                                             </div>
 
-                                        <button className="text-xs bg-black text-white rounded-full  px-10 py-2.5 ">
+                                        <button className="text-xs bg-black text-white rounded-full  px-10 py-2.5 outline-none">
                                             保存
                                         </button>
 
