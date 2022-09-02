@@ -50,37 +50,35 @@ const Personal_info = () =>{
 
     return(
         <>
-            <div className="mx-auto relative h-screen  bg-fixed overflow-hidden"
+            <div className="mx-auto relative h-screen bg-no-repeat bg-center sm:bg-fixed overflow-hidden"
                  style={{backgroundImage:"url('/tintin-bg.png')"}}>
                 <Header/>
-                <div className="min-h-full flex flex-col  justify-center py-12 sm:px-6 lg:px-8">
+                <div className="min-h-full flex flex-col  justify-center py-12 px-6 lg:px-8">
                     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                        <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                        <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow rounded-lg text-center sm:text-left sm:px-10">
                             <div className="text-4xl">
                                 基本信息
                             </div>
-                            <div className="mt-2 text-sm mb-10 mt-5">
-                              离注册成功就差最后一步了，来设置您的头像和用户名吧！
+                            <div className="mt-2 mx-10 sm:mx-0 mb-5 sm:mb-10 mt-5">
+                              离注册成功就差一步了，来设置您的头像和用户名吧！
                             </div>
 
-                            <div className="flex justify-end">
+                            <div className="flex justify-center sm:justify-end">
 
-                                <div className=" flex justify-center mr-5">
-                                    <img className="rounded-full  w-16 h-16 rounded-full border border-gray-300"
+                                <div className=" flex justify-center rounded-full p-5 sm:p-0 md:mr-5 border border-gray-300 overflow-hidden">
+                                    <img className="  sm:w-16 sm:h-16   "
                                          src={classNames(imgUrl)} alt=""/>
                                 </div>
-                                <div className="relative ">
+                                <div className="relative hidden md:flex">
                                     <div className="w-16 h-16  p-1.5  rounded-full border border-gray-300 flex ">
                                         <img className=" w-full " src="/common_icons/上传_upload.png" alt=""/>
-                                        <input onChange={inputImg} type="file" id="file" className="absolute opacity-0  w-14 mt-2.5   flex justify-center "  accept="image/*"/>
+                                        <input onChange={inputImg} type="file" id="file" className="absolute opacity-0   w-14 mt-2.5   flex justify-center "  accept="image/*"/>
                                     </div>
                                 </div>
 
-
                             </div>
-
-                            <div>
-                                <label htmlFor="email" className="flex justify-between text-sm font-medium text-gray-700 mt-4">
+                            <div className="mt-4">
+                                <label htmlFor="email" className="sm:flex justify-between  text-center sm:text-left  font-medium text-gray-700">
                                    用户名
                                     <div className={classNames(emailType?"hidden":"text-red-400")}>
                                        该ID已被注册
@@ -96,11 +94,11 @@ const Personal_info = () =>{
                                         placeholder="Enter your ID"
                                         onKeyUp={checkNumber}
                                         maxLength={24}
-                                        className={classNames(emailType?"outline-none":"border-red-400","outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none   sm:text-sm")}
+                                        className={classNames(emailType?"outline-none":"border-red-400","outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none text-center sm:text-left sm:text-sm")}
                                     />
                                 </div>
                             </div>
-                            <div className="flex  justify-end mt-10">
+                            <div className="flex  justify-center sm:justify-end mt-10">
                                 <button
                                     type="submit"
                                     onClick={next}

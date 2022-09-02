@@ -67,7 +67,7 @@ const Meeting = () =>{
     },[router.isReady])
     return (
 
-        <div className="mx-auto relative  bg-fixed overflow-hidden"
+        <div className="mx-auto relative bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">

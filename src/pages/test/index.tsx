@@ -1,45 +1,26 @@
-import Header from "../../components/header";
-import Tail from "../../components/tail";
-import React, {ReactNode, useEffect} from "react";
-import Link from "next/link";
-import { Menu } from "@headlessui/react";
-import {useRouter} from "next/router";
-import Course_info from "../../components/course_info";
-import {useAtom} from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import React, { useState } from 'react';
+import Select from 'react-select';
 
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+];
 
+export default function App() {
+    const [selectedOption, setSelectedOption] = useState(null);
 
-
-const Meeting = () =>{
-    const router = useRouter();
-    useEffect(()=>{
-
-    },[])
-
-    const darkModeAtom = atomWithStorage('darkMode', false)
-    const [darkMode, setDarkMode] = useAtom(darkModeAtom)
-    const toggleDarkMode = () => setDarkMode(!darkMode)
     return (
-        <div>
-
-            <Link href="/link2">
-                <a className={router.pathname == '/' ? 'active' : ''}>LINK2</a>
-            </Link>
-
-            {/*<div onClick={ssetnumber}>*/}
-            {/*    {nmber}*/}
-            {/*</div>*/}
-
-
-            return (
-            <>
-                <h1>Welcome to {darkMode ? 'dark' : 'light'} mode!</h1>
-                <button onClick={toggleDarkMode}>toggle theme</button>
-            </>
+        <div className="max-w-4xl mx-auto">
+            <Select
+                defaultValue={selectedOption}
+                isMulti
+                name=""
+                onChange={setSelectedOption}
+                options={options}
+                className="basic-multi-select focus:border-yellow-500 focus:ring-red-500  outline-none"
+                classNamePrefix="select"
+            />
         </div>
-
-    )
+    );
 }
-
-export default Meeting

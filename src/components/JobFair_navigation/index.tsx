@@ -55,9 +55,7 @@ const JobFair_Navigation = () =>{
     },[router.isReady,router.query.slug])
     return(
         <>
-            <div className="w-full ">
-
-            <div className="w-full ">
+            <div className=" w-full ">
                 {navigation.map(items=>(
                     <div key={items.title}>
                         <Link href={`${items.title}`}>
@@ -94,22 +92,7 @@ const JobFair_Navigation = () =>{
                 ))}
 
             </div>
-                <div className="xl:mt-56 2xl:mt-96 flex  items-center text-base  p-4 px-6 rounded-xl justify-center">
-                   <div className="text-base mr-4 ">
-                       <div>
-                           你的项目也在寻找工作伙伴吗？
-                       </div>
-                       <div className="  ">
-                           可以
-                           <a className="w-20 text-indigo-800 underline font-semibold  ">
-                               填写表格
-                           </a>
-                           ，你的岗位也将展示在这里。
-                       </div>
-                   </div>
-                    <img className="w-12" src="/common_icons/编组 13@2x.png" alt=""/>
-                </div>
-            </div>
+
         </>
     )
 }

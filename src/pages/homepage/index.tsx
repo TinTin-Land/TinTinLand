@@ -78,7 +78,7 @@ const UserInfo = () =>{
     return(
         <>
             <Transition.Root show={open} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={setOpen}>
+                <Dialog as="div" className="relative z-40" onClose={setOpen}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -91,8 +91,8 @@ const UserInfo = () =>{
                         <div className="fixed inset-0 bg-gray-400 bg-opacity-75 transition-opacity " />
                     </Transition.Child>
 
-                    <div className="fixed z-10 inset-0 ">
-                        <div className="flex items-center justify-center mt-10 overflow-auto p-4 text-center sm:p-0">
+                    <div className="fixed z-40 inset-0 ">
+                        <div className="flex items-center justify-center  sm:mt-10 overflow-auto  text-center sm:p-0">
                             <Transition.Child
                                 as={Fragment}
                                 enter="ease-out duration-300"
@@ -102,21 +102,24 @@ const UserInfo = () =>{
                                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                             >
-                                <Dialog.Panel className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-auto  shadow-xl items-center transform transition-all sm:my-8 sm:max-w-xl w-full sm:p-6">
+                                <Dialog.Panel className="relative bg-white sm:rounded-lg px-4 pt-5 pb-4  text-left overflow-auto  shadow-xl items-center transform transition-all sm:my-8 sm:max-w-xl w-full sm:p-6">
 
-                                        <div className="flex justify-between items-center cursor-pointer" onClick={()=>{setOpen(false)}}>
-                                            <img className="w-8" src="/common_icons/back.png" alt=""/>
-                                            <div className="ml-2 font-semibold">
-                                                返回我的主页
+                                        <div className="flex justify-between items-center cursor-pointer " >
+                                            <div className="flex items-center ">
+                                                <img className="w-8 outline-none" src="/common_icons/back.png" onClick={()=>{setOpen(false)}} alt=""/>
+                                                <div className="ml-2 font-semibold">
+                                                    返回我的主页
+                                                </div>
                                             </div>
+
                                         <button className="text-xs bg-black text-white rounded-full  px-10 py-2.5 ">
                                             保存
                                         </button>
 
                                     </div>
-                                    <div className=" h-new md:h-105 xl:h-new 2xl:h-105 mt-2 overflow-y-auto">
+                                    <div className=" h-screen md:h-105 xl:h-new 2xl:h-105 mt-2 overflow-y-auto">
                                         {/*基本信息*/}
-                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-[#F9F9FB] rounded-xl p-4 mt-4">
                                         <div className="text-xl font-semibold">
                                             基本信息
                                         </div>
@@ -367,7 +370,7 @@ const UserInfo = () =>{
                                         </div>
                                         </div>
                                         {/*成就*/}
-                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-[#F9F9FB] rounded-xl p-4 mt-4">
                                         <div className="mt-2">
                                             <label htmlFor="email" className=" ">
                                                 <div className=" font-medium text-gray-700">
@@ -391,7 +394,7 @@ const UserInfo = () =>{
                                         </div>
                                             </div>
                                         {/*社交账号*/}
-                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-[#F9F9FB] rounded-xl p-4 mt-4">
                                             <div className="mt-2">
                                                 <label htmlFor="email" className=" ">
                                                     <div className=" font-medium text-gray-700">
@@ -449,7 +452,7 @@ const UserInfo = () =>{
                                             </div>
                                         </div>
                                         {/*隐私*/}
-                                        <div className="bg-rose-50 rounded-xl py-2 px-4 mt-4">
+                                        <div className="bg-[#F9F9FB] rounded-xl p-4 mb-20 sm:mb-0  mt-4 ">
                                             <div className="mt-2">
                                                 <div  className="flex justify-between items-center ">
                                                     <div className=" font-medium text-gray-700">
@@ -543,17 +546,17 @@ const Homepage= () =>{
         <div className="mx-auto relative  bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
             <Header/>
-            <div className=" lg:px-10 xl:px-32 relative px-5 pt-24 pb-96   mx-auto ">
+            <div className=" lg:px-10 xl:px-32 relative md:px-5 pt-24 pb-96   mx-auto ">
 
-                    <img className="rounded-lg" src="https://cdn.discordapp.com/attachments/996743003165171723/1009394374100144209/unknown.png" alt=""/>
+                    <img className="sm:rounded-lg h-20 sm:h-full" src="https://cdn.discordapp.com/attachments/996743003165171723/1009394374100144209/unknown.png" alt=""/>
                 <div className=" -mt-8 flex justify-between items-center">
-                    <div className="flex items-center mx-4">
+                    <div className="sm:flex items-center mx-4">
                         <div>
                             <img className="w-28 rounded-full" src="https://cdn.discordapp.com/attachments/897398778166906911/978238644810842133/unknown.png" alt=""/>
                         </div>
-                        <div className=" grid grid-cols-8 gap-2">
+                        <div className="hidden ml-2 sm:grid grid-cols-4 xl:grid-cols-8 gap-2">
                             {usertype.map(item=>(
-                            <div key={item.type} className="bg-purple-100 rounded-full text-center text-gray-700 px-4 py-0.5  text-xs " >
+                            <div key={item.type} className="bg-purple-100 rounded-full text-center text-gray-700 px-3 py-0.5  text-xs " >
                                 {item.type}
                             </div>
                             ))}
@@ -563,12 +566,18 @@ const Homepage= () =>{
                         <button
                             onClick={()=>setOpen(true)}
                             type="submit"
-                            className="w-28 mt-4 flex justify-center py-1.5 px-3 border border-black  rounded-full shadow-sm text-sm font-medium"
+                            className="w-28 mr-4 sm:mr-4 mt-4 flex justify-center py-1.5 px-3 border border-black  rounded-full shadow-sm text-sm font-medium"
                         >
                            Edit profile
                         </button>
                     </div>
-
+                </div>
+                <div className="sm:hidden mt-2 ml-2 grid grid-cols-4  gap-4">
+                    {usertype.map(item=>(
+                        <div key={item.type} className="bg-purple-100 rounded-full text-center text-gray-700 px-1 py-0.5  text-xs " >
+                            {item.type}
+                        </div>
+                    ))}
                 </div>
                 <div className="ml-4 mt-4">
                     <div className="flex items-center">

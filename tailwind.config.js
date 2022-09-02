@@ -15,8 +15,11 @@ module.exports = {
                 '93': '23rem',
                 '99': "30rem",
                 "new":"34rem",
+                "new-1":"39rem",
                 "100":"43rem",
                 "105":"46rem",
+                "106":"48rem",
+
             },
 
             screens: {

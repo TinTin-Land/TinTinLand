@@ -108,12 +108,12 @@ const Verify = () =>{
 
     return (
         <>
-            <div className="mx-auto relative h-screen  bg-fixed overflow-hidden"
+            <div className="mx-auto relative h-screen bg-no-repeat bg-center  sm:bg-fixed overflow-hidden"
                  style={{backgroundImage: "url('/tintin-bg.png')"}}>
                 <Header/>
-                <div className="min-h-full flex flex-col  justify-center py-12 sm:px-6 lg:px-8 ">
+                <div className="min-h-full flex flex-col  justify-center py-12 px-6 lg:px-8 ">
                     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                        <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                        <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow rounded-lg sm:px-10">
                             <div className="text-4xl ">
                                 验证
                             </div>
@@ -130,32 +130,32 @@ const Verify = () =>{
                             <div className="mt-1 ">
                                 <form action="" method="POST" className="flex justify-between transition duration-500">
                                     <input id="inpo1" type="text" maxLength={1} name="inp1"
-                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-14 h-20 rounded-2xl text-center text-4xl")}
+                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-12 sm:w-14 h-16 sm:h-20 rounded-lg text-center text-4xl")}
                                            autoFocus={true}
                                            autoComplete="off"
                                            onKeyUp={inp1_onkeyup}/>
 
                                     <input id="inpo2" type="text" maxLength={1} name="inp2"
-                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-14 h-20 rounded-2xl text-center text-4xl")}  autoComplete="off"
+                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-12 sm:w-14 h-16 sm:h-20 rounded-lg text-center text-4xl")}  autoComplete="off"
                                            onKeyUp={inp2_onkeyup}/>
 
                                     <input id="inpo3" type="text" maxLength={1} name="inp3"
-                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-14 h-20 rounded-2xl text-center text-4xl")} autoComplete="off"
+                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-12 sm:w-14 h-16 sm:h-20 rounded-lg text-center text-4xl")} autoComplete="off"
                                            onKeyUp={inp3_onkeyup}/>
                                     <input id="inpo4" type="text" maxLength={1} name="inp4"
-                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-14 h-20 rounded-2xl text-center text-4xl")}autoComplete="off"
+                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-12 sm:w-14 h-16 sm:h-20 rounded-lg text-center text-4xl")}autoComplete="off"
                                            onKeyUp={inp4_onkeyup}/>
 
                                     <input id="inpo5" type="text" maxLength={1} name="inp5"
-                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-14 h-20 rounded-2xl text-center text-4xl")}autoComplete="off"
+                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-12 sm:w-14 h-16 sm:h-20 rounded-lg text-center text-4xl")}autoComplete="off"
                                            onKeyUp={inp5_onkeyup}/>
                                     <input id="inpo6" type="text" maxLength={1} name="inp6"
-                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-14 h-20 rounded-2xl text-center text-4xl")}autoComplete="off"
+                                           className={classNames(verifyState?"border-gray-400":"border-2 border-red-400","border w-12 sm:w-14 h-16 sm:h-20 rounded-lg text-center text-4xl")}autoComplete="off"
                                            onKeyUp={inp6_onkeyup}
                                     />
                                 </form>
                             </div>
-                            <div className="flex  justify-end mt-5">
+                            <div className="flex justify-center sm:justify-end mt-5 mb-12">
                                 <button
                                     type="submit"
                                     onClick={next}
