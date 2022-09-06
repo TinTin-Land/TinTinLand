@@ -14,6 +14,34 @@ const Course = () => {
 
     const Course_info =
         [
+
+            {
+                id: "BAC_101",
+                img: "/course/BAC_101.png",
+                type: [
+                    {
+                        content: "比特币脚本系统"
+                    },
+                    {
+                        content: "基础数据结构"
+                    },
+                    {
+                        content: "执行模型"
+                    },
+
+                    {
+                        content: "UTXO 模型"
+                    },
+
+                    {
+                        content: "账户模型"
+                    },
+                ],
+                h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
+                state: true,
+                link: "https://hkr.h5.xeknow.com/s/VRdMD",
+
+            },
             {
                 id: "EVM_102",
                 img: "/course/EVM_102.png",
@@ -108,33 +136,6 @@ const Course = () => {
 
             },
 
-            {
-                id: "BAC_101",
-                img: "/course/BAC_101.png",
-                type: [
-                    {
-                        content: "比特币脚本系统"
-                    },
-                    {
-                        content: "基础数据结构"
-                    },
-                    {
-                        content: "执行模型"
-                    },
-
-                    {
-                        content: "UTXO 模型"
-                    },
-
-                    {
-                        content: "账户模型"
-                    },
-                ],
-                h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
-                state: true,
-                link: "https://hkr.h5.xeknow.com/s/VRdMD",
-
-            },
 
 
         ]
