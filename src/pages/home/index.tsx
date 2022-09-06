@@ -108,6 +108,34 @@ const Course = () => {
 
             },
 
+            {
+                id: "BAC_101",
+                img: "/course/BAC_101.png",
+                type: [
+                    {
+                        content: "比特币脚本系统"
+                    },
+                    {
+                        content: "基础数据结构"
+                    },
+                    {
+                        content: "执行模型"
+                    },
+
+                    {
+                        content: "UTXO 模型"
+                    },
+
+                    {
+                        content: "账户模型"
+                    },
+                ],
+                h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
+                state: true,
+                link: "https://hkr.h5.xeknow.com/s/VRdMD",
+
+            },
+
 
         ]
     useEffect(()=>{
@@ -171,12 +199,12 @@ const Course = () => {
                 </div>
             </div>
             <div className="w-full relative hidden overflow-hidden xl:flex">
-                <div className="z-20 absolute  text-white  mx-auto bottom-0 top-0 text-2xl items-center  text-black  flex justify-center">
+                <div className="z-20 absolute  text-black  mx-auto bottom-0 top-0 text-2xl items-center  text-black  flex justify-center">
                     <div onClick={left}  className="bg-white  px-6 py-3 cursor-pointer items-center opacity-50 rounded-full hover:opacity-80 transition duration-300">
                         <i className="fa fa-angle-left" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div  className="z-20 absolute  text-white  mx-auto bottom-0 top-0 text-2xl right-0 items-center  text-black  flex justify-center">
+                <div  className="z-20 absolute  text-black  mx-auto bottom-0 top-0 text-2xl right-0 items-center  text-black  flex justify-center">
                     <div onClick={right} className="bg-white  px-6 py-3 cursor-pointer items-center opacity-50 rounded-full hover:opacity-80 transition duration-300">
                         <i className="fa fa-angle-right" aria-hidden="true"></i>
                     </div>

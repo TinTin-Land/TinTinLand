@@ -21,7 +21,7 @@ const  Details = () =>{
 
     return(
         <>
-            <div className="hidden xl:flex bg-white justify-between rounded-xl xl:px-20 py-5">
+            <div className={classNames("hidden xl:flex bg-white justify-between rounded-xl xl:px-20 py-5")}>
                 {courseDetail.Learning_Highlights.map(item=>(
                     <div key={item.h1} className="text-center text-gray-500 items-center ">
                         <div className="flex justify-center  ">
@@ -90,17 +90,19 @@ const CourseInfo = () =>{
                             {({ open }) => (
                                 <>
                                     <Disclosure.Button className="flex w-full items-center rounded-2xl  bg-white p-4 text-left  font-medium text-black   border-gray-200">
+                                        <div className={classNames(item.content.length !=0?"":"hidden")}>
                                         <ChevronUpIcon
                                             className={`${
                                                 open ? '' : 'rotate-180 transform '
                                             } h-5 w-5 text-black`}
                                         />
+                                        </div>
                                         <span key={item.title} className="ml-5">{item.title}</span>
 
                                     </Disclosure.Button>
                                     <div className="border-b border-gray-200 w-full">
                                     </div>
-                                    <Disclosure.Panel className="px-10 py-4  text-gray-800 font-normal bg-gray-100 list-decimal">
+                                    <Disclosure.Panel className={classNames(item.content.length !=0?"px-10 py-4  text-gray-800 font-normal bg-gray-100 list-decimal":"hidden")}>
                                         {item.content.map(list=>(
                                             <li key={list.h1} className="mt-1.5">
                                                 {list.h1}
@@ -167,8 +169,8 @@ const CourseInfo = () =>{
                     </div>
                 </div>
 
-                <div className=" py-6">
-                    <div className="text-indigo-700 text-2xl  ">
+                <div className={classNames(courseDetail.community_recommendation.length !=0?"py-6":" hidden ")}>
+                    <div className="text-indigo-700 text-2xl">
                         课程推荐
                     </div>
                     <div className="h-96 overflow-x-auto pr-2">

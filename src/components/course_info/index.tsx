@@ -30,6 +30,13 @@ const Course_teacher = {
         title:"DFINITY核心技术工程师",
         introduction:"加入DFINITY之前，Paul在英特尔实验室（Intel Labs）的研究科学家岗位工作了7年。在英特尔实验室时期，他为X86架构构建了一个性能高度优化的Haskell编译器。Paul拥有耶鲁大学博士学位，师从Haskell编译器的发明者之一的Paul Hudak博士。Paul是Haskell研讨会和IFL成员，发表过大量学术论文。",
     },
+    ZhenYang:{
+        img:"/teacher/ZhenYang.png",
+        name:"Zhen Yang",
+        title:"以太坊黄皮书中译者，Solidity官方文档中译项目贡献者、校订人和管理员",
+        introduction:"资深软件工程师、架构师，区块链技术布道者，专注于区块链技术推广、中文技术社区贡献以及智能合约开发和安全审计方向；有 17 年的软件行业从业经验、丰富的一线开发经验和工程经验；善于解析要点、讲解复杂的概念，始终对新技术保持饥渴，坚持十余年深耕技术，有很强的总结提炼能力；2017 年开始参与以太坊技术社区贡献：独立中译了以太坊 Homestead 官方文档；对以太坊黄皮书中文版进行了独立校订和增补更新；独立中译了以太坊分片技术说明。",
+
+    }
 }
 
 const communitySupport = {
@@ -716,6 +723,8 @@ const Course_info =
                     ]
                 },
 
+
+
             ],
             Learning_Highlights:[
                 LearningHighlights.六节视频录播课程每周更新一节,
@@ -884,6 +893,164 @@ const Course_info =
                 communitySupport.与全球顶尖以太坊开发者交流,
                 communitySupport.资源工作推荐,
                 communitySupport.DFINITY官方认证
+            ],
+        },
+        BAC_101:{
+            id: "BAC_101",
+            img: "/course/BAC_101.png",
+            cycle:"第一期",
+            name:"从0开始学区块链：工程师眼中的比特币和以太坊",
+            state: true,
+            startTime:"2022.09.01",
+            registrationDeadline:"2027.09.01",
+            link: "https://hkr.h5.xeknow.com/s/VRdMD",
+            h1:"由 TinTinLand 推出的「从 0 开始学区块链：工程师眼中的比特币和以太坊」音频课，专门为帮助软件工程师深入理解区块链和智能合约相关的基础技术、基础协议而打造，将基于实际开发场景，采用最适合工程师的学习方式，利用碎片化时间由浅入深地带你理解区块链技术的精髓。",
+            type: [
+                {
+                    content: "比特币脚本系统"
+                },
+                {
+                    content: "基础数据结构"
+                },
+                {
+                    content: "执行模型"
+                },
+
+                {
+                    content: "UTXO 模型"
+                },
+
+                {
+                    content: "账户模型"
+                },
+            ],
+            Course_data:[
+                {
+                    title:"0.引言",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"1. 基础技术概念简介",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"2. 比特币白皮书解读",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"3. 比特币的基础数据结构",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"4. 比特币的脚本系统",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"5. 比特币系统中的其他重要细节",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"6. 以太坊是什么",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"7. 以太坊协议概要",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"8. 以太坊的基础数据结构",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"9. 以太坊中交易的执行",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"10. 以太坊的执行模型",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"11. 以太坊中的其他重要细节",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"12. UTXO 模型和账户模型",
+                    content:[
+
+                    ]
+                },
+                {
+                    title:"13. 比特币和以太坊的未来方向",
+                    content:[
+
+                    ]
+                },
+
+
+            ],
+            Learning_Highlights:[
+                {
+                    icon:"/icon/更新课程.svg",
+                    h1:"13节音频课程一次性更新",
+                },
+                {
+                    icon:"/icon/助教解答.svg",
+                    h1:"无班期服务，可加入学习群交流",
+                },
+
+            ],
+            teacher:[
+                Course_teacher.ZhenYang,
+            ],
+            project_Provider:[
+                projectProvider.TinTinLand,
+            ],
+            community_recommendation:[
+
+            ],
+            suitable_ForTheCrowd:[
+                {h1:"希望梳理区块链学习脉络的技术入门者"},
+                {h1:"希望系统学习区块链基础知识的非区块链领域技术人员"},
+                {h1:"具有区块链行业基础认知，希望进一步了解的区块链从业者"},
+                {h1:"希望深刻理解区块链内涵、对区块链有浓厚兴趣的爱好者至少对一种高级语言的基本编程知识了解的开发者"},
+            ],
+            community_support:[
+                {
+                    icon:"fa fa-book",
+                    h1:"区块链入门必备基础知识点",
+                },
+                {
+                    icon:"fa fa-search",
+                    h1:"区块链核心技术剖析与详解",
+                },
+                {
+                    icon:"fa fa-globe",
+                    h1:"区块链实战应用场景案例解析",
+                },
             ],
         },
 
