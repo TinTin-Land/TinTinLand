@@ -293,11 +293,11 @@ const Course = () => {
 
 const Hackathons = ()=>{
     const Info1 = {
-        state:"OnGoing",
+        state:"Ended",
         name:"WEB3 JAM ",
         time:"2022.06.17 - 2022.08.14",
-        signUp:"https://wj.qq.com/s2/9919322/2a76/",
-        more:"https://tintinland1.notion.site/Web3-Jam-2022-Summer-0a0f85afb0db49cd9980cbdcc61f3101",
+        signUp:"",
+        more:"https://www.notion.so/tintinland1/Web3-Jam-2022-Summer-0a0f85afb0db49cd9980cbdcc61f3101",
         img:"/hackathons/黑客松-1.png",
 
     }
@@ -341,7 +341,7 @@ const Hackathons = ()=>{
             <div className=" xl:flex  justify-between ">
                 {/*大*/}
                 <div className="relative  xl:w-10/12" >
-                    <div className={classNames(HackathonsState[Info1.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1   absolute")}>
+                    <div className={classNames(HackathonsState[Info1.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
                         {Info1.state}
                     </div>
                     <img className="rounded-t-2xl" src={Info1.img} alt=""/>
@@ -372,7 +372,7 @@ const Hackathons = ()=>{
                     {/*中*/}
                     <div className="">
                         <div className="relative ">
-                            <div className={classNames(HackathonsState[Info2.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1   absolute")}>
+                            <div className={classNames(HackathonsState[Info2.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
                                 {Info2.state}
                             </div>
                             <img className="rounded-t-2xl  w-full " src={Info2.img} alt=""/>
@@ -402,7 +402,7 @@ const Hackathons = ()=>{
                     {/*小*/}
                     <div className="mt-5 2xl:mt-9">
                         <div className="relative w-full ">
-                            <div className={classNames(HackathonsState[Info3.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1   absolute")}>
+                            <div className={classNames(HackathonsState[Info3.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1  border absolute")}>
                                Ended
                             </div>
                             <div className="xl:flex  xl:items-center xl:justify-between bg-white rounded-2xl">
