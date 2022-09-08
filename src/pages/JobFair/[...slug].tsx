@@ -258,7 +258,7 @@ const JobFair= () =>{
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto  ">
-                <div className="  ">
+                <div className="mb-4">
                     <div className="text-4xl">
                         发现最酷的Web3项目
                     </div>
@@ -374,8 +374,10 @@ const JobFair= () =>{
                 </div>
 
                 <div className="sm:flex justify-end xl:-mt-24">
-                <div className="my-5 flex bg-white items-center text-base  p-4  rounded-xl justify-end text-right">
-                    <div className="text-xs sm:text-base mr-3 text-gray-600 ">
+                <div className="my-5 flex bg-white items-center text-base  p-4  rounded-xl md:justify-end text-right">
+                    <div className="text-xs sm:text-base mr-3 text-gray-600 items-center flex">
+                        <img className="w-12 md:hidden mr-3" src="/common_icons/编组 13@2x.png" alt=""/>
+                        <div className="text-left md:text-right">
                         <div>
                             你的项目也在寻找工作伙伴吗？
                         </div>
@@ -386,8 +388,9 @@ const JobFair= () =>{
                             </a>
                             ，你的岗位也将展示在这里。
                         </div>
+                        </div>
                     </div>
-                    <img className="w-12" src="/common_icons/编组 13@2x.png" alt=""/>
+                    <img className="w-12 hidden md:flex" src="/common_icons/编组 13@2x.png" alt=""/>
                 </div>
                 </div>
 

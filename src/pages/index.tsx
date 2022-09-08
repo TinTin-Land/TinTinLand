@@ -19,7 +19,7 @@ const IndexPage: NextPage = () => {
         <div>
           <Head>
             <title>TinTinLand|Welcome to Web3 Developer Dao</title>
-            <link rel="icon" href="tintin-favicon.svg" type="image/x-icon" />
+            <link rel="icon" href="/favicon.ico"/>
           </Head>
               <Home></Home>
         </div>
