@@ -1,16 +1,16 @@
 
 const TinTinMeetingType = "TinTinMeeting"
 const latestIssueTinTinMeeting ={
-    id:"TinTinMeeting_14",
+    id:"TinTinMeeting_15",
     type:TinTinMeetingType,
-    name:"TinTin Meeting #14",
+    name:"TinTin Meeting #15",
     time:"20:00 UTC+8",
-    data:"2022.07.06",
-    h1:"Arbitrum Rollup合约解析",
-    img_T:"/activity/TTM/TinTinMeeting_14_T.png",
-    img:"/activity/TTM/TinTinMeeting_14_L.png",
+    data:"2022.09.07",
+    h1:"风口上的ZK赛道，专家告诉你为何值得关注",
+    img_T:"/activity/TTM/TinTinMeeting_15_T.png",
+    img:"/activity/TTM/TinTinMeeting_15_L.png",
     subscriptionLink:"/",
-    more:"https://www.youtube.com/watch?v=9B2BNyAy3Mw&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=15",
+    more:"https://www.youtube.com/watch?v=eLAK3R_9ac8",
     state:false,
 }
 
@@ -172,22 +172,35 @@ const TinTinMeetingHistory = [
         more:"https://www.youtube.com/watch?v=3OirqVnIknQ&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=18",
         state:false,
     },
+    {
+        id:"TinTinMeeting_14",
+        type:TinTinMeetingType,
+        name:"TinTin Meeting #14",
+        time:"20:00 UTC+8",
+        data:"2022.07.06",
+        h1:"Arbitrum Rollup合约解析",
+        img_T:"/activity/TTM/TinTinMeeting_14_T.png",
+        img:"/activity/TTM/TinTinMeeting_14_L.png",
+        subscriptionLink:"/",
+        more:"https://www.youtube.com/watch?v=9B2BNyAy3Mw&list=PLCv99tqIzSwldRGdNLvL9hXny0uACZTmJ&index=15",
+        state:false,
+    },
 
 ]
 
 const DTalkType = "DTalk"
 const latestIssueDTalk =
 {
-    id:"DTalk_4",
+    id:"DTalk_5",
     type:DTalkType,
-    name:"DTalk#4",
+    name:"DTalk#5",
     time:"20:00 UTC+8",
-    data:"2022.08.03",
-    h1:"如何构建高质量的DeFi应用？ ",
-    img_T:"/activity/DTalk/DTalk_4_T.png",
-    img:"/activity/DTalk/DTalk_4_L.png",
-    subscriptionLink:"https://youtu.be/ru3CM-cU7Zs",
-    more:"https://youtu.be/ru3CM-cU7Zs",
+    data:"2022.08.25",
+    h1:"5大高校00后眼中的DFINITY公链世界",
+    img_T:"/activity/DTalk/DTalk_5_T.png",
+    img:"/activity/DTalk/DTalk_5_L.png",
+    subscriptionLink:"https://youtu.be/piV9bsx6ytQ",
+    more:"https://youtu.be/piV9bsx6ytQ",
     state:false,
 }
 
@@ -227,6 +240,19 @@ const DTalkHistory = [
         subscriptionLink:"",
         more:"https://www.youtube.com/watch?v=yRHVAEwabr8&list=PLCv99tqIzSwliGXDBxeQMGEPm_4etk2Jw&index=6",
         state:false,
+    },
+    {
+        id:"DTalk_4",
+        type:DTalkType,
+        name:"DTalk#4",
+        time:"20:00 UTC+8",
+        data:"2022.08.03",
+        h1:"如何构建高质量的DeFi应用？ ",
+        img_T:"/activity/DTalk/DTalk_4_T.png",
+        img:"/activity/DTalk/DTalk_4_L.png",
+        subscriptionLink:"https://youtu.be/ru3CM-cU7Zs",
+        more:"https://youtu.be/ru3CM-cU7Zs",
+        state:false,
     }
 
 
@@ -234,21 +260,33 @@ const DTalkHistory = [
 
 const TinTinJobFairType = "TinTinJobFair"
 const latestIssueTinTinJobFair ={
-    id:"TinTinJobFair_1",
+    id:"TinTinJobFair_2",
     type:TinTinJobFairType,
-    name:"TinTinJobFair#1",
+    name:"TinTinJobFair#2",
     time:"20:00 UTC+8",
-    data:"2022.04.16",
-    h1:"All in WEB3 0 线上招聘空中宣讲会",
-    img_T:"/activity/TTJ/TinTinJobFair_1_T.png",
-    img:"/activity/TTJ/TinTinJobFair_1_L.png",
+    data:"2022.08.23",
+    h1:"创始人眼中的Web3技能型人才",
+    img_T:"/activity/TTJ/TinTinJobFair_2_T.png",
+    img:"/activity/TTJ/TinTinJobFair_2_L.png",
     subscriptionLink:"",
-    more:"https://www.youtube.com/watch?v=rsB-e83TEfI",
+    more:"https://youtu.be/VQMIWFIQU-4",
     state:false,
 }
 
 const TinTinJobFairHistory = [
-
+    {
+        id:"TinTinJobFair_1",
+        type:TinTinJobFairType,
+        name:"TinTinJobFair#1",
+        time:"20:00 UTC+8",
+        data:"2022.04.16",
+        h1:"All in WEB3 0 线上招聘空中宣讲会",
+        img_T:"/activity/TTJ/TinTinJobFair_1_T.png",
+        img:"/activity/TTJ/TinTinJobFair_1_L.png",
+        subscriptionLink:"",
+        more:"https://www.youtube.com/watch?v=rsB-e83TEfI",
+        state:false,
+    }
 ]
 const Activity_Info = {
         TinTinMeeting:{
