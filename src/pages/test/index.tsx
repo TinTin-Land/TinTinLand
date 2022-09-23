@@ -11,6 +11,8 @@ export default function App() {
     const [selectedOption, setSelectedOption] = useState(null);
 
     return (
+        <>
+
         <div className="max-w-4xl mx-auto">
             <Select
                 defaultValue={selectedOption}
@@ -22,5 +24,13 @@ export default function App() {
                 classNamePrefix="select"
             />
         </div>
+            <div className="h-96 border border-red-400 text-center">
+
+                <div>
+                    1
+                </div>
+
+            </div>
+        </>
     );
 }

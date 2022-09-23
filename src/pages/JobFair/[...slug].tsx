@@ -336,9 +336,12 @@ const JobFair= () =>{
 
                 </div>
                 <div className="flex justify-between   ">
-                    <div className="xl:w-8/12  grid-cols-1 gap-4  h-new-1 xl:h-new 2xl:h-106 overflow-y-auto   xl:pr-4 ">
-                        {JobInfo.map(item=>(
-                        <div key={item.name} onClick={OpenJobInfo} className="cursor-pointer mb-4">
+                    <div className="xl:w-8/12    h-new-1 xl:h-new 2xl:h-106  overflow-y-auto scrollbar-thin  scrollbar-thumb-fuchsia-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full   xl:pr-4 ">
+
+                      <div className="grid grid-cols-1 gap-4">
+
+                      {JobInfo.map(item=>(
+                        <div key={item.name} onClick={OpenJobInfo} className="cursor-pointer ">
                         <div  className=" bg-white  p-5 rounded-xl">
                             <div className="flex items-center">
                                 <img className="w-14 rounded-full"  src={item.logo} alt=""/>
@@ -366,7 +369,7 @@ const JobFair= () =>{
                         </div>
                         </div>
                         ))}
-
+                      </div>
                     </div>
                     <div className="hidden xl:block xl:w-4/12 xl:pl-20">
                         <JobFair_Navigation/>

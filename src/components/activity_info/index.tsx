@@ -10,7 +10,7 @@ const latestIssueTinTinMeeting ={
     img_T:"/activity/TTM/TinTinMeeting_15_T.png",
     img:"/activity/TTM/TinTinMeeting_15_L.png",
     subscriptionLink:"/",
-    more:"https://www.youtube.com/watch?v=eLAK3R_9ac8",
+    more:"https://www.youtube.com/watch?v=eLAK3R_9ac8`",
     state:false,
 }
 

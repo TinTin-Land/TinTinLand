@@ -21,6 +21,17 @@ module.exports = {
                 "106":"48rem",
 
             },
+            colors: {
+                transparent: 'transparent',
+                current: 'currentColor',
+                custom:{
+                    DEFAULT:'#8861D1',
+                    light:"#8861D1",
+                    dark:"#8861D1",
+                }
+
+            },
+
 
             screens: {
                 '3xl': '1700px',
@@ -30,16 +41,18 @@ module.exports = {
             },
 
         },
-        variants: {
-            extend: {},
-        },
+
 
 
     },
     plugins: [
 
         require('@tailwindcss/line-clamp'),
+        require('tailwind-scrollbar'),
     ],
+    variants: {
+        scrollbar: ['rounded']
+    }
 
 }
 
