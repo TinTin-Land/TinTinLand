@@ -269,6 +269,9 @@ const CourseDetails = () =>{
                                 {courseDetail.cycle}
                             </div>
                         </div>
+                        <div className="text-2xl md:text-4xl xl:text-5xl ">
+                            {courseDetail.name}
+                        </div>
                         <div className="md:hidden md:w-1/2 md:ml-10 mb-10">
                             <div className="" >
                                 <img className="rounded-t-2xl  w-full  mt-10 md:mt-0" src={courseDetail.img} alt=""/>
@@ -306,9 +309,7 @@ const CourseDetails = () =>{
                             </div>
                         </div>
 
-                        <div className="text-2xl md:text-4xl xl:text-5xl ">
-                            {courseDetail.name}
-                        </div>
+
                         <div className="mt-10 text-sm xl:text-xl font-light whitespace-pre-line">
                             <div>
                                 {courseDetail.h1}
