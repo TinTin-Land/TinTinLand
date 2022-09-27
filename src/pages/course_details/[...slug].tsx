@@ -47,7 +47,7 @@ const  Details = () =>{
                 ))}
 
             </div>
-            <div className="text-indigo-700 text-2xl mt-20 mb-2">
+            <div className="text-indigo-700 text-2xl mt-20 mb-2 ">
                 授课导师
             </div>
             <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4` }>
@@ -82,7 +82,6 @@ const CourseInfo = () =>{
             <div className="md:w-7/12 xl:w-8/12 md:mr-10">
                 <div className="text-indigo-700 text-2xl mt-20 mb-2">
                     课程大纲
-
                 </div>
                 <div className="mx-auto w-full rounded-2xl   bg-white ">
                     {courseDetail.Course_data.map(item=>(
@@ -102,7 +101,7 @@ const CourseInfo = () =>{
                                     </Disclosure.Button>
                                     <div className="border-b border-gray-200 w-full">
                                     </div>
-                                    <Disclosure.Panel className={classNames(item.content.length !=0?"px-10 py-4  text-gray-800 font-normal bg-gray-100 list-decimal":"hidden")}>
+                                    <Disclosure.Panel className={classNames(item.content.length != 0?"px-10 py-4  text-gray-800 font-normal bg-gray-100 list-decimal":"hidden")}>
                                         {item.content.map(list=>(
                                             <li key={list.h1} className="mt-1.5">
                                                 {list.h1}
@@ -260,13 +259,50 @@ const CourseDetails = () =>{
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">
                 <button onClick={()=>{setOpen(true)}} className="fixed  z-30 bottom-6 right-6  ">
-                    <img className="w-10 h-10 " src="/tintin-favicon.svg" alt=""/>
+                    <img className="w-10 h-10 " src="/tintinlogo.svg" alt=""/>
                 </button>
-                <div className="   py-10      md:flex justify-between " >
+                <div className="pb-10 md:flex justify-between " >
+
                     <div className="md:w-1/2">
                         <div className="flex mb-2">
                             <div className="bg-purple-300 px-2 py-0.5 text-2xl rounded-full">
                                 {courseDetail.cycle}
+                            </div>
+                        </div>
+                        <div className="md:hidden md:w-1/2 md:ml-10 mb-10">
+                            <div className="" >
+                                <img className="rounded-t-2xl  w-full  mt-10 md:mt-0" src={courseDetail.img} alt=""/>
+                                <div className="bg-white p-10 xl:flex justify-between rounded-b-2xl items-center">
+                                    <div className="flex justify-between items-center">
+                                        <div className="xl:pr-20">
+                                            <div>
+                                                开课时间
+                                            </div>
+                                            <div className="text-xl">
+                                                {courseDetail.startTime}
+                                            </div>
+                                        </div>
+
+                                        <div className="flex border-r border-black h-10 ">
+                                        </div>
+                                        <div className="xl:pl-20">
+                                            <div>
+                                                报名截止
+                                            </div>
+                                            <div className="text-xl">
+                                                {courseDetail.registrationDeadline}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="mt-10 xl:mt-0 flex justify-center">
+                                        <Link href={courseDetail.link}>
+                                            <a className={classNames(courseDetail.state?"bg-black text-white rounded-full w-36 text-center px-8 py-2.5 ":" hidden")} target="_blank">
+                                                立刻报名
+                                            </a>
+                                        </Link>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
@@ -287,7 +323,8 @@ const CourseDetails = () =>{
                             ))}
                         </div>
                     </div>
-                    <div className="md:w-1/2 md:ml-10 ">
+
+                    <div className="hidden md:block md:w-1/2 md:ml-10 ">
                         <div className="" >
                             <img className="rounded-t-2xl  w-full  mt-10 md:mt-0" src={courseDetail.img} alt=""/>
                             <div className="bg-white p-10 xl:flex justify-between rounded-b-2xl items-center">
@@ -313,16 +350,15 @@ const CourseDetails = () =>{
                                     </div>
                                 </div>
                                 <div className="mt-10 xl:mt-0 flex justify-center">
-                                <Link href={courseDetail.link}>
-                                    <a className={classNames(courseDetail.state?"bg-black text-white rounded-full w-36 text-center px-8 py-2.5 ":" hidden")} target="_blank">
-                                        立刻报名
-                                    </a>
-                                </Link>
+                                    <Link href={courseDetail.link}>
+                                        <a className={classNames(courseDetail.state?"bg-black text-white rounded-full w-36 text-center px-8 py-2.5 ":" hidden")} target="_blank">
+                                            立刻报名
+                                        </a>
+                                    </Link>
                                 </div>
 
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <Details/>

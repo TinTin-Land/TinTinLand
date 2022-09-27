@@ -157,7 +157,7 @@ const LearningHighlights = {
 const projectProvider = {
     TinTinLand:{
         name:"TinTinLand",
-        img:"/tintin-favicon.svg",
+        img:"/tintinlogo.svg",
     },
     Arbitrum:{
         name:"Arbitrum",
