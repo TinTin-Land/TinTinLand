@@ -308,8 +308,7 @@ const CourseDetails = () =>{
                                 </div>
                             </div>
                         </div>
-
-
+                        
                         <div className="mt-10 text-sm xl:text-xl font-light whitespace-pre-line">
                             <div>
                                 {courseDetail.h1}

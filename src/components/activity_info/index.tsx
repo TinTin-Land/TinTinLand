@@ -203,7 +203,6 @@ const latestIssueDTalk =
     more:"https://youtu.be/piV9bsx6ytQ",
     state:false,
 }
-
 const DTalkHistory = [
     {
         id:"DTalk_1",
@@ -272,7 +271,6 @@ const latestIssueTinTinJobFair ={
     more:"https://youtu.be/VQMIWFIQU-4",
     state:false,
 }
-
 const TinTinJobFairHistory = [
     {
         id:"TinTinJobFair_1",
@@ -288,6 +286,27 @@ const TinTinJobFairHistory = [
         state:false,
     }
 ]
+
+const TinTinLandType = "TinTinLand"
+const latestIssueTinTinLand ={
+    id:"TinTinBAC_01",
+    type:TinTinLandType,
+    name:"TinTinBAC#1",
+    time:"13:00 UTC+8",
+    data:"2022.10.15",
+    h1:"大咖齐聚，畅聊 Web3 数字经济新时代",
+    img_T:"/activity/TTL/TinTinLand_1_T.png",
+    img:"/activity/TTL/TinTinLand_1_L.png",
+    subscriptionLink:"https://jinshuju.net/f/xZGD2o?x_field_1=%E5%B0%8FT",
+    more:"https://youtu.be/VQMIWFIQU-4",
+    state:true,
+}
+const TinTinLandHistory = [
+
+]
+
+
+
 const Activity_Info = {
         TinTinMeeting:{
             title:"TinTin Meeting",
@@ -307,6 +326,12 @@ const Activity_Info = {
         latestIssue:latestIssueTinTinJobFair,
         history: TinTinJobFairHistory
     },
+    TinTinLand:{
+        title:"TinTinLand",
+        h1:"TinTinLand 将携手亚马逊云科技，联合举办“大咖齐聚，畅聊 Web3 数字经济新时代”线下闭门会，本次活动将邀约 Web2 和 Web3 行业大咖、技术领袖，从技术、行研、前沿等多角度带来精彩纷呈的演讲。本次活动将为与会者打造覆盖云科技和 Web3 多赛道的主题活动，以期能够为大家提供多维思考方向，与 Web3 行业大咖、亚马逊专家共话交流、共谋合作、共同探索，抓住更多行业机遇。机会难得，名额有限，千万别错过！",
+        latestIssue:latestIssueTinTinLand,
+        history: TinTinLandHistory
+    }
 
 
 

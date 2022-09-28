@@ -465,31 +465,31 @@ const Activity = ()=>{
                          <div className="my-auto  w-full">
                         <div className=" flex ">
                             <div className="rounded-full bg-gray-100 text-gray-700 px-2.5 py-0.5 text-sm">
-                                {Activity_Info.TinTinMeeting.latestIssue.name}
+                                {Activity_Info.TinTinLand.latestIssue.name}
                             </div>
                         </div>
                         <div className="text-2xl font-light mt-5">
-                            {Activity_Info.TinTinMeeting.latestIssue.time}
+                            {Activity_Info.TinTinLand.latestIssue.time}
                         </div>
                         <div className="font-semibold ">
-                            {Activity_Info.TinTinMeeting.latestIssue.data}
+                            {Activity_Info.TinTinLand.latestIssue.data}
                         </div>
                         <div className=" mt-4 mb-9 xl:my-9   items-center  xl:text-xl font-semibold line-clamp-4 h-20 xl:line-clamp-2  w-full  ">
-                            {Activity_Info.TinTinMeeting.latestIssue.h1}
+                            {Activity_Info.TinTinLand.latestIssue.h1}
                         </div>
                             <div className="xl:flex 2xl:block w-full">
-                                <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 " src={Activity_Info.TinTinMeeting.latestIssue.img_T} alt=""/>
-                                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100  " src={Activity_Info.TinTinMeeting.latestIssue.img} alt=""/>
+                                <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 " src={Activity_Info.TinTinLand.latestIssue.img_T} alt=""/>
+                                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100  " src={Activity_Info.TinTinLand.latestIssue.img} alt=""/>
                                 <div className="xl:ml-5  2xl:ml-0  flex  xl:mt-9 xl:justify-end  2xl:justify-start xl:items-end items-center">
                                     <div className="">
-                                        <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
-                                            <a className={Activity_Info.TinTinMeeting.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}>
+                                        <Link href={Activity_Info.TinTinLand.latestIssue.subscriptionLink}>
+                                            <a className={Activity_Info.TinTinLand.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}>
                                                 订阅
                                             </a>
                                         </Link>
                                     </div>
                                     <div className=" text-sm">
-                                        <Link href={`/meeting/${Activity_Info.TinTinMeeting.latestIssue.type}`}>
+                                        <Link href={`/meeting/${Activity_Info.TinTinLand.latestIssue.type}`}>
                                             <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5">
                                                 了解更多
                                             </a>
@@ -505,17 +505,17 @@ const Activity = ()=>{
                     <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl  items-center">
                         <div className="">
                             <div className="items-end ">
-                              <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={Activity_Info.TinTinMeeting.latestIssue.img_T} alt=""/>
+                              <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={Activity_Info.TinTinLand.latestIssue.img_T} alt=""/>
                                 <div className="md:hidden flex   mt-9  items-end items-center ">
                                     <div className="">
-                                        <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
-                                            <a className={Activity_Info.TinTinMeeting.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                                        <Link href={Activity_Info.TinTinLand.latestIssue.subscriptionLink}>
+                                            <a className={Activity_Info.TinTinLand.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
                                                 订阅
                                             </a>
                                         </Link>
                                     </div>
                                     <div className="xl:w-52 text-sm">
-                                        <Link href={`/meeting/${Activity_Info.TinTinMeeting.latestIssue.type}`}>
+                                        <Link href={`/meeting/${Activity_Info.TinTinLand.latestIssue.type}`}>
                                             <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5">
                                                 了解更多
                                             </a>
@@ -525,39 +525,39 @@ const Activity = ()=>{
                             </div>
                         </div>
                         <div className="w-full hidden  md:block xl:hidden">
-                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinMeeting.latestIssue.img} alt=""/>
+                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinLand.latestIssue.img} alt=""/>
                         </div>
 
                         <div className=" w-full md:pl-6">
                             <div className=" flex ">
                                 <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                                    {Activity_Info.TinTinMeeting.latestIssue.name}
+                                    {Activity_Info.TinTinLand.latestIssue.name}
                                 </div>
                             </div>
                             <div className="text-2xl font-light mt-5">
-                                {Activity_Info.TinTinMeeting.latestIssue.time}
+                                {Activity_Info.TinTinLand.latestIssue.time}
                             </div>
                             <div className="font-semibold">
-                                {Activity_Info.TinTinMeeting.latestIssue.data}
+                                {Activity_Info.TinTinLand.latestIssue.data}
                             </div>
 
                             <div className=" xl:text-xl font-semibold">
                                 <div className=' mt-4 md:mb-8 items-center line-clamp-4 md:h-24 xl:line-clamp-3   2xl:w-90'>
-                                    {Activity_Info.TinTinMeeting.latestIssue.h1}
+                                    {Activity_Info.TinTinLand.latestIssue.h1}
                                 </div>
 
                             </div>
                             <div className="hidden md:flex justify-between items-end ">
                                 <div className="flex   items-center">
                                     <div className="  ">
-                                        <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
-                                            <a className={Activity_Info.TinTinMeeting.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5 ":"hidden"}>
+                                        <Link href={Activity_Info.TinTinLand.latestIssue.subscriptionLink}>
+                                            <a className={Activity_Info.TinTinLand.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5 ":"hidden"}>
                                                 订阅
                                             </a>
                                         </Link>
                                     </div>
                                     <div className="  ">
-                                        <Link href={`/meeting/${Activity_Info.TinTinMeeting.latestIssue.type}`}>
+                                        <Link href={`/meeting/${Activity_Info.TinTinLand.latestIssue.type}`}>
                                             <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-4 xl:px-8 py-2.5">
                                                 了解更多
                                             </a>
@@ -644,17 +644,17 @@ const Activity = ()=>{
                     <div className="relative mt-4 2xl:mt-8  " >
                         <div className="flex flex-col-reverse md:flex-row 2xl:mt-0.5 p-8 bg-white rounded-2xl  items-center">
                             <div className="">
-                                    <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={Activity_Info.TinTinJobFair.latestIssue.img_T} alt=""/>
+                                    <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={Activity_Info.TinTinMeeting.latestIssue.img_T} alt=""/>
                                     <div className="md:hidden flex   mt-9  items-end items-center ">
                                         <div className="">
-                                            <Link href={Activity_Info.TinTinJobFair.latestIssue.subscriptionLink}>
-                                                <a className={Activity_Info.TinTinJobFair.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                                            <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
+                                                <a className={Activity_Info.TinTinMeeting.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
                                                     订阅
                                                 </a>
                                             </Link>
                                         </div>
                                         <div className="xl:w-52 text-sm">
-                                            <Link href={`/meeting/${Activity_Info.TinTinJobFair.latestIssue.type}`}>
+                                            <Link href={`/meeting/${Activity_Info.TinTinMeeting.latestIssue.type}`}>
                                                 <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5">
                                                     了解更多
                                                 </a>
@@ -663,38 +663,38 @@ const Activity = ()=>{
                                     </div>
                             </div>
                             <div className="w-full hidden  md:block xl:hidden">
-                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinJobFair.latestIssue.img} alt=""/>
+                            <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={Activity_Info.TinTinMeeting.latestIssue.img} alt=""/>
                             </div>
                             <div className="w-full md:pl-6">
                                 <div className=" flex ">
                                     <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                                        {Activity_Info.TinTinJobFair.latestIssue.name}
+                                        {Activity_Info.TinTinMeeting.latestIssue.name}
                                     </div>
                                 </div>
                                 <div className="text-2xl font-light mt-5">
-                                    {Activity_Info.TinTinJobFair.latestIssue.time}
+                                    {Activity_Info.TinTinMeeting.latestIssue.time}
                                 </div>
                                 <div className="font-semibold">
-                                    {Activity_Info.TinTinJobFair.latestIssue.data}
+                                    {Activity_Info.TinTinMeeting.latestIssue.data}
                                 </div>
 
                                 <div className=" xl:text-xl font-semibold">
                                     <div className=' mt-4 md:mb-8 xl:my-10 items-center line-clamp-4 md:h-24 xl:line-clamp-3   2xl:w-90'>
-                                        {Activity_Info.TinTinJobFair.latestIssue.h1}
+                                        {Activity_Info.TinTinMeeting.latestIssue.h1}
                                     </div>
 
                                 </div>
                                 <div className="hidden md:flex justify-between items-end ">
                                     <div className="flex   items-center">
                                         <div className="  ">
-                                            <Link href={Activity_Info.TinTinJobFair.latestIssue.subscriptionLink}>
-                                                <a className={Activity_Info.TinTinJobFair.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
+                                            <Link href={Activity_Info.TinTinMeeting.latestIssue.subscriptionLink}>
+                                                <a className={Activity_Info.TinTinMeeting.latestIssue.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
                                                     订阅
                                                 </a>
                                             </Link>
                                         </div>
                                         <div className="  ">
-                                            <Link href={`/meeting/${Activity_Info.TinTinJobFair.latestIssue.type}`}>
+                                            <Link href={`/meeting/${Activity_Info.TinTinMeeting.latestIssue.type}`}>
                                                 <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5">
                                                     了解更多
                                                 </a>
