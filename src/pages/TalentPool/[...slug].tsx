@@ -244,7 +244,7 @@ const JobFair= () =>{
                                     </div>
                                 </div>
                                 <div className="h-16 items-center overflow-hidden">
-                                <div className="grid grid-cols-3 gap-4 my-5 text-sm ">
+                                <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-3 gap-4 my-5 text-sm ">
                                     {item.usertype.map(item=>(
                                     <div key= {item.type} className="rounded-full px-2 py-1 bg-[#E9E5F7] text-center">
                                         {item.type}
