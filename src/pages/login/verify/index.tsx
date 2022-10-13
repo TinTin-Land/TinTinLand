@@ -60,7 +60,7 @@ const Verify = () =>{
     }
 
 
-    const next =async () =>{
+    const goToNext =async () =>{
             await  router.push(
                 {
                     pathname:"/login/personal_info",
@@ -160,7 +160,7 @@ const Verify = () =>{
                             <div className="flex justify-center sm:justify-end mt-5 mb-12">
                                 <button
                                     type="submit"
-                                    onClick={next}
+                                    onClick={goToNext}
                                     className={classNames(nextState?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","transition-all duration-500 w-24 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium")}  >
                                     继续
                                 </button>
