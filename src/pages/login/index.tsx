@@ -3,6 +3,7 @@ import Link from "next/link";
 import Tail from "../../components/tail";
 import React, {useEffect, useState} from "react";
 import {Router, useRouter} from "next/router";
+import Heads from "../../components/head";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -43,6 +44,7 @@ const Login = () =>{
         <>
             <div className="mx-auto relative h-screen bg-no-repeat bg-center  sm:bg-fixed overflow-hidden"
                  style={{backgroundImage:"url('/tintin-bg.png')"}}>
+                <Heads/>
                 <Header/>
                 <div className="min-h-full   flex flex-col  justify-center py-12 px-6 lg:px-8">
                     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">

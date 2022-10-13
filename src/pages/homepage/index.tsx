@@ -6,6 +6,7 @@ import {Dialog, Listbox, Switch, Tab, Transition} from "@headlessui/react";
 import {useAtom} from "jotai";
 import { UserInfoState } from "../../jotai";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/outline";
+import Heads from "../../components/head";
 
 
 function classNames(...classes) {
@@ -545,6 +546,7 @@ const Homepage= () =>{
 
         <div className="mx-auto relative  bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
+            <Heads/>
             <Header/>
             <div className=" lg:px-10 xl:px-32 relative md:px-5 pt-24 pb-96   mx-auto ">
 

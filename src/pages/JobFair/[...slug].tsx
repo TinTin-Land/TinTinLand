@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Info from "../../info";
 import JobFair_info from "../../components/JobFair_info";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
+import Heads from "../../components/head";
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -256,6 +257,7 @@ const JobFair= () =>{
 
         <div className="mx-auto relative  bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
+            <Heads/>
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto  ">
                 <div className="mb-4">

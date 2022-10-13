@@ -7,6 +7,8 @@ import Link from "next/link";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useAtom} from "jotai";
 import {LogoFavicon} from "../jotai";
+import Heads from "../components/head";
+import React from "react";
 
 const IndexPage: NextPage = () => {
     const router = useRouter()
@@ -17,10 +19,7 @@ const IndexPage: NextPage = () => {
   return (
       <main>
         <div>
-          <Head>
-            <title>TinTinLand|Welcome to Web3 Developer Dao</title>
-            <link rel="icon" href="/favicon.ico"/>
-          </Head>
+            <Heads/>
               <Home></Home>
         </div>
           {/*<Link*/}

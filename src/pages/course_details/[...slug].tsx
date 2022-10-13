@@ -8,6 +8,7 @@ import {useRouter} from "next/router";
 import Course_info from "../../components/course_info";
 import {useAtom} from "jotai";
 import { Course_Detail } from "../../jotai";
+import Heads from "../../components/head";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -256,6 +257,7 @@ const CourseDetails = () =>{
 
         <div className="mx-auto relative bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
+            <Heads/>
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">
                 <button onClick={()=>{setOpen(true)}} className="fixed  z-30 bottom-6 right-6  ">
@@ -308,7 +310,7 @@ const CourseDetails = () =>{
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="mt-10 text-sm xl:text-xl font-light whitespace-pre-line">
                             <div>
                                 {courseDetail.h1}

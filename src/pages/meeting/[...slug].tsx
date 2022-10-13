@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import Activity_Info from "../../components/activity_info";
+import Heads from "../../components/head";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -69,6 +70,7 @@ const Meeting = () =>{
 
         <div className="mx-auto relative bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
+            <Heads/>
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">
                 <div className="   py-10     xl:flex justify-between " >
