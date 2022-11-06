@@ -16,6 +16,19 @@ const latestIssueTinTinMeeting ={
 
 const TinTinMeetingHistory = [
     {
+        id:"TinTinMeeting_15",
+        type:TinTinMeetingType,
+        name:"TinTin Meeting #15",
+        time:"20:00 UTC+8",
+        data:"2022.09.07",
+        h1:"风口上的ZK赛道，专家告诉你为何值得关注",
+        img_T:"/activity/TTM/TinTinMeeting_15_T.png",
+        img:"/activity/TTM/TinTinMeeting_15_L.png",
+        subscriptionLink:"/",
+        more:"https://www.youtube.com/watch?v=eLAK3R_9ac8`",
+        state:false,
+    },
+    {
         id:"TinTinMeeting_13",
         type:TinTinMeetingType,
         name:"TinTinMeeting#13",
@@ -252,6 +265,19 @@ const DTalkHistory = [
         subscriptionLink:"https://youtu.be/ru3CM-cU7Zs",
         more:"https://youtu.be/ru3CM-cU7Zs",
         state:false,
+    },
+    {
+        id:"DTalk_5",
+        type:DTalkType,
+        name:"DTalk#5",
+        time:"20:00 UTC+8",
+        data:"2022.08.25",
+        h1:"5大高校00后眼中的DFINITY公链世界",
+        img_T:"/activity/DTalk/DTalk_5_T.png",
+        img:"/activity/DTalk/DTalk_5_L.png",
+        subscriptionLink:"https://youtu.be/piV9bsx6ytQ",
+        more:"https://youtu.be/piV9bsx6ytQ",
+        state:false,
     }
 
 
@@ -284,6 +310,19 @@ const TinTinJobFairHistory = [
         subscriptionLink:"",
         more:"https://www.youtube.com/watch?v=rsB-e83TEfI",
         state:false,
+    },
+    {
+        id:"TinTinJobFair_2",
+        type:TinTinJobFairType,
+        name:"TinTinJobFair#2",
+        time:"20:00 UTC+8",
+        data:"2022.08.23",
+        h1:"创始人眼中的Web3技能型人才",
+        img_T:"/activity/TTJ/TinTinJobFair_2_T.png",
+        img:"/activity/TTJ/TinTinJobFair_2_L.png",
+        subscriptionLink:"",
+        more:"https://youtu.be/VQMIWFIQU-4",
+        state:false,
     }
 ]
 
@@ -302,7 +341,19 @@ const latestIssueTinTinLand ={
     state:true,
 }
 const TinTinLandHistory = [
-
+    {
+        id:"TinTinBAC_01",
+        type:TinTinLandType,
+        name:"TinTinBAC#1",
+        time:"13:00 UTC+8",
+        data:"2022.10.15",
+        h1:"大咖齐聚，畅聊 Web3 数字经济新时代",
+        img_T:"/activity/TTL/TinTinLand_1_T.png",
+        img:"/activity/TTL/TinTinLand_1_L.png",
+        subscriptionLink:"https://jinshuju.net/f/xZGD2o?x_field_1=%E5%B0%8FT",
+        more:"https://youtu.be/VQMIWFIQU-4",
+        state:true,
+    }
 ]
 
 

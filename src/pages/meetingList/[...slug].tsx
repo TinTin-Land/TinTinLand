@@ -81,7 +81,7 @@ const Meeting = () =>{
                             </div>
 
                         </div>
-                        <div className="mt-10 text-base md:text-2xl font-light">
+                        <div className="mt-10 text-base  2xl:text-2xl font-light">
                             <div>
                                 {type.h1}
                             </div>
