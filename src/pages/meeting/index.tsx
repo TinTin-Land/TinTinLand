@@ -11,129 +11,7 @@ function classNames(...classes) {
 }
 
 const Coures = () =>{
-    const Course_info =
-        [
-            {
-                id: "EVM_102",
-                img: "/course/EVM_102.png",
-                type: [
-                    {
-                        content: "Solidity"
-                    },
-                    {
-                        content: "The Graph"
-                    },
-                    {
-                        content: "链上合约数据的读取与写入"
-                    },
-                    {
-                        content: "合约安全"
-                    },
-                    {
-                        content: "Arbitrum-sdk"
-                    },
 
-                ],
-                h1: "第二期｜以太坊开发快速入门-轻松创建智能合约",
-                link: "https://hkr.h5.xeknow.com/s/2yYwKx",
-                state: true
-            },
-            {
-                id: "IC_103",
-                img: "/course/IC_103.png",
-                type: [
-                    {
-                        content: "Motoko"
-                    },
-                    {
-                        content: "Canister"
-                    },
-                    {
-                        content: "Javescript"
-                    },
-
-                ],
-                h1: "第三期｜Internet Computer：从核心技术入门到开发实战",
-                link: "https://hkr.h5.xeknow.com/s/xRaCr",
-                state: true
-
-            },
-            {
-                id: "BAC_101",
-                img: "/course/BAC_101.png",
-                type: [
-                    {
-                        content: "比特币脚本系统"
-                    },
-                    {
-                        content: "基础数据结构"
-                    },
-                    {
-                        content: "执行模型"
-                    },
-
-                    {
-                        content: "UTXO 模型"
-                    },
-
-                    {
-                        content: "账户模型"
-                    },
-                ],
-                h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
-                state: true,
-                link: "https://hkr.h5.xeknow.com/s/VRdMD",
-
-            },
-            {
-                id: "FLOW_101",
-                img: "/course/FLOW_101.png",
-                type: [
-                    {
-                        content: "Cadence"
-                    },
-                    {
-                        content: "Flow FT"
-                    },
-                    {
-                        content: "Flow NFT"
-                    },
-                    {
-                        content: "NFT Metadata"
-                    },
-                    {
-                        content: "FCL(Flow Client Library)"
-                    },
-                ],
-                h1: "第一期｜Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
-                link: "https://hkr.h5.xeknow.com/s/PGm9a",
-                state: true
-
-            },
-            {
-                id: "IC_201",
-                img: "/course/IC_201.png",
-                type: [
-                    {
-                        content: "Motoko"
-                    },
-                    {
-                        content: "Canister"
-                    },
-                    {
-                        content: "ICP系统服务"
-                    },
-                    {
-                        content: "Ti Jar"
-                    },
-
-                ],
-                h1: "第一期｜Internet Computer：从核心技术入门到开发实战进阶",
-                link: "",
-                state: false
-
-            },
-        ]
 
     return (
 
@@ -183,7 +61,7 @@ const Coures = () =>{
                     <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3   gap-10 ">
                         {Activity_Info.TinTinMeeting.history.map((item,index)=>(
                             <div key={item.id} className={index>2?"hidden":"rounded-2xl"}>
-                                <img className="rounded-t-2xl w-99 h-52" src={item.img} alt=""/>
+                                <img className="rounded-t-2xl w-full h-64 2xl:h-72" src={item.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex   flex-wrap">
                                         <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >
@@ -226,7 +104,7 @@ const Coures = () =>{
                         <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3   gap-10 ">
                             {Activity_Info.DTalk.history.map((item,index)=>(
                                 <div key={item.id} className={index>2?"hidden":"rounded-2xl"}>
-                                    <img className="rounded-t-2xl w-99 h-52" src={item.img} alt=""/>
+                                    <img className="rounded-t-2xl w-full h-64 2xl:h-72" src={item.img} alt=""/>
                                     <div className="px-10 py-8 bg-white rounded-b-2xl">
                                         <div className="flex   flex-wrap">
                                             <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >
@@ -269,7 +147,7 @@ const Coures = () =>{
                         <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3   gap-10 ">
                             {Activity_Info.TinTinJobFair.history.map((item,index)=>(
                                 <div key={item.id} className={index>2?"hidden":"rounded-2xl"}>
-                                    <img className="rounded-t-2xl w-99 h-52" src={item.img} alt=""/>
+                                    <img className="rounded-t-2xl w-full h-64 2xl:h-72" src={item.img} alt=""/>
                                     <div className="px-10 py-8 bg-white rounded-b-2xl">
                                         <div className="flex   flex-wrap">
                                             <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >
@@ -312,7 +190,7 @@ const Coures = () =>{
                         <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3   gap-10 ">
                             {Activity_Info.TinTinLand.history.map((item,index)=>(
                                 <div key={item.id} className={index>2?"hidden":"rounded-2xl"}>
-                                    <img className="rounded-t-2xl w-99 h-52" src={item.img} alt=""/>
+                                    <img className="rounded-t-2xl w-full h-64 2xl:h-72" src={item.img} alt=""/>
                                     <div className="px-10 py-8 bg-white rounded-b-2xl">
                                         <div className="flex   flex-wrap">
                                             <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >
