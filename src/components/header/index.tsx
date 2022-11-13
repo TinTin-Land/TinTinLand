@@ -12,9 +12,9 @@ function classNames(...classes) {
 }
 
 const navigation = [
-    { id:1 ,name: 'Educate', href: '/#Educate' },
-    { id:2 ,name: 'Hackathons', href: '/#Hackathons' },
-    { id:3 ,name: 'Activities', href: '/#Activities' },
+    { id:1 ,name: 'Educate', href: '/course' },
+    { id:2 ,name: 'Hackathons', href: '/hackathons' },
+    { id:3 ,name: 'Activities', href: '/meeting' },
     { id:4 ,name: 'About Us', href: '/#About' },
     // { id:5 ,name: 'Job Fair', href: '/JobFair/开发' },
 

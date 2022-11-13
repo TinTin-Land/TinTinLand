@@ -177,25 +177,40 @@ const Course = () => {
 
     return(
         <div id="Educate" className="pt-20">
-            <div  className="text-indigo-700 text-2xl ">
-                TinTin课程
-            </div>
-            <div className="text-2xl md:text-4xl my-5">
-            <div>
-                学习最前沿的 Web3 技术，
-            </div>
-            <div>
-                创造未来开放网络
-            </div>
-            </div>
-            <div className="mb-5 text-sm md:text-base">
-                <div>
-                    生态官方合作课程，项目 CTO &核心开发者亲自授课
+
+                    <div  className="text-indigo-700 text-2xl ">
+                        TinTin课程
+                    </div>
+                    <div className="text-2xl md:text-4xl my-5">
+                        <div>
+                            学习最前沿的 Web3 技术，
+                        </div>
+                        <div>
+                            创造未来开放网络
+                        </div>
+                    </div>
+                    <div className="mb-5 text-sm md:text-base">
+                        <div>
+                            生态官方合作课程，项目 CTO &核心开发者亲自授课
+                        </div>
+                        <div>
+                            配套高质量社群，全球一线开发者助教全程陪伴，社区同学交流讨论。
+                        </div>
+
+                <div className="flex justify-end md:-mt-10">
+                    <Link href="/course">
+                <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
+                    <div className="mr-1" >
+                        查看更多
+                    </div>
+                    <div>
+                        <i className="fa fa-arrow-right" aria-hidden="true"></i>
+                    </div>
                 </div>
-                <div>
-                    配套高质量社群，全球一线开发者助教全程陪伴，社区同学交流讨论。
+                    </Link>
                 </div>
             </div>
+
             <div className="w-full relative hidden overflow-hidden xl:flex">
                 <div className="z-20 absolute  text-black  mx-auto bottom-0 top-0 text-2xl items-center  text-black  flex justify-center">
                     <div onClick={left}  className="bg-white  px-6 py-3 cursor-pointer items-center opacity-50 rounded-full hover:opacity-80 transition duration-300">
@@ -335,7 +350,19 @@ const Hackathons = ()=>{
                     协助开发者创建团队，提供技术指导，引入投资。
                 </div>
             </div>
-            <div className=" xl:flex  justify-between ">
+            <div className="flex justify-end md:-mt-10">
+                <Link href="/hackathons">
+                    <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
+                        <div className="mr-1" >
+                            查看更多
+                        </div>
+                        <div>
+                            <i className="fa fa-arrow-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+            <div className=" xl:flex mt-4 justify-between ">
                 {/*大*/}
                 <div className="relative  xl:w-10/12" >
                     <div className={classNames(HackathonsState[Info1.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
@@ -437,6 +464,9 @@ const Hackathons = ()=>{
 }
 
 const Activity = ()=>{
+    const  aa = () =>{
+        console.log('出现了')
+    }
 
     return(
         <div id="Activities"  className="pt-20">
@@ -459,7 +489,19 @@ const Activity = ()=>{
                     生态项目代码实操演练，与 Web3 领军人物现场讨论。
                 </div>
             </div>
-            <div className=" xl:flex  " >
+            <div className="flex justify-end md:-mt-10">
+                <Link href="/meeting">
+                    <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
+                        <div className="mr-1 " >
+                            查看更多
+                        </div>
+                        <div>
+                            <i className="fa fa-arrow-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+            <div className=" xl:flex  mt-4" >
                 {/*大*/}
                 <div className="hidden xl:block relative xl:w-1/2 2xl:w-7/12 " >
                     <div className="flex px-10 py-8 bg-white rounded-2xl  ">
