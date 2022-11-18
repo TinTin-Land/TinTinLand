@@ -1,12 +1,8 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import Home from "./home";
 import {useRouter} from "next/router";
 import {useTranslation} from "next-i18next";
-import Link from "next/link";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import {useAtom} from "jotai";
-import {LogoFavicon} from "../jotai";
 import Heads from "../components/head";
 import React from "react";
 
@@ -15,7 +11,7 @@ const IndexPage: NextPage = () => {
     const { t } = useTranslation('common')
     console.log(t('change-locale'))
     console.log(router.locale)
-    const [favicon,setFavicon] = useAtom(LogoFavicon)
+
   return (
       <main>
         <div>

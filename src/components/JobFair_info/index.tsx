@@ -1,5 +1,5 @@
 import {useAtom} from "jotai";
-import {JobFairInfoState, UserInfoState} from "../../jotai";
+import {JobFairInfoState} from "../../jotai";
 import React, {Fragment, useState} from "react";
 import {Dialog, Disclosure, Listbox, Switch, Transition} from "@headlessui/react";
 import {CheckIcon, SelectorIcon} from "@heroicons/react/outline";

@@ -1,5 +1,5 @@
 import {useAtom} from "jotai";
-import {JobFairInfoState, UserInfoState} from "../../jotai";
+import {JobFairInfoState} from "../../jotai";
 import React, {Fragment, useEffect, useState} from "react";
 import Header from "../../components/header";
 import Link from "next/link";

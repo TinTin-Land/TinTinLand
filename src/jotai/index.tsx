@@ -38,11 +38,12 @@ const detail = {
 
 const Course_Detail = atom(detail)
 
-const LogoFavicon = atomWithStorage("LogoFavicon","/tintin-favicon.svg")
-
-
-const UserInfoState = atom(false)
-
 const JobFairInfoState = atom(false)
 
-export {Course_Detail,LogoFavicon,UserInfoState,JobFairInfoState}
+const LoginState = atomWithStorage("LoginState",false)
+
+const userInfo = atom({})
+
+
+
+export {Course_Detail,JobFairInfoState,LoginState,userInfo}

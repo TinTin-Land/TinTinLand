@@ -10,7 +10,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const Coures = () =>{
+const Meeting = () =>{
 
 
     return (
@@ -221,4 +221,4 @@ const Coures = () =>{
 
     )
 }
-export default Coures
+export default Meeting

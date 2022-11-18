@@ -61,15 +61,12 @@ const Personal_info = () =>{
                                 基本信息
                             </div>
                             <div className="mt-2 mx-10 sm:mx-0 mb-5 sm:mb-10 mt-5">
-                              离注册成功就差一步了，来设置您的头像和用户名吧！
+                              离注册成功就差一步了，来设置您的用户名吧！
                             </div>
                             <div className="flex justify-center ">
-
-
                                 <div className="relative ">
-                                    <div className="w-20 h-20    rounded-full border border-gray-300 flex ">
-                                        <img className={` w-full  rounded-full`}   src={classNames(imgUrl)}  alt=""/>
-                                        <input onChange={inputImg} type="file" id="file" className= "absolute opacity-0 rotate-90  w-20 mt-6   flex justify-center "  accept="image/*"/>
+                                    <div className="w-20 h-20 rounded-full border border-gray-300 flex ">
+                                        <img className="w-full rounded-full"  src="/login.png"  alt=""/>
                                     </div>
                                 </div>
 
