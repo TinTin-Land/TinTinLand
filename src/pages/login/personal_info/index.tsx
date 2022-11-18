@@ -3,6 +3,9 @@ import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import {Router, useRouter} from "next/router";
 import Heads from "../../../components/head";
+import {useAtom} from "jotai";
+import {LoginState, UserInfo,} from "../../../jotai";
+import login from "../index";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -12,19 +15,10 @@ const Personal_info = () =>{
     const router = useRouter()
     const [emailType,setEmailType] = useState(true)
     const [emailNumber,setEmailNumber] =useState(false)
+    const [,setLoginState] = useAtom(LoginState)
+    const [userInfo,SetUserInfo] =useAtom(UserInfo)
 
-    const [imgUrl,setImgUrl] = useState("/common_icons/头像_avatar@2x.png")
-    const inputImg = () => {
-        let fileInput = (document.getElementById('file') as HTMLInputElement).files[0]
-        const reader = new FileReader()
-        reader.readAsDataURL(fileInput)
-        reader.onload = function (e) {
-            console.log(e);
-            console.log(e.target.result);
-            setImgUrl(`${e.target.result}`)
 
-        }
-    }
 
     const checkNumber = async (e) =>{
         // e.target.value= e.target.value.replace(/[ ]/g,'')
@@ -39,7 +33,11 @@ const Personal_info = () =>{
     }
 
     const next =async () =>{
-
+        setLoginState(true)
+        const userName = {
+            name:(document.getElementById("name") as HTMLInputElement).value
+        }
+        SetUserInfo(userName)
             await  router.push(
                 {
                     pathname:"/homepage",
@@ -80,9 +78,9 @@ const Personal_info = () =>{
                                 </label>
                                 <div className="mt-2">
                                     <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
+                                        id="name"
+                                        name="name"
+                                        type="name"
                                         autoComplete="off"
                                         required
                                         placeholder="Enter your ID"

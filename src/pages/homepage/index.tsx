@@ -4,6 +4,8 @@ import React, {Fragment, useState} from "react";
 import Link from "next/link";
 import {Dialog, Listbox, Switch, Tab, Transition} from "@headlessui/react";
 import Heads from "../../components/head";
+import {useAtom} from "jotai";
+import {UserInfo} from "../../jotai";
 
 
 function classNames(...classes) {
@@ -14,7 +16,7 @@ function classNames(...classes) {
 
 const Homepage= () =>{
 
-
+    const [userInfo,SetUserInfo] = useAtom(UserInfo)
     let [categories] = useState({
         简介: [],
         TinTin足迹: [],
@@ -70,7 +72,7 @@ const Homepage= () =>{
                 <div className="ml-4 mt-4">
                     <div className="flex items-center">
                         <div className="font-semibold text-xl">
-                            TestUser312
+                            {userInfo.name}
                         </div>
                         <div className="border-r h-4 mx-3 border-black">
 

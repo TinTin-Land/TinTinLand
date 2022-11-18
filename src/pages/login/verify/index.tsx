@@ -3,6 +3,9 @@ import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Heads from "../../../components/head";
+import {client} from "../../../client";
+import {logger} from "bs-logger";
+import login from "../index";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -49,6 +52,10 @@ const Verify = () =>{
             setTime(60);
             SetNextState(false);
             SetVerifyState(true);
+         const data =  await client.callApi('SendEmail', {
+                email: router.query.email as string,
+            });
+            console.log(data);
              (document.getElementById("inpo1") as HTMLInputElement).value = "";
              (document.getElementById("inpo2") as HTMLInputElement).value = "";
              (document.getElementById("inpo3") as HTMLInputElement).value = "";
@@ -56,17 +63,38 @@ const Verify = () =>{
              (document.getElementById("inpo5") as HTMLInputElement).value = "";
              (document.getElementById("inpo6") as HTMLInputElement).value = "";
              (document.getElementById("inpo1") as HTMLInputElement).focus();
+
+
         }
     }
 
 
     const goToNext =async () =>{
+        const code = (document.getElementById("inpo1") as HTMLInputElement).value
+            +(document.getElementById("inpo2") as HTMLInputElement).value
+        +(document.getElementById("inpo3") as HTMLInputElement).value
+        +(document.getElementById("inpo4") as HTMLInputElement).value
+        +(document.getElementById("inpo5") as HTMLInputElement).value
+        +(document.getElementById("inpo6") as HTMLInputElement).value;
+        console.log(code)
+
+        const ret = await client.callApi('CheckEmail', {
+            email: router.query.email as string,
+            code:code
+        });
+        console.log(ret)
+        if(ret.res.state){
             await  router.push(
                 {
                     pathname:"/login/personal_info",
                     query:{email:router.query.email}
                 }
             )
+        }else {
+            SetVerifyState(false)
+        }
+
+
         }
 
    async function  inp1_onkeyup(e){

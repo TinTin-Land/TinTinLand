@@ -4,6 +4,8 @@ import Tail from "../../components/tail";
 import React, {useEffect, useState} from "react";
 import {Router, useRouter} from "next/router";
 import Heads from "../../components/head";
+import {client} from "../../client";
+import { log } from "console";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -13,6 +15,7 @@ const Login = () =>{
     const router = useRouter()
     const [emailType,setEmailType] = useState(true)
     const [emailNumber,setEmailNumber] =useState(false)
+    const [loginState,setLoginState] = useState(false)
      function checkemail()
     {
         const email = (document.getElementById("email") as HTMLInputElement).value
@@ -29,12 +32,21 @@ const Login = () =>{
     }
     const next =async () =>{
       if(emailNumber){
-        await  router.push(
-              {
-                  pathname:"/login/verify",
-                  query:{email:(document.getElementById("email") as HTMLInputElement).value}
-              }
-          )
+          // callApi
+          setLoginState(true)
+          const ret = await client.callApi('SendEmail', {
+              email: (document.getElementById("email") as HTMLInputElement).value
+          });
+          console.log(ret.isSucc)
+          if(ret.isSucc){
+              setLoginState(false)
+              await  router.push(
+                  {
+                      pathname:"/login/verify",
+                      query:{email:(document.getElementById("email") as HTMLInputElement).value}
+                  }
+              )
+          }
       }else {
           console.log("sadasd")
       }
@@ -81,9 +93,13 @@ const Login = () =>{
                                     <button
                                         type="submit"
                                         onClick={next}
-                                        className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-28 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium")}
+                                        className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-28 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium items-center")}
                                     >
-                                        继续
+
+                                       <div className={loginState?"animate-spin":"hidden animate-spin"}><i className="fa fa-spinner f-spin fa-x fa-fw"></i></div>
+                                       <div className={loginState?"text-gray-400":""}>
+                                           继续
+                                       </div>
                                     </button>
                                 </div>
 

@@ -4,7 +4,7 @@ import { Switch } from '@headlessui/react'
 import {ChevronDownIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
 import React, {Fragment, useEffect, useState} from "react";
 import {useAtom} from "jotai";
-import {LoginState} from "../../jotai";
+import {LoginState, UserInfo} from "../../jotai";
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -24,6 +24,8 @@ const Header = () =>{
     const [loginState,SetLoginState] = useAtom(LoginState)
     const [language,setLanguage] = useState(false)
     const [scroll,setScroll]=useState(false)
+    const [,setLoginState] = useAtom(LoginState)
+    const [userInfo,SetUserInfo] =useAtom(UserInfo)
     function languageChange() {
         setLanguage(!language);
     }
@@ -36,6 +38,10 @@ const Header = () =>{
         } else {
             setScroll(false)
         }
+    };
+    const loginOut = () =>{
+        setLoginState(false);
+        SetUserInfo({name:""})
     }
 
 
@@ -154,7 +160,7 @@ const Header = () =>{
                                         <div className="px-1 py-1 ">
                                             <Menu.Item>
 
-                                                    <button className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">
+                                                    <button onClick={loginOut} className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">
                                                         登出
                                                     </button>
                                             </Menu.Item>
