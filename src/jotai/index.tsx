@@ -40,7 +40,7 @@ const Course_Detail = atom(detail)
 
 const JobFairInfoState = atom(false)
 
-const LoginState = atomWithStorage("LoginState",false)
+const LoginState = atom(false)
 
 const userData = {name:""}
 const UserInfo = atomWithStorage("UserInfo",userData)

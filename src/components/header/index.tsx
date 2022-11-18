@@ -5,6 +5,7 @@ import {ChevronDownIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
 import React, {Fragment, useEffect, useState} from "react";
 import {useAtom} from "jotai";
 import {LoginState, UserInfo} from "../../jotai";
+import { useRouter } from "next/router";
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -21,6 +22,7 @@ const navigation = [
 
 
 const Header = () =>{
+    const router = useRouter();
     const [loginState,SetLoginState] = useAtom(LoginState)
     const [language,setLanguage] = useState(false)
     const [scroll,setScroll]=useState(false)
@@ -43,6 +45,17 @@ const Header = () =>{
         setLoginState(false);
         SetUserInfo({name:""})
     }
+
+    useEffect(()=>{
+        if (router.isReady){
+            if(userInfo.name==""){
+                setLoginState(false)
+            }else {
+                setLoginState(true)
+            }
+        }
+
+    },[router.isReady])
 
 
 
