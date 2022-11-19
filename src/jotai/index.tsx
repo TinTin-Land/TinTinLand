@@ -42,7 +42,7 @@ const JobFairInfoState = atom(false)
 
 const LoginState = atom(false)
 
-const userData = {name:""}
+const userData = {name:"123"}
 const UserInfo = atomWithStorage("UserInfo",userData)
 
 

@@ -1,6 +1,6 @@
 import Header from "../../components/header";
 import Tail from "../../components/tail";
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Link from "next/link";
 import {Dialog, Listbox, Switch, Tab, Transition} from "@headlessui/react";
 import Heads from "../../components/head";
@@ -15,13 +15,17 @@ function classNames(...classes) {
 
 
 const Homepage= () =>{
-
-    const [userInfo,SetUserInfo] = useAtom(UserInfo)
+    const [userInfo,] = useAtom(UserInfo)
+    const userData = {name:"123"}
+    const [userdata,setUserData] =useState(userData)
     let [categories] = useState({
         简介: [],
         TinTin足迹: [],
     })
 
+    useEffect(()=>{
+        setUserData(userInfo)
+    },[])
     const usertype = [
         {
             type:"产品经理",
@@ -33,6 +37,7 @@ const Homepage= () =>{
             type:"The Graph",
         },
     ]
+
 
     return (
 
@@ -72,7 +77,7 @@ const Homepage= () =>{
                 <div className="ml-4 mt-4">
                     <div className="flex items-center">
                         <div className="font-semibold text-xl">
-                            {userInfo.name}
+                            {userdata.name}
                         </div>
                         <div className="border-r h-4 mx-3 border-black">
 

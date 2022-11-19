@@ -47,15 +47,12 @@ const Header = () =>{
     }
 
     useEffect(()=>{
-        if (router.isReady){
             if(userInfo.name==""){
                 setLoginState(false)
             }else {
                 setLoginState(true)
             }
-        }
-
-    },[router.isReady])
+    },[])
 
 
 

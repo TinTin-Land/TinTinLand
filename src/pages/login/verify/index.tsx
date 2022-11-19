@@ -82,7 +82,7 @@ const Verify = () =>{
             email: router.query.email as string,
             code:code
         });
-        console.log(ret)
+
         if(ret.res.state){
             await  router.push(
                 {
