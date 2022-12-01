@@ -5,13 +5,15 @@
  * 增加数据
  * 此处的注释将会自动附带到生成的 API 文档中
  */
-export interface ReqAddUser {
+export interface ReqEnrollUser {
     /** 要增加的消息内容 */
-    username: string;
-    user_email:string;
+    name: string;
+    email:string;
+    password:string;
+    src:string;
 }
 
-export interface ResAddUser {
+export interface ResEnrollUser {
     /** 服务端内容创建时间 */
     time: Date
 }

@@ -4,8 +4,9 @@ import React, {useEffect, useState} from "react";
 import {Router, useRouter} from "next/router";
 import Heads from "../../../components/head";
 import {useAtom} from "jotai";
-import {LoginState, UserInfo,} from "../../../jotai";
+import {LoginState, UserEmail,} from "../../../jotai";
 import login from "../index";
+import {client} from "../../../client";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -16,9 +17,7 @@ const Personal_info = () =>{
     const [emailType,setEmailType] = useState(true)
     const [emailNumber,setEmailNumber] =useState(false)
     const [,setLoginState] = useAtom(LoginState)
-    const [userInfo,SetUserInfo] =useAtom(UserInfo)
-
-
+    const [userEmail,setUserEmail] =useAtom(UserEmail)
 
     const checkNumber = async (e) =>{
         // e.target.value= e.target.value.replace(/[ ]/g,'')
@@ -33,17 +32,28 @@ const Personal_info = () =>{
     }
 
     const next =async () =>{
-        setLoginState(true)
-        const userName = {
-            name:(document.getElementById("name") as HTMLInputElement).value
-        }
-        SetUserInfo(userName)
+        const ret = await client.callApi('AddUser', {
+            user_email: router.query.email as string,
+            username: (document.getElementById("name") as HTMLInputElement).value,
+
+        });
+        console.log((document.getElementById("name") as HTMLInputElement).value)
+        if(ret.isSucc){
+            const userName = {
+                user_email: router.query.email as string,
+            }
+            setUserEmail(userName)
+            setLoginState(true)
             await  router.push(
                 {
                     pathname:"/homepage",
                     // query:{email:(document.getElementById("email") as HTMLInputElement).value}
                 }
             )
+        }else
+        {
+            setEmailType(false)
+        }
     }
 
     return(

@@ -1,11 +1,17 @@
 import Header from "../../components/header";
 import Tail from "../../components/tail";
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Link from "next/link";
 import {Dialog, Listbox, Switch, Tab, Transition} from "@headlessui/react";
 
 import { CheckIcon, SelectorIcon } from "@heroicons/react/outline";
 import Heads from "../../components/head";
+import {client} from "../../client";
+import {useRouter} from "next/router";
+import {useAtom} from "jotai";
+import {UserEmail} from "../../jotai";
+import {name} from "ci-info";
+import {user} from "../../shared/interface/user";
 
 
 function classNames(...classes) {
@@ -27,31 +33,52 @@ const Experience = [
 
 ]
 
+// @ts-ignore
 const UserInfo = () =>{
-    const [imgUrl,setImgUrl] = useState("/common_icons/en-cn备份@2x.png")
+    const router = useRouter();
     const [emailType,setEmailType] = useState(true)
     const [userNameType,setUserNameType] = useState(true)
     const [selectedNation, setSelectedNation] = useState(nation[0])
     const [selectedRole, setSelectedRole] = useState(Role[0])
     const [selectedExperience, setSelectedExperience] = useState(Experience[0])
     const [enabled, setEnabled] = useState(false)
+    const [user_email,] = useAtom(UserEmail)
 
-    const inputImg = () => {
-        if(window.FileReader){
-            let fileInput = (document.getElementById('file') as HTMLInputElement).files[0]
-            const reader = new FileReader()
-            if (fileInput && fileInput.type.match('image.*')){
-                reader.readAsDataURL(fileInput)
-                reader.onload = function (e) {
-                    console.log(e);
-                    console.log(e.target.result);
-                    setImgUrl(`${e.target.result}`)
+    useEffect(() => {
+        if(router.isReady){
+            const query = async() =>{
+                const ret = await client.callApi('GetUser', {
+                    user_email: user_email.user_email
+                });
+                if(ret.isSucc){
+                    const data = ret.res.user;
+                    (document.getElementById("userName") as HTMLInputElement).value = data.username;
+                    (document.getElementById("userEmail") as HTMLInputElement).value = data.user_email;
+                    (document.getElementById("description") as HTMLInputElement).value = data.description;
+
+                    const NationIndex =  nation.find( o => o.name ===data.country);
+                    setSelectedNation(NationIndex?nation[NationIndex.id - 1]:nation[0]);
+
+                    const RoleIndex =  Role.find( o => o.name ===data.roles);
+                    setSelectedRole(RoleIndex?Role[RoleIndex.id - 1]:Role[0]);
+
+                    const ExperienceIndex =  Experience.find( o => o.name ===data.experience);
+                    setSelectedExperience(ExperienceIndex?Experience[ExperienceIndex.id - 1]:Experience[0]);
+
+                    (document.getElementById("achievements") as HTMLInputElement).value = data.achievements;
+                    (document.getElementById("Twitter") as HTMLInputElement).value = data.twitter;
+                    (document.getElementById("Github") as HTMLInputElement).value = data.github;
+                    (document.getElementById("Telegram") as HTMLInputElement).value = data.telegram;
+                    setEnabled(data.privacy)
+
+
                 }
 
             }
+            query()
         }
+    },[router.isReady])
 
-    }
     function checkEmail()
     {
         const email = (document.getElementById("userEmail") as HTMLInputElement).value
@@ -74,10 +101,43 @@ const UserInfo = () =>{
 
         }
     }
+
+
+
+
+    const Revise = async () => {
+        const user:user = {
+            username:(document.getElementById("userName") as HTMLInputElement).value,
+            user_email:(document.getElementById("userEmail") as HTMLInputElement).value,
+            user_course_passport:"",
+            twitter:  (document.getElementById("Twitter") as HTMLInputElement).value,
+            telegram: (document.getElementById("Telegram") as HTMLInputElement).value,
+            roles:selectedRole.name,
+            privacy:enabled,
+            github:(document.getElementById("Github") as HTMLInputElement).value,
+            experience:selectedExperience.name,
+            description:(document.getElementById("description") as HTMLInputElement).value,
+            country:selectedNation.name,
+            achievements:(document.getElementById("achievements") as HTMLInputElement).value,
+        }
+        const ret = await client.callApi('UpdateUser', {
+            user
+        });
+        if(ret.isSucc){
+            alert("修改成功")
+            location.reload();
+
+        }else {
+            alert("修改失败")
+        }
+    }
     return(
         <>
 
                 <div className="mx-auto sm:rounded-lg  mt-2 sm:max-w-xl w-full pb-16">
+                    <div className="flex justify-end ">
+                        <button onClick={Revise} className="bg-black text-white rounded-full py-1 px-3">确认修改</button>
+                    </div>
                     {/*基本信息*/}
                     <div className="bg-[#F9F9FB] rounded-xl p-5 mt-4">
                         <div className="text-xl font-semibold">
@@ -86,13 +146,7 @@ const UserInfo = () =>{
                         <div className="text-gray-500 text-sm">
                             简单介绍自己，以便于别人了解你
                         </div>
-                        {/*    头像*/}
-                        <div className="relative mt-2">
-                            <div className="w-20   rounded-full   flex items-center">
-                                <img  className=" border border-gray-300  rounded-full w-20 h-20" src={classNames(imgUrl)} alt=""/>
-                                <input onChange={inputImg} type="file" id="file" className="absolute opacity-0  w-20   flex justify-center "  accept="image/*"/>
-                            </div>
-                        </div>
+
                         {/*    用户名*/}
                         <div className="mt-2">
                             <label htmlFor="email" className="flex justify-between text-sm font-medium text-gray-700 mt-4 ">
@@ -127,6 +181,7 @@ const UserInfo = () =>{
                                     name="email"
                                     type="email"
                                     autoComplete="off"
+                                    readOnly={true}
                                     onKeyDown={checkEmail}
                                     onInput={checkEmail}
                                     required
@@ -143,8 +198,8 @@ const UserInfo = () =>{
                             <div className="mt-1">
                                                 <textarea
                                                     rows={4}
-                                                    name="comment"
-                                                    id="comment"
+                                                    name="description"
+                                                    id="description"
                                                     autoComplete="off"
                                                     className="p-1 shadow-sm outline-none block w-full sm:text-sm border-gray-300 rounded-md resize-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                                                     placeholder="请介绍你自己吧"
@@ -343,8 +398,8 @@ const UserInfo = () =>{
                             <div className="mt-1">
                                                 <textarea
                                                     rows={4}
-                                                    name="comment"
-                                                    id="comment"
+                                                    name="achievements"
+                                                    id="achievements"
                                                     autoComplete="off"
                                                     className="p-1 shadow-sm outline-none block w-full sm:text-sm border-gray-300 rounded-md resize-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                                                     placeholder="你的经历与成就"
@@ -371,7 +426,7 @@ const UserInfo = () =>{
                                 </label>
                                 <div className="mt-1">
                                     <input
-                                        id="twitter"
+                                        id="Twitter"
                                         required
                                         autoComplete="off"
                                         placeholder="Twitter"
@@ -386,10 +441,10 @@ const UserInfo = () =>{
                                 </label>
                                 <div className="mt-1">
                                     <input
-                                        id="GitHub"
+                                        id="Github"
                                         required
                                         autoComplete="off"
-                                        placeholder="GitHub"
+                                        placeholder="Github"
                                         className="outline-none block w-full px-3 py-2 border  rounded-full shadow-sm placeholder-gray-400 focus:outline-none  focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     />
                                 </div>

@@ -42,9 +42,7 @@ const JobFairInfoState = atom(false)
 
 const LoginState = atom(false)
 
-const userData = {name:"123"}
-const UserInfo = atomWithStorage("UserInfo",userData)
+const userEmail = { user_email: ""}
+const UserEmail = atomWithStorage("UserEmail",userEmail)
 
-
-
-export {Course_Detail,JobFairInfoState,LoginState,UserInfo}
+export {Course_Detail,JobFairInfoState,LoginState,UserEmail}

@@ -4,7 +4,7 @@ import { Switch } from '@headlessui/react'
 import {ChevronDownIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
 import React, {Fragment, useEffect, useState} from "react";
 import {useAtom} from "jotai";
-import {LoginState, UserInfo} from "../../jotai";
+import {LoginState, UserEmail} from "../../jotai";
 import { useRouter } from "next/router";
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -27,7 +27,7 @@ const Header = () =>{
     const [language,setLanguage] = useState(false)
     const [scroll,setScroll]=useState(false)
     const [,setLoginState] = useAtom(LoginState)
-    const [userInfo,SetUserInfo] =useAtom(UserInfo)
+    const [userEmail,setUserEmail] =useAtom(UserEmail)
     function languageChange() {
         setLanguage(!language);
     }
@@ -43,11 +43,11 @@ const Header = () =>{
     };
     const loginOut = () =>{
         setLoginState(false);
-        SetUserInfo({name:""})
+        setUserEmail({user_email:""})
     }
 
     useEffect(()=>{
-            if(userInfo.name==""){
+            if(userEmail.user_email==""){
                 setLoginState(false)
             }else {
                 setLoginState(true)
