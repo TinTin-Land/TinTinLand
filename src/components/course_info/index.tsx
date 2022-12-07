@@ -36,7 +36,22 @@ const Course_teacher = {
         title:"以太坊黄皮书中译者，Solidity官方文档中译项目贡献者、校订人和管理员",
         introduction:"资深软件工程师、架构师，区块链技术布道者，专注于区块链技术推广、中文技术社区贡献以及智能合约开发和安全审计方向；有 17 年的软件行业从业经验、丰富的一线开发经验和工程经验；善于解析要点、讲解复杂的概念，始终对新技术保持饥渴，坚持十余年深耕技术，有很强的总结提炼能力；2017 年开始参与以太坊技术社区贡献：独立中译了以太坊 Homestead 官方文档；对以太坊黄皮书中文版进行了独立校订和增补更新；独立中译了以太坊分片技术说明。",
 
+    },
+    Zoey:{
+        img:"/teacher/Zoey.png",
+        name:"Zoey",
+        title:"Verilog Solutions Research Lead",
+        introduction:"加拿大英属哥伦比亚大学硕士",
+
+    },
+    Bill:{
+        img:"/teacher/Bill.png",
+        name:"Bill",
+        title:"Verilog Solutions 全栈工程师",
+        introduction:"加拿大英属哥伦比亚大学硕士",
+
     }
+
 }
 
 const communitySupport = {
@@ -170,6 +185,10 @@ const projectProvider = {
     DFINITY:{
         name:"DFINITY",
         img:"/dfinity.svg",
+    },
+    Verilog:{
+        name:"Verilog",
+        img:"/Verilog.png",
     }
 
 }
@@ -282,12 +301,164 @@ const Course_student = {
 
 const Course_info =
     {
+        EVM_103:{
+            id: "EVM_103",
+            img: "/course/EVM_103.png",
+            cycle:"第三期",
+            name:"以太坊开发快速入门-轻松创建智能合约",
+            state: false,
+            AboutStart:true,
+            startTime:"2023.02",
+            registrationDeadline:"--",
+            link: "https://hkr.xet.tech/s/Pe8p8",
+            h1:"TinTinLand 邀请来自 Verilog.Solutions 的两位安全工程师，希望通过自身对 Web3 的激情和专业性，以系统、简单易懂的方式，让更多人了解区块链和智能合约；此外， 通过这个课程， Verilog.Solutions 希望能把他们在安全审计行业积累的有关智能合约的安全知识，穿插在课程中，让学员在写智能合约时，有更强的安全意识。",
+            type: [
+                {
+                    content: "Solidity"
+                },
+                {
+                    content: "智能合约"
+                },
+                {
+                    content: "合约安全"
+                },
+                {
+                    content: "ERC20"
+                },
+                {
+                    content: "ERC721"
+                },
+
+            ],
+            Course_data:[
+                {
+                    title:"第一课：区块链与以太坊基础",
+                    content:[
+                        {
+                            h1:"什么是区块链与智能合约（blockchain demo）"
+                        },
+                        {
+                            h1:" Metamask 创建账户（助记词 + 公私钥+创建两个账户）"
+                        },
+                        {
+                            h1:"执行交易（获取测试代币+普通转账 + 签名）"
+                        },
+                        {
+                            h1:" 查看交易 （区块 + 交易 + 交易成本 ）"
+                        },
+                    ]
+                },
+                {
+                    title:"第二课：解刨合约交易执行，入门Solidity",
+                    content:[
+                        {
+                            h1:"Solidity 基础语法介绍"
+                        },
+                        {
+                            h1:"Remix 使用（创建token 和 NFTs）"
+                        },
+                    ]
+                },
+                {
+                    title:"第三课：Solidity 开发实践",
+                    content:[
+                        {
+                            h1:"Hardhat 使用"
+                        },
+                        {
+                            h1:"合约测试"
+                        },
+                        {
+                            h1:"合约部署"
+                        },
+                    ]
+                },
+                {
+                    title:"第四课：OpenZeppelin源码分析与合约安全",
+                    content:[
+                        {
+                            h1:"ERC20"
+                        },
+                        {
+                            h1:"ERC721"
+                        },
+                        {
+                            h1:"合约安全注意事项"
+                        },
+                    ]
+                },
+                {
+                    title:"第五课：前端与智能合约的交互开发",
+                    content:[
+                        {
+                            h1:"Web3.JS"
+                        },
+                        {
+                            h1:"Event 事件"
+                        },
+                        {
+                            h1:"链上合约数据的读取与写入"
+                        },
+                        {
+                            h1:"智能合约自动化（glato/OpenZeppelin Defender ）"
+                        },
+                    ]
+                },
+                {
+                    title:"第六课：经典业务合约解析",
+                    content:[
+                        {
+                            h1:"流动性挖矿合约解析"
+                        },
+                        {
+                            h1:"时间锁与多签合约"
+                        },
+                    ]
+                },
+
+            ],
+            Learning_Highlights:[
+                LearningHighlights.六节视频录播课程每周更新一节,
+                LearningHighlights.每周OfficeHour导师直播答疑,
+                LearningHighlights.每节课后作业实践,
+                LearningHighlights.助教每晚在线解答,
+                LearningHighlights.结业挑战赛,
+                LearningHighlights.毕业证书,
+                LearningHighlights.中文授课,
+            ],
+            teacher:[
+                Course_teacher.Zoey,
+                Course_teacher.Bill,
+            ],
+            project_Provider:[
+                projectProvider.TinTinLand,
+                projectProvider.Verilog
+            ],
+            community_recommendation:[
+                Course_student.Hunter,
+                Course_student.CRG,
+                Course_student.Kurtis,
+            ],
+
+            suitable_ForTheCrowd:[
+                suitableForTheCrowd.以太坊或其他区块链生态开发者,
+                suitableForTheCrowd.即将毕业的计算机专业大学生,
+                suitableForTheCrowd.从互联网想要转行的程序员,
+            ],
+            community_support:[
+                communitySupport.与全球顶尖以太坊开发者交流,
+                communitySupport.资源工作推荐,
+            ],
+
+
+        },
         EVM_102:{
             id: "EVM_102",
             img: "/course/EVM_102.png",
             cycle:"第二期",
             name:"以太坊开发快速入门-轻松创建智能合约",
             state: true,
+            AboutStart:false,
             startTime:"2022.09",
             registrationDeadline:"2022.09",
             link: "https://hkr.h5.xeknow.com/s/2yYwKx",
@@ -469,6 +640,7 @@ const Course_info =
             cycle:"第三期",
             name:"Internet Computer：从核心技术入门到开发实战",
             state: true,
+            AboutStart:false,
             startTime:"2022.08.28",
             registrationDeadline:"2022.08.28",
             link: "https://hkr.h5.xeknow.com/s/xRaCr",
@@ -612,6 +784,7 @@ const Course_info =
             cycle:"第一期",
             name:"Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
             state: true,
+            AboutStart:false,
             startTime:"2022.03.05",
             registrationDeadline:"2023.12.31",
             link: "https://hkr.h5.xeknow.com/s/PGm9a",
@@ -767,6 +940,7 @@ const Course_info =
             cycle:"第一期",
             name:"Internet Computer：从核心技术入门到开发实战进阶",
             state: false,
+            AboutStart:false,
             startTime:"2022.05.13",
             registrationDeadline:"2022.05.13",
             link: "",
@@ -901,6 +1075,7 @@ const Course_info =
             cycle:"第一期",
             name:"从0开始学区块链：工程师眼中的比特币和以太坊",
             state: true,
+            AboutStart:false,
             startTime:"2022.09.01",
             registrationDeadline:"2027.09.01",
             link: "https://hkr.h5.xeknow.com/s/VRdMD",

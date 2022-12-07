@@ -233,6 +233,7 @@ const CourseDetails = () =>{
                     cycle:Course_info[course].cycle,
                     name:Course_info[course].name,
                     state:Course_info[course].state,
+                    AboutStart:Course_info[course].AboutStart,
                     startTime:Course_info[course].startTime,
                     registrationDeadline:Course_info[course].registrationDeadline,
                     link:Course_info[course].link,
@@ -305,6 +306,11 @@ const CourseDetails = () =>{
                                                 立刻报名
                                             </a>
                                         </Link>
+                                        <button>
+                                            <div className={courseDetail.AboutStart?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 ":"hidden"}>
+                                                即将开始
+                                            </div>
+                                        </button>
                                     </div>
 
                                 </div>
@@ -357,6 +363,11 @@ const CourseDetails = () =>{
                                             立刻报名
                                         </a>
                                     </Link>
+                                    <button>
+                                        <div className={courseDetail.AboutStart?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 ":"hidden"}>
+                                            即将开始
+                                        </div>
+                                    </button>
                                 </div>
 
                             </div>

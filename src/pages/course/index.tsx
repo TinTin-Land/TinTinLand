@@ -14,6 +14,32 @@ const Coures = () =>{
     const Course_info =
         [
             {
+                id: "EVM_103",
+                img: "/course/EVM_103.png",
+                type: [
+                    {
+                        content: "Solidity"
+                    },
+                    {
+                        content: "智能合约"
+                    },
+                    {
+                        content: "合约安全"
+                    },
+                    {
+                        content: "ERC20"
+                    },
+                    {
+                        content: "ERC721"
+                    },
+
+                ],
+                h1:"以太坊开发快速入门-轻松创建智能合约",
+                link: "https://hkr.xet.tech/s/Pe8p8",
+                state: false,
+                AboutStart:true,
+            },
+            {
                 id: "EVM_102",
                 img: "/course/EVM_102.png",
                 type: [
@@ -36,7 +62,8 @@ const Coures = () =>{
                 ],
                 h1: "第二期｜以太坊开发快速入门-轻松创建智能合约",
                 link: "https://hkr.h5.xeknow.com/s/2yYwKx",
-                state: true
+                state: true,
+                AboutStart:false,
             },
             {
                 id: "IC_103",
@@ -55,7 +82,8 @@ const Coures = () =>{
                 ],
                 h1: "第三期｜Internet Computer：从核心技术入门到开发实战",
                 link: "https://hkr.h5.xeknow.com/s/xRaCr",
-                state: true
+                state: true,
+                AboutStart:false,
 
             },
             {
@@ -83,6 +111,7 @@ const Coures = () =>{
                 h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
                 state: true,
                 link: "https://hkr.h5.xeknow.com/s/VRdMD",
+                AboutStart:false,
 
             },
             {
@@ -107,7 +136,8 @@ const Coures = () =>{
                 ],
                 h1: "第一期｜Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
                 link: "https://hkr.h5.xeknow.com/s/PGm9a",
-                state: true
+                state: true,
+                AboutStart:false,
 
             },
             {
@@ -130,7 +160,8 @@ const Coures = () =>{
                 ],
                 h1: "第一期｜Internet Computer：从核心技术入门到开发实战进阶",
                 link: "",
-                state: false
+                state: false,
+                AboutStart:false,
 
             },
         ]
@@ -162,8 +193,6 @@ const Coures = () =>{
                             TinTin EDU
                         </button>
                     </div>
-
-
                 </div>
                 <div>
                     <div className="text-indigo-700 text-xl mt-10">
@@ -171,7 +200,7 @@ const Coures = () =>{
                     </div>
                     <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3  gap-10 ">
                         {Course_info.map(items=>(
-                            <div key={items.id} className={classNames(items.state?"rounded-2xl  ":"hidden")}>
+                            <div key={items.id} className={classNames(items.state || items.AboutStart?"rounded-2xl  ":"hidden")}>
                                 <img className="rounded-t-2xl" src={items.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex  h-20 overflow-hidden  flex-wrap">
@@ -190,7 +219,11 @@ const Coures = () =>{
                                                 立刻报名
                                             </a>
                                         </Link>
-
+                                        <button>
+                                            <div className={items.AboutStart?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
+                                                即将开始
+                                            </div>
+                                        </button>
                                         <Link href={`/course_details/${items.id}`}>
                                             <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5">
                                                 了解更多
@@ -208,7 +241,7 @@ const Coures = () =>{
                     </div>
                     <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3  gap-10 ">
                         {Course_info.map(items=>(
-                            <div key={items.id} className={classNames(items.state?"hidden":"rounded-2xl")}>
+                            <div key={items.id} className={classNames(items.state || items.AboutStart?"hidden":"rounded-2xl")}>
                                 <img className="rounded-t-2xl" src={items.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex  h-20 overflow-hidden  flex-wrap">

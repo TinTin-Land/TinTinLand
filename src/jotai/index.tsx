@@ -8,6 +8,7 @@ const detail = {
     cycle:"",
     name:"",
     state:false,
+    AboutStart:true,
     startTime:"",
     registrationDeadline:"",
     link:"",
