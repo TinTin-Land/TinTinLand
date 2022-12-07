@@ -457,7 +457,7 @@ const Course_info =
             img: "/course/EVM_102.png",
             cycle:"第二期",
             name:"以太坊开发快速入门-轻松创建智能合约",
-            state: true,
+            state: false,
             AboutStart:false,
             startTime:"2022.09",
             registrationDeadline:"2022.09",

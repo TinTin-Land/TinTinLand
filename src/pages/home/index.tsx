@@ -41,32 +41,7 @@ const Course = () => {
                 state: false,
                 AboutStart:true,
             },
-            {
-                id: "EVM_102",
-                img: "/course/EVM_102.png",
-                type: [
-                    {
-                        content: "Solidity"
-                    },
-                    {
-                        content: "The Graph"
-                    },
-                    {
-                        content: "链上合约数据的读取与写入"
-                    },
-                    {
-                        content: "合约安全"
-                    },
-                    {
-                        content: "Arbitrum-sdk"
-                    },
 
-                ],
-                h1: "第二期｜以太坊开发快速入门-轻松创建智能合约",
-                link: "https://hkr.h5.xeknow.com/s/2yYwKx",
-                state: true,
-                AboutStart:false,
-            },
             {
                 id: "IC_103",
                 img: "/course/IC_103.png",

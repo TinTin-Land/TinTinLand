@@ -62,7 +62,7 @@ const Coures = () =>{
                 ],
                 h1: "第二期｜以太坊开发快速入门-轻松创建智能合约",
                 link: "https://hkr.h5.xeknow.com/s/2yYwKx",
-                state: true,
+                state: false,
                 AboutStart:false,
             },
             {
