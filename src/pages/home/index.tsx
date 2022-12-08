@@ -1235,7 +1235,7 @@ const Home = () =>{
           <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">
 
-                <div className="bg-white backdrop-blur-sm bg-white/90 w-full rounded-2xl py-10 px-5  md:px-10 ">
+                <div className=" backdrop-blur-sm bg-white/60 w-full rounded-2xl py-10 px-5  md:px-10 ">
                     <div className="text-2xl md:text-4xl xl:text-6xl ">
                     <div>
                         A Global Web3.0 Dev DAO
