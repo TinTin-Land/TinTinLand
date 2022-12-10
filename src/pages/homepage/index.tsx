@@ -68,7 +68,7 @@ const Homepage= () =>{
     ]
 
 
-    if(userInfo.username !==""){
+    // if(userInfo.username !==""){
         return (
 
             <div className="mx-auto relative  bg-fixed overflow-hidden"
@@ -187,11 +187,11 @@ const Homepage= () =>{
                 <Tail/>
             </div>
         )
-    }else {
-        return (
-            <div>1</div>
-        )
-    }
+    // }else {
+    //     return (
+    //         <div>1</div>
+    //     )
+    // }
 
 }
 

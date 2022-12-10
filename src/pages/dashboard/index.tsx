@@ -533,6 +533,37 @@ const UserInfo = () =>{
 }
 
 const UserCourse = () =>{
+    const router = useRouter();
+    useEffect(() => {
+        if(router.isReady){
+            const query = async() =>{
+                const ret = await client.callApi('GetUserCourseList', {
+                    email: "zombiesliu@gmail.com"
+                });
+                const course = await client.callApi('GetCourse', {
+                    course_name: "第三期｜Internet Computer：从核心技术入门到开发实战"
+
+                });
+                console.log("-------------",course)
+                if(ret.res !==undefined){
+                    console.log(JSON.parse(ret.res.courses))
+                   const data = JSON.parse(ret.res.courses)
+                    for (let i = 0 ;i<data.length ;i++) {
+                        // const course = await client.callApi('GetCourse', {
+                        //     course_name: data[2].course_name
+                        //
+                        // });
+                        //
+                        // let result = {
+                        //     course_name:data[i].course_name,
+                        //     percent_complete:data[i].percent_complete
+                        // }
+                    }
+                }
+            }
+            query()
+        }
+    },[router.isReady])
     const Course_info =
         [
             {
