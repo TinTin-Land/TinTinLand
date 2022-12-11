@@ -550,7 +550,7 @@ const UserCourse = () =>{
         if(router.isReady){
             const query = async() =>{
                 const ret = await client.callApi('GetUserCourseList', {
-                    email: user_email.toString()
+                    email: user_email.user_email
                 });
                 if(ret.res !==undefined){
                    const data = JSON.parse(ret.res.courses)
