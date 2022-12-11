@@ -534,374 +534,391 @@ const UserInfo = () =>{
 
 const UserCourse = () =>{
     const router = useRouter();
+    const course_info = [
+        {
+            course_name:"",
+            percent_complete:"",
+            course_tab:[{content:""}],
+            course_image:"",
+            course_link:"",
+            course_homework_id:[{id:""}]
+        }
+    ]
+    const [courseInfo,setCourseInfo] = useState(course_info)
     useEffect(() => {
         if(router.isReady){
             const query = async() =>{
                 const ret = await client.callApi('GetUserCourseList', {
-                    email: "zombiesliu@gmail.com"
+                    email: "zhihuichen004@gmail.com"
                 });
-                const course = await client.callApi('GetCourse', {
-                    course_name: "第三期｜Internet Computer：从核心技术入门到开发实战"
-
-                });
-                console.log("-------------",course)
                 if(ret.res !==undefined){
-                    console.log(JSON.parse(ret.res.courses))
                    const data = JSON.parse(ret.res.courses)
+                    let course_list = []
                     for (let i = 0 ;i<data.length ;i++) {
-                        // const course = await client.callApi('GetCourse', {
-                        //     course_name: data[2].course_name
-                        //
-                        // });
-                        //
-                        // let result = {
-                        //     course_name:data[i].course_name,
-                        //     percent_complete:data[i].percent_complete
-                        // }
+                        const course = await client.callApi('GetCourse', {
+                            course_name: data[i].course_name
+                        });
+                        const course_homework = await client.callApi('GetCourseHomework', {
+                            course_name: data[i].course_name
+
+                        });
+
+                        console.log()
+                        let result = {
+                            course_name:data[i].course_name,
+                            percent_complete:data[i].percent_complete,
+                            course_tab:JSON.parse(course.res.course_details.course_tab),
+                            course_image:course.res.course_details.course_image,
+                            course_link:course.res.course_details.course_link,
+                            course_homework_id:JSON.parse(course_homework.res.course_homework.course_homework_id)
+                        }
+                        course_list.push(result)
+                        setCourseInfo(course_list)
                     }
                 }
             }
             query()
         }
     },[router.isReady])
-    const Course_info =
-        [
-            {
-                id: "EVM_102",
-                img: "/course/EVM_102.png",
-                type: [
-                    {
-                        content: "Solidity"
-                    },
-                    {
-                        content: "The Graph"
-                    },
-                    {
-                        content: "链上合约数据的读取与写入"
-                    },
-                    {
-                        content: "合约安全"
-                    },
-                    {
-                        content: "Arbitrum-sdk"
-                    },
-
-                ],
-                h1: "第二期｜以太坊开发快速入门-轻松创建智能合约",
-                link: "https://hkr.h5.xeknow.com/s/2yYwKx",
-                state: true,
-                workDone:2,
-                work:[
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-
-                ]
-            },
-            {
-                id: "IC_103",
-                img: "/course/IC_103.png",
-                type: [
-                    {
-                        content: "Motoko"
-                    },
-                    {
-                        content: "Canister"
-                    },
-                    {
-                        content: "Javescript"
-                    },
-
-                ],
-                h1: "第三期｜Internet Computer：从核心技术入门到开发实战",
-                link: "https://hkr.h5.xeknow.com/s/xRaCr",
-                state: true,
-                workDone:2,
-                work:[
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-
-                ]
-
-            },
-            {
-                id: "BAC_101",
-                img: "/course/BAC_101.png",
-                type: [
-                    {
-                        content: "比特币脚本系统"
-                    },
-                    {
-                        content: "基础数据结构"
-                    },
-                    {
-                        content: "执行模型"
-                    },
-
-                    {
-                        content: "UTXO 模型"
-                    },
-
-                    {
-                        content: "账户模型"
-                    },
-                ],
-                h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
-                state: true,
-                link: "https://hkr.h5.xeknow.com/s/VRdMD",
-                workDone:2,
-                work:[
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-
-                ]
-
-            },
-            {
-                id: "FLOW_101",
-                img: "/course/FLOW_101.png",
-                type: [
-                    {
-                        content: "Cadence"
-                    },
-                    {
-                        content: "Flow FT"
-                    },
-                    {
-                        content: "Flow NFT"
-                    },
-                    {
-                        content: "NFT Metadata"
-                    },
-                    {
-                        content: "FCL(Flow Client Library)"
-                    },
-                ],
-                h1: "第一期｜Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
-                link: "https://hkr.h5.xeknow.com/s/PGm9a",
-                state: true,
-                workDone:7,
-                work:[
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-
-                ]
-
-            },
-            {
-                id: "IC_201",
-                img: "/course/IC_201.png",
-                type: [
-                    {
-                        content: "Motoko"
-                    },
-                    {
-                        content: "Canister"
-                    },
-                    {
-                        content: "ICP系统服务"
-                    },
-                    {
-                        content: "Ti Jar"
-                    },
-
-                ],
-                h1: "第一期｜Internet Computer：从核心技术入门到开发实战进阶",
-                link: "",
-                state: false,
-                workDone:2,
-                work:[
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:true,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-                    {
-                        state:false,
-                        url:"",
-                    },
-
-                ]
-
-            },
-        ]
+    // const Course_info =
+    //     [
+    //         {
+    //             id: "EVM_102",
+    //             img: "/course/EVM_102.png",
+    //             type: [
+    //                 {
+    //                     content: "Solidity"
+    //                 },
+    //                 {
+    //                     content: "The Graph"
+    //                 },
+    //                 {
+    //                     content: "链上合约数据的读取与写入"
+    //                 },
+    //                 {
+    //                     content: "合约安全"
+    //                 },
+    //                 {
+    //                     content: "Arbitrum-sdk"
+    //                 },
+    //
+    //             ],
+    //             h1: "第二期｜以太坊开发快速入门-轻松创建智能合约",
+    //             link: "https://hkr.h5.xeknow.com/s/2yYwKx",
+    //             state: true,
+    //             workDone:2,
+    //             work:[
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //
+    //             ]
+    //         },
+    //         {
+    //             id: "IC_103",
+    //             img: "/course/IC_103.png",
+    //             type: [
+    //                 {
+    //                     content: "Motoko"
+    //                 },
+    //                 {
+    //                     content: "Canister"
+    //                 },
+    //                 {
+    //                     content: "Javescript"
+    //                 },
+    //
+    //             ],
+    //             h1: "第三期｜Internet Computer：从核心技术入门到开发实战",
+    //             link: "https://hkr.h5.xeknow.com/s/xRaCr",
+    //             state: true,
+    //             workDone:2,
+    //             work:[
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //
+    //             ]
+    //
+    //         },
+    //         {
+    //             id: "BAC_101",
+    //             img: "/course/BAC_101.png",
+    //             type: [
+    //                 {
+    //                     content: "比特币脚本系统"
+    //                 },
+    //                 {
+    //                     content: "基础数据结构"
+    //                 },
+    //                 {
+    //                     content: "执行模型"
+    //                 },
+    //
+    //                 {
+    //                     content: "UTXO 模型"
+    //                 },
+    //
+    //                 {
+    //                     content: "账户模型"
+    //                 },
+    //             ],
+    //             h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
+    //             state: true,
+    //             link: "https://hkr.h5.xeknow.com/s/VRdMD",
+    //             workDone:2,
+    //             work:[
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //
+    //             ]
+    //
+    //         },
+    //         {
+    //             id: "FLOW_101",
+    //             img: "/course/FLOW_101.png",
+    //             type: [
+    //                 {
+    //                     content: "Cadence"
+    //                 },
+    //                 {
+    //                     content: "Flow FT"
+    //                 },
+    //                 {
+    //                     content: "Flow NFT"
+    //                 },
+    //                 {
+    //                     content: "NFT Metadata"
+    //                 },
+    //                 {
+    //                     content: "FCL(Flow Client Library)"
+    //                 },
+    //             ],
+    //             h1: "第一期｜Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
+    //             link: "https://hkr.h5.xeknow.com/s/PGm9a",
+    //             state: true,
+    //             workDone:7,
+    //             work:[
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //
+    //             ]
+    //
+    //         },
+    //         {
+    //             id: "IC_201",
+    //             img: "/course/IC_201.png",
+    //             type: [
+    //                 {
+    //                     content: "Motoko"
+    //                 },
+    //                 {
+    //                     content: "Canister"
+    //                 },
+    //                 {
+    //                     content: "ICP系统服务"
+    //                 },
+    //                 {
+    //                     content: "Ti Jar"
+    //                 },
+    //
+    //             ],
+    //             h1: "第一期｜Internet Computer：从核心技术入门到开发实战进阶",
+    //             link: "",
+    //             state: false,
+    //             workDone:2,
+    //             work:[
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:true,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //                 {
+    //                     state:false,
+    //                     url:"",
+    //                 },
+    //
+    //             ]
+    //
+    //         },
+    //     ]
 
     return(
         <>
             <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10  outline-none">
-                {Course_info.map(items=>(
-                    <div key={items.id} className="rounded-2xl relative">
+                {courseInfo.map(items=>(
+
+                    <div key={items.course_name} className="rounded-2xl relative">
                         <div className="absolute right-3 top-3 ">
-                            <div className={items.workDone == Number(items.work.length)?"hidden ":
+                            <div className={Number(items.percent_complete) == 100?"hidden ":
                                 "bg-[#0B9C7E] rounded-full px-2 text-xs py-0.5  text-white border"}>
-                                学习中({items.workDone}/{items.work.length})
+                                学习中({items.percent_complete}%)
                             </div>
-                            <div className={items.workDone == Number(items.work.length)?"bg-[#5448AE] rounded-full px-2 text-xs py-0.5  text-white border ":
+                            <div className={Number(items.percent_complete) == 100?"bg-[#5448AE] rounded-full px-2 text-xs py-0.5  text-white border ":
                                      "hidden"}>
                                已完成课程
                             </div>
 
                         </div>
-                        <img className="rounded-t-2xl" src={items.img} alt=""/>
+                        <img className="rounded-t-2xl" src={items.course_image} alt=""/>
                         <div className="relative  rounded-b-2xl" >
-                            <div className={classNames(items.workDone == Number(items.work.length)?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
+                            <div className={classNames(false?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
                                 <div className="px-10  pt-4">
                                     <div className="flex  h-20 overflow-hidden  flex-wrap">
-                                        {items.type.map(list=>(
+                                        {items.course_tab.map(list=>(
                                             <div key={list.content} className="bg-gray-200 rounded-full text-center text-gray-700  h-7 px-3 py-1 mr-2 mb-4 text-sm" >
                                                 {list.content}
                                             </div>
                                         ))}
                                     </div>
                                     <div className="line-clamp-2  h-12 mt-2">
-                                        {items.h1}
+                                        {items.course_name}
                                     </div>
                                     <div className="flex mt-5 ">
                                         <Link href=''>
-                                            <a className={items.workDone == Number(items.work.length)?"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
+                                            <a className={false?"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
                                                 领取奖励
                                             </a>
                                         </Link>
-                                        <Link href={items.link}>
-                                            <a className={items.workDone == Number(items.work.length)?"hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
+                                        <Link href={items.course_link}>
+                                            <a className={false?"hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
                                                 跳转上课
                                             </a>
                                         </Link>
                                     </div>
                                 </div>
 
-                                <div className={items.workDone == Number(items.work.length)?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
-                                    <div className={items.workDone == Number(items.work.length)?"hidden":"flex justify-between items-center"}>
+                                <div className={false?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
+                                    <div className={false?"hidden":"flex justify-between items-center"}>
                                         <div className="text-xs text-gray-700">
                                             作业完成情况
                                         </div>
                                         <div className="flex">
-                                            {items.work.map(list =>(
-                                                <Link href={list.url} key={list.url} >
-                                                    <a className="">
-                                                        <div  className={list.state?"bg-[#0B9C7E] w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
+                                            {items.course_homework_id.map(list =>(
+                                                <Link  key={list.id}  href=''>
+                                                    <a className={list.id ==""?"hidden":""}>
+                                                        <div  className={false?"bg-[#0B9C7E] w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
                                                         </div>
                                                     </a>
                                                 </Link>
@@ -912,7 +929,7 @@ const UserCourse = () =>{
                                 </div>
                             </div>
 
-                            <img className={items.workDone == Number(items.work.length)?"rounded-b-2xl h-70  w-full":"hidden"} src="/workDone.png" alt=""/>
+                            <img className={false?"rounded-b-2xl h-70  w-full":"hidden"} src="/workDone.png" alt=""/>
 
                         </div>
                     </div>
