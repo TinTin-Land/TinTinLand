@@ -546,6 +546,7 @@ const UserCourse = () =>{
         }
     ]
     const [courseInfo,setCourseInfo] = useState(course_info)
+    // const [courseLength,setCourseLength ] = useState(false)
     useEffect(() => {
         if(router.isReady){
             const query = async() =>{
@@ -864,7 +865,7 @@ const UserCourse = () =>{
     //         },
     //     ]
 
-    if(courseInfo.length == 0){
+    if(courseInfo.length !== 0){
         return(
             <>
                 <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10  outline-none">
