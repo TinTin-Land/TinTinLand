@@ -534,6 +534,7 @@ const UserInfo = () =>{
 
 const UserCourse = () =>{
     const router = useRouter();
+    const [user_email,] = useAtom(UserEmail)
     const course_info = [
         {
             course_name:"",
@@ -549,7 +550,7 @@ const UserCourse = () =>{
         if(router.isReady){
             const query = async() =>{
                 const ret = await client.callApi('GetUserCourseList', {
-                    email: "zhihuichen004@gmail.com"
+                    email: user_email.toString()
                 });
                 if(ret.res !==undefined){
                    const data = JSON.parse(ret.res.courses)
@@ -562,7 +563,6 @@ const UserCourse = () =>{
                             course_name: data[i].course_name
 
                         });
-
                         console.log()
                         let result = {
                             course_name:data[i].course_name,
@@ -864,80 +864,89 @@ const UserCourse = () =>{
     //         },
     //     ]
 
-    return(
-        <>
-            <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10  outline-none">
-                {courseInfo.map(items=>(
+    if(courseInfo.length == 0){
+        return(
+            <>
+                <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10  outline-none">
+                    {courseInfo.map(items=>(
 
-                    <div key={items.course_name} className="rounded-2xl relative">
-                        <div className="absolute right-3 top-3 ">
-                            <div className={Number(items.percent_complete) == 100?"hidden ":
-                                "bg-[#0B9C7E] rounded-full px-2 text-xs py-0.5  text-white border"}>
-                                学习中({items.percent_complete}%)
-                            </div>
-                            <div className={Number(items.percent_complete) == 100?"bg-[#5448AE] rounded-full px-2 text-xs py-0.5  text-white border ":
-                                     "hidden"}>
-                               已完成课程
-                            </div>
+                        <div key={items.course_name} className="rounded-2xl relative">
+                            <div className="absolute right-3 top-3 ">
+                                <div className={Number(items.percent_complete) == 100?"hidden ":
+                                    "bg-[#0B9C7E] rounded-full px-2 text-xs py-0.5  text-white border"}>
+                                    学习中({items.percent_complete}%)
+                                </div>
+                                <div className={Number(items.percent_complete) == 100?"bg-[#5448AE] rounded-full px-2 text-xs py-0.5  text-white border ":
+                                    "hidden"}>
+                                    已完成课程
+                                </div>
 
-                        </div>
-                        <img className="rounded-t-2xl" src={items.course_image} alt=""/>
-                        <div className="relative  rounded-b-2xl" >
-                            <div className={classNames(false?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
-                                <div className="px-10  pt-4">
-                                    <div className="flex  h-20 overflow-hidden  flex-wrap">
-                                        {items.course_tab.map(list=>(
-                                            <div key={list.content} className="bg-gray-200 rounded-full text-center text-gray-700  h-7 px-3 py-1 mr-2 mb-4 text-sm" >
-                                                {list.content}
+                            </div>
+                            <img className="rounded-t-2xl" src={items.course_image} alt=""/>
+                            <div className="relative  rounded-b-2xl" >
+                                <div className={classNames(false?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
+                                    <div className="px-10  pt-4">
+                                        <div className="flex  h-20 overflow-hidden  flex-wrap">
+                                            {items.course_tab.map(list=>(
+                                                <div key={list.content} className="bg-gray-200 rounded-full text-center text-gray-700  h-7 px-3 py-1 mr-2 mb-4 text-sm" >
+                                                    {list.content}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="line-clamp-2  h-12 mt-2">
+                                            {items.course_name}
+                                        </div>
+                                        <div className="flex mt-5 ">
+                                            <Link href=''>
+                                                <a className={false?"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
+                                                    领取奖励
+                                                </a>
+                                            </Link>
+                                            <Link href={items.course_link}>
+                                                <a className={false?"hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
+                                                    跳转上课
+                                                </a>
+                                            </Link>
+                                        </div>
+                                    </div>
+
+                                    <div className={false?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
+                                        <div className={false?"hidden":"flex justify-between items-center"}>
+                                            <div className="text-xs text-gray-700">
+                                                作业完成情况
                                             </div>
-                                        ))}
-                                    </div>
-                                    <div className="line-clamp-2  h-12 mt-2">
-                                        {items.course_name}
-                                    </div>
-                                    <div className="flex mt-5 ">
-                                        <Link href=''>
-                                            <a className={false?"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
-                                                领取奖励
-                                            </a>
-                                        </Link>
-                                        <Link href={items.course_link}>
-                                            <a className={false?"hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
-                                                跳转上课
-                                            </a>
-                                        </Link>
+                                            <div className="flex">
+                                                {items.course_homework_id.map(list =>(
+                                                    <Link  key={list.id}  href=''>
+                                                        <a className={list.id ==""?"hidden":""}>
+                                                            <div  className={false?"bg-[#0B9C7E] w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
+                                                            </div>
+                                                        </a>
+                                                    </Link>
+                                                ) )}
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
-                                <div className={false?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
-                                    <div className={false?"hidden":"flex justify-between items-center"}>
-                                        <div className="text-xs text-gray-700">
-                                            作业完成情况
-                                        </div>
-                                        <div className="flex">
-                                            {items.course_homework_id.map(list =>(
-                                                <Link  key={list.id}  href=''>
-                                                    <a className={list.id ==""?"hidden":""}>
-                                                        <div  className={false?"bg-[#0B9C7E] w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
-                                                        </div>
-                                                    </a>
-                                                </Link>
-                                            ) )}
-                                        </div>
-                                    </div>
+                                <img className={false?"rounded-b-2xl h-70  w-full":"hidden"} src="/workDone.png" alt=""/>
 
-                                </div>
                             </div>
-
-                            <img className={false?"rounded-b-2xl h-70  w-full":"hidden"} src="/workDone.png" alt=""/>
-
                         </div>
-                    </div>
-                ))}
+                    ))}
 
+                </div>
+            </>
+        )
+    }else {
+        return (
+            <div className="py-48 flex justify-center">
+                暂无课程
             </div>
-        </>
-    )
+        )
+    }
+
 }
 const Homepage= () =>{
 
