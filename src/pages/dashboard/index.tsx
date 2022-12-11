@@ -865,7 +865,7 @@ const UserCourse = () =>{
     //         },
     //     ]
 
-    if(courseInfo.length !== 0){
+    if(courseInfo[0].course_name !== ""){
         return(
             <>
                 <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10  outline-none">
