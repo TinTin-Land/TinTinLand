@@ -1,7 +1,7 @@
 // This is a demo code file
 // Feel free to delete it
 
-import {Column} from "typeorm";
+
 
 /**
  * 增加数据

@@ -44,6 +44,7 @@ const Header = () =>{
     const loginOut = () =>{
         setLoginState(false);
         setUserEmail({user_email:""})
+        router.push('/')
     }
 
     useEffect(()=>{

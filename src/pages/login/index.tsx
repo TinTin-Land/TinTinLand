@@ -6,6 +6,9 @@ import {Router, useRouter} from "next/router";
 import Heads from "../../components/head";
 import {client} from "../../client";
 import { log } from "console";
+import {Pop_up_box} from "../../components/pop_up_box";
+import {useAtom} from "jotai";
+import {PopUpBoxInfo, PopUpBoxState} from "../../jotai";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -16,6 +19,8 @@ const Login = () =>{
     const [emailType,setEmailType] = useState(true)
     const [emailNumber,setEmailNumber] =useState(false)
     const [loginState,setLoginState] = useState(false)
+    const [,setPop_up_boxData] =useAtom(PopUpBoxInfo)
+    const [,setSop_up_boxState] = useAtom(PopUpBoxState)
      function checkemail()
     {
         const email = (document.getElementById("email") as HTMLInputElement).value
@@ -34,22 +39,30 @@ const Login = () =>{
       if(emailNumber){
           // callApi
           setLoginState(true)
-          const ret = await client.callApi('SendEmail', {
-              email: (document.getElementById("email") as HTMLInputElement).value
-          });
-          console.log(ret.isSucc)
-          if(ret.isSucc){
+          if(!loginState){
+              const ret = await client.callApi('SendEmail', {
+                  email: (document.getElementById("email") as HTMLInputElement).value
+              });
+
+              if(ret.isSucc){
+                  setLoginState(false)
+                  await  router.push(
+                      {
+                          pathname:"/login/verify",
+                          query:{email:(document.getElementById("email") as HTMLInputElement).value}
+                      }
+                  )
+              }
+          }else {
               setLoginState(false)
-              await  router.push(
-                  {
-                      pathname:"/login/verify",
-                      query:{email:(document.getElementById("email") as HTMLInputElement).value}
-                  }
-              )
+              setPop_up_boxData({
+                  state:false,
+                  type:"发送验证码",
+              })
+              setSop_up_boxState(true)
           }
-      }else {
-          console.log("sadasd")
-      }
+          }
+
     }
 
     return(
@@ -58,6 +71,7 @@ const Login = () =>{
                  style={{backgroundImage:"url('/tintin-bg.png')"}}>
                 <Heads/>
                 <Header/>
+                <Pop_up_box/>
                 <div className="min-h-full   flex flex-col  justify-center py-12 px-6 lg:px-8">
                     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
                         <div className=" backdrop-blur-sm bg-white/70 py-8 px-4 shadow rounded-lg sm:px-10 text-center sm:text-left pb-10 sm:pb-8">

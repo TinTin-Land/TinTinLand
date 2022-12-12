@@ -36,6 +36,11 @@ const detail = {
     community_support:[],
 }
 
+const PopUpBoxInfo = atom({
+    type:"",
+    state:false
+})
+const PopUpBoxState = atom(false)
 
 const Course_Detail = atom(detail)
 
@@ -46,4 +51,4 @@ const LoginState = atom(false)
 const userEmail = { user_email: ""}
 const UserEmail = atomWithStorage("UserEmail",userEmail)
 
-export {Course_Detail,JobFairInfoState,LoginState,UserEmail}
+export {Course_Detail,JobFairInfoState,LoginState,UserEmail,PopUpBoxState,PopUpBoxInfo}

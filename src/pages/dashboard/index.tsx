@@ -2,16 +2,18 @@ import Header from "../../components/header";
 import Tail from "../../components/tail";
 import React, {Fragment, useEffect, useState} from "react";
 import Link from "next/link";
-import {Dialog, Listbox, Switch, Tab, Transition} from "@headlessui/react";
+import {Dialog, Disclosure, Listbox, Switch, Tab, Transition} from "@headlessui/react";
 
 import { CheckIcon, SelectorIcon } from "@heroicons/react/outline";
 import Heads from "../../components/head";
 import {client} from "../../client";
 import {useRouter} from "next/router";
 import {useAtom} from "jotai";
-import {UserEmail} from "../../jotai";
+import {PopUpBoxInfo, PopUpBoxState, UserEmail} from "../../jotai";
 import {name} from "ci-info";
 import {user} from "../../shared/interface/user";
+import {Pop_up_box} from "../../components/pop_up_box";
+import ChevronUpIcon from "@heroicons/react/outline/ChevronUpIcon";
 
 
 function classNames(...classes) {
@@ -43,7 +45,10 @@ const UserInfo = () =>{
     const [selectedExperience, setSelectedExperience] = useState(Experience[0])
     const [enabled, setEnabled] = useState(false)
     const [user_email,] = useAtom(UserEmail)
-
+    const [saveState,setSaveState] = useState(false)
+    const [,setPop_up_boxData] =useAtom(PopUpBoxInfo)
+    const [,setSop_up_boxState] = useAtom(PopUpBoxState)
+    const [openWallet,setOpenWallet] =useState(false)
     useEffect(() => {
         if(router.isReady){
             const query = async() =>{
@@ -106,6 +111,7 @@ const UserInfo = () =>{
 
 
     const Revise = async () => {
+        setSaveState(true)
         const user:user = {
             username:(document.getElementById("userName") as HTMLInputElement).value,
             user_email:(document.getElementById("userEmail") as HTMLInputElement).value,
@@ -124,20 +130,28 @@ const UserInfo = () =>{
             user
         });
         if(ret.isSucc){
-            alert("修改成功")
-            location.reload();
+            setSaveState(false)
+            setPop_up_boxData({
+                state:true,
+                type:"保存",
+            })
+            setSop_up_boxState(true)
+            // location.reload();
 
         }else {
-            alert("修改失败")
+            setSaveState(false)
+            setPop_up_boxData({
+                state:false,
+                type:"保存",
+            })
+            setSop_up_boxState(true)
         }
     }
     return(
         <>
 
                 <div className="mx-auto sm:rounded-lg  mt-2 sm:max-w-xl w-full pb-16">
-                    <div className="flex justify-end ">
-                        <button onClick={Revise} className="bg-black text-white rounded-full py-1 px-3">确认修改</button>
-                    </div>
+
                     {/*基本信息*/}
                     <div className="bg-[#F9F9FB] rounded-xl p-5 mt-4">
                         <div className="text-xl font-semibold">
@@ -466,6 +480,22 @@ const UserInfo = () =>{
                             </div>
                         </div>
                     </div>
+                    {/*连接钱包*/}
+                    <div className="bg-[#F9F9FB] rounded-xl p-5 mb-20 sm:mb-0  mt-4 ">
+                        <div className="mt-2">
+                            <div  className="flex justify-between items-center ">
+                                <div className=" font-medium text-gray-700">
+                                    钱包绑定
+                                </div>
+                                <div className="text-gray-700 flex  items-center">
+                                    <button onClick={()=>{setOpenWallet(true)}}
+                                            className="bg-white border border-black text-black rounded-full py-1 px-3 mr-5 w-24">
+                                        绑定钱包</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {/*隐私*/}
                     <div className="bg-[#F9F9FB] rounded-xl p-5 mb-20 sm:mb-0  mt-4 ">
                         <div className="mt-2">
@@ -526,7 +556,91 @@ const UserInfo = () =>{
                             </div>
                         </div>
                     </div>
+
+                    <div className="flex justify-center mx-4 mt-5 md:mt-10">
+                        <button onClick={()=>location.reload()} className="bg-white border border-black text-black rounded-full py-1 px-3 mr-5 w-24">取消</button>
+                        <button onClick={Revise} className="bg-black text-white rounded-full py-1 px-3 w-24 flex justify-center ">
+                            <div>
+                                保存
+                            </div>
+
+                            <div className={saveState?"animate-spin":"hidden animate-spin"}>
+                                <i className="fa fa-spinner f-spin fa-x fa-fw"></i></div></button>
+                    </div>
                 </div>
+            <Pop_up_box/>
+            <Transition.Root show={openWallet} as={Fragment}>
+                <Dialog as="div" className="relative z-30" onClose={setOpenWallet}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 z-10 overflow-y-auto">
+                        <div className="flex min-h-full items-center  justify-center p-4 text-center sm:items-center sm:p-0">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            >
+                                <Dialog.Panel className="relative transform overflow-hidden  rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                                    <div>
+                                        <div className="mx-auto flex  items-center justify-center rounded-full font-medium text-xl">
+                                            选择钱包
+                                        </div>
+                                        <div className="mt-3 text-center sm:mt-5 flex justify-center">
+                                            <div className="pr-10">
+                                                <div className="p-5 rounded-full bg-[#FFD4A1]">
+
+                                                <img className="w-24 h-24 " src="/MetaMask.png" alt=""/>
+
+                                                </div>
+
+                                                <div className="mt-4 ">
+                                                    MetaMask
+                                                </div>
+
+                                            </div>
+                                            <div>
+                                                <div className="p-5 rounded-full bg-[#3B99FC]">
+
+                                                    <img  className="w-24 h-24 rounded-full" src="/WalletConnect.png" alt=""/>
+
+                                                </div>
+                                                <div className="mt-4 ">
+                                                    WalletConnect
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className="mt-5 flex justify-center">
+                                        <button
+                                            type="button"
+                                            className="inline-flex  justify-center rounded-full  border border-black px-6 py-1 text-base font-medium text-black sm:text-sm"
+                                            onClick={() => setOpenWallet(false)}
+                                        >
+                                          取消
+                                        </button>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition.Root>
 
         </>
     )
@@ -546,7 +660,7 @@ const UserCourse = () =>{
         }
     ]
     const [courseInfo,setCourseInfo] = useState(course_info)
-    // const [courseLength,setCourseLength ] = useState(false)
+    const [courseDataState,setCourseDataState] =useState(false)
     useEffect(() => {
         if(router.isReady){
             const query = async() =>{
@@ -565,388 +679,119 @@ const UserCourse = () =>{
 
                         });
                         console.log()
-                        let result = {
-                            course_name:data[i].course_name,
-                            percent_complete:data[i].percent_complete,
-                            course_tab:JSON.parse(course.res.course_details.course_tab),
-                            course_image:course.res.course_details.course_image,
-                            course_link:course.res.course_details.course_link,
-                            course_homework_id:JSON.parse(course_homework.res.course_homework.course_homework_id)
+                        if(course.res!==undefined &&course_homework.res!==undefined){
+                            let result = {
+                                course_name:data[i].course_name,
+                                percent_complete:data[i].percent_complete,
+                                course_tab:JSON.parse(course.res.course_details.course_tab),
+                                course_image:course.res.course_details.course_image,
+                                course_link:course.res.course_details.course_link,
+                                course_homework_id:JSON.parse(course_homework.res.course_homework.course_homework_id)
+                            }
+                            course_list.push(result)
+                            setCourseInfo(course_list)
+                            setCourseDataState(true)
                         }
-                        course_list.push(result)
-                        setCourseInfo(course_list)
+
                     }
                 }
             }
             query()
         }
     },[router.isReady])
-    // const Course_info =
-    //     [
-    //         {
-    //             id: "EVM_102",
-    //             img: "/course/EVM_102.png",
-    //             type: [
-    //                 {
-    //                     content: "Solidity"
-    //                 },
-    //                 {
-    //                     content: "The Graph"
-    //                 },
-    //                 {
-    //                     content: "链上合约数据的读取与写入"
-    //                 },
-    //                 {
-    //                     content: "合约安全"
-    //                 },
-    //                 {
-    //                     content: "Arbitrum-sdk"
-    //                 },
-    //
-    //             ],
-    //             h1: "第二期｜以太坊开发快速入门-轻松创建智能合约",
-    //             link: "https://hkr.h5.xeknow.com/s/2yYwKx",
-    //             state: true,
-    //             workDone:2,
-    //             work:[
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //
-    //             ]
-    //         },
-    //         {
-    //             id: "IC_103",
-    //             img: "/course/IC_103.png",
-    //             type: [
-    //                 {
-    //                     content: "Motoko"
-    //                 },
-    //                 {
-    //                     content: "Canister"
-    //                 },
-    //                 {
-    //                     content: "Javescript"
-    //                 },
-    //
-    //             ],
-    //             h1: "第三期｜Internet Computer：从核心技术入门到开发实战",
-    //             link: "https://hkr.h5.xeknow.com/s/xRaCr",
-    //             state: true,
-    //             workDone:2,
-    //             work:[
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //
-    //             ]
-    //
-    //         },
-    //         {
-    //             id: "BAC_101",
-    //             img: "/course/BAC_101.png",
-    //             type: [
-    //                 {
-    //                     content: "比特币脚本系统"
-    //                 },
-    //                 {
-    //                     content: "基础数据结构"
-    //                 },
-    //                 {
-    //                     content: "执行模型"
-    //                 },
-    //
-    //                 {
-    //                     content: "UTXO 模型"
-    //                 },
-    //
-    //                 {
-    //                     content: "账户模型"
-    //                 },
-    //             ],
-    //             h1:"从0开始学区块链：工程师眼中的比特币和以太坊",
-    //             state: true,
-    //             link: "https://hkr.h5.xeknow.com/s/VRdMD",
-    //             workDone:2,
-    //             work:[
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //
-    //             ]
-    //
-    //         },
-    //         {
-    //             id: "FLOW_101",
-    //             img: "/course/FLOW_101.png",
-    //             type: [
-    //                 {
-    //                     content: "Cadence"
-    //                 },
-    //                 {
-    //                     content: "Flow FT"
-    //                 },
-    //                 {
-    //                     content: "Flow NFT"
-    //                 },
-    //                 {
-    //                     content: "NFT Metadata"
-    //                 },
-    //                 {
-    //                     content: "FCL(Flow Client Library)"
-    //                 },
-    //             ],
-    //             h1: "第一期｜Flow DApp开发入门课程——从初识Cadence到搭建Marketplace",
-    //             link: "https://hkr.h5.xeknow.com/s/PGm9a",
-    //             state: true,
-    //             workDone:7,
-    //             work:[
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //
-    //             ]
-    //
-    //         },
-    //         {
-    //             id: "IC_201",
-    //             img: "/course/IC_201.png",
-    //             type: [
-    //                 {
-    //                     content: "Motoko"
-    //                 },
-    //                 {
-    //                     content: "Canister"
-    //                 },
-    //                 {
-    //                     content: "ICP系统服务"
-    //                 },
-    //                 {
-    //                     content: "Ti Jar"
-    //                 },
-    //
-    //             ],
-    //             h1: "第一期｜Internet Computer：从核心技术入门到开发实战进阶",
-    //             link: "",
-    //             state: false,
-    //             workDone:2,
-    //             work:[
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:true,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //                 {
-    //                     state:false,
-    //                     url:"",
-    //                 },
-    //
-    //             ]
-    //
-    //         },
-    //     ]
 
-    if(courseInfo[0].course_name !== ""){
-        return(
-            <>
-                <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10  outline-none">
-                    {courseInfo.map(items=>(
-
-                        <div key={items.course_name} className="rounded-2xl relative">
-                            <div className="absolute right-3 top-3 ">
-                                <div className={Number(items.percent_complete) == 100?"hidden ":
-                                    "bg-[#0B9C7E] rounded-full px-2 text-xs py-0.5  text-white border"}>
-                                    学习中({items.percent_complete}%)
-                                </div>
-                                <div className={Number(items.percent_complete) == 100?"bg-[#5448AE] rounded-full px-2 text-xs py-0.5  text-white border ":
-                                    "hidden"}>
-                                    已完成课程
-                                </div>
-
-                            </div>
-                            <img className="rounded-t-2xl" src={items.course_image} alt=""/>
-                            <div className="relative  rounded-b-2xl" >
-                                <div className={classNames(false?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
-                                    <div className="px-10  pt-4">
-                                        <div className="flex  h-20 overflow-hidden  flex-wrap">
-                                            {items.course_tab.map(list=>(
-                                                <div key={list.content} className="bg-gray-200 rounded-full text-center text-gray-700  h-7 px-3 py-1 mr-2 mb-4 text-sm" >
-                                                    {list.content}
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className="line-clamp-2  h-12 mt-2">
-                                            {items.course_name}
-                                        </div>
-                                        <div className="flex mt-5 ">
-                                            <Link href=''>
-                                                <a className={false?"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
-                                                    领取奖励
-                                                </a>
-                                            </Link>
-                                            <Link href={items.course_link}>
-                                                <a className={false?"hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
-                                                    跳转上课
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-
-                                    <div className={false?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
-                                        <div className={false?"hidden":"flex justify-between items-center"}>
-                                            <div className="text-xs text-gray-700">
-                                                作业完成情况
-                                            </div>
-                                            <div className="flex">
-                                                {items.course_homework_id.map(list =>(
-                                                    <Link  key={list.id}  href=''>
-                                                        <a className={list.id ==""?"hidden":""}>
-                                                            <div  className={false?"bg-[#0B9C7E] w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
-                                                            </div>
-                                                        </a>
-                                                    </Link>
-                                                ) )}
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <img className={false?"rounded-b-2xl h-70  w-full":"hidden"} src="/workDone.png" alt=""/>
-
-                            </div>
-                        </div>
-                    ))}
-
-                </div>
-            </>
-        )
-    }else {
+    if(!courseDataState) {
         return (
             <div className="py-48 flex justify-center">
-                暂无课程
+                <div className="animate-spin text-white">
+                    <i className="fa fa-spinner f-spin fa-2x fa-fw"></i></div>
             </div>
         )
+    }else {
+        if(courseInfo[0].course_name !== ""){
+            return(
+                <>
+                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 px-2 outline-none">
+                        {courseInfo.map(items=>(
+
+                            <div key={items.course_name} className="rounded-2xl relative">
+                                <div className="absolute right-3 top-3 ">
+                                    <div className={Number(items.percent_complete) == 100?"hidden ":
+                                        "bg-[#0B9C7E] rounded-full px-2 text-xs py-0.5  text-white border"}>
+                                        学习中({items.percent_complete}%)
+                                    </div>
+                                    <div className={Number(items.percent_complete) == 100?"bg-[#5448AE] rounded-full px-2 text-xs py-0.5  text-white border ":
+                                        "hidden"}>
+                                        已完成课程
+                                    </div>
+
+                                </div>
+                                <img className="rounded-t-2xl" src={items.course_image} alt=""/>
+                                <div className="relative  rounded-b-2xl" >
+                                    <div className={classNames(false?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
+                                        <div className="px-10  pt-4">
+                                            <div className="flex  h-20 overflow-hidden  flex-wrap">
+                                                {items.course_tab.map(list=>(
+                                                    <div key={list.content} className="bg-gray-200 rounded-full text-center text-gray-700  h-7 px-3 py-1 mr-2 mb-4 text-sm" >
+                                                        {list.content}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div className="line-clamp-2  h-12 mt-2">
+                                                {items.course_name}
+                                            </div>
+                                            <div className="flex mt-5 ">
+                                                <Link href=''>
+                                                    <a className={false?"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
+                                                        领取奖励
+                                                    </a>
+                                                </Link>
+                                                <Link href={items.course_link}>
+                                                    <a className={false?"hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
+                                                        跳转上课
+                                                    </a>
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className={false?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
+                                            <div className={false?"hidden":"flex justify-between items-center"}>
+                                                <div className="text-xs text-gray-700">
+                                                    作业完成情况
+                                                </div>
+                                                <div className="flex">
+                                                    {items.course_homework_id.map(list =>(
+                                                        <Link  key={list.id}  href=''>
+                                                            <a className={list.id ==""?"hidden":""}>
+                                                                <div  className={false?"bg-[#0B9C7E] w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
+                                                                </div>
+                                                            </a>
+                                                        </Link>
+                                                    ) )}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <img className={false?"rounded-b-2xl h-70  w-full":"hidden"} src="/workDone.png" alt=""/>
+
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+                </>
+            )
+        }else {
+            return (
+                <div className="py-48 flex justify-center">
+                    暂无课程
+                </div>
+            )
+        }
     }
+
 
 }
 const Homepage= () =>{
