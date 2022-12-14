@@ -14,6 +14,7 @@ import {name} from "ci-info";
 import {user} from "../../shared/interface/user";
 import {Pop_up_box} from "../../components/pop_up_box";
 import ChevronUpIcon from "@heroicons/react/outline/ChevronUpIcon";
+import {flag} from "arg";
 
 
 function classNames(...classes) {
@@ -656,7 +657,7 @@ const UserCourse = () =>{
             course_tab:[{content:""}],
             course_image:"",
             course_link:"",
-            course_homework_id:[{id:""}]
+            course_homework_id:[{id:"",url:"",state:false}]
         }
     ]
     const [courseInfo,setCourseInfo] = useState(course_info)
@@ -669,28 +670,59 @@ const UserCourse = () =>{
                 });
                 if(ret.res !==undefined){
                    const data = JSON.parse(ret.res.courses)
+                    // console.log(data)
                     let course_list = []
                     for (let i = 0 ;i<data.length ;i++) {
                         const course = await client.callApi('GetCourse', {
                             course_name: data[i].course_name
                         });
-                        const course_homework = await client.callApi('GetCourseHomework', {
-                            course_name: data[i].course_name
 
+                        const courseWj = await client.callApi('GetCourseWj', {
+                            course_name: data[i].course_name
                         });
-                        console.log()
-                        if(course.res!==undefined &&course_homework.res!==undefined){
+                        const courseWjID = JSON.parse(courseWj.res.course_wj_url_list)
+                        // console.log(courseWjID[0].survey_id)
+
+                        const userCourseWj =  await CreateUserCourseWj(data[i].course_name)
+
+                        const UserCourseWj = JSON.parse(userCourseWj.res.user_course_wj_url_list)
+                        let Url_list = []
+                        for (let url_list = 0 ; url_list < UserCourseWj.length;url_list++){
+
+                            const  survey =  await client.callApi('GetCourseWjResult', {
+                                survey_id: courseWjID[url_list].survey_id,
+                            });
+                            let wj_open_id = JSON.parse(survey.res.wj_open_id)
+                            console.log('wj_open_id',wj_open_id)
+
+                            const  ThirdPartyUser = await client.callApi('GetThirdPartyUser', {
+                                user_email: user_email.user_email,
+                            });
+                            const userWjOpenID = (JSON.parse(ThirdPartyUser.res.wj_open_id))
+
+                            const state = wj_open_id.find(element => element = userWjOpenID)
+                            // console.log(state)
+
+                           let Url_list_result = {
+                               id:url_list,
+                               state:state==undefined?false:true,
+                               url:UserCourseWj[url_list]
+                           }
+                            Url_list.push(Url_list_result)
+                        }
+                        if(course.res!==undefined &&userCourseWj.res!==undefined){
                             let result = {
                                 course_name:data[i].course_name,
                                 percent_complete:data[i].percent_complete,
                                 course_tab:JSON.parse(course.res.course_details.course_tab),
                                 course_image:course.res.course_details.course_image,
                                 course_link:course.res.course_details.course_link,
-                                course_homework_id:JSON.parse(course_homework.res.course_homework.course_homework_id)
+                                course_homework_id:Url_list
                             }
                             course_list.push(result)
                             setCourseInfo(course_list)
                             setCourseDataState(true)
+                            // console.log(result.course_homework_id)
                         }
 
                     }
@@ -699,6 +731,37 @@ const UserCourse = () =>{
             query()
         }
     },[router.isReady])
+
+    const CreateUserCourseWj = async(course_name) =>{
+        const AddWjLoginCode = await client.callApi('AddWjLoginCode', {
+            user_email: user_email.user_email,
+        });
+        console.log(AddWjLoginCode)
+
+
+        const AddUserCourseWj = await client.callApi('AddUserCourseWj', {
+            course_name,
+            user_email: user_email.user_email,
+        });
+        const userCourseWj = await client.callApi('GetUserCourseWj', {
+            course_name,
+            user_email: user_email.user_email,
+        });
+
+
+        return userCourseWj
+    }
+
+    const ToHomeWork = async (course_name,id,state) => {
+        if(!state){
+            const data =  await CreateUserCourseWj(course_name)
+            const userCourseWjUrl =JSON.parse(data.res.user_course_wj_url_list)[id]
+
+            window.open('about:blank').location.href=userCourseWjUrl
+        }
+
+
+    }
 
     if(!courseDataState) {
         return (
@@ -711,7 +774,7 @@ const UserCourse = () =>{
         if(courseInfo[0].course_name !== ""){
             return(
                 <>
-                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 px-2 outline-none">
+                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 mx-2 md:mx-0 outline-none">
                         {courseInfo.map(items=>(
 
                             <div key={items.course_name} className="rounded-2xl relative">
@@ -728,7 +791,7 @@ const UserCourse = () =>{
                                 </div>
                                 <img className="rounded-t-2xl" src={items.course_image} alt=""/>
                                 <div className="relative  rounded-b-2xl" >
-                                    <div className={classNames(false?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
+                                    <div className={classNames(Number(items.percent_complete) == 0  && items.course_homework_id.findIndex(target=>target.state ==true) !== -1 ?"absolute":"bg-white","  flex flex-col rounded-b-2xl")}>
                                         <div className="px-10  pt-4">
                                             <div className="flex  h-20 overflow-hidden  flex-wrap">
                                                 {items.course_tab.map(list=>(
@@ -742,39 +805,38 @@ const UserCourse = () =>{
                                             </div>
                                             <div className="flex mt-5 ">
                                                 <Link href=''>
-                                                    <a className={false?"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
+                                                    <a className={Number(items.percent_complete) == 0  && items.course_homework_id.findIndex(target=>target.state ==true) !== -1 ? "text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
                                                         领取奖励
                                                     </a>
                                                 </Link>
                                                 <Link href={items.course_link}>
-                                                    <a className={false?"hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
+                                                    <a className={Number(items.percent_complete) == 0  && items.course_homework_id.findIndex(target=>target.state ==true) !== -1 ? "hidden":"text-xs  bg-black text-white rounded-full  px-8 py-2.5 mr-5"}>
                                                         跳转上课
                                                     </a>
                                                 </Link>
                                             </div>
                                         </div>
 
-                                        <div className={false?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
-                                            <div className={false?"hidden":"flex justify-between items-center"}>
+                                        <div className={Number(items.percent_complete) == 0  && items.course_homework_id.findIndex(target=>target.state ==true) !== -1 ?"mt-4  px-10 py-6":"mt-4 border-t px-10 py-4"}>
+                                            <div className={Number(items.percent_complete) == 0  && items.course_homework_id.findIndex(target=>target.state ==true) !== -1 ?"hidden":"flex justify-between items-center"}>
                                                 <div className="text-xs text-gray-700">
                                                     作业完成情况
                                                 </div>
                                                 <div className="flex">
                                                     {items.course_homework_id.map(list =>(
-                                                        <Link  key={list.id}  href=''>
-                                                            <a className={list.id ==""?"hidden":""}>
-                                                                <div  className={false?"bg-[#0B9C7E] w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
+                                                            <button key={list.id} onClick={()=>ToHomeWork(items.course_name,list.id,list.state)} >
+                                                                <div  className={list.state?"bg-[#0B9C7E] cursor-not-allowed w-4 h-4 mr-1 rounded-full":"bg-gray-200 w-4 h-4 mr-1 rounded-full"}>
                                                                 </div>
-                                                            </a>
-                                                        </Link>
-                                                    ) )}
+                                                            </button>
+
+                                                    ))}
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
 
-                                    <img className={false?"rounded-b-2xl h-70  w-full":"hidden"} src="/workDone.png" alt=""/>
+                                    <img className={Number(items.percent_complete) == 0  && items.course_homework_id.findIndex(target=>target.state ==true) !== -1 ? "rounded-b-2xl h-70  w-full":"hidden "} src="/workDone.png" alt=""/>
 
                                 </div>
                             </div>

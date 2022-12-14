@@ -44,6 +44,7 @@ const Login = () =>{
                   email: (document.getElementById("email") as HTMLInputElement).value
               });
 
+              console.log(ret)
               if(ret.isSucc){
                   setLoginState(false)
                   await  router.push(
