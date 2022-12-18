@@ -672,42 +672,45 @@ const UserCourse = () =>{
                 if(ret.res !==undefined){
                    const data = JSON.parse(ret.res.courses)
                     let course_list = []
+                    for (let x = 0 ; x<data.length ; x++){
+                        const AddWjAnswersList =  await client.callApi('v1/wj/AddWjAnswersList', {
+                            course_name: data[x].course_name,
+                        });
+                    }
                     for (let i = 0 ;i<data.length ;i++) {
                         const course = await client.callApi('v1/course/GetCourse', {
                             course_name: data[i].course_name
                         });
-                        const courseWj = await client.callApi('v1/course/GetCourseWj', {
-                            course_name: data[i].course_name
-                        });
-                        // console.log('xxxxxxxx',courseWj.res)
-                        const courseWjID = JSON.parse(courseWj.res.course_wj_url_list)
-                        // console.log(courseWjID[i].survey_id)
 
+                        // const courseWj = await client.callApi('v1/course/GetCourseWj', {
+                        //     course_name: data[i].course_name
+                        // });
+                        // // console.log('xxxxxxxx',courseWj.res)
+                        // const courseWjID = JSON.parse(courseWj.res.course_wj_url_list)
+                        const  survey =  await client.callApi('v1/course/GetCourseWjResult', {
+                            course_name: data[i].course_name,
+                        });
+                        // console.log(survey,"survey")
                         const userCourseWj =  await CreateUserCourseWj(data[i].course_name)
 
                         const UserCourseWj = JSON.parse(userCourseWj.res.user_course_wj_url_list)
-                        let Url_list = []
-                        for (let url_list = 0 ; url_list < UserCourseWj.length;url_list++){
+                        let wj_open_username = JSON.parse(survey.res.unique_username)
+                        // console.log(wj_open_username,"------------")
 
-                            // console.log('------------------',courseWjID[url_list].survey_id)
-                            const  survey =  await client.callApi('v1/course/GetCourseWjResult', {
-                                survey_id: courseWjID[url_list].survey_id,
-                            });
-                            // console.log("GetCourseWjResult",survey)
+                        let Url_list = []
+                        for (let url_list = 0 ; url_list < wj_open_username.length;url_list++){
+                            // console.log(wj_open_username,"wj_open_username")
                             let state
                             if(survey.res == undefined){
                                 state = undefined
                             }else {
-                                let wj_open_id = JSON.parse(survey.res.wj_open_id)
-                                const  ThirdPartyUser = await client.callApi('v1/user/GetThirdPartyUser', {
-                                    user_email: user_email.user_email,
+                                const ret = await client.callApi('v1/user/GetUser', {
+                                    user_email: user_email.user_email
                                 });
-                                const userWjOpenID = (JSON.parse(ThirdPartyUser.res.wj_open_id))
+                                const unique_username = ret.res.user.unique_username
 
-                                state = wj_open_id.includes(userWjOpenID)
-                                console.log(wj_open_id,"wj_open_id")
-                                console.log(userWjOpenID,"userWjOpenID")
-                                console.log(state)
+                                    state = JSON.parse(wj_open_username[url_list]).includes(unique_username)
+
 
                             }
                            let Url_list_result = {
@@ -730,8 +733,8 @@ const UserCourse = () =>{
 
                             course_list.push(result)
 
-                            console.log("course_list",course_list)
-                            console.log(result.course_homework_id)
+                            // console.log("course_list",course_list)
+                            // console.log(result.course_homework_id)
                         }
                     }
                     setCourseInfo(course_list)

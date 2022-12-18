@@ -1,4 +1,5 @@
 export interface user {
+    unique_username?:string;
     username?: string;
     user_email?: string;
     user_course_passport?: string;

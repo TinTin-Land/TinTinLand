@@ -164,7 +164,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 7,
+    "version": 8,
     "services": [
         {
             "id": 33,
@@ -972,8 +972,8 @@ export const serviceProto: ServiceProto<ServiceType> = {
             "type": "Interface",
             "properties": [
                 {
-                    "id": 0,
-                    "name": "survey_id",
+                    "id": 1,
+                    "name": "course_name",
                     "type": {
                         "type": "String"
                     }
@@ -991,8 +991,8 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 },
                 {
-                    "id": 1,
-                    "name": "wj_open_id",
+                    "id": 2,
+                    "name": "unique_username",
                     "type": {
                         "type": "String"
                     }
@@ -1265,6 +1265,14 @@ export const serviceProto: ServiceProto<ServiceType> = {
         "../interface/user/user": {
             "type": "Interface",
             "properties": [
+                {
+                    "id": 13,
+                    "name": "unique_username",
+                    "type": {
+                        "type": "String"
+                    },
+                    "optional": true
+                },
                 {
                     "id": 0,
                     "name": "username",

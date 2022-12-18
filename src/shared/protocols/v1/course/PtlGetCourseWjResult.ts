@@ -8,11 +8,11 @@
  */
 export interface ReqGetCourseWjResult {
     /** 要增加的消息内容 */
-    survey_id:string;
+    course_name:string;
 }
 
 export interface ResGetCourseWjResult {
     /** 服务端内容创建时间 */
     time: Date;
-    wj_open_id:string;
+    unique_username:string;
 }
