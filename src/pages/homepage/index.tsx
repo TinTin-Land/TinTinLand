@@ -29,7 +29,7 @@ const Homepage= () =>{
     useEffect(() => {
         if(router.isReady){
             const query = async() =>{
-                const ret = await client.callApi('GetUser', {
+                const ret = await client.callApi('v1/user/GetUser', {
                     user_email: user_email.user_email
                 });
                 if(ret.isSucc){

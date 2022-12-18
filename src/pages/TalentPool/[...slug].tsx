@@ -220,18 +220,18 @@ const JobFair= () =>{
                     </div>
                     <div className="flex justify-between mt-1  ">
                     {/*scrollbar-track-gray-100*/}
-                    <div className="xl:w-8/12 mt-10 h-new-1 xl:h-new 2xl:h-106  overflow-y-auto xl:scrollbar-thin  scrollbar-thumb-fuchsia-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full  xl:pr-4 ">
-                     <div className="grid grid-cols-2 2xl:grid-cols-3 gap-4">
+                    <div className="w-full xl:w-8/12 mt-10 h-new-1 xl:h-new 2xl:h-106  overflow-y-auto xl:scrollbar-thin  scrollbar-thumb-fuchsia-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full  xl:pr-4 ">
+                     <div className="grid md:grid-cols-2 2xl:grid-cols-3 gap-4">
                         {People.map(item=>(
                             <Link  key={item.name} href="/homepage">
-                            <div className="cursor-pointer bg-white rounded-xl p-4">
+                            <div className="cursor-pointer bg-white rounded-xl p-4 ">
                                 <div className="flex justify-between ">
                                     <div className="flex items-center">
                                         <div>
                                             <img className="w-12 h-12 rounded-full mr-4" src={item.avatar} alt=""/>
                                         </div>
                                         <div>
-                                            <div className="w-48 truncate font-semibold ">
+                                            <div className="md:w-48 truncate font-semibold ">
                                                 {item.name}
                                             </div>
                                             <div className="flex items-center text-gray-500">

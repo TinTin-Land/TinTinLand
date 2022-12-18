@@ -32,7 +32,7 @@ const Personal_info = () =>{
     }
 
     const next =async () =>{
-        const ret = await client.callApi('AddUser', {
+        const ret = await client.callApi('v1/user/AddUser', {
             user_email: router.query.email as string,
             username: (document.getElementById("name") as HTMLInputElement).value,
 

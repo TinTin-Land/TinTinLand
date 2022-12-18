@@ -1228,7 +1228,6 @@ const Course_info =
                 },
             ],
         },
-
     }
 
 

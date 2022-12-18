@@ -40,7 +40,7 @@ const Login = () =>{
           // callApi
           setLoginState(true)
           if(!loginState){
-              const ret = await client.callApi('SendEmail', {
+              const ret = await client.callApi('v1/email/SendEmail', {
                   email: (document.getElementById("email") as HTMLInputElement).value
               });
 
