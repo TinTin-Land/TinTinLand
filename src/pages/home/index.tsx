@@ -6,13 +6,19 @@ import HackathonsState from "../../components/state";
 import Course_info from "../../components/course_info";
 import Activity_Info from "../../components/activity_info";
 import Heads from "../../components/head";
+import {client} from "../../client";
+import {useAtom} from "jotai";
+import {LoginState, OpenLoginState, UserEmail} from "../../jotai";
+import {Dialog, Transition} from "@headlessui/react";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 const Course = () => {
-
+    const [loginState,] = useAtom(LoginState)
+    const [user_email,] = useAtom(UserEmail)
+    const [openLogin,setOpenLogin] =useAtom(OpenLoginState)
     const Course_info =
         [
             {
@@ -36,7 +42,7 @@ const Course = () => {
                     },
 
                 ],
-                h1:"以太坊开发快速入门-轻松创建智能合约",
+                h1:"区块链入门课程——0基础创建以太坊智能合约",
                 link: "https://hkr.xet.tech/s/Pe8p8",
                 state: false,
                 AboutStart:true,
@@ -159,6 +165,7 @@ const Course = () => {
     function run() {
         clearInterval(autoTimer)
         if(typeof window !== 'undefined'){
+            if(document.getElementById("carousel")){
             const left = document.getElementById("carousel")
             if (index <= Number((Course_info.length - Course_info.length/2) * 24)) {
                 left.style.marginLeft  = -index + "rem"
@@ -167,6 +174,7 @@ const Course = () => {
                 left.style.marginLeft = 0 + "rem"
             }
             autoTimer = createAuto()
+            }
         }
     }
     const left = ()=>{
@@ -180,6 +188,32 @@ const Course = () => {
         run()
     }
 
+
+    const Signup = async (courseName) => {
+
+        if(loginState){
+            setOpenLogin(true)
+                const CourseId = await client.callApi('v1/teachable/GetCourseId', {
+                    course_name:courseName
+                });
+                       const TaUser = await client.callApi('v1/teachable/GetTaUser', {
+                           user_email: user_email.user_email
+                       });
+                       if (CourseId.res.course_id !== "" && TaUser.res.user_id !== "") {
+                           const data = await client.callApi('v1/teachable/EnrollCourse', {
+                               course_id: CourseId.res.course_id,
+                               user_id: TaUser.res.user_id
+                           });
+                           console.log(data)
+                           setOpenLogin(false)
+                           // console.log(CourseId.res.course_id,TaUser.res.user_id)
+                       }else {
+                           setOpenLogin(false)
+                           alert("没有找到该用户或者课程")
+                       }
+
+        }
+    }
 
     return(
         <div id="Educate" className="pt-20">
@@ -246,12 +280,12 @@ const Course = () => {
                                                 {items.h1}
                                             </div>
                                         <div className="flex mt-5 w-96">
-                                            <Link href={items.link}>
-                                                <a className={items.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"} target="_blank">
+                                            <button onClick={()=>Signup(items.h1)}>
+                                                <div   className={items.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"} >
                                                     立刻报名
-                                                </a>
-                                            </Link>
-                                            <button>
+                                                </div>
+                                            </button>
+                                            <button onClick={()=>Signup(items.h1)} >
                                                 <div className={items.AboutStart?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
                                                     即将开始
                                                 </div>
@@ -290,12 +324,12 @@ const Course = () => {
                                                         {items.h1}
                                                     </div>
                                                 <div className="flex mt-5 ">
-                                                    <Link href={items.link}>
-                                                        <a className={items.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
+                                                    <button  onClick={()=>Signup(items.h1)} >
+                                                        <div  className={items.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
                                                             立刻报名
-                                                        </a>
-                                                    </Link>
-                                                    <button>
+                                                        </div>
+                                                    </button>
+                                                    <button  onClick={()=>Signup(items.h1)}>
                                                         <div className={items.AboutStart?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
                                                             即将开始
                                                         </div>
@@ -1227,6 +1261,7 @@ const CommunityMember = () =>{
 }
 
 const Home = () =>{
+    const [openLogin,setOpenLogin] =useAtom(OpenLoginState)
     return (
 
         <div className="mx-auto relative   sm:bg-fixed overflow-hidden"
@@ -1274,7 +1309,42 @@ const Home = () =>{
             <div className="lg:px-10 xl:px-20 relative px-5 pt-16    mx-auto">
                 <CommunityMember/>
             </div>
+            <Transition.Root show={openLogin} as={Fragment}>
+                <Dialog as="div" className="relative z-30" onClose={()=>false}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                    </Transition.Child>
 
+                    <div className="fixed inset-0 z-10 overflow-y-auto">
+                        <div className="flex min-h-full items-center  justify-center p-4 text-center sm:items-center sm:p-0">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            >
+                                <Dialog.Panel className="">
+
+                                    <div className="animate-spin text-white">
+                                        <i className="fa fa-spinner f-spin fa-2x fa-fw"></i>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition.Root>
             <Tail/>
       </div>
 

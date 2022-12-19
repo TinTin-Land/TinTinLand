@@ -305,7 +305,7 @@ const Course_info =
             id: "EVM_103",
             img: "/course/EVM_103.png",
             cycle:"第三期",
-            name:"以太坊开发快速入门-轻松创建智能合约",
+            name:"区块链入门课程——0基础创建以太坊智能合约",
             state: false,
             AboutStart:true,
             startTime:"2023.02",

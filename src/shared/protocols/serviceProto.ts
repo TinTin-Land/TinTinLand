@@ -18,6 +18,8 @@ import { ReqCheckEmail, ResCheckEmail } from './v1/email/PtlCheckEmail';
 import { ReqSendEmail, ResSendEmail } from './v1/email/PtlSendEmail';
 import { ReqEnrollCourse, ResEnrollCourse } from './v1/teachable/PtlEnrollCourse';
 import { ReqEnrollUser, ResEnrollUser } from './v1/teachable/PtlEnrollUser';
+import { ReqGetCourseId, ResGetCourseId } from './v1/teachable/PtlGetCourseId';
+import { ReqGetTaUser, ResGetTaUser } from './v1/teachable/PtlGetTaUser';
 import { ReqAddUser, ResAddUser } from './v1/user/PtlAddUser';
 import { ReqAddUserCourseWj, ResAddUserCourseWj } from './v1/user/PtlAddUserCourseWj';
 import { ReqGetThirdPartyUser, ResGetThirdPartyUser } from './v1/user/PtlGetThirdPartyUser';
@@ -109,6 +111,14 @@ export interface ServiceType {
             req: ReqEnrollUser,
             res: ResEnrollUser
         },
+        "v1/teachable/GetCourseId": {
+            req: ReqGetCourseId,
+            res: ResGetCourseId
+        },
+        "v1/teachable/GetTaUser": {
+            req: ReqGetTaUser,
+            res: ResGetTaUser
+        },
         "v1/user/AddUser": {
             req: ReqAddUser,
             res: ResAddUser
@@ -164,7 +174,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 8,
+    "version": 9,
     "services": [
         {
             "id": 33,
@@ -259,6 +269,16 @@ export const serviceProto: ServiceProto<ServiceType> = {
         {
             "id": 51,
             "name": "v1/teachable/EnrollUser",
+            "type": "api"
+        },
+        {
+            "id": 63,
+            "name": "v1/teachable/GetCourseId",
+            "type": "api"
+        },
+        {
+            "id": 64,
+            "name": "v1/teachable/GetTaUser",
             "type": "api"
         },
         {
@@ -1133,6 +1153,68 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     "name": "time",
                     "type": {
                         "type": "Date"
+                    }
+                }
+            ]
+        },
+        "v1/teachable/PtlGetCourseId/ReqGetCourseId": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "course_name",
+                    "type": {
+                        "type": "String"
+                    }
+                }
+            ]
+        },
+        "v1/teachable/PtlGetCourseId/ResGetCourseId": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "time",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "course_id",
+                    "type": {
+                        "type": "String"
+                    }
+                }
+            ]
+        },
+        "v1/teachable/PtlGetTaUser/ReqGetTaUser": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "user_email",
+                    "type": {
+                        "type": "String"
+                    }
+                }
+            ]
+        },
+        "v1/teachable/PtlGetTaUser/ResGetTaUser": {
+            "type": "Interface",
+            "properties": [
+                {
+                    "id": 0,
+                    "name": "time",
+                    "type": {
+                        "type": "Date"
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "user_id",
+                    "type": {
+                        "type": "String"
                     }
                 }
             ]

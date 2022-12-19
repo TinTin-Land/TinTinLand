@@ -668,8 +668,8 @@ const UserCourse = () =>{
                 const ret = await client.callApi('v1/user/GetUserCourseList', {
                     email: user_email.user_email
                 });
-                // console.log("....",ret)
-                if(ret.res !==undefined){
+                console.log("....",JSON.parse(ret.res.courses))
+                if(JSON.parse(ret.res.courses).length !==0){
                    const data = JSON.parse(ret.res.courses)
                     let course_list = []
                     for (let x = 0 ; x<data.length ; x++){
@@ -682,11 +682,6 @@ const UserCourse = () =>{
                             course_name: data[i].course_name
                         });
 
-                        // const courseWj = await client.callApi('v1/course/GetCourseWj', {
-                        //     course_name: data[i].course_name
-                        // });
-                        // // console.log('xxxxxxxx',courseWj.res)
-                        // const courseWjID = JSON.parse(courseWj.res.course_wj_url_list)
                         const  survey =  await client.callApi('v1/course/GetCourseWjResult', {
                             course_name: data[i].course_name,
                         });

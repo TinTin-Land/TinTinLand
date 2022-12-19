@@ -48,7 +48,9 @@ const JobFairInfoState = atom(false)
 
 const LoginState = atom(false)
 
-const userEmail = { user_email: ""}
+const OpenLoginState = atom(false)
+
+const userEmail = { user_email: "",username:""}
 const UserEmail = atomWithStorage("UserEmail",userEmail)
 
-export {Course_Detail,JobFairInfoState,LoginState,UserEmail,PopUpBoxState,PopUpBoxInfo}
+export {Course_Detail,JobFairInfoState,LoginState,UserEmail,PopUpBoxState,PopUpBoxInfo,OpenLoginState}

@@ -37,9 +37,16 @@ const Personal_info = () =>{
             username: (document.getElementById("name") as HTMLInputElement).value,
 
         });
+        const EnrollUser = await client.callApi('v1/teachable/EnrollUser', {
+            name: (document.getElementById("name") as HTMLInputElement).value,
+            email:  router.query.email as string,
+            password: "123456",
+            src: "test"
+        });
         console.log((document.getElementById("name") as HTMLInputElement).value)
         if(ret.isSucc){
             const userName = {
+                username: (document.getElementById("name") as HTMLInputElement).value,
                 user_email: router.query.email as string,
             }
             setUserEmail(userName)
