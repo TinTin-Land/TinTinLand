@@ -18,6 +18,7 @@ const Personal_info = () =>{
     const [emailNumber,setEmailNumber] =useState(false)
     const [,setLoginState] = useAtom(LoginState)
     const [userEmail,setUserEmail] =useAtom(UserEmail)
+    const [nextState,setNextState] = useState(false)
 
     const checkNumber = async (e) =>{
         // e.target.value= e.target.value.replace(/[ ]/g,'')
@@ -32,35 +33,46 @@ const Personal_info = () =>{
     }
 
     const next =async () =>{
-        const ret = await client.callApi('v1/user/AddUser', {
-            user_email: router.query.email as string,
-            username: (document.getElementById("name") as HTMLInputElement).value,
-
-        });
-        const EnrollUser = await client.callApi('v1/teachable/EnrollUser', {
-            name: (document.getElementById("name") as HTMLInputElement).value,
-            email:  router.query.email as string,
-            password: "123456",
-            src: "test"
-        });
-        console.log((document.getElementById("name") as HTMLInputElement).value)
-        if(ret.isSucc){
-            const userName = {
-                username: (document.getElementById("name") as HTMLInputElement).value,
+        setNextState(true)
+        if(!nextState){
+            const ret = await client.callApi('v1/user/AddUser', {
                 user_email: router.query.email as string,
-            }
-            setUserEmail(userName)
-            setLoginState(true)
-            await  router.push(
-                {
-                    pathname:"/homepage",
-                    // query:{email:(document.getElementById("email") as HTMLInputElement).value}
+                username: (document.getElementById("name") as HTMLInputElement).value,
+
+            });
+
+
+            console.log((document.getElementById("name") as HTMLInputElement).value)
+            if(ret.isSucc){
+                const EnrollUser = await client.callApi('v1/teachable/EnrollUser', {
+                    name: (document.getElementById("name") as HTMLInputElement).value,
+                    email:  router.query.email as string,
+                    password: "123456",
+                    src: "test"
+                });
+                const AddWjUser = await client.callApi('v1/wj/AddWjUser', {
+                   user_email: router.query.email as string,
+                });
+                const userName = {
+                    username: (document.getElementById("name") as HTMLInputElement).value,
+                    user_email: router.query.email as string,
                 }
-            )
-        }else
-        {
-            setEmailType(false)
+                setUserEmail(userName)
+                setLoginState(true)
+                setNextState(false)
+                await  router.push(
+                    {
+                        pathname:"/homepage",
+                        // query:{email:(document.getElementById("email") as HTMLInputElement).value}
+                    }
+                )
+            }else
+            {
+                setNextState(false)
+                setEmailType(false)
+            }
         }
+
     }
 
     return(
@@ -107,13 +119,26 @@ const Personal_info = () =>{
                                     />
                                 </div>
                             </div>
-                            <div className="flex  justify-center sm:justify-end mt-10">
+                            <div className={nextState?"hidden":"flex  justify-center sm:justify-end mt-10"}>
                                 <button
                                     type="submit"
                                     onClick={next}
                                     className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-24 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium")}
                                 >
-                                   注册
+                                   <div className={nextState?"hidden":""}>注册</div>
+
+                                </button>
+                            </div>
+
+                            <div className={nextState?"flex  justify-center sm:justify-end mt-10":"hidden"}>
+                                <button
+                                    type="submit"
+                                    className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-24 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium")}
+                                >
+                                    <div className="animate-spin ">
+                                        <i className="fa fa-spinner f-spin  fa-fw">
+                                        </i>
+                                    </div>
                                 </button>
                             </div>
 

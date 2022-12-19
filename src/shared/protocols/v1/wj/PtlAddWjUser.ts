@@ -8,7 +8,6 @@
 export interface ReqAddWjUser {
     /** 要增加的消息内容 */
     user_email:string;
-    openid: string;
 }
 
 export interface ResAddWjUser {

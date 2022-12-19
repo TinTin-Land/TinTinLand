@@ -38,13 +38,10 @@ const Login = () =>{
     const next =async () =>{
       if(emailNumber){
           // callApi
-          setLoginState(true)
-          if(!loginState){
+              setLoginState(true)
               const ret = await client.callApi('v1/email/SendEmail', {
                   email: (document.getElementById("email") as HTMLInputElement).value
               });
-
-              console.log(ret)
               if(ret.isSucc){
                   setLoginState(false)
                   await  router.push(
@@ -53,17 +50,15 @@ const Login = () =>{
                           query:{email:(document.getElementById("email") as HTMLInputElement).value}
                       }
                   )
+              }else {
+                  setLoginState(false)
+                  setPop_up_boxData({
+                      state:false,
+                      type:"发送验证码",
+                  })
+                  setSop_up_boxState(true)
               }
-          }else {
-              setLoginState(false)
-              setPop_up_boxData({
-                  state:false,
-                  type:"发送验证码",
-              })
-              setSop_up_boxState(true)
           }
-          }
-
     }
 
     return(
@@ -104,19 +99,29 @@ const Login = () =>{
                                         />
                                     </div>
                                 </div>
-                                <div className="flex justify-center sm:justify-end mt-10">
+                                <div className={loginState?"hidden":"flex justify-center sm:justify-end mt-10"}>
                                     <button
                                         type="submit"
                                         onClick={next}
                                         className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-28 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium items-center")}
                                     >
 
-                                       <div className={loginState?"animate-spin":"hidden animate-spin"}><i className="fa fa-spinner f-spin fa-x fa-fw"></i></div>
-                                       <div className={loginState?"text-gray-400":""}>
+                                       <div className={"text-gray-400"}>
                                            继续
                                        </div>
                                     </button>
                                 </div>
+
+                            <div className={loginState?"flex justify-center sm:justify-end mt-10":"hidden"}>
+                                <button
+                                    type="submit"
+                                    className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-28 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium items-center")}
+                                >
+                                    <div className={" animate-spin"}><i className="fa fa-spinner f-spin fa-x fa-fw"></i></div>
+                                </button>
+                            </div>
+
+
 
 
                         </div>

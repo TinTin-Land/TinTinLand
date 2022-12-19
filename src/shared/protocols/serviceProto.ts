@@ -174,7 +174,7 @@ export interface ServiceType {
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
-    "version": 9,
+    "version": 10,
     "services": [
         {
             "id": 33,
@@ -1646,13 +1646,6 @@ export const serviceProto: ServiceProto<ServiceType> = {
                 {
                     "id": 0,
                     "name": "user_email",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 1,
-                    "name": "openid",
                     "type": {
                         "type": "String"
                     }
