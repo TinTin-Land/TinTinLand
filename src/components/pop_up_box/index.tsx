@@ -62,7 +62,7 @@ const Pop_up_box = () =>{
                                 <img className={pop_up_boxData.state?"hidden":"w-10  mt-1"} src="/fail.png" alt=""/>
                                 <div className="ml-3 w-0 flex-1 pt-0.5 text-black text-sm">
                                     <p className="font-medium">{pop_up_boxData.type}{classNames(pop_up_boxData.state?"成功":"失败")}</p>
-                                    <p className={pop_up_boxData.state?"hidden":"mt-1 "}>请重试</p>
+                                    <p className={pop_up_boxData.state?"hidden":"mt-1 "}>{pop_up_boxData.title}</p>
 
                                 </div>
                                 <div className="-mt-4 flex flex-shrink-0">

@@ -8,8 +8,9 @@ import Activity_Info from "../../components/activity_info";
 import Heads from "../../components/head";
 import {client} from "../../client";
 import {useAtom} from "jotai";
-import {LoginState, OpenLoginState, UserEmail} from "../../jotai";
+import {LoginState, OpenLoginState, PopUpBoxInfo, PopUpBoxState, UserEmail} from "../../jotai";
 import {Dialog, Transition} from "@headlessui/react";
+import {Pop_up_box} from "../../components/pop_up_box";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -19,6 +20,8 @@ const Course = () => {
     const [loginState,] = useAtom(LoginState)
     const [user_email,] = useAtom(UserEmail)
     const [openLogin,setOpenLogin] =useAtom(OpenLoginState)
+    const [pop_up_boxState,setSop_up_boxState] = useAtom(PopUpBoxState)
+    const [pop_up_boxData,setPop_up_boxData] =useAtom(PopUpBoxInfo)
     const Course_info =
         [
             {
@@ -190,7 +193,6 @@ const Course = () => {
 
 
     const Signup = async (courseName) => {
-
         if(loginState){
             setOpenLogin(true)
                 const CourseId = await client.callApi('v1/teachable/GetCourseId', {
@@ -199,17 +201,40 @@ const Course = () => {
                        const TaUser = await client.callApi('v1/teachable/GetTaUser', {
                            user_email: user_email.user_email
                        });
-                       if (CourseId.res.course_id !== "" && TaUser.res.user_id !== "") {
-                           const data = await client.callApi('v1/teachable/EnrollCourse', {
-                               course_id: CourseId.res.course_id,
-                               user_id: TaUser.res.user_id
-                           });
-                           console.log(data)
-                           setOpenLogin(false)
+
+                       if (CourseId.res !==undefined && TaUser.res!==undefined) {
+                           if(!CourseId.isSucc && !TaUser.isSucc){
+                               const data = await client.callApi('v1/teachable/EnrollCourse', {
+                                   course_id: CourseId.res.course_id,
+                                   user_id: TaUser.res.user_id
+                               });
+                               console.log(data)
+                               setOpenLogin(false)
+                               setPop_up_boxData({
+                                   state:true,
+                                   type:"报名",
+                                   title:"",
+                               })
+                               setSop_up_boxState(true)
+                           }else {
+                               setOpenLogin(false)
+                               setPop_up_boxData({
+                                   state:false,
+                                   type:"报名",
+                                   title:"你已经报过该课程了",
+                               })
+                               setSop_up_boxState(true)
+                           }
+
                            // console.log(CourseId.res.course_id,TaUser.res.user_id)
                        }else {
                            setOpenLogin(false)
-                           alert("没有找到该用户或者课程")
+                           setPop_up_boxData({
+                               state:false,
+                               type:"报名",
+                               title:"请检查网络",
+                           })
+                           setSop_up_boxState(true)
                        }
 
         }
@@ -279,7 +304,7 @@ const Course = () => {
                                             <div className="line-clamp-2  text-xl h-14 mt-2">
                                                 {items.h1}
                                             </div>
-                                        <div className="flex mt-5 w-96">
+                                        <div className="flex mt-5 ">
                                             <button onClick={()=>Signup(items.h1)}>
                                                 <div   className={items.state?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"} >
                                                     立刻报名
@@ -1296,8 +1321,6 @@ const Home = () =>{
                 <Hackathons/>
                 <Activity/>
 
-
-
             </div>
             <div className="relative">
                 <Partner/>
@@ -1345,6 +1368,7 @@ const Home = () =>{
                     </div>
                 </Dialog>
             </Transition.Root>
+            <Pop_up_box/>
             <Tail/>
       </div>
 

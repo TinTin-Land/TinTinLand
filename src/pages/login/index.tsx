@@ -55,6 +55,7 @@ const Login = () =>{
                   setPop_up_boxData({
                       state:false,
                       type:"发送验证码",
+                      title: "请检查网络"
                   })
                   setSop_up_boxState(true)
               }
@@ -103,10 +104,10 @@ const Login = () =>{
                                     <button
                                         type="submit"
                                         onClick={next}
-                                        className={classNames(emailType && emailNumber?" bg-black text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","w-28 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium items-center")}
+                                        className={classNames(emailType && emailNumber?"  text-white ":" text-gray-400 border-gray-400 cursor-not-allowed","bg-black w-28 flex justify-center py-2 px-4 border border-black  rounded-full shadow-sm text-sm font-medium items-center")}
                                     >
 
-                                       <div className={"text-gray-400"}>
+                                       <div >
                                            继续
                                        </div>
                                     </button>

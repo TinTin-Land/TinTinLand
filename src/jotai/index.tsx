@@ -38,7 +38,8 @@ const detail = {
 
 const PopUpBoxInfo = atom({
     type:"",
-    state:false
+    state:false,
+    title:""
 })
 const PopUpBoxState = atom(false)
 

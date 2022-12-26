@@ -135,6 +135,7 @@ const UserInfo = () =>{
             setPop_up_boxData({
                 state:true,
                 type:"保存",
+                title:"",
             })
             setSop_up_boxState(true)
             // location.reload();
@@ -144,6 +145,7 @@ const UserInfo = () =>{
             setPop_up_boxData({
                 state:false,
                 type:"保存",
+                title:"请重试",
             })
             setSop_up_boxState(true)
         }
@@ -557,7 +559,6 @@ const UserInfo = () =>{
                             </div>
                         </div>
                     </div>
-
                     <div className="flex justify-center mx-4 mt-5 md:mt-10">
                         <button onClick={()=>location.reload()} className="bg-white border border-black text-black rounded-full py-1 px-3 mr-5 w-24">取消</button>
                         <button onClick={Revise} className="bg-black text-white rounded-full py-1 px-3 w-24 flex justify-center ">
