@@ -14,6 +14,7 @@ import {
     MediaDatabaseID
 } from "../constants";
 
+
 const IndexPage: NextPage = (props) => {
     const router = useRouter()
     const { t } = useTranslation('common')

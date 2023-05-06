@@ -172,23 +172,23 @@ const Course = (data) => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                    {/*<style jsx global>*/}
-                    {/*    {`.swiper-button-next,*/}
-                    {/*      .swiper-button-prev {*/}
-                    {/*        border-radius: 9999px;*/}
-                    {/*      background-color: white;*/}
-                    {/*      background-color: rgba(255, 255, 255, 0.5);*/}
-                    {/*      padding:1.5rem;*/}
-                    {/*      color: #000 !important;*/}
-                    {/*      }  */}
-                    {/*      .swiper-button-prev:after, .swiper-button-next:after {*/}
-                    {/*        font-size: 1.5rem!important;*/}
-                    {/*      }*/}
-                    {/*      .swiper-pagination-bullet-active {*/}
-                    {/*      background: black;*/}
-                    {/*      }*/}
-                    {/*    `}*/}
-                    {/*</style>*/}
+                    <style jsx global>
+                        {`.swiper-button-next,
+                          .swiper-button-prev {
+                            border-radius: 9999px;
+                          background-color: white;
+                          background-color: rgba(255, 255, 255, 0.5);
+                          padding:1.5rem;
+                          color: #000 !important;
+                          }  
+                          .swiper-button-prev:after, .swiper-button-next:after {
+                            font-size: 1.5rem!important;
+                          }
+                          .swiper-pagination-bullet-active {
+                          background: black;
+                          }
+                        `}
+                    </style>
                 </div>
             </div>
 
