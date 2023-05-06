@@ -172,7 +172,7 @@ const Course = (data) => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                    <style jsx global>
+                    <style >
                         {`.swiper-button-next,
                           .swiper-button-prev {
                             border-radius: 9999px;
