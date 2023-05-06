@@ -2,7 +2,8 @@ const { i18n } = require('./next-i18next.config');
 
 module.exports = {
     experimental: {
-        outputStandalone: true,
+        // outputStandalone: true,
+        ignoreDuringBuilds: true,
     },
     staticPageGenerationTimeout: 1000,
     eslint: {
