@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-05</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="课程详情" transform="translate(-1014.000000, -606.000000)">
+            <g id="编组-26" transform="translate(80.000000, 576.000000)">
+                <g id="icon-05" transform="translate(934.000000, 30.000000)">
+                    <polygon id="路径" points="0 0 36 0 36 36 0 36"></polygon>
+                    <path d="M28.5,1.5 L7.5,1.5 C5.85,1.5 4.515,2.85 4.515,4.5 L4.5,23.895 C4.5,24.93 5.025,25.845 5.82,26.385 L18,34.5 L30.165,26.385 C30.96,25.845 31.485,24.93 31.485,23.895 L31.5,4.5 C31.5,2.85 30.15,1.5 28.5,1.5 Z M15,24 L7.5,16.5 L9.615,14.385 L15,19.755 L26.385,8.37 L28.5,10.5 L15,24 Z" id="形状" fill="#000000" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
