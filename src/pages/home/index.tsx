@@ -102,6 +102,7 @@ const Course = (data) => {
                 <div className="w-full  h-full relative  transition-all duration-700 " id="carousel">
                     <Swiper
                         // loop={true}
+                        rewind={true}
                         slidesPerView={1}
                         centeredSlides={false}
                         slidesPerGroupSkip={1}
