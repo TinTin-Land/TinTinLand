@@ -106,7 +106,7 @@ export default Hackathons
 
 export async function getStaticProps({locale}){
     let data ={ locale }
-    const hackathons_ret = await fetch(`${https}/v1/Hackathons/GetHackathonsDetails`,{
+    const hackathons_ret = await fetch(`${https}/v1/Hackathons/GetHackathonsDetails?value=no-cache`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json'

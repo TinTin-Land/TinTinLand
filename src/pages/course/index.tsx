@@ -192,7 +192,7 @@ export default Course
 
 export async function getStaticProps({locale}){
     let data ={ locale }
-    const course_ret = await fetch(`${https}/v1/Course/GetCourseAllDetails`,{
+    const course_ret = await fetch(`${https}/v1/Course/GetCourseAllDetails?value=no-cache`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json'

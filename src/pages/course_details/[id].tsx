@@ -442,7 +442,7 @@ type Props = {
 }
 export const   getStaticPaths: GetStaticPaths  = async ({locales= [],defaultLocale}) => {
     let course_data = { locale:defaultLocale }
-    const ret = await fetch(`${https}/v1/Course/GetCourseAllDetails`,{
+    const ret = await fetch(`${https}/v1/Course/GetCourseAllDetails?value=no-cache`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -469,7 +469,7 @@ export const   getStaticPaths: GetStaticPaths  = async ({locales= [],defaultLoca
 
 export async function getStaticProps({params:{ id },locale}){
     let data = { id, locale }
-    const ret = await fetch(`${https}/v1/Course/GetCourseDetails`,{
+    const ret = await fetch(`${https}/v1/Course/GetCourseDetails?value=no-cache`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -119,7 +119,7 @@ export default Meeting
 
 export async function getStaticProps({locale}){
     let data = { locale }
-    const activity_ret = await fetch(`${https}/v1/Activity/GetActivityAllDetails`,{
+    const activity_ret = await fetch(`${https}/v1/Activity/GetActivityAllDetails?value=no-cache`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json'

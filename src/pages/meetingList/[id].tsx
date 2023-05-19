@@ -147,7 +147,7 @@ export const getStaticPaths = async ({locales = [], defaultLocale}) => {
         locale: defaultLocale
     }
     const paths = []
-    const activity_ret = await fetch(`${https}/v1/Activity/GetActivityAllDetails`, {
+    const activity_ret = await fetch(`${https}/v1/Activity/GetActivityAllDetails?value=no-cache`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -174,7 +174,7 @@ export async function getStaticProps({params:{id} ,locale}){
         locale,
         id
     }
-    const activity_ret = await fetch(`${https}/v1/Activity/GetActivityDetails`,{
+    const activity_ret = await fetch(`${https}/v1/Activity/GetActivityDetails?value=no-cache`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json'
