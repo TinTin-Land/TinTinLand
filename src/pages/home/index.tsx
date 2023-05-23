@@ -116,10 +116,10 @@ const Course = (data) => {
                                  slidesPerGroup: 3,
                              },
                          }}
-                         autoplay={{
-                             delay: 7000,
-                             disableOnInteraction: false,
-                         }}
+                         // autoplay={{
+                         //     delay: 7000,
+                         //     disableOnInteraction: false,
+                         // }}
                          scrollbar={false}
                          navigation={true}
                          pagination={{
@@ -131,7 +131,7 @@ const Course = (data) => {
                         {course_info.map(items=>(
                             <SwiperSlide key={items.id} className={items.homeDisplay=="False"?"hidden":""}>
                                 <div  className="rounded-2xl  mr-4">
-                                    <img className="rounded-t-2xl w-full h-56 2xl:h-80" src={items.img} alt=""/>
+                                    <img className="rounded-t-2xl w-full " src={items.img} alt=""/>
                                     <div className="px-10 py-8 bg-white rounded-b-2xl">
                                         <div className="flex  h-20 overflow-hidden flex-wrap ">
                                             {items.type.map(list=>(
@@ -199,7 +199,7 @@ const Course = (data) => {
                     <div className="flex  ">
                         {course_info.map(items=>(
                                         <div key={items.id} className={items.homeDisplay=="False"?"hidden":"rounded-2xl snap-always snap-center md:snap-start w-90 mx-5"}>
-                                            <img className="rounded-t-2xl h-52" src={items.img} alt=""/>
+                                            <img className="rounded-t-2xl " src={items.img} alt=""/>
                                             <div className="px-10 py-8 bg-white rounded-b-2xl">
                                                 <div className="flex  h-20 overflow-hidden  flex-wrap">
                                                     {items.type.map(list=>(
