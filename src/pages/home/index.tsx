@@ -116,10 +116,10 @@ const Course = (data) => {
                                  slidesPerGroup: 3,
                              },
                          }}
-                         // autoplay={{
-                         //     delay: 7000,
-                         //     disableOnInteraction: false,
-                         // }}
+                         autoplay={{
+                             delay: 7000,
+                             disableOnInteraction: false,
+                         }}
                          scrollbar={false}
                          navigation={true}
                          pagination={{
