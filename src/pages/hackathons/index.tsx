@@ -57,7 +57,7 @@ const Hackathons = (props) =>{
                     </div>
                     <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3  gap-10 ">
                         {hackathonsData.map(items=>(
-                            <div key={items.id} className="rounded-2xl relative">
+                            <div key={items.id} className={items.id==""?"hidden":"rounded-2xl relative"}>
                                 <div className={classNames(HackathonsState[items.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1   absolute")}>
                                     {items.state}
                                 </div>

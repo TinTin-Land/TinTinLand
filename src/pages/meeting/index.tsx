@@ -55,7 +55,7 @@ const Meeting = (props) =>{
                 </div>
                 <div>
                     {activityList.map((items=>(
-                    <div key={items.id} className="mt-10">
+                    <div key={items.id} className={items.id==""?"hidden":"mt-10"}>
                         <div className="text-indigo-700 text-xl flex justify-between">
                             {items.name}
                             <Link href={`/meetingList/${items.id}`}>

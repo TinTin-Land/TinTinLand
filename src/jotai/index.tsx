@@ -98,7 +98,6 @@ const activityData = [
             poster_2: "",
         },]
     },
-
     {
         id: "",
         name: "",
