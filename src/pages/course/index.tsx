@@ -80,10 +80,10 @@ const Course = (props) =>{
                     <div className="text-indigo-700 text-xl mt-10">
                         {t("火热报名中")} 🔥
                     </div>
-                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3  gap-10 ">
+                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-5 xl:gap-16 ">
                         {course_info.map(items=>(
                             <div key={items.id} className={classNames(items.state == "In progress" || items.state == "About to start" ?"rounded-2xl  ":"hidden")}>
-                                <img className="rounded-t-2xl xl:h-60 2xl:h-80" src={items.img} alt=""/>
+                                <img className="rounded-t-2xl w-full xl:h-60 2xl:h-80" src={items.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex  h-20 overflow-hidden  flex-wrap">
                                         {items.type.map(list=>(
@@ -128,10 +128,10 @@ const Course = (props) =>{
                     <div className="text-indigo-700 text-xl mt-10">
                         {t("往期回顾")}
                     </div>
-                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3  gap-10 ">
+                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-5 xl:gap-16 ">
                         {course_info.map(items=>(
                             <div key={items.id} className={classNames(items.state == "In progress" || items.state == "About to start"?"hidden":"rounded-2xl")}>
-                                <img className="rounded-t-2xl xl:h-60 2xl:h-80" src={items.img} alt=""/>
+                                <img className="rounded-t-2xl w-full xl:h-60 2xl:h-80" src={items.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex  h-20 overflow-hidden  flex-wrap">
                                         {items.type.map(list=>(
