@@ -3,7 +3,7 @@ import React, {Fragment, useEffect, useState} from "react";
 import Header from "../../components/header";
 import Tail from "../../components/tail";
 import HackathonsState from "../../components/state";
-import Activity_Info from "../../components/activity_info";
+
 import Heads from "../../components/head";
 import {useAtom} from "jotai";
 import {
@@ -22,7 +22,6 @@ import {
 import {Pop_up_box, SignUpCourseBox} from "../../components/pop_up_box";
 import Loading from "../../components/loading";
 import {WaitPayPoPUpBox} from "../../components/payState";
-import {CourseData} from "../../components/course_data";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -43,6 +42,8 @@ const Course = (data) => {
         const query = async () =>{
             const project_details = JSON.parse(data.data)
             setCourse_info(project_details)
+
+            console.log(JSON.parse(data.data)[0].img)
         }
         query()
     },[])
@@ -131,7 +132,7 @@ const Course = (data) => {
                         {course_info.map(items=>(
                             <SwiperSlide key={items.id} className={items.homeDisplay=="False"?"hidden":""}>
                                 <div  className="rounded-2xl  mr-4">
-                                    <img className="rounded-t-2xl w-full " src={items.img} alt=""/>
+                                    <img className="rounded-t-2xl w-full" src={items.img} alt=""/>
                                     <div className="px-10 py-8 bg-white rounded-b-2xl">
                                         <div className="flex  h-20 overflow-hidden flex-wrap ">
                                             {items.type.map(list=>(
