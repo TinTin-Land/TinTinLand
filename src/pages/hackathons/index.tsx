@@ -45,11 +45,8 @@ const Hackathons = (props) =>{
                         <div className="text-xl ">
                             {t("用区块链技术创建 Web3 世界")}<br/>
                             {t("协助开发者创建团队，提供技术指导，引入投资")}
-
                         </div>
                     </div>
-
-
                 </div>
                 <div>
                     <div className="text-indigo-700 text-xl mt-10">
