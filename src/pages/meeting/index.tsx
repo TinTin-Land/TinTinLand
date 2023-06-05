@@ -72,10 +72,10 @@ const Meeting = (props) =>{
                         <div className="md:w-2/3 text-sm mt-2">
                             {items.des}
                         </div>
-                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3   gap-10 ">
+                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-4 ">
                         {items.activityList.map((item,index)=>(
                             <div key={item.activity} className={index>2?"hidden":"rounded-2xl"}>
-                                <img className="rounded-t-2xl w-full h-64 2xl:h-72" src={item.poster_1} alt=""/>
+                                <img className="rounded-t-2xl w-full md:h-64 xl:h-72 2xl:h-80" src={item.poster_1} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex   flex-wrap">
                                         <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >

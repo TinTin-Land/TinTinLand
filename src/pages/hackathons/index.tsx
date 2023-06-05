@@ -55,13 +55,13 @@ const Hackathons = (props) =>{
                     <div className="text-indigo-700 text-xl mt-10">
                         Explore Hackathons
                     </div>
-                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3  gap-10 ">
+                    <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-4 ">
                         {hackathonsData.map(items=>(
                             <div key={items.id} className={items.id==""?"hidden":"rounded-2xl relative"}>
                                 <div className={classNames(HackathonsState[items.state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1   absolute")}>
                                     {items.state}
                                 </div>
-                                <img className="rounded-t-2xl w-full  h-56" src={items.img} alt=""/>
+                                <img className="rounded-t-2xl w-full md:h-60 2xl:h-80" src={items.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="   mt-2">
                                         {items.name}
