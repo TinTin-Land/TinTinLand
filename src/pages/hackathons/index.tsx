@@ -60,7 +60,7 @@ const Hackathons = (props) =>{
                                 </div>
                                 <img className="rounded-t-2xl w-full md:h-60 2xl:h-80" src={items.img} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
-                                    <div className="   mt-2">
+                                    <div className=" mt-2 line-clamp-2 h-14 font-semibold">
                                         {items.name}
                                     </div>
                                     <div className="text-sm   mt-2">
@@ -69,9 +69,9 @@ const Hackathons = (props) =>{
                                     <div className="line-clamp-4 h-20 text-sm text-[#000000]  mt-2">
                                         {items.text}
                                     </div>
-                                    <div className="flex mt-5 ">
+                                    <div className="flex mt-5">
                                         <Link href={items.registrationLink}>
-                                            <a className={items.state=="ComingSoon" || items.state=="OnGoing"  ?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
+                                            <a className={items.state=="ComingSoon" || items.state=="OnGoing" ?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"}>
                                                 {t("立刻报名")}
                                             </a>
                                         </Link>
