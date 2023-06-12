@@ -284,11 +284,11 @@ const Hackathons = (data)=>{
             </div>
             <div className={hackathonsData[0].name==""?"hidden":" xl:flex mt-4 justify-between "}>
                 {/*大*/}
-                <div className="relative  xl:w-9/12" >
+                <div className="relative  xl:w-full" >
                     <div className={classNames(HackathonsState[hackathonsData[0].state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
                         {hackathonsData[0].state}
                     </div>
-                    <img className="rounded-t-2xl w-full xl:h-96" src={hackathonsData[0].img} alt=""/>
+                    <img className="rounded-t-2xl w-full xl:h-96 2xl:h-99" src={hackathonsData[0].img} alt=""/>
                     <div className="px-10 py-8 bg-white rounded-b-2xl">
                         <div className="2xl:text-xl font-semibold xl:w-72 truncate">
                             {hackathonsData[0].name}
@@ -312,14 +312,14 @@ const Hackathons = (data)=>{
                     </div>
                 </div>
 
-                <div className="mt-5 xl:mt-0 xl:w-5/12  xl:ml-5     ">
+                <div className="mt-5 xl:mt-0 xl:w-full  xl:ml-5     ">
                     {/*中*/}
                     <div className="">
                         <div className="relative ">
                             <div className={classNames(HackathonsState[hackathonsData[1].state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
                                 {hackathonsData[1].state}
                             </div>
-                            <img className="rounded-t-2xl  w-full xl:h-56" src={hackathonsData[1].img} alt=""/>
+                            <img className="rounded-t-2xl  w-full xl:h-56  2xl:h-80" src={hackathonsData[1].img} alt=""/>
                             <div className="px-10 py-3  bg-white rounded-b-2xl">
                                 <div className="2xl:text-xl font-semibold  truncate">
                                     {hackathonsData[1].name}
@@ -351,7 +351,7 @@ const Hackathons = (data)=>{
                             </div>
                             <div className="xl:flex  xl:items-center xl:justify-between bg-white rounded-2xl">
 
-                                <img className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl  w-full h-80 " src={hackathonsData[2].img} alt=""/>
+                                <img className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl  w-full " src={hackathonsData[2].img} alt=""/>
                                 <div className="pl-10 py-3 xl:py-0    ">
                                     <div className="2xl:text-xl font-semibold xl:w-48 2xl:w-56  truncate">
                                         {hackathonsData[2].name}
