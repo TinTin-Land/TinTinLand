@@ -23,7 +23,6 @@ module.exports = {
                 "100":"43rem",
                 "105":"46rem",
                 "106":"48rem",
-
             },
             colors: {
                 transparent: 'transparent',
@@ -35,8 +34,6 @@ module.exports = {
                 }
 
             },
-
-
             screens: {
                 '3xl': '1700px',
             },

@@ -3,13 +3,12 @@ import Tail from "../../components/tail";
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import Activity_Info from "../../components/activity_info";
 import Heads from "../../components/head";
 import {Activity_Alldetail, Activity_detail} from "../../jotai";
 import {useAtom} from "jotai";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import {GetStaticPaths} from "next";
-import {CourseDatabaseId, https} from "../../constants";
+
+import { https} from "../../constants";
 import {useTranslation} from "next-i18next";
 
 function classNames(...classes) {

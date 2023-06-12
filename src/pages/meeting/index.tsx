@@ -2,8 +2,6 @@ import Header from "../../components/header";
 import Tail from "../../components/tail";
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
-
-import Activity_Info from "../../components/activity_info";
 import Heads from "../../components/head";
 
 import {Activity_Alldetail} from "../../jotai";
@@ -11,7 +9,6 @@ import {useAtom} from "jotai";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
 import {https} from "../../constants";
-import {GetStaticPaths} from "next";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

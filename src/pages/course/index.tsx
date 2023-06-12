@@ -2,10 +2,7 @@ import Header from "../../components/header";
 import Tail from "../../components/tail";
 import React, {Fragment, useEffect, useState} from "react";
 import Link from "next/link";
-import {useRouter} from "next/router";
-import Activity_Info from "../../components/activity_info";
 import Heads from "../../components/head";
-import {client} from "../../client";
 import {useAtom} from "jotai";
 import {
     Course_data,
@@ -17,7 +14,6 @@ import {
     SignUpCourseBoxState,
     UserEmail
 } from "../../jotai";
-import {Dialog, Transition} from "@headlessui/react";
 import {Pop_up_box, SignUpCourseBox} from "../../components/pop_up_box";
 import Loading from "../../components/loading";
 import {WaitPayPoPUpBox} from "../../components/payState";

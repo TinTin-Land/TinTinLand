@@ -5,7 +5,6 @@ import Link from "next/link";
 import ChevronUpIcon from "@heroicons/react/outline/ChevronUpIcon";
 import {Dialog, Disclosure, Transition} from "@headlessui/react";
 import {useRouter} from "next/router";
-import Course_info from "../../components/course_info";
 import {useAtom} from "jotai";
 import {
     Course_Detail,
@@ -21,7 +20,7 @@ import {Pop_up_box, SignUpCourseBox} from "../../components/pop_up_box";
 import {client} from "../../client";
 import Loading from "../../components/loading";
 import {WaitPayPoPUpBox} from "../../components/payState";
-import {CourseDatabaseId, https} from "../../constants";
+import { https} from "../../constants";
 import {GetStaticPaths, InferGetStaticPropsType} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";

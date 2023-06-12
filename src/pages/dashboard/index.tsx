@@ -14,8 +14,6 @@ import {ConnectButton, useChainModal, useConnectModal} from "@rainbow-me/rainbow
 import Loading from "../../components/loading";
 import {useAccount, useNetwork} from "wagmi";
 
-
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }

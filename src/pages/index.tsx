@@ -5,14 +5,7 @@ import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import Heads from "../components/head";
 import React from "react";
-import {
-    ActivityDatabaseID,
-    CommunityDatabaseID,
-    CommunityMemberDatabaseID,
-    CourseDatabaseId,
-    HackathonsDatabaseID, https,
-    MediaDatabaseID
-} from "../constants";
+import {https} from "../constants";
 
 
 const IndexPage: NextPage = (props) => {

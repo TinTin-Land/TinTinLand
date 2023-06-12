@@ -3,7 +3,6 @@ import React, {Fragment, useEffect, useState} from "react";
 import Header from "../../components/header";
 import Tail from "../../components/tail";
 import HackathonsState from "../../components/state";
-
 import Heads from "../../components/head";
 import {useAtom} from "jotai";
 import {
