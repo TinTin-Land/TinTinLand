@@ -304,7 +304,6 @@ const Header = () =>{
                                             </Link>
                                         ))}
                                         <Media/>
-
                                     </div>
 
                                 </div>
