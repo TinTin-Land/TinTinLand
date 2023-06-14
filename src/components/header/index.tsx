@@ -1,7 +1,7 @@
-import { Popover, Tab, Transition } from '@headlessui/react';
+import { Popover, Tab, Transition,Menu } from '@headlessui/react';
 import Link from "next/link";
 import { Switch } from '@headlessui/react'
-import { MenuIcon, XIcon} from "@heroicons/react/outline";
+import {ChevronDownIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
 import React, {Fragment, useEffect, useState} from "react";
 import {useAtom} from "jotai";
 import {Language, LoginState, UserEmail} from "../../jotai";
@@ -12,6 +12,65 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
+const Media = () =>{
+
+    const media = [
+        {
+            title:"YouTube",
+            href:"https://www.youtube.com/@tintinland3610"
+        },
+        {
+            title:"Bilibili",
+            href:"https://space.bilibili.com/1152852334?spm_id_from=333.337.search-card.all.click"
+        },
+
+    ]
+
+    return(
+        <Menu as="div" className="relative">
+            <div>
+                <Menu.Button className="flex items-center w-20 py-2.5 text-sm leading-5 text-center  rounded-lg text-base xl:text-sm font-medium text-black ">
+                    Live
+                    <ChevronDownIcon className="-mr-1 h-5 w-5 text-black" aria-hidden="true" />
+                </Menu.Button>
+            </div>
+
+            <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+            >
+                <Menu.Items className="absolute  z-10 mt-2 w-28  rounded-md bg-white  shadow-2xl  focus:outline-none ">
+                    <div className="py-1">
+                        {media.map(item=>(
+                            <Menu.Item key={item.title}>
+                                {({ active }) => (
+                                    <a
+                                        rel="noreferrer"
+                                        href={item.href}
+                                        target ="_blank"
+                                        className={classNames(
+                                            active ? 'bg-gray-100 ' : 'text-gray-700',
+                                            'block px-4 py-3 text-sm rounded-lg font-medium text-black'
+                                        )}
+                                    >
+                                        {item.title}
+                                        <i className={active ?"fa fa-arrow-right -rotate-45 absolute ml-1":"hidden "} aria-hidden="true" />
+                                    </a>
+
+                                )}
+                            </Menu.Item>
+                        ))}
+                    </div>
+                </Menu.Items>
+            </Transition>
+        </Menu>
+    )
+}
 const Header = () =>{
     const router = useRouter();
     const { pathname, query, asPath } = router
@@ -102,6 +161,7 @@ const Header = () =>{
                                 </Link>
                             </div>
                         ))}
+                        <Media/>
                     </Tab.Group>
                     {/*切换*/}
                     <div className="hidden lg:flex w-full justify-end  items-center">
@@ -232,8 +292,8 @@ const Header = () =>{
                                     </div>
 
                                 </div>
-                                <div className="py-6 ">
-                                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center ">
+                                <div className="py-6 px-5">
+                                    <div className="grid grid-cols-1 gap-4 md:flex justify-between  items-center">
                                         {navigation.map((item) => (
                                             <Link key={item.name} href={item.href}>
                                                 <a
@@ -243,7 +303,10 @@ const Header = () =>{
                                                 </a>
                                             </Link>
                                         ))}
+                                        <Media/>
+
                                     </div>
+
                                 </div>
                                 <div className="flex justify-between  p-5 items-center">
                                         <div className="flex justify-between">
