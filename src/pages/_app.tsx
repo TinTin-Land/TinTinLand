@@ -6,6 +6,8 @@ import "../css/font-awesome.css"
 import {WagmiConfig} from "wagmi";
 import {chains, CustomAvatar, wagmiClient} from "../wallet_configuration";
 import {RainbowKitProvider} from "@rainbow-me/rainbowkit";
+import { Analytics } from '@vercel/analytics/react';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
       <WagmiConfig client={wagmiClient}>
@@ -19,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                             }}
         >
           <Component {...pageProps} />
+          <Analytics />
         </RainbowKitProvider>
       </WagmiConfig>
   )
