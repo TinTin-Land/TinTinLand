@@ -53,7 +53,7 @@ const WaitPayPoPUpBox = () =>{
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                                <Dialog.Panel className="bg-white px-4 py-5 sm:px-6 rounded-md">
+                                <div className="bg-white px-4 py-5 sm:px-6 rounded-md">
                                     <div className={payState=="pending"?"":"hidden"}>
                                     <div  className="flex justify-center">
                                     <img className="w-16" src="/payState/pending_60dp@2x.png" alt=""/>
@@ -117,7 +117,7 @@ const WaitPayPoPUpBox = () =>{
                                             </button>
                                         </div>
                                     </div>
-                                </Dialog.Panel>
+                                </div>
 
 
                         </Transition.Child>

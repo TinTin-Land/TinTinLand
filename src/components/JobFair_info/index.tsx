@@ -109,7 +109,7 @@ const JobFair_info = () =>{
                                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                             >
-                                <Dialog.Panel className="relative bg-white sm:rounded-lg px-4 pt-5 pb-4 text-left  h-screen sm:h-full shadow-xl items-center transform transition-all  sm:my-8 sm:max-w-5xl w-full sm:p-6">
+                                <div className="relative bg-white sm:rounded-lg px-4 pt-5 pb-4 text-left  h-screen sm:h-full shadow-xl items-center transform transition-all  sm:my-8 sm:max-w-5xl w-full sm:p-6">
                                     <div className="flex justify-start sm:justify-end">
                                         <div onClick={()=>{setOpen(false)}}
                                                 className="cursor-pointer text-2xl  font-light">
@@ -179,7 +179,7 @@ const JobFair_info = () =>{
                                         </div>
                                     </div>
 
-                                </Dialog.Panel>
+                                </div>
                             </Transition.Child>
                         </div>
                     </div>

@@ -32,12 +32,12 @@ const Loading = () =>{
                                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                             >
-                                <Dialog.Panel className="">
+                                <div className="">
 
                                     <div className="animate-spin text-white">
                                         <i className="fa fa-spinner f-spin fa-2x fa-fw"></i>
                                     </div>
-                                </Dialog.Panel>
+                                </div>
                             </Transition.Child>
                         </div>
                     </div>
