@@ -26,7 +26,6 @@ const Meeting = (props) =>{
             }
         },[router.isReady])
     return (
-
         <div className="mx-auto relative bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
             <Heads/>
@@ -134,9 +133,7 @@ const Meeting = (props) =>{
                 </div>
             </div>
             <Tail/>
-        </div>
-
-
+       </div>
     )
 }
 export default Meeting
@@ -155,6 +152,8 @@ export const getStaticPaths = async ({locales = [], defaultLocale}) => {
     })
     const activity_result = await activity_ret.json()
     let activity_details = await JSON.parse(activity_result.res.project_details)
+    console.log(activity_details);
+
 
     for (let i= 0 ;i<activity_details.length;i++){
         for (const locale of locales) {
