@@ -999,7 +999,7 @@ const Home = (data) =>{
                     <div className="text-2xl md:text-4xl xl:text-6xl ">
                     <div>
 
-                        A Global Web3.0 Dev DAO
+                        A Global Web3.0 Developer Community
                     </div>
                         <div>
                            for Builders,Entrepreneurs
