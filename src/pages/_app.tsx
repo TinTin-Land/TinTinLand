@@ -12,8 +12,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const AnyComponent = Component as any;
   return (
       <WagmiConfig client={wagmiClient}>
-              return <AnyComponent {...pageProps} />;
-              <Analytics />
+          <AnyComponent {...pageProps} />;
+          <Analytics />
       </WagmiConfig>
       // {/*// <WagmiConfig client={wagmiClient}>*/}
       //   {/*<RainbowKitProvider coolMode chains={chains} showRecentTransactions={true}*/}
