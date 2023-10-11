@@ -17,7 +17,7 @@ const Tail=()=>{
             content:[
                 {
                     h1:"Twitter",
-                    href:"https://twitter.com/Tintinland2021",
+                    href:"https://twitter.com/OurTinTinLand",
                 },
                 {
                     h1:"Youtube",
