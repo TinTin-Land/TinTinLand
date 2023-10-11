@@ -9,21 +9,26 @@ import {RainbowKitProvider} from "@rainbow-me/rainbowkit";
 import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const AnyComponent = Component as any;
   return (
       <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider coolMode chains={chains} showRecentTransactions={true}
-            //主题颜色
-            // theme={midnightTheme()}
-                            avatar={CustomAvatar}
-                            appInfo={{
-                              // appName: 'TinTinLand- - Powered by Web3Games',
-                              // learnMoreUrl: 'https://learnaboutcryptowallets.example',
-                            }}
-        >
-          <Component {...pageProps} />
-          <Analytics />
-        </RainbowKitProvider>
+              return <AnyComponent {...pageProps} />;
+              <Analytics />
       </WagmiConfig>
+      // {/*// <WagmiConfig client={wagmiClient}>*/}
+      //   {/*<RainbowKitProvider coolMode chains={chains} showRecentTransactions={true}*/}
+      //   {/*    //主题颜色*/}
+      //   {/*    // theme={midnightTheme()}*/}
+      //   {/*                    avatar={CustomAvatar}*/}
+      //   {/*                    appInfo={{*/}
+      //   {/*                      // appName: 'TinTinLand- - Powered by Web3Games',*/}
+      //   {/*                      // learnMoreUrl: 'https://learnaboutcryptowallets.example',*/}
+      //   {/*                    }}*/}
+      //   {/*>*/}
+      //     <Component {...pageProps} />
+      //     <Analytics />
+      //   {/*</RainbowKitProvider>*/}
+      // {/*</WagmiConfig>*/}
   )
 }
 export default  appWithTranslation(MyApp)

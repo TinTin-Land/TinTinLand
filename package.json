@@ -26,6 +26,7 @@
     "react-select": "^5.4.0",
     "swiper": "^9.2.4",
     "tsrpc-browser": "^3.4.8",
+    "tsrpc-proto": "^1.4.3",
     "use-debounce": "^9.0.3",
     "wagmi": "^0.9.6"
   },

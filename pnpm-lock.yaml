@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -41,6 +41,9 @@ dependencies:
   tsrpc-browser:
     specifier: ^3.4.8
     version: 3.4.8
+  tsrpc-proto:
+    specifier: ^1.4.3
+    version: 1.4.3
   use-debounce:
     specifier: ^9.0.3
     version: 9.0.3(react@18.1.0)
@@ -6951,7 +6954,7 @@ packages:
     resolution: {integrity: sha512-qtkk5i34m9/K1258EdyXAEikU/ADPELHCCXN/oFJ4XwH+kN3kXnKYmwCDblUuMA73V2+A/EwkgUGyAgPa335Hw==}
     dependencies:
       tsbuffer-schema: 2.2.0
-      tslib: 2.4.1
+      tslib: 2.6.0
     dev: false
 
   /tsutils@3.21.0(typescript@4.7.3):

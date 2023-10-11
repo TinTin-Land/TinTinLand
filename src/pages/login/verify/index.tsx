@@ -4,7 +4,6 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Heads from "../../../components/head";
 import {client} from "../../../client";
-import {logger} from "bs-logger";
 import login from "../index";
 
 function classNames(...classes) {

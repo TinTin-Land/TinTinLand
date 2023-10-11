@@ -1,5 +1,5 @@
 import {configureChains, createClient} from "wagmi";
-import {bsc, polygon, taraxa} from "@wagmi/core/chains";
+// import {bsc, polygon, taraxa} from "@wagmi/core/chains";
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import {AvatarComponent, connectorsForWallets} from "@rainbow-me/rainbowkit";
