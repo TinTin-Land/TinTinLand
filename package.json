@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^0.8.1",
-    "@vercel/analytics": "^1.0.1",
+    "@vercel/analytics": "^1.1.1",
     "ethereumjs-util": "^7.1.5",
     "ethers": "^5.7.2",
     "jotai": "^1.7.2",
