@@ -246,6 +246,7 @@ const Hackathons = (data)=>{
     useEffect(()=>{
         setHackathonsData(JSON.parse(data.data))
     },[])
+    // console.log(hackathonsData)
 
     return(
         <div id="Hackathons" className="pt-20 ">
@@ -986,7 +987,7 @@ const CommunityMember = (data) =>{
 
 const Home = (data) =>{
     const { t } = useTranslation('common')
-
+    // console.log('data.props?.hackathons_details',data.props?.hackathons_details)
     return (
 
         <div className="mx-auto relative   sm:bg-fixed overflow-hidden"

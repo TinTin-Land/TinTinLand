@@ -112,6 +112,7 @@ export async function getStaticProps({locale}){
     })
     const hackathons_result = await hackathons_ret.json()
     let  hackathons_details = await hackathons_result.res.project_details
+    console.log('hackathons_details',hackathons_details)
     return {
         props: {
             hackathons_details,

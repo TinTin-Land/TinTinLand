@@ -15,6 +15,21 @@ const IndexPage: NextPage = (props) => {
       <main>
         <div>
             <Heads/>
+            {/*<button onClick={async ()=>{*/}
+            {/*    let locale = 'en'*/}
+            {/*    let data ={ locale }*/}
+            {/*    const hackathons_ret = await fetch(`${https}/v1/Hackathons/GetHackathonsDetails?value=no-cache`,{*/}
+            {/*        method:'POST',*/}
+            {/*        headers: {*/}
+            {/*            'Content-Type': 'application/json'*/}
+            {/*        },*/}
+            {/*        body:JSON.stringify(data)*/}
+            {/*    })*/}
+            {/*    const hackathons_result = await hackathons_ret.json()*/}
+            {/*    let  hackathons_details = await hackathons_result.res.project_details*/}
+            {/*    console.log('hackathons_details',hackathons_details)*/}
+            {/*}}>1111</button> */}
+
               <Home  props={props}></Home>
         </div>
           {/*<Link*/}

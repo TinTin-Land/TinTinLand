@@ -5,14 +5,14 @@ import '@rainbow-me/rainbowkit/styles.css';
 import "../css/font-awesome.css"
 import {WagmiConfig} from "wagmi";
 import {chains, CustomAvatar, wagmiClient} from "../wallet_configuration";
-import {RainbowKitProvider} from "@rainbow-me/rainbowkit";
+// import {RainbowKitProvider} from "@rainbow-me/rainbowkit";
 import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const AnyComponent = Component as any;
   return (
       <WagmiConfig client={wagmiClient}>
-          <AnyComponent {...pageProps} />;
+          <AnyComponent {...pageProps} />
           <Analytics />
       </WagmiConfig>
       // {/*// <WagmiConfig client={wagmiClient}>*/}
