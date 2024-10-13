@@ -143,7 +143,7 @@ const JobFair= () =>{
             work:[
                 {
                     title:"首席开发工程师",
-                    type:"80k-120K｜杭州｜Remote｜全职",
+                    type:"80k-120K｜杭州｜Remote｜�����",
                     content:[
                         {
                             h1:"3年以上全职软件工程经验。"
@@ -165,7 +165,7 @@ const JobFair= () =>{
                         },
                         {
                             h1:" 有以下一项或多项经验：\n" +
-                                "- 实现云转型并构建云原生架构和解决方案（AWS、Azure、谷歌云、甲骨文等）经验\n" +
+                                "- 实现云转型并构建云原生架构和解决方案（AWS、Azure、谷歌云、甲骨文等）经\n" +
                                 "- 企业架构，4+1架构建模，UML经验。\n" +
                                 "- 复杂技术堆栈的大型分布式系统的交付经验。"
                         },
@@ -185,7 +185,7 @@ const JobFair= () =>{
                                 "4. 对主要区块链协议、应用密码学和 PKI 背后的密码学有深刻认知。\n" +
                                 "5. 了解云安全、大数据、区块链和一般的分布式架构。\n" +
                                 "6. 了解微服务设计。\n" +
-                                "7. 有以下一项或多项经验：\n" +
+                                "7. 有以下一项多项经验：\n" +
                                 "    - 实现云转型并构建云原生架构和解决方案（AWS、Azure、谷歌云、甲骨文等）经验\n" +
                                 "    - 企业架构，4+1架构建模，UML经验。\n" +
                                 "    - 复杂技术堆栈的大型分布式系统的交付经验。\n" +
@@ -236,22 +236,16 @@ const JobFair= () =>{
     const [data,setData] =useState([])
     const [selected, setSelected] = useState(navigation[0])
     useEffect(()=>{
-        if (router.isReady){
-            const content = router.query.slug[0]
-            const fetchUserBounty = async () => {
-                setPathname(content)
-                setData(Info[content])
-            }
-            fetchUserBounty()
-
+        if (router.isReady) {
+            const content = router.query.slug[0];
+            setPathname(content);
+            setData(Info[content]);
         }
-    },[router.isReady,router.query.slug])
+    },[router.isReady, router.query.slug])
 
-    const OpenJobInfo = (e) =>{
-
-       setOpen(true)
-    }
-
+    const OpenJobInfo = () => {
+        setOpen(true);
+    };
 
     return (
 
@@ -284,7 +278,7 @@ const JobFair= () =>{
                                             </div>
                                             <div>
                                             {selected.number}
-                                        </div>
+                                            </div>
                                        </div>
                                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                             <ChevronDownIcon className="h-5 w-5 text-black" aria-hidden="true" />
@@ -343,34 +337,8 @@ const JobFair= () =>{
                       <div className="grid grid-cols-1 gap-4">
 
                       {JobInfo.map(item=>(
-                        <div key={item.name} onClick={OpenJobInfo} className="cursor-pointer ">
-                        <div  className=" bg-white  p-5 rounded-xl">
-                            <div className="flex items-center">
-                                <img className="w-14 rounded-full"  src={item.logo} alt=""/>
-                                <div className="ml-2 w-10/12 sm:w-11/12 text-left">
-                                    <div className=" sm:text-xl font-semibold">
-                                        {item.name}
-                                    </div>
-                                    <div className="text-sm sm:text-base truncate text-gray-500">
-                                        {item.h1}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="border rounded-xl mt-4 divide-y divide-gray-200">
-                                {item.work.map(list=>(
-                                <div key={list.title} className=" xl:flex p-3 sm:p-5 text-sm">
-                                    <div className="font-semibold truncate">
-                                        {list.title}
-                                    </div>
-                                    <div className="xl:ml-4">
-                                        {list.type}
-                                    </div>
-                                </div>
-                                ))}
-                            </div>
-                        </div>
-                        </div>
-                        ))}
+                        <JobCard key={item.name} item={item} onOpenJobInfo={OpenJobInfo} />
+                      ))}
                       </div>
                     </div>
                     <div className="hidden xl:block xl:w-4/12 xl:pl-20">
@@ -410,5 +378,27 @@ const JobFair= () =>{
 
     )
 }
+
+const JobCard = ({ item, onOpenJobInfo }) => (
+  <div onClick={onOpenJobInfo} className="cursor-pointer">
+    <div className="bg-white p-5 rounded-xl">
+      <div className="flex items-center">
+        <img className="w-14 rounded-full" src={item.logo} alt="" />
+        <div className="ml-2 w-10/12 sm:w-11/12 text-left">
+          <div className="sm:text-xl font-semibold">{item.name}</div>
+          <div className="text-sm sm:text-base truncate text-gray-500">{item.h1}</div>
+        </div>
+      </div>
+      <div className="border rounded-xl mt-4 divide-y divide-gray-200">
+        {item.work.map((list) => (
+          <div key={list.title} className="xl:flex p-3 sm:p-5 text-sm">
+            <div className="font-semibold truncate">{list.title}</div>
+            <div className="xl:ml-4">{list.type}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
 
 export default JobFair

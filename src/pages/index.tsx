@@ -1,149 +1,85 @@
-import type { NextPage } from 'next';
-import Home from "./home";
-import {useRouter} from "next/router";
-import {useTranslation} from "next-i18next";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import Heads from "../components/head";
-import React from "react";
-import {https} from "../constants";
+import type { GetStaticProps, NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import React from 'react';
 
+import Home from './home';
+import Heads from '../components/head';
+import { https } from '../constants';
 
 const IndexPage: NextPage = (props) => {
-    const router = useRouter()
-    const { t } = useTranslation('common')
+  const { t } = useTranslation('common');
+
   return (
-      <main>
-        <div>
-            <Heads/>
-            {/*<button onClick={async ()=>{*/}
-            {/*    let locale = 'en'*/}
-            {/*    let data ={ locale }*/}
-            {/*    const hackathons_ret = await fetch(`${https}/v1/Hackathons/GetHackathonsDetails?value=no-cache`,{*/}
-            {/*        method:'POST',*/}
-            {/*        headers: {*/}
-            {/*            'Content-Type': 'application/json'*/}
-            {/*        },*/}
-            {/*        body:JSON.stringify(data)*/}
-            {/*    })*/}
-            {/*    const hackathons_result = await hackathons_ret.json()*/}
-            {/*    let  hackathons_details = await hackathons_result.res.project_details*/}
-            {/*    console.log('hackathons_details',hackathons_details)*/}
-            {/*}}>1111</button> */}
+    <main>
+      <Heads />
+      <Home props={props} />
+    </main>
+  );
+};
 
-              <Home  props={props}></Home>
-        </div>
-          {/*<Link*/}
-          {/*    href='/'*/}
-          {/*    locale={router.locale === 'en' ? 'de' : 'en'}*/}
-          {/*>*/}
-          {/*    <button>*/}
-          {/*        {t('change-locale')}*/}
-          {/*    </button>*/}
-          {/*</Link>*/}
-          {/*<Link href='/second'>*/}
-          {/*    <button*/}
-          {/*        type='button'*/}
-          {/*    >*/}
-          {/*        {t('to-second-page')}*/}
-          {/*    </button>*/}
-          {/*</Link>*/}
-      </main>
-  )
-}
+export default IndexPage;
 
-export default IndexPage
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const data = { locale };
 
-// export const getStaticProps = async ({ locale }) => ({
-//     props: {
-//         ...await serverSideTranslations(locale, ['common', 'footer']),
-//     }
-// })
+  // Helper function to fetch and extract data safely
+  const fetchData = async (url: string, errorMessage: string) => {
+    try {
+      const response = await fetch(`${https}${url}?value=no-cache`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-// export const getStaticPaths = ({ locales }) => {
-//     return {
-//         paths: [
-//             // if no `locale` is provided only the defaultLocale will be generated
-//             { params: { slug: 'post-1' }, locale: 'en-US' },
-//             { params: { slug: 'post-1' }, locale: 'fr' },
-//         ],
-//         fallback: true,
-//     }
-// }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-export async function getStaticProps({ locale }){
-    let data = {locale}
-    const course_ret = await fetch(`${https}/v1/Course/GetCourseAllDetails?value=no-cache`,{
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data)
-    })
-    const course_result = await course_ret.json()
-    let course_details = await course_result.res.project_details
-
-    const hackathons_ret = await fetch(`${https}/v1/Hackathons/GetHackathonsDetails?value=no-cache`,{
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data)
-    })
-    const hackathons_result = await hackathons_ret.json()
-    let  hackathons_details = await hackathons_result.res.project_details
-
-
-    const activity_ret = await fetch(`${https}/v1/Activity/GetActivityAllDetails?value=no-cache`,{
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data)
-    })
-    const activity_result = await activity_ret.json()
-    let  activity_details = await activity_result.res.project_details
-
-    const media_ret = await fetch(`${https}/v1/Media/GetMediaDetails?value=no-cache`,{
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data)
-    })
-    const media_result = await media_ret.json()
-    let media_details = await media_result.res.project_details
-
-    const community_ret = await fetch(`${https}/v1/Community/GetCommunity?value=no-cache`,{
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data)
-    })
-    const community_result = await community_ret.json()
-    let  community_details = await community_result.res.project_details
-
-    const communityMember_ret = await fetch(`${https}/v1/CommunityMember/GetCommunityMemberDetails?value=no-cache`,{
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data)
-    })
-    const communityMember_result = await communityMember_ret.json()
-    let  communityMember_details = await communityMember_result.res.project_details
-
-    {fallback: false}
-    return {
-        props:{
-            course_details,
-            media_details,
-            community_details,
-            communityMember_details,
-            hackathons_details,
-            activity_details,
-            ...await serverSideTranslations(locale, ['common', 'footer','header']),
-        }
+      const result = await response.json();
+      return result.res?.project_details || [];
+    } catch (error) {
+      console.error(`${errorMessage}: ${error}`);
+      return [];
     }
+  };
 
-}
+  const [
+    course_details,
+    hackathons_details,
+    activity_details,
+    media_details,
+    community_details,
+    communityMember_details,
+  ] = await Promise.all([
+    fetchData('/v1/Course/GetCourseAllDetails', 'Failed to fetch course details'),
+    fetchData('/v1/Hackathons/GetHackathonsDetails', 'Failed to fetch hackathon details'),
+    fetchData('/v1/Activity/GetActivityAllDetails', 'Failed to fetch activity details'),
+    fetchData('/v1/Media/GetMediaDetails', 'Failed to fetch media details'),
+    fetchData('/v1/Community/GetCommunity', 'Failed to fetch community details'),
+    fetchData('/v1/CommunityMember/GetCommunityMemberDetails', 'Failed to fetch community member details'),
+  ]);
+
+  return {
+    props: {
+      course_details,
+      media_details,
+      community_details,
+      communityMember_details,
+      hackathons_details,
+      activity_details,
+      ...await serverSideTranslations(locale, ['common', 'footer', 'header']),
+    },
+  };
+};
+
+const parseJsonSafely = (jsonString: string | undefined, defaultValue: any[] = []) => {
+  if (!jsonString) return defaultValue;
+  try {
+    return JSON.parse(jsonString);
+  } catch (error) {
+    console.error("Failed to parse JSON:", error);
+    return defaultValue;
+  }
+};
+

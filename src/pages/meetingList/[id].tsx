@@ -1,30 +1,30 @@
 import Header from "../../components/header";
 import Tail from "../../components/tail";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import Heads from "../../components/head";
-import {Activity_Alldetail, Activity_detail} from "../../jotai";
+import { Activity_detail} from "../../jotai";
 import {useAtom} from "jotai";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-
 import { https} from "../../constants";
 import {useTranslation} from "next-i18next";
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-const Meeting = (props) =>{
+const Meeting = ({ activity_details }: { activity_details: string }) => {
     const router = useRouter()
-    const [activityList,setActivityList] = useAtom(Activity_detail)
+    const [activityList, setActivityList] = useAtom(Activity_detail)
     const { t } = useTranslation('common')
-    useEffect(()=>{
-        if (router.isReady){
-            setActivityList(JSON.parse(props.activity_details))
 
-            }
-        },[router.isReady])
+    useEffect(() => {
+        if (router.isReady) {
+            setActivityList(JSON.parse(activity_details))
+        }
+    }, [router.isReady, activity_details, setActivityList])
+
     return (
         <div className="mx-auto relative bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
@@ -71,7 +71,7 @@ const Meeting = (props) =>{
                                         <div className="flex justify-between  items-center">
                                             <div className="">
                                                 <Link href={activityList.activityList[0].subLink}>
-                                                    <a className={classNames(activityList.activityList[0].status =="In progress"|| activityList.activityList[0].status =="Not started"?"bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden")} target="_blank">
+                                                    <a className={classNames(activityList.activityList[0].status =="In progress"|| activityList.activityList[0].status =="Not started"?"bg-black text-white rounded-full  px-8 py-2.5":"hidden")} target="_blank">
                                                         {t("订阅")}
                                                     </a>
                                                 </Link>
@@ -98,11 +98,11 @@ const Meeting = (props) =>{
                         {t("往期回顾")}
                     </div>
                     <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-                        {activityList.activityList.map((item,index)=>(
-                            <div key={item.activity} className={ index ==0?"hidden":"rounded-2xl"}>
+                        {activityList.activityList.map((item, index: number) => (
+                            <div key={item.activity} className={index === 0 ? "hidden" : "rounded-2xl"}>
                                 <img className="rounded-t-2xl w-full md:h-64 xl:h-72 2xl:h-80" src={item.poster_1} alt=""/>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
-                                    <div className="flex   flex-wrap">
+                                    <div className="flex flex-wrap">
                                         <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >
                                             {item.activity}
                                         </div>
@@ -127,7 +127,6 @@ const Meeting = (props) =>{
                                 </div>
                             </div>
                         ))}
-
                     </div>
 
                 </div>
@@ -136,6 +135,7 @@ const Meeting = (props) =>{
        </div>
     )
 }
+
 export default Meeting
 
 export const getStaticPaths = async ({locales = [], defaultLocale}) => {

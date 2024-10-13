@@ -2,32 +2,24 @@ import Header from "../../components/header";
 import Tail from "../../components/tail";
 import React, {Fragment, useEffect, useState} from "react";
 import Link from "next/link";
-import ChevronUpIcon from "@heroicons/react/outline/ChevronUpIcon";
 import {Dialog, Disclosure, Transition} from "@headlessui/react";
 import {useRouter} from "next/router";
 import {useAtom} from "jotai";
 import {
     Course_Detail,
-    LoginState,
-    OpenLoginState,
-    PopUpBoxInfo,
-    PopUpBoxState, SignUpCourseBoxData,
+    SignUpCourseBoxData,
     SignUpCourseBoxState,
-    UserEmail
 } from "../../jotai";
 import Heads from "../../components/head";
-import {Pop_up_box, SignUpCourseBox} from "../../components/pop_up_box";
-import {client} from "../../client";
 import Loading from "../../components/loading";
-import {WaitPayPoPUpBox} from "../../components/payState";
 import { https} from "../../constants";
 import {GetStaticPaths, InferGetStaticPropsType} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
+import { ChevronUpIcon } from '@heroicons/react/solid';
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
+// Optimize classNames function
+const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
 type GspPageProps = InferGetStaticPropsType<typeof getStaticProps>
 const  Details = () =>{
@@ -99,31 +91,31 @@ const CourseInfo = () =>{
                 <div className="text-indigo-700 text-2xl mt-20 mb-2">
                     {t("课程大纲")}
                 </div>
-                <div className="mx-auto w-full rounded-2xl   bg-white ">
-                    {courseDetail.course_data.map(item=>(
+                <div className="mx-auto w-full rounded-2xl bg-white">
+                    {courseDetail.course_data.map((item) => (
                         <Disclosure key={item.name}>
                             {({ open }) => (
                                 <>
-                                    <Disclosure.Button className="flex w-full items-center rounded-2xl  bg-white p-4 text-left  font-medium text-black   border-gray-200">
-                                        <div className={classNames(item.content.length !=0?"":"hidden")}>
-                                        <ChevronUpIcon
-                                            className={`${
-                                                open ? '' : 'rotate-180 transform '
-                                            } h-5 w-5 text-black`}
-                                        />
-                                        </div>
-                                        <span key={item.name} className="ml-5">{item.name}</span>
-
+                                    <Disclosure.Button className="flex w-full items-center rounded-2xl bg-white p-4 text-left font-medium text-black border-gray-200">
+                                        {item.content.length > 0 && (
+                                            <ChevronUpIcon
+                                                className={`${
+                                                    open ? 'rotate-180 transform' : ''
+                                                } h-5 w-5 text-black`}
+                                            />
+                                        )}
+                                        <span className="ml-5">{item.name}</span>
                                     </Disclosure.Button>
-                                    <div className="border-b border-gray-200 w-full">
-                                    </div>
-                                    <Disclosure.Panel className={classNames(item.content.length != 0?"px-10 py-4  text-gray-800 font-normal bg-gray-100 list-decimal":"hidden")}>
-                                        {item.content.map(list=>(
-                                            <li key={list.text} className="mt-1.5">
-                                                {list.text}
-                                            </li>
-                                        ))}
-                                    </Disclosure.Panel>
+                                    <div className="border-b border-gray-200 w-full" />
+                                    {item.content.length > 0 && (
+                                        <Disclosure.Panel className="px-10 py-4 text-gray-800 font-normal bg-gray-100 list-decimal">
+                                            {item.content.map((list) => (
+                                                <li key={list.text} className="mt-1.5">
+                                                    {list.text}
+                                                </li>
+                                            ))}
+                                        </Disclosure.Panel>
+                                    )}
                                 </>
                             )}
                         </Disclosure>
@@ -230,7 +222,7 @@ const CourseInfo = () =>{
     )
 }
 
-const CourseDetails = (props) =>{
+const CourseDetails: React.FC<GspPageProps> = (props) =>{
     const router = useRouter()
     const [open, setOpen] = useState(false)
     const [courseDetail,setCourseDetail] = useAtom(Course_Detail)
@@ -301,7 +293,7 @@ const CourseDetails = (props) =>{
                                         </div>
                                     </div>
                                     <div className="mt-10 xl:mt-0 flex justify-center">
-                                        <Link href={courseDetail.link}>
+                                        <Link href={courseDetail.link} legacyBehavior>
                                             <a target="_blank"  className={courseDetail.state=="In progress"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"} >
                                                 {t("立刻报名")}
                                             </a>
@@ -358,7 +350,7 @@ const CourseDetails = (props) =>{
                                     </div>
                                 </div>
                                 <div className="mt-10 xl:mt-0 flex justify-center">
-                                    <Link href={courseDetail.link}>
+                                    <Link href={courseDetail.link} legacyBehavior>
                                         <a target="_blank"  className={courseDetail.state=="In progress"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5":"hidden"} >
                                             {t("立刻报名")}
                                         </a>
@@ -381,9 +373,6 @@ const CourseDetails = (props) =>{
             <Tail/>
          <Loading/>
             <Loading/>
-            <Pop_up_box/>
-            <WaitPayPoPUpBox/>
-            <SignUpCourseBox/>
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={setOpen}>
                     <Transition.Child

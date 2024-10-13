@@ -1,13 +1,12 @@
 import { Popover, Tab, Transition,Menu } from '@headlessui/react';
 import Link from "next/link";
 import { Switch } from '@headlessui/react'
-import {ChevronDownIcon, MenuIcon, XIcon} from "@heroicons/react/outline";
+import {ChevronDownIcon, Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import React, {Fragment, useEffect, useState} from "react";
 import {useAtom} from "jotai";
 import {Language, LoginState, UserEmail} from "../../jotai";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -82,40 +81,34 @@ const Header = () =>{
     const { t } = useTranslation('header')
 
     const navigation = [
-        { id:1 ,name:`${t("课程")}`, href: '/course' },
-        { id:2 ,name:`${t("Hackathons")}`, href: '/hackathons' },
-        { id:3 ,name: `${t("活动")}`, href: '/meeting' },
-        { id:4 ,name: `${t("关于我们")}`, href: '/#About' },
-        // { id:5 ,name: 'Job Fair', href: '/JobFair/开发' },
+        { id: 1, name: t("课程"), href: '/course' },
+        { id: 2, name: t("Hackathons"), href: '/hackathons' },
+        { id: 3, name: t("活动"), href: '/meeting' },
+        { id: 4, name: t("关于我们"), href: '/#About' },
     ]
 
-    if(typeof window !== "undefined"){
-        window.onscroll = function() {myFunction()};
-    }
-    function myFunction() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            setScroll(true)
-        } else {
-            setScroll(false)
-        }
-    };
-    const loginOut = () =>{
+    // Replace window.onscroll with useEffect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScroll(window.scrollY > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const loginOut = () => {
         setLoginState(false);
-        setUserEmail({user_email:"",username:""})
-
-        router.push('/')
+        setUserEmail({ user_email: "", username: "" });
+        router.push('/');
     }
-    function languageChange() {
-        console.log("--------------------",language)
-        if(language =="cn"){
-            setLanguage("en")
-            router.push({ pathname, query }, asPath, { locale: "en" })
-        }else {
-            setLanguage("cn")
-            router.push({ pathname, query }, asPath, { locale: "cn" })
-        }
 
+    const languageChange = () => {
+        const newLanguage = language === "cn" ? "en" : "cn";
+        setLanguage(newLanguage);
+        router.push({ pathname, query }, asPath, { locale: newLanguage });
     }
+
     useEffect(()=>{
         if(router.isReady){
             if(router.locale == "cn"){
@@ -134,7 +127,7 @@ const Header = () =>{
 
                     <div className=" flex  justify-between lg:justify-start">
                         <div className="flex justify-start  ">
-                            <Link  href="/">
+                            <Link  href="/" legacyBehavior>
                                 <a>
                                     <span className="sr-only">Workflow</span>
                                     <img
@@ -151,7 +144,7 @@ const Header = () =>{
                     <Tab.Group as="nav" className="hidden  lg:flex  space-x-8  text-white ">
                         {navigation.map((item) => (
                             <div key={item.name}>
-                                <Link  href={item.href} >
+                                <Link  href={item.href} legacyBehavior>
                                     <a  className=" ">
                                         <div  className='w-20 py-2.5 text-sm leading-5 text-center  rounded-lg text-sm font-medium text-black '>
                                             {item.name}
@@ -196,66 +189,13 @@ const Header = () =>{
                             </Switch>
 
                         </div>
-                        {/*<Link href="/login">*/}
-                        {/*    <a className={loginState?"hidden":" ml-4 text-base border border-gray-500 rounded-full cursor-pointer px-5"}>*/}
-                        {/*        登陆*/}
-                        {/*    </a>*/}
-                        {/*</Link>*/}
-                        {/*<div className={loginState?"mt-1.5 ml-4":"hidden"}>*/}
-                        {/*    <Menu as="div" className=" relative ">*/}
-                        {/*            <Menu.Button className="inline-flex w-7  rounded-full ">*/}
-                        {/*                <img className="rounded-full " src="/login.png" alt=""/>*/}
-                        {/*            </Menu.Button>*/}
-                        {/*        <Transition*/}
-                        {/*            as={Fragment}*/}
-                        {/*            enter="transition ease-out duration-100"*/}
-                        {/*            enterFrom="transform opacity-0 scale-95"*/}
-                        {/*            enterTo="transform opacity-100 scale-100"*/}
-                        {/*            leave="transition ease-in duration-75"*/}
-                        {/*            leaveFrom="transform opacity-100 scale-100"*/}
-                        {/*            leaveTo="transform opacity-0 scale-95"*/}
-                        {/*        >*/}
-                        {/*            <Menu.Items className="absolute right-0 mt-2 w-28  divide-y divide-gray-100 rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">*/}
-                        {/*                <div className="px-1 py-1 text-center">*/}
-                        {/*                    <Menu.Item>*/}
-                        {/*                            <Link href="/homepage">*/}
-                        {/*                                <a className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">*/}
-                        {/*                                    个人主页*/}
-                        {/*                                </a>*/}
-                        {/*                            </Link>*/}
-                        {/*                    </Menu.Item>*/}
-                        {/*                </div>*/}
-                        {/*                <div className="px-1 py-1 ">*/}
-                        {/*                    <Menu.Item>*/}
-                        {/*                        <Link  href="/dashboard">*/}
-                        {/*                            <a className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">*/}
-                        {/*                                Dashboard*/}
-                        {/*                            </a>*/}
-                        {/*                        </Link>*/}
-                        {/*                    </Menu.Item>*/}
-                        {/*                </div>*/}
-                        {/*                <div className="px-1 py-1 ">*/}
-                        {/*                    <Menu.Item>*/}
-
-                        {/*                            <button onClick={loginOut} className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">*/}
-                        {/*                                登出*/}
-                        {/*                            </button>*/}
-                        {/*                    </Menu.Item>*/}
-                        {/*                </div>*/}
-
-
-                        {/*            </Menu.Items>*/}
-                        {/*        </Transition>*/}
-                        {/*    </Menu>*/}
-                        {/*</div>*/}
-
                     </div>
 
                     {/*手机版*/}
                     <div className="-mr-2  my-0.5 lg:hidden">
                         <Popover.Button className="bg-white  rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100  ">
                             <span className="sr-only">Open menu</span>
-                            <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                         </Popover.Button>
                     </div>
                 </div>
@@ -286,7 +226,7 @@ const Header = () =>{
                                         <div className="-mr-2">
                                             <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100  ">
                                                 <span className="sr-only">Close menu</span>
-                                                <XIcon className="h-6 w-6" aria-hidden="true" />
+                                                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                                             </Popover.Button>
                                         </div>
                                     </div>
@@ -295,7 +235,7 @@ const Header = () =>{
                                 <div className="py-6 px-5">
                                     <div className="grid grid-cols-1 gap-4 md:flex justify-between  items-center">
                                         {navigation.map((item) => (
-                                            <Link key={item.name} href={item.href}>
+                                            <Link key={item.name} href={item.href} legacyBehavior>
                                                 <a
                                                     className="text-base font-medium text-gray-900    transition duration-700 "
                                                 >
@@ -336,60 +276,6 @@ const Header = () =>{
                                 </span>
                                             </Switch>
                                         </div>
-
-                                    {/*<Link href="/login">*/}
-                                    {/*    <a className={loginState?"hidden":" ml-4 text-base border border-gray-500 rounded-full cursor-pointer px-5"}>*/}
-                                    {/*        登陆*/}
-                                    {/*    </a>*/}
-                                    {/*</Link>*/}
-
-                                    {/*<div className={loginState?"mt-1.5 ml-4":"hidden"}>*/}
-                                    {/*    <Menu as="div" className=" relative ">*/}
-                                    {/*        <Menu.Button className="inline-flex w-7  rounded-full ">*/}
-                                    {/*            <img className="rounded-full " src="/login.png" alt=""/>*/}
-                                    {/*        </Menu.Button>*/}
-                                    {/*        <Transition*/}
-                                    {/*            as={Fragment}*/}
-                                    {/*            enter="transition ease-out duration-100"*/}
-                                    {/*            enterFrom="transform opacity-0 scale-95"*/}
-                                    {/*            enterTo="transform opacity-100 scale-100"*/}
-                                    {/*            leave="transition ease-in duration-75"*/}
-                                    {/*            leaveFrom="transform opacity-100 scale-100"*/}
-                                    {/*            leaveTo="transform opacity-0 scale-95"*/}
-                                    {/*        >*/}
-                                    {/*            <Menu.Items className="absolute right-0 mt-2 w-28  divide-y divide-gray-100 rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">*/}
-                                    {/*                <div className="px-1 py-1 text-center">*/}
-                                    {/*                    <Menu.Item>*/}
-                                    {/*                        <Link href="/homepage">*/}
-                                    {/*                            <a className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">*/}
-                                    {/*                                个人主页*/}
-                                    {/*                            </a>*/}
-                                    {/*                        </Link>*/}
-                                    {/*                    </Menu.Item>*/}
-                                    {/*                </div>*/}
-                                    {/*                <div className="px-1 py-1 ">*/}
-                                    {/*                    <Menu.Item>*/}
-                                    {/*                        <Link  href="/dashboard">*/}
-                                    {/*                            <a className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">*/}
-                                    {/*                                Dashboard*/}
-                                    {/*                            </a>*/}
-                                    {/*                        </Link>*/}
-                                    {/*                    </Menu.Item>*/}
-                                    {/*                </div>*/}
-                                    {/*                <div className="px-1 py-1 ">*/}
-                                    {/*                    <Menu.Item>*/}
-
-                                    {/*                        <button onClick={loginOut} className="group flex w-full justify-center items-center rounded-md px-2 py-2 text-sm">*/}
-                                    {/*                            登出*/}
-                                    {/*                        </button>*/}
-                                    {/*                    </Menu.Item>*/}
-                                    {/*                </div>*/}
-
-
-                                    {/*            </Menu.Items>*/}
-                                    {/*        </Transition>*/}
-                                    {/*    </Menu>*/}
-                                    {/*</div>*/}
                                 </div>
                             </div>
                         </Popover.Panel>

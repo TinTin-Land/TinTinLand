@@ -3,26 +3,36 @@ import {JobFairInfoState} from "../../jotai";
 import React, {Fragment, useEffect, useState} from "react";
 import Header from "../../components/header";
 import Link from "next/link";
-import {Listbox, Tab, Transition} from "@headlessui/react";
+import {Listbox, Transition} from "@headlessui/react";
 import Tail from "../../components/tail";
-import JobFair_Navigation from "../../components/JobFair_navigation";
 import { useRouter } from "next/router";
 import Info from "../../info";
 import JobFair_info from "../../components/JobFair_info";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
-import {Talent_pool,Talent_pool_navigation} from "../../components/TalentPool";
+import {Talent_pool_navigation, TalentPool} from "../../components/TalentPool";
 import Heads from "../../components/head";
-function classNames(...classes) {
+
+
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
+interface Person {
+    name: string;
+    avatar: string;
+    location: string;
+    twitter: string;
+    usertype: { type: string }[];
+    experience: string;
+    email: string;
+}
 
-const JobFair= () =>{
-    const People = [
+const JobFair: React.FC = () => {
+    const People: Person[] = [
         {
-            name:"TinTinLand",
-            avatar:"/people/赵杲.png",
-            location:"hangzhou",
+            name: "TinTinLand",
+            avatar: "/people/赵杲.png",
+            location: "hangzhou",
             twitter:"",
             usertype:[
                 {
@@ -78,7 +88,7 @@ const JobFair= () =>{
             twitter:"",
             usertype:[
                 {
-                    type:"产品经理"
+                    type:"产品经���"
                 },
                 {
                     type:"DAO贡献者"
@@ -113,13 +123,9 @@ const JobFair= () =>{
     const [selected, setSelected] = useState(Talent_pool_navigation[0])
     useEffect(()=>{
         if (router.isReady){
-            const content = router.query.slug[0]
-            const fetchUserBounty = async () => {
-                setPathname(content)
-                setData(Info[content])
-            }
-            fetchUserBounty()
-
+            const content = router.query.slug[0] as string;
+            setPathname(content);
+            setData(Info[content]);
         }
     },[router.isReady,router.query.slug])
 
@@ -275,9 +281,8 @@ const JobFair= () =>{
                         ))}
                      </div>
                     </div>
-
                     <div className="hidden xl:block xl:w-4/12 xl:pl-20">
-                        <Talent_pool/>
+                        <TalentPool />
                     </div>
                 </div>
 
