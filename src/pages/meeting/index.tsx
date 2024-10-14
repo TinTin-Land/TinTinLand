@@ -112,19 +112,21 @@ const ActivityCard = ({ item, t }) => (
           {item.subLink && (item.status === "In progress" || item.status === "Not started") && (
             <Link
               href={item.subLink}
-              className="text-xs 2xl:text-xl bg-black text-white rounded-full px-10 py-2.5"
               legacyBehavior>
-              {t("订阅")}
+          <a   className="text-xs 2xl:text-xl bg-black text-white rounded-full px-10 py-2.5">
+                                                    {t("订阅")}
+                                                </a>
             </Link>
           )}
         </div>
         {item.videoLink && item.status === "Done" && (
           <Link
             href={item.videoLink}
-            className="text-black border border-black rounded-full px-8 py-2.5"
             target="_blank"
             legacyBehavior>
-            {t("了解更多")}
+     <a  className="text-black border border-black rounded-full px-8 py-2.5" target="_blank">
+                                                {t("了解更多")}
+                                            </a>
           </Link>
         )}
       </div>

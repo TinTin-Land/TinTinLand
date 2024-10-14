@@ -105,17 +105,15 @@ const Tail=()=>{
                             href="https://discord.gg/6b2QNSYgmz"
                             className="text-white text-3xl flex items-center font-light justify-center"
                             target="_blank"
-                            legacyBehavior>
-
+                        >
                             <div>
-                                   {t("加入TinTinLand社区")}
+                                {t("加入TinTinLand社区")}
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 transform rotate-45 inline-block ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd"
+                                          d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                                          clipRule="evenodd"/>
+                                </svg>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 transform rotate-45" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd"
-                                      d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
-                                      clipRule="evenodd"/>
-                            </svg>
-
                         </Link>
                         <div className="my-2 text-gray-500 text-sm flex justify-center md:justify-start ">
                                 {t("点击进入discord")}

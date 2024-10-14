@@ -38,8 +38,8 @@ const Hackathons = ({ hackathons_details }) => {
       <Header />
       <div className="lg:px-10 xl:px-20 relative px-5 pt-24 mx-auto">
         {/* Hero section */}
-        <div className="p-10 rounded-xl bg-left md:bg-cover overflow-hidden bg-[url('/images/hackathon_bg.png')]">
-          <div className="text-[#5448AE] text-xl mb-5">{t('hackathons')}</div>
+        <div className="p-10 rounded-xl bg-left md:bg-cover overflow-hidden bg-[url('/黑客松_bg.png')]">
+          <div className="text-[#5448AE] text-xl mb-5">{t('Hackathons')}</div>
           <div className="text-4xl mb-5">
             <div className="mb-2">{t('建立与全球开发者的联系')}</div>
             <div>{t('一起组队玩转黑客松')}</div>
@@ -71,15 +71,18 @@ const Hackathons = ({ hackathons_details }) => {
                           href={item.registrationLink}
                           className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5"
                           legacyBehavior>
-                          {t('报名')}
+                         <a  className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5">
+                                                {t("立刻报名")}
+                                            </a>
                         </Link>
                       )}
                       <Link
                         href={item.activityLink}
-                        className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"
                         target="_blank"
                         legacyBehavior>
-                        {t('了解更多')}
+                       <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5" target="_blank">
+                                                {t("了解更多")}
+                                            </a>
                       </Link>
                     </div>
                   </div>

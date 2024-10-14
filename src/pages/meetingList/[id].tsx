@@ -67,30 +67,32 @@ const Meeting = ({ activity_details }: { activity_details: string }) => {
                                         </div>
 
                                     <div className="flex  pt-6  xl:pt-20">
-
                                         <div className="flex justify-between  items-center">
                                             <div className="">
-                                                <Link
-                                                    href={activityList.activityList[0].subLink}
-                                                    className={classNames(activityList.activityList[0].status =="In progress"|| activityList.activityList[0].status =="Not started"?"bg-black text-white rounded-full  px-8 py-2.5":"hidden")}
-                                                    target="_blank"
-                                                    legacyBehavior>
-
-                                                    {t("订阅")}
-
-                                                </Link>
+                                                {activityList.activityList[0].subLink && (
+                                                    <Link
+                                                        href={activityList.activityList[0].subLink}
+                                                        target="_blank"
+                                                        legacyBehavior
+                                                    >
+                                                        <a className={classNames(activityList.activityList[0].status =="In progress"|| activityList.activityList[0].status =="Not started"?"bg-black text-white rounded-full  px-8 py-2.5":"hidden")}>
+                                                            {t("订阅")}
+                                                        </a>
+                                                    </Link>
+                                                )}
                                             </div>
                                             <div className="">
-                                                <Link
-                                                    href={activityList.activityList[0].videoLink}
-                                                    className={activityList.activityList[0].status !=="Done"?"hidden":" text-black border border-black rounded-full  px-4 py-2.5"}
-                                                    target="_blank"
-                                                    legacyBehavior>
-
-                                                    {t("了解更多")}
-
-                                                </Link>
-
+                                                {activityList.activityList[0].videoLink && (
+                                                    <Link
+                                                        href={activityList.activityList[0].videoLink}
+                                                        target="_blank"
+                                                        legacyBehavior
+                                                    >
+                                                        <a className={activityList.activityList[0].status !=="Done"?"hidden":" text-black border border-black rounded-full  px-4 py-2.5"}>
+                                                            {t("了解更多")}
+                                                        </a>
+                                                    </Link>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -120,24 +122,28 @@ const Meeting = ({ activity_details }: { activity_details: string }) => {
                                     </div>
                                     <div className="flex mt-5 items-center ">
                                         <div className="mt-4">
-                                            <Link
-                                                href={item.subLink}
-                                                className={item.status == "In progress"||item.status == "Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}
-                                                legacyBehavior>
-
-                                                {t("订阅")}
-
-                                            </Link>
+                                            {item.subLink && (
+                                                <Link
+                                                    href={item.subLink}
+                                                    legacyBehavior
+                                                >
+                                                    <a className={item.status == "In progress"||item.status == "Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                                                        {t("订阅")}
+                                                    </a>
+                                                </Link>
+                                            )}
                                         </div>
-                                        <Link
-                                            href={item.videoLink}
-                                            className={item.status !== "Done"?"hidden":" text-black border border-black rounded-full  px-8 py-2.5"}
-                                            target="_blank"
-                                            legacyBehavior>
-
-                                            {t("了解更多")}
-
-                                        </Link>
+                                        {item.videoLink && (
+                                            <Link
+                                                href={item.videoLink}
+                                                target="_blank"
+                                                legacyBehavior
+                                            >
+                                                <a className={item.status !== "Done"?"hidden":" text-black border border-black rounded-full  px-8 py-2.5"}>
+                                                    {t("了解更多")}
+                                                </a>
+                                            </Link>
+                                        )}
                                     </div>
                                 </div>
                             </div>

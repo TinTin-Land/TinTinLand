@@ -177,7 +177,7 @@ const CourseButton = ({ item }) => {
   }
 
   return (
-    <Link href={href} passHref>
+    <Link href={href} passHref legacyBehavior>
       <a target="_blank" rel="noopener noreferrer" className={buttonClass}>
         {t(buttonText)}
       </a>
@@ -456,20 +456,20 @@ const Activity = ({ data }: { data: any[] }) => {
                   <div className="">
                     <Link
                       href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}
                       legacyBehavior>
-
-                      {t("订阅")}
-
+                      <a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}>
+                                                {t("订阅")}
+                      </a>
                     </Link>
                   </div>
                   <div className=" text-sm">
                     <Link
                       href={`/meetingList/${activityList[0]?.id}`}
-                      className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5"
                       legacyBehavior>
 
-                      {t("了解更多")}
+<a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5">
+                                                      {t("了解更多")}
+                                            </a>
 
                     </Link>
                   </div>
@@ -487,20 +487,22 @@ const Activity = ({ data }: { data: any[] }) => {
                   <div className="">
                     <Link
                       href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}
                       legacyBehavior>
 
-                      {t("订阅")}
+<a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                                                   {t("订阅")}
+                                            </a>
 
                     </Link>
                   </div>
                   <div className="xl:w-52 text-sm">
                     <Link
                       href={`/meetingList/${activityList[0]?.id}`}
-                      className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"}
                       legacyBehavior>
 
-                      {t("了解更多")}
+<a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
+                                                      {t("了解更多")}
+                                            </a>
 
                     </Link>
                   </div>
@@ -534,18 +536,20 @@ const Activity = ({ data }: { data: any[] }) => {
                 <div className="flex items-center">
                   <Link
                     href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                    className={activityList[0]?.activityList?.[0]?.status == "In progress" || activityList[0]?.activityList?.[0]?.status == "Not started" ? "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5" : "hidden"}
                     legacyBehavior>
 
-                    {t("订阅")}
+<a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5 ":"hidden"}>
+                                                   {t("订阅")}
+                                            </a>
 
                   </Link>
                   <Link
                     href={`/meetingList/${activityList[0]?.id}`}
-                    className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 xl:px-10 py-2.5"}
                     legacyBehavior>
 
-                    {t("了解更多")}
+<a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4 xl:px-8 py-2.5"}>
+                                                      {t("了解更多")}
+                                            </a>
 
                   </Link>
                 </div>
@@ -565,20 +569,23 @@ const Activity = ({ data }: { data: any[] }) => {
                     <div className="">
                       <Link
                         href={activityList[1]?.activityList?.[0]?.subLink || ""}
-                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}
+                       
                         legacyBehavior>
 
-                        {t("订阅")}
+<a className={activityList[1].activityList[0].status == "In progress"||activityList[1].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                                                       {t("订阅")}
+                                                </a>
 
                       </Link>
                     </div>
                     <div className="xl:w-52 text-sm">
                       <Link
                         href={`/meetingList/${activityList[1]?.id}`}
-                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}
                         legacyBehavior>
 
-                        {t("了解更多")}
+<a className={activityList[1].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
+                                                          {t("了解更多")}
+                                                </a>
 
                       </Link>
                     </div>
@@ -613,20 +620,21 @@ const Activity = ({ data }: { data: any[] }) => {
                     <div className="  ">
                       <Link
                         href={activityList[1]?.activityList?.[0]?.subLink || ""}
-                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}
                         legacyBehavior>
 
-                        {t("订阅")}
-
+<a className={activityList[1].activityList[0].status == "In progress"||activityList[1].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full px-7   py-2.5 mr-5 ":"hidden"}>
+                                                       {t("订阅")}
+                                                </a>
                       </Link>
                     </div>
                     <div className="  ">
                       <Link
                         href={`/meetingList/${activityList[1]?.id}`}
-                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}
                         legacyBehavior>
 
-                        {t("了解更多")}
+<a className={activityList[1].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
+                                                          {t("了解更多")}
+                                                </a>
 
                       </Link>
                     </div>
@@ -645,21 +653,21 @@ const Activity = ({ data }: { data: any[] }) => {
                   <div className="">
                     <Link
                       href={activityList[2]?.activityList?.[0]?.subLink || ""}
-                      className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}
                       legacyBehavior>
 
-                      {t("订阅")}
-
+<a className={activityList[2].activityList[0].status == "In progress"||activityList[2].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                                                       {t("订阅")}
+                                                </a>
                     </Link>
                   </div>
                   <div className="xl:w-52 text-sm">
                     <Link
                       href={`/meetingList/${activityList[2]?.id}`}
-                      className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}
                       legacyBehavior>
 
-                      {t("了解更多")}
-
+<a className={activityList[2].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
+                                                          {t("了解更多")}
+                                                </a>
                     </Link>
                   </div>
                 </div>
@@ -691,20 +699,21 @@ const Activity = ({ data }: { data: any[] }) => {
                     <div className="  ">
                       <Link
                         href={activityList[2]?.activityList?.[0]?.subLink || ""}
-                        className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}
                         legacyBehavior>
 
-                        {t("订阅")}
+<a className={activityList[2].activityList[0].status == "In progress"||activityList[2].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
+                                                       {t("订阅")}
+                                                </a>
 
                       </Link>
                     </div>
                     <div className="">
                       <Link
                         href={`/meetingList/${activityList[2]?.id}`}
-                        className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}
                         legacyBehavior>
-
-                        {t("了解更多")}
+  <a className={activityList[2].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
+                                                          {t("了解更多")}
+                                                </a>
 
                       </Link>
                     </div>
@@ -810,7 +819,7 @@ const Media = ({ data }: { data: any[] }) => {
         <ul className="flex mb-2 absolute">
           {media.concat(media).map((item, index) => (
             <li key={`${item.img}-${index}`} className="w-36 xl:w-44 bg-white rounded-xl mr-4">
-              <Link href={item.href} passHref>
+              <Link href={item.href} passHref legacyBehavior>
                 <a target="_blank" rel="noopener noreferrer">
                   <img className="filter grayscale hover:grayscale-0 transition duration-300" src={item.img} alt="" />
                 </a>
@@ -871,7 +880,7 @@ const Community = ({ data }) => {
         <h3 className="flex mb-2 absolute">
           {community.concat(community).map((item, index) => (
             <li key={`${item.img}-${index}`} className="w-36 xl:w-44 bg-white rounded-xl mr-4 list-none">
-              <Link href={item.href} passHref>
+              <Link href={item.href} passHref legacyBehavior>
                 <a target="_blank" rel="noopener noreferrer">
                   <img className="filter grayscale hover:grayscale-0 transition duration-300" src={item.img} alt="" />
                 </a>
