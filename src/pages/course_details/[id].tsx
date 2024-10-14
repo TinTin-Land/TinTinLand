@@ -7,8 +7,6 @@ import {useRouter} from "next/router";
 import {useAtom} from "jotai";
 import {
     Course_Detail,
-    SignUpCourseBoxData,
-    SignUpCourseBoxState,
 } from "../../jotai";
 import Heads from "../../components/head";
 import Loading from "../../components/loading";
@@ -16,7 +14,7 @@ import { https} from "../../constants";
 import {GetStaticPaths, InferGetStaticPropsType} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
-import { ChevronUpIcon } from '@heroicons/react/solid';
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 
 // Optimize classNames function
@@ -227,21 +225,11 @@ const CourseDetails: React.FC<GspPageProps> = (props) =>{
     const router = useRouter()
     const [open, setOpen] = useState(false)
     const [courseDetail,setCourseDetail] = useAtom(Course_Detail)
-    const [,setSignUpCourseBox] = useAtom(SignUpCourseBoxState)
-    const [,setSignUpCourseData] =useAtom(SignUpCourseBoxData)
     const { t } = useTranslation('common')
     const WeiXinImg = {
         img:"/tintinVX.png"
     }
-    // const Signup = (img,courseName) =>{
-    //     setSignUpCourseBox(true)
-    //     setSignUpCourseData({
-    //         img,
-    //         courseName,
-    //         price: "100"
-    //     })
-    // }
-
+  
     useEffect(()=>{
                 const project_details_list = JSON.parse(props.project_details)
                 const project_details = project_details_list[0]

@@ -1,18 +1,25 @@
+import React from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { useEffect } from 'react';
 
 import Home from './home';
 import Heads from '../components/head';
 import { https } from '../constants';
 
-const IndexPage: NextPage = (props) => {
-  const { t } = useTranslation('common');
+// 定义Home组件的props类型
+interface HomeProps {
+  course_details: any[];
+  media_details: any[];
+  community_details: any[];
+  communityMember_details: any[];
+  hackathons_details: any[];
+  activity_details: any[];
+  // 添加其他必要的prop类型
+}
 
-  useEffect(() => {
-    // Client-side only code
-  }, []);
+const IndexPage: NextPage<HomeProps> = (props) => {
+  const { t } = useTranslation('common');
 
   return (
     <main>
@@ -24,7 +31,7 @@ const IndexPage: NextPage = (props) => {
 
 export default IndexPage;
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
   const data = { locale };
 
   // Helper function to fetch and extract data safely
@@ -41,10 +48,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       }
 
       const result = await response.json();
-      return result.res?.project_details || [];
+      return JSON.stringify(result.res?.project_details || []);
     } catch (error) {
       console.error(`${errorMessage}: ${error}`);
-      return [];
+      return '[]';
     }
   };
 
@@ -66,15 +73,13 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
   return {
     props: {
-      course_details,
-      media_details,
-      community_details,
-      communityMember_details,
-      hackathons_details,
-      activity_details,
+      course_details: JSON.parse(course_details),
+      media_details: JSON.parse(media_details),
+      community_details: JSON.parse(community_details),
+      communityMember_details: JSON.parse(communityMember_details),
+      hackathons_details: JSON.parse(hackathons_details),
+      activity_details: JSON.parse(activity_details),
       ...(await serverSideTranslations(locale, ['common', 'footer', 'header'])),
     },
   };
 };
-
-

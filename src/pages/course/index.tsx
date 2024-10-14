@@ -6,10 +6,6 @@ import Heads from "../../components/head";
 import {useAtom} from "jotai";
 import {
     Course_data,
-    LoginState,
-    SignUpCourseBoxData,
-    SignUpCourseBoxState,
-    UserEmail
 } from "../../jotai";
 import Loading from "../../components/loading";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
@@ -17,27 +13,10 @@ import {useTranslation} from "next-i18next";
 import {https} from "../../constants";
 import Image from 'next/image';
 
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-
 const Course = ({ course_details }) =>{
-    const [,setSignUpCourseBox] = useAtom(SignUpCourseBoxState)
-    const [,setSignUpCourseData] =useAtom(SignUpCourseBoxData)
     const { t } = useTranslation('common')
     const [courseInfo,setCourseInfo] = useAtom(Course_data)
-    const [isLoggedIn] = useAtom(LoginState);
-    const [userEmail] = useAtom(UserEmail);
 
-    const Signup = (img,courseName) =>{
-        setSignUpCourseBox(true)
-        setSignUpCourseData({
-            img,
-            courseName,
-            price: "100"
-        })
-    }
 
     useEffect(()=>{
         setCourseInfo(JSON.parse(course_details));

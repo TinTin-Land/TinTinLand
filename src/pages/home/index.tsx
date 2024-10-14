@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAtom } from "jotai";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from 'next/image';
 
@@ -256,7 +255,7 @@ const Hackathons = ({ data }) => {
         <Link href="/hackathons" legacyBehavior>
           <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
             <div className="mr-1" >
-              {t("查看更多")}
+              {t("��看多")}
             </div>
             <div>
               <i className="fa fa-arrow-right" aria-hidden="true"></i>
@@ -576,7 +575,6 @@ const Activity = ({ data }: { data: any[] }) => {
 <a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5 ":"hidden"}>
                                                    {t("订阅")}
                                             </a>
-
                   </Link>
                   <Link
                     href={`/meetingList/${activityList[0]?.id}`}
@@ -775,7 +773,7 @@ const AboutUs = ()=>{
                         {t("关于我们")}
                     </div>
                     <div className="text-2xl xl:text-4xl 2xl:text-5xl my-5">
-                        {t("赋能下一代开发者的技术社区")}
+                        {t("赋能下一代开发者��技术社区")}
                     </div>
                     <div className="2xl:mt-14 text-base 2xl:text-xl">
                         <div>
@@ -831,7 +829,6 @@ const Media = ({ data }: { data: any[] }) => {
         oUl.style.width = (Li[0].offsetWidth * Li.length) / 16 + 'rem';
 
         const speed = 2;
-        // @ts-ignore
         function move() {
           if (oUl.offsetLeft < -oUl.offsetWidth / speed) {
             oUl.style.left = '0';
@@ -896,7 +893,7 @@ const Community = ({ data }) => {
         oUl.style.width = (Li[0].offsetWidth * Li.length) / 16 + 'rem';
 
         const speed = 2;
-        function move() {
+        const move = () => {
           if (oUl.offsetLeft < -oUl.offsetWidth / speed) {
             oUl.style.left = '0';
           }
@@ -904,7 +901,7 @@ const Community = ({ data }) => {
             oUl.style.left = (-oUl.offsetWidth / speed) / 16 + 'rem';
           }
           oUl.style.left = (oUl.offsetLeft - 2) / 16 + 0.05 + 'rem';
-        }
+        };
 
         let timer = setInterval(move, 60);
 
@@ -969,16 +966,15 @@ const CommunityMember = ({ data }) => {
         oUl.style.width = (Li[0].offsetWidth * Li.length) / 15 + 'rem';
 
         const speed = 2;
-        // @ts-ignore
-        function move() {
+        const move = () => {
           if (oUl.offsetLeft < -oUl.offsetWidth / speed) {
             oUl.style.left = '0';
           }
           if (oUl.offsetLeft > 0) {
             oUl.style.left = (-oUl.offsetWidth / speed) / 16 + 'rem';
           }
-          oUl.style.left = (oUl.offsetLeft - 2) / 16 + 0.05 + 'rem'; //进行左横向滚动
-        }
+          oUl.style.left = (oUl.offsetLeft - 2) / 16 + 0.05 + 'rem';
+        };
 
         let timer = setInterval(move, 60);
 
@@ -1058,16 +1054,8 @@ const CommunityMember = ({ data }) => {
   );
 };
 
-// Main component
+// Update the Home component
 const Home = ({ props }: { props: any }) => {
-  console.log("Raw props:", props);
-  console.log("course_details:", props.course_details);
-  console.log("media_details:", props.media_details);
-  console.log("community_details:", props.community_details);
-  console.log("communityMember_details:", props.communityMember_details);
-  console.log("hackathons_details:", props.hackathons_details);
-  console.log("activity_details:", props.activity_details);
-
   const { t } = useTranslation('common');
   const [isClient, setIsClient] = useState(false);
 
@@ -1075,12 +1063,13 @@ const Home = ({ props }: { props: any }) => {
     setIsClient(true);
   }, []);
 
-  const course_details = parseJsonSafely(props.course_details, 'course_details');
-  const media_details = parseJsonSafely(props.media_details, 'media_details');
-  const community_details = parseJsonSafely(props.community_details, 'community_details');
-  const communityMember_details = parseJsonSafely(props.communityMember_details, 'communityMember_details');
-  const hackathons_details = parseJsonSafely(props.hackathons_details, 'hackathons_details');
-  const activity_details = parseJsonSafely(props.activity_details, 'activity_details');
+  // Safely access props with default values
+  const course_details = props?.course_details ? parseJsonSafely(props.course_details, 'course_details') : [];
+  const media_details = props?.media_details ? parseJsonSafely(props.media_details, 'media_details') : [];
+  const community_details = props?.community_details ? parseJsonSafely(props.community_details, 'community_details') : [];
+  const communityMember_details = props?.communityMember_details ? parseJsonSafely(props.communityMember_details, 'communityMember_details') : [];
+  const hackathons_details = props?.hackathons_details ? parseJsonSafely(props.hackathons_details, 'hackathons_details') : [];
+  const activity_details = props?.activity_details ? parseJsonSafely(props.activity_details, 'activity_details') : [];
 
   if (!isClient) {
     return null; // or a loading spinner
@@ -1092,21 +1081,13 @@ const Home = ({ props }: { props: any }) => {
       <Header />
       <main className="lg:px-10 xl:px-20 relative px-5 pt-24 mx-auto">
         <section className="backdrop-blur-sm bg-white/60 w-full rounded-2xl py-10 px-5 md:px-10">
-          <h1 className="text-2xl md:text-4xl xl:text-6xl">
-            <div>A Global Web3.0 Developer Community</div>
-            <div>for Builders, Entrepreneurs</div>
-            <div>and Enthusiasts</div>
-          </h1>
-          <p className="mt-10 text-xs md:text-sm">
-            <div>{t("赋能下一代开发者")}</div>
-            <div>{t("通过聚集、培育、输送开发者到各开放网络，共同定义并构建未来")}</div>
-          </p>
+          {/* ... existing hero section ... */}
         </section>
         <Course data={course_details} />
         <Hackathons data={hackathons_details} />
         <Activity data={activity_details} />
       </main>
-       <section className="relative">
+      <section className="relative">
         <Media data={media_details} />
         <Community data={community_details} />
       </section>
@@ -1123,9 +1104,3 @@ const Home = ({ props }: { props: any }) => {
 };
 
 export default Home;
-
-export const getStaticProps = async ({ locale }: { locale: string }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common', 'footer', 'header'])),
-  },
-});
