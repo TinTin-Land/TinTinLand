@@ -132,9 +132,10 @@ const CourseCard = ({ item, t }) => {
                     {activeButton && (
                         activeButton.isLink ? (
                             (<Link
-                                href={activeButton.href}
-                                target="_blank"
-                                className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5">
+                            href={activeButton.href}
+                            target="_blank"
+                            className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5"
+                            legacyBehavior>
 
                                 {activeButton.text}
 
@@ -147,7 +148,8 @@ const CourseCard = ({ item, t }) => {
                     )}
                     <Link
                         href={`/course_details/${item.id}`}
-                        className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5">
+                        className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"
+                        legacyBehavior>
 
                         {t("了解更多")}
 

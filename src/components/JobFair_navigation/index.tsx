@@ -58,7 +58,8 @@ const JobFair_Navigation = () =>{
                         className={classNames(
                             isActive(item.title) ? 'bg-white shadow-[0_2px_16px_-1px_rgb(0,0,0,0.1)] shadow-rose-500/50' : '',
                             "flex justify-between p-2 text-sm md:text-xl text-black rounded-xl px-4"
-                        )}>
+                        )}
+                        legacyBehavior>
 
                         <div className="font-semibold">{item.title}</div>
                         <div className="font-normal">{item.number}</div>
@@ -67,12 +68,13 @@ const JobFair_Navigation = () =>{
                     <div>
                         {item.sort.map(subItem => (
                             (<Link
-                                key={subItem.list}
-                                href={`/projects/${subItem.list}`}
-                                className={classNames(
-                                    isActive(subItem.list) ? 'bg-white shadow-[0_2px_16px_-1px_rgb(0,0,0,0.1)] shadow-rose-500/50' : '',
-                                    "flex justify-between p-2 text-sm md:text-base text-black rounded-xl px-4"
-                                )}>
+                            key={subItem.list}
+                            href={`/projects/${subItem.list}`}
+                            className={classNames(
+                                isActive(subItem.list) ? 'bg-white shadow-[0_2px_16px_-1px_rgb(0,0,0,0.1)] shadow-rose-500/50' : '',
+                                "flex justify-between p-2 text-sm md:text-base text-black rounded-xl px-4"
+                            )}
+                            legacyBehavior>
 
                                 <div className="mr-3">{subItem.list}</div>
                                 <div className="font-normal">{subItem.number}</div>

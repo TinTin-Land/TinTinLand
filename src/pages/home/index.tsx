@@ -60,7 +60,7 @@ const Course = ({ data }: { data: any[] }) => {
         </div>
 
         <div className="flex justify-end md:-mt-10">
-          <Link href="/course">
+          <Link href="/course" legacyBehavior>
             <div className="flex bg-white text-black rounded-full cursor-pointer text-sm items-center px-4 py-1.5">
               <div className="mr-1">
                 {t("查看更多")}
@@ -155,7 +155,7 @@ const CourseButton = ({ item }) => {
   
   if (item.state === "In progress") {
     return (
-      <Link href={item.link}>
+      <Link href={item.link} legacyBehavior>
         <a target="_blank" className="text-xs 2xl:text-xl bg-black text-white rounded-full px-4 2xl:px-8 py-2.5 mr-5">
           {t("立刻报名")}
         </a>
@@ -165,7 +165,7 @@ const CourseButton = ({ item }) => {
   
   if (item.state === "About to start") {
     return (
-      <Link href={item.link}>
+      <Link href={item.link} legacyBehavior>
         <a target="_blank" className="text-xs 2xl:text-xl bg-black text-white rounded-full px-4 2xl:px-8 py-2.5 mr-5">
           {t("即将开始")}
         </a>
@@ -174,7 +174,7 @@ const CourseButton = ({ item }) => {
   }
   
   return (
-    <Link href={`/course_details/${item.id}`}>
+    <Link href={`/course_details/${item.id}`} legacyBehavior>
       <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5">
         {t("了解更多")}
       </a>
@@ -270,13 +270,15 @@ const Hackathons = ({ data }) => {
               <Link
                 href={hackathonsData[0]?.registrationLink || "#"}
                 className={classNames(hackathonsData[0]?.state === "ComingSoon" || hackathonsData[0]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
-                target="_blank">
+                target="_blank"
+                legacyBehavior>
                 {t("立刻报名")}
               </Link>
               <Link
                 href={hackathonsData[0]?.activityLink || "#"}
                 className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"
-                target="_blank">
+                target="_blank"
+                legacyBehavior>
                 {t("了解更多")}
               </Link>
             </div>
@@ -302,13 +304,15 @@ const Hackathons = ({ data }) => {
                   <Link
                     href={hackathonsData[1]?.registrationLink || "#"}
                     className={classNames(hackathonsData[1]?.state === "ComingSoon" || hackathonsData[1]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
-                    target="_blank">
+                    target="_blank"
+                    legacyBehavior>
                     {t("刻报名")}
                   </Link>
                   <Link
                     href={hackathonsData[1]?.activityLink || "#"}
                     className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"
-                    target="_blank">
+                    target="_blank"
+                    legacyBehavior>
                     {t("了解更多")}
                   </Link>
                 </div>
@@ -335,13 +339,15 @@ const Hackathons = ({ data }) => {
                     <Link
                       href={hackathonsData[2]?.registrationLink || "#"}
                       className={classNames(hackathonsData[2]?.state === "ComingSoon" || hackathonsData[2]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
-                      target="_blank">
+                      target="_blank"
+                      legacyBehavior>
                       {t("立刻报名")}
                     </Link>
                     <Link
                       href={hackathonsData[2]?.activityLink || "#"}
                       className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"
-                      target="_blank">
+                      target="_blank"
+                      legacyBehavior>
                       {t("了解更多")}
                     </Link>
                   </div>
@@ -357,7 +363,7 @@ const Hackathons = ({ data }) => {
   );
 }
 
-const Activity = ({ data }: { data: string }) => {
+const Activity = ({ data }: { data: any[] }) => {
   const { t } = useTranslation('common');
   const [activityList, setActivityList] = useAtom(Activity_Alldetail);
   const [isLoading, setIsLoading] = useState(true);
@@ -365,12 +371,10 @@ const Activity = ({ data }: { data: string }) => {
 
   useEffect(() => {
     try {
-      const parsedData = parseJsonSafely(data);
-      console.log("Parsed activity data:", parsedData);
-      setActivityList(parsedData);
+      setActivityList(data);
       setIsLoading(false);
     } catch (err) {
-      console.error("Error parsing activity data:", err);
+      console.error("Error setting activity data:", err);
       setError("Failed to load activity data");
       setIsLoading(false);
     }
@@ -384,6 +388,8 @@ const Activity = ({ data }: { data: string }) => {
     return <div>Error: {error}</div>;
   }
 
+  console.log("activityList",activityList);
+  
   if (!activityList || activityList.length === 0) {
     return <div>No activities available</div>;
   }
@@ -447,7 +453,8 @@ const Activity = ({ data }: { data: string }) => {
                   <div className="">
                     <Link
                       href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}>
+                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}
+                      legacyBehavior>
 
                       {t("订阅")}
 
@@ -456,7 +463,8 @@ const Activity = ({ data }: { data: string }) => {
                   <div className=" text-sm">
                     <Link
                       href={`/meetingList/${activityList[0]?.id}`}
-                      className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5">
+                      className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5"
+                      legacyBehavior>
 
                       {t("了解更多")}
 
@@ -476,7 +484,8 @@ const Activity = ({ data }: { data: string }) => {
                   <div className="">
                     <Link
                       href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}
+                      legacyBehavior>
 
                       {t("订阅")}
 
@@ -485,7 +494,8 @@ const Activity = ({ data }: { data: string }) => {
                   <div className="xl:w-52 text-sm">
                     <Link
                       href={`/meetingList/${activityList[0]?.id}`}
-                      className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"}>
+                      className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"}
+                      legacyBehavior>
 
                       {t("了解更多")}
 
@@ -521,14 +531,16 @@ const Activity = ({ data }: { data: string }) => {
                 <div className="flex items-center">
                   <Link
                     href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                    className={activityList[0]?.activityList?.[0]?.status == "In progress" || activityList[0]?.activityList?.[0]?.status == "Not started" ? "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5" : "hidden"}>
+                    className={activityList[0]?.activityList?.[0]?.status == "In progress" || activityList[0]?.activityList?.[0]?.status == "Not started" ? "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5" : "hidden"}
+                    legacyBehavior>
 
                     {t("订阅")}
 
                   </Link>
                   <Link
                     href={`/meetingList/${activityList[0]?.id}`}
-                    className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 xl:px-10 py-2.5"}>
+                    className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 xl:px-10 py-2.5"}
+                    legacyBehavior>
 
                     {t("了解更多")}
 
@@ -550,7 +562,8 @@ const Activity = ({ data }: { data: string }) => {
                     <div className="">
                       <Link
                         href={activityList[1]?.activityList?.[0]?.subLink || ""}
-                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}
+                        legacyBehavior>
 
                         {t("订阅")}
 
@@ -559,7 +572,8 @@ const Activity = ({ data }: { data: string }) => {
                     <div className="xl:w-52 text-sm">
                       <Link
                         href={`/meetingList/${activityList[1]?.id}`}
-                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
+                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}
+                        legacyBehavior>
 
                         {t("了解更多")}
 
@@ -596,7 +610,8 @@ const Activity = ({ data }: { data: string }) => {
                     <div className="  ">
                       <Link
                         href={activityList[1]?.activityList?.[0]?.subLink || ""}
-                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
+                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}
+                        legacyBehavior>
 
                         {t("订阅")}
 
@@ -605,7 +620,8 @@ const Activity = ({ data }: { data: string }) => {
                     <div className="  ">
                       <Link
                         href={`/meetingList/${activityList[1]?.id}`}
-                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
+                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}
+                        legacyBehavior>
 
                         {t("了解更多")}
 
@@ -626,7 +642,8 @@ const Activity = ({ data }: { data: string }) => {
                   <div className="">
                     <Link
                       href={activityList[2]?.activityList?.[0]?.subLink || ""}
-                      className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+                      className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}
+                      legacyBehavior>
 
                       {t("订阅")}
 
@@ -635,7 +652,8 @@ const Activity = ({ data }: { data: string }) => {
                   <div className="xl:w-52 text-sm">
                     <Link
                       href={`/meetingList/${activityList[2]?.id}`}
-                      className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
+                      className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}
+                      legacyBehavior>
 
                       {t("了解更多")}
 
@@ -670,7 +688,8 @@ const Activity = ({ data }: { data: string }) => {
                     <div className="  ">
                       <Link
                         href={activityList[2]?.activityList?.[0]?.subLink || ""}
-                        className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
+                        className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}
+                        legacyBehavior>
 
                         {t("订阅")}
 
@@ -679,7 +698,8 @@ const Activity = ({ data }: { data: string }) => {
                     <div className="">
                       <Link
                         href={`/meetingList/${activityList[2]?.id}`}
-                        className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
+                        className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}
+                        legacyBehavior>
 
                         {t("了解更多")}
 
@@ -715,7 +735,7 @@ const AboutUs = ()=>{
                             {t("TinTinLand 是赋下一代开发的技术社区，能够通过聚集、培育、输送 开发者到各放网络，共同定义并构建未来")}
                         </div>
                         <div className="mt-5">
-                            {t("我们也将和行业有商业洞察力、有经验的��发者、社区、媒体合作，提供 技术课程、技术内容解读、AMA、线下开发者活动等")}
+                            {t("我们也将和行业有商业洞察力、有经验的发者、社区、媒体合作，提供 技术课程、技术内容解读、AMA、线下开发者活动等")}
                         </div>
                     </div>
                     <p className="mt-4 flex">
@@ -737,11 +757,13 @@ const AboutUs = ()=>{
     )
 }
 
-const Media = ({ data }) => {
+const Media = ({ data }: { data: any[] }) => {
   const [media, setMedia] = useState([]);
 
   useEffect(() => {
-    setMedia(parseJsonSafely(data, []));
+    console.log("data",data);
+    const media_details = data
+    setMedia(media_details);
   }, [data]);
 
   useEffect(() => {
@@ -802,7 +824,7 @@ const Community = ({ data }) => {
   const [community, setCommunity] = useState([]);
 
   useEffect(() => {
-    setCommunity(parseJsonSafely(data, []));
+    setCommunity(data);
   }, [data]);
 
   useEffect(() => {
@@ -864,7 +886,7 @@ const CommunityMember = ({ data }) => {
   const [communityMember, setCommunityMember] = useState([]);
 
   useEffect(() => {
-    setCommunityMember(parseJsonSafely(data, []));
+    setCommunityMember(data);
   }, [data]);
 
   useEffect(() => {
@@ -970,9 +992,9 @@ const Home: React.FC<{ props: any }> = ({ props }) => {
   const hackathonsData = parseJsonSafely(props?.hackathons_details);
   console.log("Hackathons data in Home component:", hackathonsData);
   const activityData = parseJsonSafely(props?.activity_details);
-  // const mediaData = parseJsonSafely(props?.media_details);
-  // const communityData = parseJsonSafely(props?.community_details);
-  // const communityMemberData = parseJsonSafely(props?.communityMember_details);
+  const mediaData = parseJsonSafely(props?.media_details);
+  const communityData = parseJsonSafely(props?.community_details);
+  const communityMemberData = parseJsonSafely(props?.communityMember_details);
 
   if (!isClient) {
     return null; // or a loading spinner
@@ -999,17 +1021,17 @@ const Home: React.FC<{ props: any }> = ({ props }) => {
         <Activity data={activityData} />
       </main>
        <section className="relative">
-        {/* <Media data={mediaData} /> */}
-        {/* <Community data={communityData} /> */}
+        <Media data={mediaData} />
+        <Community data={communityData} />
       </section>
-      {/* <section className="lg:px-10 xl:px-20 relative px-5 mx-auto">
+      <section className="lg:px-10 xl:px-20 relative px-5 mx-auto">
         <AboutUs />
       </section>
       <section className="lg:px-10 xl:px-20 relative px-5 pt-16 mx-auto">
         <CommunityMember data={communityMemberData} />
       </section>
       <Loading/>
-      <Tail/>  */}
+      <Tail/>
     </div>
   );
 };

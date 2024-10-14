@@ -67,11 +67,18 @@ const Hackathons = ({ hackathons_details }) => {
                     <p className="line-clamp-4 h-20 text-sm text-[#000000] mt-2">{item.text}</p>
                     <div className="flex mt-5">
                       {(item.state === "OnGoing" || item.state === "ComingSoon") && (
-                        <Link href={item.registrationLink} className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5">
+                        <Link
+                          href={item.registrationLink}
+                          className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5"
+                          legacyBehavior>
                           {t('报名')}
                         </Link>
                       )}
-                      <Link href={item.activityLink} className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5" target="_blank">
+                      <Link
+                        href={item.activityLink}
+                        className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"
+                        target="_blank"
+                        legacyBehavior>
                         {t('了解更多')}
                       </Link>
                     </div>

@@ -113,7 +113,7 @@ const ActivityCard = ({ item, t }) => (
             <Link
               href={item.subLink}
               className="text-xs 2xl:text-xl bg-black text-white rounded-full px-10 py-2.5"
-            >
+              legacyBehavior>
               {t("订阅")}
             </Link>
           )}
@@ -123,7 +123,7 @@ const ActivityCard = ({ item, t }) => (
             href={item.videoLink}
             className="text-black border border-black rounded-full px-8 py-2.5"
             target="_blank"
-          >
+            legacyBehavior>
             {t("了解更多")}
           </Link>
         )}
