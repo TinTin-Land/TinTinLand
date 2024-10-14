@@ -1081,7 +1081,26 @@ const Home = ({ props }: { props: any }) => {
       <Header />
       <main className="lg:px-10 xl:px-20 relative px-5 pt-24 mx-auto">
         <section className="backdrop-blur-sm bg-white/60 w-full rounded-2xl py-10 px-5 md:px-10">
-          {/* ... existing hero section ... */}
+        <div className="text-2xl md:text-4xl xl:text-6xl ">
+                    <div>
+
+                        A Global Web3.0 Developer Community
+                    </div>
+                        <div>
+                           for Builders,Entrepreneurs
+                        </div>
+                        <div>
+                          and Enthusiasts
+                        </div>
+                    </div>
+                    <div className="mt-10 text-xs md:text-sm">
+                        <div>
+                            {t("赋能下一代开发者")}
+                        </div>
+                        <div>
+                            {t("通过聚集、培育、输送开发者到各开放网络，共同定义并构建未来")}
+                        </div>
+                    </div>
         </section>
         <Course data={course_details} />
         <Hackathons data={hackathons_details} />
