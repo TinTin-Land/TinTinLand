@@ -48,7 +48,7 @@ const Tail=()=>{
         },
 
     ]
-    return(
+    return (
         <div className="relative border-t border-gray-400 pt-4 2xl:pt-12 pb-1 px-10   bg-stone-900  rounded-t-3xl">
             <div className="md:hidden">
                 <div className="md:flex justify-between  items-center  mx-auto  ">
@@ -58,20 +58,20 @@ const Tail=()=>{
                 </div>
                 <div className="    mx-auto ">
                     <div className="">
-                        <Link href="https://discord.gg/6b2QNSYgmz">
-                            <a  target="_blank">
-                        <div className="text-white text-3xl flex items-center font-light justify-center" >
-                            <div>
-                                {t("加入TinTinLand社区")}
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 transform rotate-45" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd"
-                                      d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
-                                      clipRule="evenodd"/>
-                            </svg>
+                        <Link href="https://discord.gg/6b2QNSYgmz" target="_blank">
 
-                        </div>
-                            </a>
+                            <div className="text-white text-3xl flex items-center font-light justify-center" >
+                                <div>
+                                    {t("加入TinTinLand社区")}
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 transform rotate-45" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd"
+                                          d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                                          clipRule="evenodd"/>
+                                </svg>
+
+                            </div>
+
                         </Link>
                         <div className="my-2 text-gray-500 text-sm flex justify-center  ">
                               {t("点击进入discord")}
@@ -80,19 +80,17 @@ const Tail=()=>{
 
                 </div>
                 <div className="text-white flex justify-between mx-20 py-5  items-center">
-                    <Link href="https://twitter.com/Tintinland2021">
-                        <a className="">
-                            <i className="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
+                    <Link href="https://twitter.com/Tintinland2021" className="">
+
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
 
                     </Link>
                     <button onClick={()=>{setOpen(true)}}>
                         <i className="fa fa-weixin" aria-hidden="true"></i>
                     </button>
                     <Link href="/home">
-                        <a>
-                            <i className="fa fa-weibo" aria-hidden="true"></i>
-                        </a>
+
+                        <i className="fa fa-weibo" aria-hidden="true"></i>
 
                     </Link>
 
@@ -103,8 +101,11 @@ const Tail=()=>{
             <div className="hidden md:block px-5 lg:px-10 xl:px-48 py-10 relative">
                 <div className="md:flex justify-between    mx-auto ">
                     <div className="">
-                        <Link href="https://discord.gg/6b2QNSYgmz">
-                            <a  className="text-white text-3xl flex items-center font-light justify-center"  target="_blank">
+                        <Link
+                            href="https://discord.gg/6b2QNSYgmz"
+                            className="text-white text-3xl flex items-center font-light justify-center"
+                            target="_blank">
+
                             <div>
                                    {t("加入TinTinLand社区")}
                             </div>
@@ -113,7 +114,7 @@ const Tail=()=>{
                                       d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
                                       clipRule="evenodd"/>
                             </svg>
-                            </a>
+
                         </Link>
                         <div className="my-2 text-gray-500 text-sm flex justify-center md:justify-start ">
                                 {t("点击进入discord")}
@@ -128,10 +129,10 @@ const Tail=()=>{
                                     </div>
                                     {end.content.map(item=>(
                                         <div key={item.h1} className="flex my-3 justify-center  text-gray-400 text-sm transition  duration-300 transform hover:translate-x-1 ">
-                                            <Link href={item.href}>
-                                                <a  target="_blank" className="text-center">
-                                                    {item.h1}
-                                                </a>
+                                            <Link href={item.href} target="_blank" className="text-center">
+
+                                                {item.h1}
+
                                             </Link>
 
                                         </div>))}
@@ -215,6 +216,6 @@ const Tail=()=>{
                 </Dialog>
             </Transition.Root>
         </div>
-    )
+    );
 }
 export  default Tail

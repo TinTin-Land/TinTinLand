@@ -153,30 +153,27 @@ const CourseCard = ({ item }) => (
 const CourseButton = ({ item }) => {
   const { t } = useTranslation('common');
   
-  if (item.state === "In progress") {
-    return (
-      <Link href={item.link} legacyBehavior>
-        <a target="_blank" className="text-xs 2xl:text-xl bg-black text-white rounded-full px-4 2xl:px-8 py-2.5 mr-5">
-          {t("立刻报名")}
-        </a>
-      </Link>
-    );
-  }
+  let buttonClass = "text-xs 2xl:text-xl rounded-full px-4 2xl:px-8 py-2.5";
+  let buttonText = "";
   
-  if (item.state === "About to start") {
-    return (
-      <Link href={item.link} legacyBehavior>
-        <a target="_blank" className="text-xs 2xl:text-xl bg-black text-white rounded-full px-4 2xl:px-8 py-2.5 mr-5">
-          {t("即将开始")}
-        </a>
-      </Link>
-    );
+  switch(item.state) {
+    case "OnGoing":
+      buttonClass += " bg-black text-white";
+      buttonText = "Join Now";
+      break;
+    case "Ended":
+      buttonClass += " bg-orange-500 text-white";
+      buttonText = "Ended";
+      break;
+    default:
+      buttonClass += " border border-black text-black";
+      buttonText = "Learn More";
   }
-  
+
   return (
-    <Link href={`/course_details/${item.id}`} legacyBehavior>
-      <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5">
-        {t("了解更多")}
+    <Link href={item.link} legacyBehavior>
+      <a target="_blank" className={buttonClass}>
+        {t(buttonText)}
       </a>
     </Link>
   );
@@ -306,7 +303,7 @@ const Hackathons = ({ data }) => {
                     className={classNames(hackathonsData[1]?.state === "ComingSoon" || hackathonsData[1]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
                     target="_blank"
                     legacyBehavior>
-                    {t("刻报名")}
+                    {t("立刻报名")}
                   </Link>
                   <Link
                     href={hackathonsData[1]?.activityLink || "#"}
