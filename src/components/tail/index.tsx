@@ -58,7 +58,7 @@ const Tail=()=>{
                 </div>
                 <div className="    mx-auto ">
                     <div className="">
-                        <Link href="https://discord.gg/6b2QNSYgmz" target="_blank">
+                        <Link href="https://discord.gg/6b2QNSYgmz" target="_blank" legacyBehavior>
 
                             <div className="text-white text-3xl flex items-center font-light justify-center" >
                                 <div>
@@ -80,7 +80,7 @@ const Tail=()=>{
 
                 </div>
                 <div className="text-white flex justify-between mx-20 py-5  items-center">
-                    <Link href="https://twitter.com/Tintinland2021" className="">
+                    <Link href="https://twitter.com/Tintinland2021" className="" legacyBehavior>
 
                         <i className="fa fa-twitter" aria-hidden="true"></i>
 
@@ -88,7 +88,7 @@ const Tail=()=>{
                     <button onClick={()=>{setOpen(true)}}>
                         <i className="fa fa-weixin" aria-hidden="true"></i>
                     </button>
-                    <Link href="/home">
+                    <Link href="/home" legacyBehavior>
 
                         <i className="fa fa-weibo" aria-hidden="true"></i>
 
@@ -104,7 +104,8 @@ const Tail=()=>{
                         <Link
                             href="https://discord.gg/6b2QNSYgmz"
                             className="text-white text-3xl flex items-center font-light justify-center"
-                            target="_blank">
+                            target="_blank"
+                            legacyBehavior>
 
                             <div>
                                    {t("加入TinTinLand社区")}
@@ -129,7 +130,7 @@ const Tail=()=>{
                                     </div>
                                     {end.content.map(item=>(
                                         <div key={item.h1} className="flex my-3 justify-center  text-gray-400 text-sm transition  duration-300 transform hover:translate-x-1 ">
-                                            <Link href={item.href} target="_blank" className="text-center">
+                                            <Link href={item.href} target="_blank" className="text-center" legacyBehavior>
 
                                                 {item.h1}
 

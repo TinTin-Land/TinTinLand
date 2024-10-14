@@ -155,6 +155,7 @@ const CourseButton = ({ item }) => {
   
   let buttonClass = "text-xs 2xl:text-xl rounded-full px-4 2xl:px-8 py-2.5";
   let buttonText = "";
+  let href = "#"; // Default href
   
   switch(item.state) {
     case "OnGoing":
@@ -170,9 +171,14 @@ const CourseButton = ({ item }) => {
       buttonText = "Learn More";
   }
 
+  // Ensure item.link is not null or undefined
+  if (item.link) {
+    href = item.link;
+  }
+
   return (
-    <Link href={item.link} legacyBehavior>
-      <a target="_blank" className={buttonClass}>
+    <Link href={href} passHref>
+      <a target="_blank" rel="noopener noreferrer" className={buttonClass}>
         {t(buttonText)}
       </a>
     </Link>
@@ -264,26 +270,26 @@ const Hackathons = ({ data }) => {
               {hackathonsData[0]?.time || ""}
             </div>
             <div className="flex mt-5 2xl:mt-10 items-center">
-              <Link
-                href={hackathonsData[0]?.registrationLink || "#"}
-                className={classNames(hackathonsData[0]?.state === "ComingSoon" || hackathonsData[0]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
-                target="_blank"
-                legacyBehavior>
-                {t("立刻报名")}
-              </Link>
-              <Link
-                href={hackathonsData[0]?.activityLink || "#"}
-                className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"
-                target="_blank"
-                legacyBehavior>
-                {t("了解更多")}
-              </Link>
+              {hackathonsData[0]?.registrationLink && (hackathonsData[0]?.state === "ComingSoon" || hackathonsData[0]?.state === "OnGoing") && (
+                <Link href={hackathonsData[0].registrationLink} legacyBehavior>
+                  <a className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5" target="_blank">
+                    {t("立刻报名")}
+                  </a>
+                </Link>
+              )}
+              {hackathonsData[0]?.activityLink && (
+                <Link href={hackathonsData[0].activityLink} legacyBehavior>
+                  <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5" target="_blank">
+                    {t("了解更多")}
+                  </a>
+                </Link>
+              )}
             </div>
           </div>
         </div>
 
         {/* Medium hackathon card */}
-        <div className="mt-5 xl:mt-0 xl:w-full  xl:ml-5     ">
+        <div className="mt-5 xl:mt-0 xl:w-full  xl:ml-5">
           <div className="">
             <div className="relative ">
               <div className={classNames(HackathonsState[hackathonsData[1]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
@@ -298,20 +304,20 @@ const Hackathons = ({ data }) => {
                   {hackathonsData[1]?.time || ""}
                 </div>
                 <div className="flex my-5  items-center">
-                  <Link
-                    href={hackathonsData[1]?.registrationLink || "#"}
-                    className={classNames(hackathonsData[1]?.state === "ComingSoon" || hackathonsData[1]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
-                    target="_blank"
-                    legacyBehavior>
-                    {t("立刻报名")}
-                  </Link>
-                  <Link
-                    href={hackathonsData[1]?.activityLink || "#"}
-                    className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"
-                    target="_blank"
-                    legacyBehavior>
-                    {t("了解更多")}
-                  </Link>
+                  {hackathonsData[1]?.registrationLink && (hackathonsData[1]?.state === "ComingSoon" || hackathonsData[1]?.state === "OnGoing") && (
+                    <Link href={hackathonsData[1].registrationLink} legacyBehavior>
+                      <a className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5" target="_blank">
+                        {t("立刻报名")}
+                      </a>
+                    </Link>
+                  )}
+                  {hackathonsData[1]?.activityLink && (
+                    <Link href={hackathonsData[1].activityLink} legacyBehavior>
+                      <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5" target="_blank">
+                        {t("了解更多")}
+                      </a>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -333,20 +339,20 @@ const Hackathons = ({ data }) => {
                     {hackathonsData[2]?.time || ""}
                   </div>
                   <div className="flex mt-5 ">
-                    <Link
-                      href={hackathonsData[2]?.registrationLink || "#"}
-                      className={classNames(hackathonsData[2]?.state === "ComingSoon" || hackathonsData[2]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
-                      target="_blank"
-                      legacyBehavior>
-                      {t("立刻报名")}
-                    </Link>
-                    <Link
-                      href={hackathonsData[2]?.activityLink || "#"}
-                      className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"
-                      target="_blank"
-                      legacyBehavior>
-                      {t("了解更多")}
-                    </Link>
+                    {hackathonsData[2]?.registrationLink && (hackathonsData[2]?.state === "ComingSoon" || hackathonsData[2]?.state === "OnGoing") && (
+                      <Link href={hackathonsData[2].registrationLink} legacyBehavior>
+                        <a className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5" target="_blank">
+                          {t("立刻报名")}
+                        </a>
+                      </Link>
+                    )}
+                    {hackathonsData[2]?.activityLink && (
+                      <Link href={hackathonsData[2].activityLink} legacyBehavior>
+                        <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5" target="_blank">
+                          {t("了解更多")}
+                        </a>
+                      </Link>
+                    )}
                   </div>
                 </div>
                 <img className="rounded-t-2xl hidden xl:flex xl:rounded-t-none xl:rounded-r-2xl  xl:w-5/12 xl:h-40 2xl:h-44" src={hackathonsData[2]?.img || ""} alt=""/>
@@ -803,13 +809,13 @@ const Media = ({ data }: { data: any[] }) => {
       <div className="flex relative overflow-hidden w-full h-20">
         <ul className="flex mb-2 absolute">
           {media.concat(media).map((item, index) => (
-            <Link key={`${item.img}-${index}`} href={item.href} legacyBehavior>
-              <a target="_blank" rel="noopener noreferrer">
-                <li className="w-36 xl:w-44 bg-white rounded-xl mr-4">
+            <li key={`${item.img}-${index}`} className="w-36 xl:w-44 bg-white rounded-xl mr-4">
+              <Link href={item.href} passHref>
+                <a target="_blank" rel="noopener noreferrer">
                   <img className="filter grayscale hover:grayscale-0 transition duration-300" src={item.img} alt="" />
-                </li>
-              </a>
-            </Link>
+                </a>
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
@@ -864,13 +870,13 @@ const Community = ({ data }) => {
       <div className="flex relative overflow-hidden w-full h-16">
         <h3 className="flex mb-2 absolute">
           {community.concat(community).map((item, index) => (
-            <Link key={`${item.img}-${index}`} href={item.href} legacyBehavior>
-              <a target="_blank" rel="noopener noreferrer">
-                <li className="w-36 xl:w-44 bg-white rounded-xl mr-4 list-none">
+            <li key={`${item.img}-${index}`} className="w-36 xl:w-44 bg-white rounded-xl mr-4 list-none">
+              <Link href={item.href} passHref>
+                <a target="_blank" rel="noopener noreferrer">
                   <img className="filter grayscale hover:grayscale-0 transition duration-300" src={item.img} alt="" />
-                </li>
-              </a>
-            </Link>
+                </a>
+              </Link>
+            </li>
           ))}
         </h3>
       </div>
