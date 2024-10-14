@@ -217,8 +217,7 @@ const Hackathons = ({ data }) => {
   
   useEffect(() => {
     if (data && Array.isArray(data)) {
-      console.log("Hackathons data:", data);
-      setHackathonsData(data);
+      setHackathonsData(data.slice(0, 2));
     } else {
       console.warn("Hackathons data is not an array:", data);
       setHackathonsData([]);
@@ -226,11 +225,11 @@ const Hackathons = ({ data }) => {
   }, [data])
 
   if (hackathonsData.length === 0) {
-    return null; // or return a loading state or placeholder
+    return null;
   }
 
   return (
-    <div id="Hackathons" className="pt-20 ">
+    <div id="Hackathons" className="pt-20">
       <div className="text-indigo-700 text-2xl">
         Hackathons
       </div>
@@ -262,78 +261,38 @@ const Hackathons = ({ data }) => {
           </div>
         </Link>
       </div>
-      <div className={hackathonsData.length > 0 ? "xl:flex mt-4 justify-between" : "hidden"}>
-        {/* Large hackathon card */}
-        <div className="relative xl:w-full" >
-          <div className={classNames(HackathonsState[hackathonsData[0]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1 border absolute")}>
-            {hackathonsData[0]?.state || ""}
-          </div>
-          <Image
-            className="rounded-t-2xl w-full xl:h-96 2xl:h-99"
-            src={hackathonsData[0]?.img || ""}
-            alt=""
-            width={800}
-            height={400}
-            layout="responsive"
-          />
-          <div className="px-10 py-8 bg-white rounded-b-2xl">
-            <div className="2xl:text-xl font-semibold xl:w-72 truncate">
-              {hackathonsData[0]?.name || ""}
-            </div>
-            <div className="font-light">
-              {hackathonsData[0]?.time || ""}
-            </div>
-            <div className="flex mt-5 2xl:mt-10 items-center">
-              {hackathonsData[0]?.registrationLink && (hackathonsData[0]?.state === "ComingSoon" || hackathonsData[0]?.state === "OnGoing") && (
-                <Link href={hackathonsData[0].registrationLink} legacyBehavior>
-                  <a className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5" target="_blank">
-                    {t("立刻报名")}
-                  </a>
-                </Link>
-              )}
-              {hackathonsData[0]?.activityLink && (
-                <Link href={hackathonsData[0].activityLink} legacyBehavior>
-                  <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5" target="_blank">
-                    {t("了解更多")}
-                  </a>
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Medium hackathon card */}
-        <div className="mt-5 xl:mt-0 xl:w-full  xl:ml-5">
-          <div className="">
-            <div className="relative ">
-              <div className={classNames(HackathonsState[hackathonsData[1]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
-                {hackathonsData[1]?.state || ""}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-4">
+        {hackathonsData.map((hackathon, index) => (
+          <div key={hackathon.id} className="bg-white rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative">
+              <div className={classNames(HackathonsState[hackathon.state] || "", "absolute top-4 right-4 rounded-full px-3 py-1 text-sm")}>
+                {hackathon.state}
               </div>
               <Image
-                className="rounded-t-2xl w-full xl:h-56 2xl:h-80"
-                src={hackathonsData[1]?.img || ""}
-                alt=""
-                width={600}
-                height={300}
+                className="w-full h-64 object-cover"
+                src={hackathon.img}
+                alt={hackathon.name}
+                width={800}
+                height={400}
                 layout="responsive"
               />
-              <div className="px-10 py-3  bg-white rounded-b-2xl">
-                <div className="2xl:text-xl font-semibold  truncate">
-                  {hackathonsData[1]?.name || ""}
+              <div className="px-10 py-8">
+                <div className="2xl:text-xl font-semibold xl:w-72 truncate">
+                  {hackathon.name}
                 </div>
                 <div className="font-light">
-                  {hackathonsData[1]?.time || ""}
+                  {hackathon.time}
                 </div>
-                <div className="flex my-5  items-center">
-                  {hackathonsData[1]?.registrationLink && (hackathonsData[1]?.state === "ComingSoon" || hackathonsData[1]?.state === "OnGoing") && (
-                    <Link href={hackathonsData[1].registrationLink} legacyBehavior>
+                <div className="flex mt-5 2xl:mt-10 items-center">
+                  {hackathon.registrationLink && (hackathon.state === "ComingSoon" || hackathon.state === "OnGoing") && (
+                    <Link href={hackathon.registrationLink} legacyBehavior>
                       <a className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5" target="_blank">
                         {t("立刻报名")}
                       </a>
                     </Link>
                   )}
-                  {hackathonsData[1]?.activityLink && (
-                    <Link href={hackathonsData[1].activityLink} legacyBehavior>
+                  {hackathon.activityLink && (
+                    <Link href={hackathon.activityLink} legacyBehavior>
                       <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5" target="_blank">
                         {t("了解更多")}
                       </a>
@@ -343,57 +302,7 @@ const Hackathons = ({ data }) => {
               </div>
             </div>
           </div>
-          {/* Small hackathon card */}
-          <div className="mt-5  rounded-2xl overflow-hidden">
-            <div className="relative w-full ">
-              <div className={classNames(HackathonsState[hackathonsData[2]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1  border absolute")}>
-                {hackathonsData[2]?.state || ""}
-              </div>
-              <div className="xl:flex  xl:items-center xl:justify-between bg-white rounded-2xl">
-                <Image
-                  className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl w-full"
-                  src={hackathonsData[2]?.img || ""}
-                  alt=""
-                  width={400}
-                  height={200}
-                  layout="responsive"
-                />
-                <div className="pl-10 py-3 xl:py-0    ">
-                  <div className="2xl:text-xl font-semibold xl:w-48 2xl:w-56  truncate">
-                    {hackathonsData[2]?.name || ""}
-                  </div>
-                  <div className="font-light">
-                    {hackathonsData[2]?.time || ""}
-                  </div>
-                  <div className="flex mt-5 ">
-                    {hackathonsData[2]?.registrationLink && (hackathonsData[2]?.state === "ComingSoon" || hackathonsData[2]?.state === "OnGoing") && (
-                      <Link href={hackathonsData[2].registrationLink} legacyBehavior>
-                        <a className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5" target="_blank">
-                          {t("立刻报名")}
-                        </a>
-                      </Link>
-                    )}
-                    {hackathonsData[2]?.activityLink && (
-                      <Link href={hackathonsData[2].activityLink} legacyBehavior>
-                        <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5" target="_blank">
-                          {t("了解更多")}
-                        </a>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-                <Image
-                  className="rounded-t-2xl hidden xl:flex xl:rounded-t-none xl:rounded-r-2xl xl:w-5/12 xl:h-40 2xl:h-44"
-                  src={hackathonsData[2]?.img || ""}
-                  alt=""
-                  width={200}
-                  height={160}
-                  layout="responsive"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -407,7 +316,8 @@ const Activity = ({ data }: { data: any[] }) => {
 
   useEffect(() => {
     try {
-      setActivityList(data);
+      // Limit the activity list to 4 items
+      setActivityList(data.slice(0, 2));
       setIsLoading(false);
     } catch (err) {
       console.error("Error setting activity data:", err);
@@ -424,11 +334,53 @@ const Activity = ({ data }: { data: any[] }) => {
     return <div>Error: {error}</div>;
   }
 
-  console.log("activityList",activityList);
-  
   if (!activityList || activityList.length === 0) {
     return <div>No activities available</div>;
   }
+
+  // Helper function to render an activity card
+  const renderActivityCard = (activity: any) => (
+    <div key={activity.id} className="relative w-full md:w-1/2 p-2">
+      <div className="flex flex-col p-6 bg-white rounded-2xl h-full">
+        <div className="flex-grow">
+          <div className="flex">
+            <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
+              {activity.activityList[0]?.activity || t("No activity")}
+            </div>
+          </div>
+          <div className="text-xl font-light mt-3">
+            {activity.activityList[0]?.time || t("No time specified")}
+          </div>
+          <div className="font-semibold">
+            {activity.activityList[0]?.date || t("No date specified")}
+          </div>
+          <div className="text-lg font-semibold mt-3 line-clamp-3">
+            {activity.activityList[0]?.name || t("No name specified")}
+          </div>
+          {/* Add image here */}
+          <img 
+            className="rounded-xl mt-5 w-full object-cover"
+            src={activity.activityList[0]?.poster_1}
+            alt={activity.activityList[0]?.name || "Activity poster"}
+          />
+        </div>
+        <div className="flex mt-4 items-center">
+          {activity.activityList[0]?.subLink && (activity.activityList[0]?.status === "In progress" || activity.activityList[0]?.status === "Not started") && (
+            <Link href={activity.activityList[0].subLink} legacyBehavior>
+              <a className="text-xs bg-black text-white rounded-full px-4 py-2 mr-3">
+                {t("订阅")}
+              </a>
+            </Link>
+          )}
+          <Link href={`/meetingList/${activity.id}`} legacyBehavior>
+            <a className="text-xs text-black border border-black rounded-full px-4 py-2">
+              {t("了解更多")}
+            </a>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div id="Activities" className="pt-20">
@@ -453,8 +405,8 @@ const Activity = ({ data }: { data: any[] }) => {
       </div>
       <div className="flex justify-end md:-mt-10">
         <Link href="/meeting" legacyBehavior>
-          <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
-            <div className="mr-1 " >
+          <div className="flex bg-white text-black rounded-full cursor-pointer text-sm items-center px-4 py-1.5">
+            <div className="mr-1">
               {t("查看更多")}
             </div>
             <div>
@@ -463,299 +415,8 @@ const Activity = ({ data }: { data: any[] }) => {
           </div>
         </Link>
       </div>
-      <div className=" xl:flex  mt-4" >
-        {/* Large activity card */}
-        <div className="hidden xl:block relative xl:w-1/2 2xl:w-7/12 " >
-          <div className="flex px-10 py-8 bg-white rounded-2xl  ">
-            <div className="my-auto  w-full">
-              <div className=" flex ">
-                <div className="rounded-full bg-gray-100 text-gray-700 px-2.5 py-0.5 text-sm">
-                  {activityList[0]?.activityList?.[0]?.activity || t("No activity")}
-                </div>
-              </div>
-              <div className="text-2xl font-light mt-5">
-                {activityList[0]?.activityList?.[0]?.time || t("No time specified")}
-              </div>
-              <div className="font-semibold ">
-                {activityList[0]?.activityList?.[0]?.date || t("No date specified")}
-              </div>
-              <div className=" mt-4 mb-9 xl:my-9   items-center  xl:text-xl font-semibold line-clamp-4 h-20 xl:line-clamp-2  w-full  ">
-                {activityList[0]?.activityList?.[0]?.name || t("No name specified")}
-              </div>
-              <div className="xl:flex 2xl:block w-full">
-                <Image className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 h-98" src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
-                <Image className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100 h-97 " src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt="" width={400} height={388} />
-                <div className="xl:ml-5  2xl:ml-0  flex  xl:mt-9 xl:justify-end  2xl:justify-start xl:items-end items-center">
-                  <div className="">
-                    <Link
-                      href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                      legacyBehavior>
-                      <a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}>
-                                                {t("订阅")}
-                      </a>
-                    </Link>
-                  </div>
-                  <div className=" text-sm">
-                    <Link
-                      href={`/meetingList/${activityList[0]?.id}`}
-                      legacyBehavior>
-
-<a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5">
-                                                      {t("了解更多")}
-                                            </a>
-
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="block xl:hidden relative  " >
-          <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl  items-center">
-            <div className="">
-              <div className="items-end ">
-                <Image className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
-                <div className="md:hidden flex   mt-9  items-end items-center ">
-                  <div className="">
-                    <Link
-                      href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                      legacyBehavior>
-
-<a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
-                                                   {t("订阅")}
-                                            </a>
-
-                    </Link>
-                  </div>
-                  <div className="xl:w-52 text-sm">
-                    <Link
-                      href={`/meetingList/${activityList[0]?.id}`}
-                      legacyBehavior>
-
-<a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
-                                                      {t("了解更多")}
-                                            </a>
-
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full hidden md:block xl:hidden">
-              <Image className="rounded-xl mt-5 md:mt-0 md:mr-5 h-98" src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt="" width={328} height={392} />
-            </div>
-
-            <div className="w-full md:pl-6">
-              <div className="flex">
-                <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                  {activityList[0]?.activityList?.[0]?.activity || t("No activity")}
-                </div>
-              </div>
-              <div className="text-2xl font-light mt-5">
-                {activityList[0]?.activityList?.[0]?.time || t("No time specified")}
-              </div>
-              <div className="font-semibold">
-                {activityList[0]?.activityList?.[0]?.date || t("No date specified")}
-              </div>
-
-              <div className="xl:text-xl font-semibold">
-                <div className='mt-4 md:mb-8 items-center line-clamp-4 md:h-24 xl:line-clamp-3 2xl:w-90'>
-                  {activityList[0]?.activityList?.[0]?.name || t("No name specified")}
-                </div>
-
-              </div>
-              <div className="hidden md:flex justify-between items-end">
-                <div className="flex items-center">
-                  <Link
-                    href={activityList[0]?.activityList?.[0]?.subLink || ""}
-                    legacyBehavior>
-
-<a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5 ":"hidden"}>
-                                                   {t("订阅")}
-                                            </a>
-                  </Link>
-                  <Link
-                    href={`/meetingList/${activityList[0]?.id}`}
-                    legacyBehavior>
-
-<a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 xl:px-8 py-2.5"}>
-                                                      {t("了解更多")}
-                                            </a>
-
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="my-auto mt-6 xl:mt-0 xl:w-1/2 xl:ml-4 2xl:ml-9 grid grid-cols-1  ">
-          {/* Medium activity card */}
-          <div className="relative  " >
-            <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl mx-auto items-center">
-              <div className="">
-                <div className="    items-end ">
-                  <Image className=" md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={activityList[1]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
-                  <div className="md:hidden flex mt-9  items-end items-center ">
-                    <div className="">
-                      <Link
-                        href={activityList[1]?.activityList?.[0]?.subLink || ""}
-                       
-                        legacyBehavior>
-
-<a className={activityList[1].activityList[0].status == "In progress"||activityList[1].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
-                                                       {t("订阅")}
-                                                </a>
-
-                      </Link>
-                    </div>
-                    <div className="xl:w-52 text-sm">
-                      <Link
-                        href={`/meetingList/${activityList[1]?.id}`}
-                        legacyBehavior>
-
-<a className={activityList[1].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
-                                                          {t("了解更多")}
-                                                </a>
-
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full hidden  md:block xl:hidden">
-                <Image className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[1]?.activityList?.[0]?.poster_1 || ""} alt="" width={328} height={392} />
-              </div>
-
-              <div className=" w-full md:pl-6">
-                <div className=" flex ">
-                  <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                    {activityList[1]?.activityList?.[0]?.activity || t("No activity")}
-                  </div>
-                </div>
-                <div className="text-2xl font-light mt-5">
-                  {activityList[1]?.activityList?.[0]?.time || t("No time specified")}
-                </div>
-                <div className="font-semibold">
-                  {activityList[1]?.activityList?.[0]?.date || t("No date specified")}
-                </div>
-
-                <div className=" xl:text-xl font-semibold">
-                  <div className=' mt-4 md:mb-8 xl:my-10 items-center line-clamp-4 md:h-24 xl:line-clamp-3   2xl:w-90'>
-                    {activityList[1]?.activityList?.[0]?.name || t("No name specified")}
-                  </div>
-
-                </div>
-                <div className="hidden md:flex justify-between items-end  ">
-                  <div className="flex   items-center">
-                    <div className="  ">
-                      <Link
-                        href={activityList[1]?.activityList?.[0]?.subLink || ""}
-                        legacyBehavior>
-
-<a className={activityList[1].activityList[0].status == "In progress"||activityList[1].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full px-7   py-2.5 mr-5 ":"hidden"}>
-                                                       {t("订阅")}
-                                                </a>
-                      </Link>
-                    </div>
-                    <div className="  ">
-                      <Link
-                        href={`/meetingList/${activityList[1]?.id}`}
-                        legacyBehavior>
-
-<a className={activityList[1].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
-                                                          {t("了解更多")}
-                                                </a>
-
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          {/* Small activity card */}
-          <div className="relative mt-5 2xl:mt-10  " >
-            <div className="flex flex-col-reverse md:flex-row 2xl:mt-0.5 p-8 bg-white rounded-2xl  items-center">
-              <div className="">
-                <Image className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[2]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
-                <div className="md:hidden flex   mt-9  items-end items-center ">
-                  <div className="">
-                    <Link
-                      href={activityList[2]?.activityList?.[0]?.subLink || ""}
-                      legacyBehavior>
-
-<a className={activityList[2].activityList[0].status == "In progress"||activityList[2].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
-                                                       {t("订阅")}
-                                                </a>
-                    </Link>
-                  </div>
-                  <div className="xl:w-52 text-sm">
-                    <Link
-                      href={`/meetingList/${activityList[2]?.id}`}
-                      legacyBehavior>
-
-<a className={activityList[2].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
-                                                          {t("了解更多")}
-                                                </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full hidden  md:block xl:hidden">
-                <Image className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[2]?.activityList?.[0]?.poster_1 || ""} alt="" width={328} height={392} />
-              </div>
-              <div className="w-full md:pl-6">
-                <div className=" flex ">
-                  <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                    {activityList[2]?.activityList?.[0]?.activity || t("No activity")}
-                  </div>
-                </div>
-                <div className="text-2xl font-light mt-5">
-                  {activityList[2]?.activityList?.[0]?.time || t("No time specified")}
-                </div>
-                <div className="font-semibold">
-                  {activityList[2]?.activityList?.[0]?.date || t("No date specified")}
-                </div>
-
-                <div className=" xl:text-xl font-semibold">
-                  <div className=' mt-4 md:mb-8 xl:my-10 items-center line-clamp-4 md:h-24 xl:line-clamp-3   2xl:w-90'>
-                    {activityList[2]?.activityList?.[0]?.name || t("No name specified")}
-                  </div>
-
-                </div>
-                <div className="hidden md:flex justify-between items-end ">
-                  <div className="flex   items-center">
-                    <div className="  ">
-                      <Link
-                        href={activityList[2]?.activityList?.[0]?.subLink || ""}
-                        legacyBehavior>
-
-<a className={activityList[2].activityList[0].status == "In progress"||activityList[2].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
-                                                       {t("订阅")}
-                                                </a>
-
-                      </Link>
-                    </div>
-                    <div className="">
-                      <Link
-                        href={`/meetingList/${activityList[2]?.id}`}
-                        legacyBehavior>
-  <a className={activityList[2].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
-                                                          {t("了解更多")}
-                                                </a>
-
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+      <div className="flex flex-wrap -mx-2 mt-4">
+        {activityList.map(renderActivityCard)}
       </div>
     </div>
   );
