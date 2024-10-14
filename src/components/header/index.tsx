@@ -7,6 +7,8 @@ import {useAtom} from "jotai";
 import {Language, LoginState, UserEmail} from "../../jotai";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import Image from 'next/image';
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -106,34 +108,32 @@ const Header = () =>{
     const languageChange = () => {
         const newLanguage = language === "cn" ? "en" : "cn";
         setLanguage(newLanguage);
-        router.push({ pathname, query }, asPath, { locale: newLanguage });
+        // Use router.replace instead of router.push
+        router.replace({ pathname, query }, asPath, { locale: newLanguage });
     }
 
-    useEffect(()=>{
-        if(router.isReady){
-            if(router.locale == "cn"){
-                setLanguage("cn")
-            }else {
-                setLanguage("en")
-            }
+    useEffect(() => {
+        if (router.isReady) {
+            setLanguage(router.locale === "cn" ? "cn" : "en");
         }
-    },[router.isReady])
+    }, [router.isReady, router.locale, setLanguage]);
 
     return (
         <header>
             <Popover className="relative bg-white  ">
                 <div className={classNames(scroll?" backdrop-blur-sm bg-white/95":"",
-                    "flex  fixed z-50 inset-x-0    transition duration-700 mb-10 pl-5 mb-5 justify-between items-center  p-3 md:p-3 sm:px-6 lg:justify-end md:space-x-10 lg:px-10 xl:px-20 items-center ")}>
+                    "flex  fixed z-50 inset-x-0    transition duration-700 mb-10 pl-5 mb-5 justify-between items-center  p-3 md:p-3 sm:px-6 lg:px-10 xl:px-20 items-center ")}>
 
                     <div className=" flex  justify-between lg:justify-start">
                         <div className="flex justify-start  ">
                             <Link  href="/" legacyBehavior>
                                 <a>
                                     <span className="sr-only">Workflow</span>
-                                    <img
-                                        className=" w-auto   "
+                                    <Image
                                         src="/tintin_color_horizontal.svg"
                                         alt=""
+                                        width={150}
+                                        height={40}
                                     />
                                 </a>
                             </Link>
@@ -160,12 +160,11 @@ const Header = () =>{
                     <div className="hidden lg:flex w-full justify-end  items-center">
                         <div className="flex justify-center items-center">
                             <Switch
-                                // checked={languageState}
                                 onChange={languageChange}
                                 className={classNames(
                                     'relative inline-flex flex-shrink-0 h-7 w-12  border border-gray-500 rounded-full cursor-pointer transition-colors ease-in-out duration-200 items-center bg-gray-200 '
                                 )}
-                             checked>
+                                checked={language === "en"}>
                                 <span className="sr-only">Use setting</span>
 
                                 <span
@@ -211,16 +210,17 @@ const Header = () =>{
                         leaveTo="opacity-0 scale-95"
                     >
                         <Popover.Panel
-                            className="absolute my-auto  fixed z-50 inset-x-0  min-h-screen  inset-y-auto   p-2 transition transform origin-top-right lg:hidden"
+                            className="absolute my-auto z-50 inset-x-0 min-h-screen inset-y-auto p-2 transition transform origin-top-right lg:hidden"
                         >
                             <div className="rounded-lg  shadow-lg ring-1 ring-black ring-opacity-5 bg-white   transition duration-700 divide-y-2 divide-gray-50">
                                 <div className="pt-5 pb-6 px-5">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <img
-                                                className=" w-auto"
+                                            <Image
                                                 src="/tintin_color_horizontal.svg"
                                                 alt="Workflow"
+                                                width={150}
+                                                height={40}
                                             />
                                         </div>
                                         <div className="-mr-2">
@@ -250,12 +250,11 @@ const Header = () =>{
                                 <div className="flex justify-between  p-5 items-center">
                                         <div className="flex justify-between">
                                             <Switch
-                                                // checked={languageState}
                                                 onChange={languageChange}
                                                 className={classNames(
                                                     'relative inline-flex flex-shrink-0 h-7 w-12  border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 items-center bg-gray-200 '
                                                 )}
-                                             checked>
+                                                checked={language === "en"}>
                                                 <span className="sr-only">Use setting</span>
 
                                                 <span

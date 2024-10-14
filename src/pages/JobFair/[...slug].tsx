@@ -11,6 +11,8 @@ import Info from "../../info";
 import JobFair_info from "../../components/JobFair_info";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import Heads from "../../components/head";
+import Image from 'next/image';
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -71,7 +73,7 @@ const JobFair= () =>{
                         },
                         {
                             h1:" 有以下一项或多项经验：\n" +
-                                "- 实现云转型并构建云原生架构和解决方案（AWS、Azure、谷歌云、甲骨文等）经验\n" +
+                                "- 实现云转型并构建云原生架构和解决方案（AWS、Azure、谷��云、甲骨文等）经验\n" +
                                 "- 企业架构，4+1架构建模，UML经验。\n" +
                                 "- 复杂技术堆栈的大型分布式系统的交付经验。"
                         },
@@ -139,11 +141,11 @@ const JobFair= () =>{
             logo:"/tintin-favicon.svg",
             name:"TX Labs1",
             website:"https://txlabs.org",
-            h1:"Blockless (曾用名 TX Mesh) 是 Web3.0 的第一个模块化执行层。它是一个无需许可的去中心化网络，赋予链上和链下互操作性和可组合性。Blockless通过类似“去中心化 AWS”的功能，构建链上链下的混合应用程序（预言机、桥接器、汇总、私有计算等），支持应用程序定义的本地共识的可组合、无服务器基础架构，能够帮助开发者节省开发成本 90%（100 万美元）以上。.                                   ",
+            h1:"Blockless (曾用名 TX Mesh) 是 Web3.0 的第一个模块化执行层。它是一个无需许可的去中心化网络，赋予链上和链下互操作性和可组合性。Blockless通过类似“去中心化 AWS”��功能，构建链上链下的混合应用程序（预言机、桥接器、汇总、私有计算等），支持应用程序定义的本地共识的可组合、无服务器基础架构，能够帮助开发者节省开发成本 90%（100 万美元）以上。.                                   ",
             work:[
                 {
                     title:"首席开发工程师",
-                    type:"80k-120K｜杭州｜Remote｜�����",
+                    type:"80k-120K｜杭州｜Remote｜全职",
                     content:[
                         {
                             h1:"3年以上全职软件工程经验。"
@@ -165,7 +167,7 @@ const JobFair= () =>{
                         },
                         {
                             h1:" 有以下一项或多项经验：\n" +
-                                "- 实现云转型并构建云原生架构和解决方案（AWS、Azure、谷歌云、甲骨文等）经\n" +
+                                "- 实现云转型并构建云原生架构和解决方案（AWS、Azure、谷云、甲骨文等）经\n" +
                                 "- 企业架构，4+1架构建模，UML经验。\n" +
                                 "- 复杂技术堆栈的大型分布式系统的交付经验。"
                         },
@@ -273,7 +275,13 @@ const JobFair= () =>{
 
                                         <div className=" truncate flex justify-between items-center">
                                             <div className="flex items-center">
-                                                <img className="w-5 mr-2 border border-dashed border-black " src="/common_icons/grid_view_black_24dp@3x.png" alt=""/>
+                                                <Image
+                                                    className="mr-2 border border-dashed border-black"
+                                                    src="/common_icons/grid_view_black_24dp@3x.png"
+                                                    alt="Grid view icon"
+                                                    width={20}
+                                                    height={20}
+                                                />
                                                 {selected.title}
                                             </div>
                                             <div>
@@ -349,7 +357,13 @@ const JobFair= () =>{
                 <div className="sm:flex justify-end xl:-mt-24">
                 <div className="my-5 flex bg-white items-center text-base  p-4  rounded-xl md:justify-end text-right">
                     <div className="text-xs sm:text-base mr-3 text-gray-600 items-center flex">
-                        <img className="w-12 md:hidden mr-3" src="/common_icons/编组 13@2x.png" alt=""/>
+                        <Image
+                            className="w-12 md:hidden mr-3"
+                            src="/common_icons/编组 13@2x.png"
+                            alt="Group icon"
+                            width={48}
+                            height={48}
+                        />
                         <div className="text-left md:text-right">
                         <div>
                             你的项目也在寻找工作伙伴吗？
@@ -363,7 +377,13 @@ const JobFair= () =>{
                         </div>
                         </div>
                     </div>
-                    <img className="w-12 hidden md:flex" src="/common_icons/编组 13@2x.png" alt=""/>
+                    <Image
+                        className="w-12 hidden md:flex"
+                        src="/common_icons/编组 13@2x.png"
+                        alt="Group icon"
+                        width={48}
+                        height={48}
+                    />
                 </div>
                 </div>
 
@@ -383,7 +403,13 @@ const JobCard = ({ item, onOpenJobInfo }) => (
   <div onClick={onOpenJobInfo} className="cursor-pointer">
     <div className="bg-white p-5 rounded-xl">
       <div className="flex items-center">
-        <img className="w-14 rounded-full" src={item.logo} alt="" />
+        <Image 
+          className="rounded-full"
+          src={item.logo} 
+          alt={`${item.name} logo`}
+          width={56}
+          height={56}
+        />
         <div className="ml-2 w-10/12 sm:w-11/12 text-left">
           <div className="sm:text-xl font-semibold">{item.name}</div>
           <div className="text-sm sm:text-base truncate text-gray-500">{item.h1}</div>

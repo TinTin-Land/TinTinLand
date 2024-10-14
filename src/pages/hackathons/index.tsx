@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Image from 'next/image';
 
 import Header from "../../components/header";
 import Tail from "../../components/tail";
@@ -60,7 +61,15 @@ const Hackathons = ({ hackathons_details }) => {
                   <div className={`${HackathonsState[item.state]} flex justify-end right-4 mt-5 rounded-full px-3 py-1 absolute`}>
                     {item.state}
                   </div>
-                  <img className="rounded-t-2xl w-full md:h-60 2xl:h-80" src={item.img} alt="" />
+                  <Image 
+                    className="rounded-t-2xl w-full md:h-60 2xl:h-80" 
+                    src={item.img} 
+                    alt={item.name}
+                    width={500}
+                    height={300}
+                    layout="responsive"
+                    objectFit="cover"
+                  />
                   <div className="px-10 py-8 bg-white rounded-b-2xl">
                     <h3 className="mt-2 line-clamp-2 h-14 font-semibold">{item.name}</h3>
                     <p className="text-sm mt-2">{item.time}</p>

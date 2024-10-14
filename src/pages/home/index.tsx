@@ -4,10 +4,11 @@ import { useAtom } from "jotai";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from 'next/image';
 
 import Header from "../../components/header";
 import Heads from "../../components/head";
-import { Course_data, SignUpCourseBoxState, SignUpCourseBoxData, Activity_Alldetail, Hackathons_detail } from "../../jotai";
+import { Activity_Alldetail} from "../../jotai";
 import HackathonsState from "../../components/state";
 import Loading from "../../components/loading";
 import Tail from "../../components/tail";
@@ -19,16 +20,17 @@ import "swiper/css/pagination";
 // Utility functions
 const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
-const parseJsonSafely = (jsonString: string | undefined, defaultValue: any[] = []) => {
-  if (!jsonString) {
-    console.warn("JSON string is empty or undefined");
-    return defaultValue;
+const parseJsonSafely = (jsonString: string, key: string) => {
+  if (!jsonString || jsonString === '[]') {
+    console.warn(`Empty or null JSON string for ${key}`);
+    return [];
   }
   try {
     return JSON.parse(jsonString);
   } catch (error) {
-    console.error("Failed to parse JSON:", error, "Raw data:", jsonString);
-    return defaultValue;
+    console.error(`Failed to parse JSON for ${key}:`, error);
+    console.error('Problematic JSON string:', jsonString);
+    return [];
   }
 };
 
@@ -131,7 +133,14 @@ const Course = ({ data }: { data: any[] }) => {
 
 const CourseCard = ({ item }) => (
   <div className="rounded-2xl mr-4">
-    <img className="rounded-t-2xl w-full" src={item.img} alt=""/>
+    <Image
+      className="rounded-t-2xl w-full"
+      src={item.img}
+      alt=""
+      width={500}
+      height={300}
+      layout="responsive"
+    />
     <div className="px-10 py-8 bg-white rounded-b-2xl">
       <div className="flex h-20 overflow-hidden flex-wrap">
         {item.type.map(list => (
@@ -261,7 +270,14 @@ const Hackathons = ({ data }) => {
           <div className={classNames(HackathonsState[hackathonsData[0]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1 border absolute")}>
             {hackathonsData[0]?.state || ""}
           </div>
-          <img className="rounded-t-2xl w-full xl:h-96 2xl:h-99" src={hackathonsData[0]?.img || ""} alt=""/>
+          <Image
+            className="rounded-t-2xl w-full xl:h-96 2xl:h-99"
+            src={hackathonsData[0]?.img || ""}
+            alt=""
+            width={800}
+            height={400}
+            layout="responsive"
+          />
           <div className="px-10 py-8 bg-white rounded-b-2xl">
             <div className="2xl:text-xl font-semibold xl:w-72 truncate">
               {hackathonsData[0]?.name || ""}
@@ -295,7 +311,14 @@ const Hackathons = ({ data }) => {
               <div className={classNames(HackathonsState[hackathonsData[1]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
                 {hackathonsData[1]?.state || ""}
               </div>
-              <img className="rounded-t-2xl  w-full xl:h-56  2xl:h-80" src={hackathonsData[1]?.img || ""} alt=""/>
+              <Image
+                className="rounded-t-2xl w-full xl:h-56 2xl:h-80"
+                src={hackathonsData[1]?.img || ""}
+                alt=""
+                width={600}
+                height={300}
+                layout="responsive"
+              />
               <div className="px-10 py-3  bg-white rounded-b-2xl">
                 <div className="2xl:text-xl font-semibold  truncate">
                   {hackathonsData[1]?.name || ""}
@@ -329,8 +352,14 @@ const Hackathons = ({ data }) => {
                 {hackathonsData[2]?.state || ""}
               </div>
               <div className="xl:flex  xl:items-center xl:justify-between bg-white rounded-2xl">
-
-                <img className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl  w-full " src={hackathonsData[2]?.img || ""} alt=""/>
+                <Image
+                  className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl w-full"
+                  src={hackathonsData[2]?.img || ""}
+                  alt=""
+                  width={400}
+                  height={200}
+                  layout="responsive"
+                />
                 <div className="pl-10 py-3 xl:py-0    ">
                   <div className="2xl:text-xl font-semibold xl:w-48 2xl:w-56  truncate">
                     {hackathonsData[2]?.name || ""}
@@ -355,9 +384,15 @@ const Hackathons = ({ data }) => {
                     )}
                   </div>
                 </div>
-                <img className="rounded-t-2xl hidden xl:flex xl:rounded-t-none xl:rounded-r-2xl  xl:w-5/12 xl:h-40 2xl:h-44" src={hackathonsData[2]?.img || ""} alt=""/>
+                <Image
+                  className="rounded-t-2xl hidden xl:flex xl:rounded-t-none xl:rounded-r-2xl xl:w-5/12 xl:h-40 2xl:h-44"
+                  src={hackathonsData[2]?.img || ""}
+                  alt=""
+                  width={200}
+                  height={160}
+                  layout="responsive"
+                />
               </div>
-
             </div>
           </div>
         </div>
@@ -450,8 +485,8 @@ const Activity = ({ data }: { data: any[] }) => {
                 {activityList[0]?.activityList?.[0]?.name || t("No name specified")}
               </div>
               <div className="xl:flex 2xl:block w-full">
-                <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 h-98" src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt=""/>
-                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100 h-97 " src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt=""/>
+                <Image className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 h-98" src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
+                <Image className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100 h-97 " src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt="" width={400} height={388} />
                 <div className="xl:ml-5  2xl:ml-0  flex  xl:mt-9 xl:justify-end  2xl:justify-start xl:items-end items-center">
                   <div className="">
                     <Link
@@ -482,7 +517,7 @@ const Activity = ({ data }: { data: any[] }) => {
           <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl  items-center">
             <div className="">
               <div className="items-end ">
-                <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt=""/>
+                <Image className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
                 <div className="md:hidden flex   mt-9  items-end items-center ">
                   <div className="">
                     <Link
@@ -510,7 +545,7 @@ const Activity = ({ data }: { data: any[] }) => {
               </div>
             </div>
             <div className="w-full hidden md:block xl:hidden">
-              <img className="rounded-xl mt-5 md:mt-0 md:mr-5 h-98" src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt=""/>
+              <Image className="rounded-xl mt-5 md:mt-0 md:mr-5 h-98" src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt="" width={328} height={392} />
             </div>
 
             <div className="w-full md:pl-6">
@@ -547,7 +582,7 @@ const Activity = ({ data }: { data: any[] }) => {
                     href={`/meetingList/${activityList[0]?.id}`}
                     legacyBehavior>
 
-<a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4 xl:px-8 py-2.5"}>
+<a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 xl:px-8 py-2.5"}>
                                                       {t("了解更多")}
                                             </a>
 
@@ -564,7 +599,7 @@ const Activity = ({ data }: { data: any[] }) => {
             <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl mx-auto items-center">
               <div className="">
                 <div className="    items-end ">
-                  <img className=" md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={activityList[1]?.activityList?.[0]?.poster_2 || ""} alt=""/>
+                  <Image className=" md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={activityList[1]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
                   <div className="md:hidden flex mt-9  items-end items-center ">
                     <div className="">
                       <Link
@@ -593,7 +628,7 @@ const Activity = ({ data }: { data: any[] }) => {
                 </div>
               </div>
               <div className="w-full hidden  md:block xl:hidden">
-                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[1]?.activityList?.[0]?.poster_1 || ""} alt=""/>
+                <Image className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[1]?.activityList?.[0]?.poster_1 || ""} alt="" width={328} height={392} />
               </div>
 
               <div className=" w-full md:pl-6">
@@ -648,7 +683,7 @@ const Activity = ({ data }: { data: any[] }) => {
           <div className="relative mt-5 2xl:mt-10  " >
             <div className="flex flex-col-reverse md:flex-row 2xl:mt-0.5 p-8 bg-white rounded-2xl  items-center">
               <div className="">
-                <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[2]?.activityList?.[0]?.poster_2 || ""} alt=""/>
+                <Image className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[2]?.activityList?.[0]?.poster_2 || ""} alt="" width={328} height={392} />
                 <div className="md:hidden flex   mt-9  items-end items-center ">
                   <div className="">
                     <Link
@@ -673,7 +708,7 @@ const Activity = ({ data }: { data: any[] }) => {
                 </div>
               </div>
               <div className="w-full hidden  md:block xl:hidden">
-                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[2]?.activityList?.[0]?.poster_1 || ""} alt=""/>
+                <Image className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[2]?.activityList?.[0]?.poster_1 || ""} alt="" width={328} height={392} />
               </div>
               <div className="w-full md:pl-6">
                 <div className=" flex ">
@@ -744,7 +779,7 @@ const AboutUs = ()=>{
                     </div>
                     <div className="2xl:mt-14 text-base 2xl:text-xl">
                         <div>
-                            {t("TinTinLand 是赋下一代开发的技术社区，能够通过聚集、培育、输送 开发者到各放网络，共同定义并构建未来")}
+                            {t("TinTinLand 是赋下一代开的技术社区，能够通过聚集、培育、输送 开发者到各放网络，共同定义并构建未来")}
                         </div>
                         <div className="mt-5">
                             {t("我们也将和行业有商业洞察力、有经验的发者、社区、媒体合作，提供 技术课程、技术内容解读、AMA、线下开发者活动等")}
@@ -760,7 +795,14 @@ const AboutUs = ()=>{
                 </div>
 
                 <div className="mt-5 xl:w-1/2">
-                    <img className="rounded-xl w-full" src="/about us.png" alt=""/>
+                    <Image
+                      className="rounded-xl w-full"
+                      src="/about us.png"
+                      alt=""
+                      width={600}
+                      height={400}
+                      layout="responsive"
+                    />
                 </div>
 
             </div>
@@ -821,7 +863,7 @@ const Media = ({ data }: { data: any[] }) => {
             <li key={`${item.img}-${index}`} className="w-36 xl:w-44 bg-white rounded-xl mr-4">
               <Link href={item.href} passHref legacyBehavior>
                 <a target="_blank" rel="noopener noreferrer">
-                  <img className="filter grayscale hover:grayscale-0 transition duration-300" src={item.img} alt="" />
+                   <img  className=" filter grayscale hover:grayscale-0  transition duration-300" src={item.img} />
                 </a>
               </Link>
             </li>
@@ -836,12 +878,16 @@ const Community = ({ data }) => {
   const [community, setCommunity] = useState([]);
 
   useEffect(() => {
-    setCommunity(data);
+    if (Array.isArray(data) && data.length > 0) {
+      setCommunity(data);
+    } else {
+      console.warn("Community data is empty or invalid");
+    }
   }, [data]);
 
   useEffect(() => {
-    if (community.length > 0) {
-      const onload = () => {
+    const initializeScroll = () => {
+      if (community.length > 0) {
         const oDiv = document.getElementById('div2');
         const oUl = document.getElementsByTagName('h3')[0];
         const Li = oUl.getElementsByTagName('li');
@@ -850,7 +896,6 @@ const Community = ({ data }) => {
         oUl.style.width = (Li[0].offsetWidth * Li.length) / 16 + 'rem';
 
         const speed = 2;
-        // @ts-ignore
         function move() {
           if (oUl.offsetLeft < -oUl.offsetWidth / speed) {
             oUl.style.left = '0';
@@ -858,7 +903,7 @@ const Community = ({ data }) => {
           if (oUl.offsetLeft > 0) {
             oUl.style.left = (-oUl.offsetWidth / speed) / 16 + 'rem';
           }
-          oUl.style.left = (oUl.offsetLeft - 2) / 16 + 0.05 + 'rem'; //进行左横向滚动
+          oUl.style.left = (oUl.offsetLeft - 2) / 16 + 0.05 + 'rem';
         }
 
         let timer = setInterval(move, 60);
@@ -869,10 +914,15 @@ const Community = ({ data }) => {
         oDiv.onmouseout = function () {
           timer = setInterval(move, 60);
         };
-      };
-      onload();
-    }
+      }
+    };
+
+    initializeScroll();
   }, [community]);
+
+  if (community.length === 0) {
+    return null; // or show a placeholder
+  }
 
   return (
     <div className="mt-10 mx-4 relative" id="div2">
@@ -882,7 +932,14 @@ const Community = ({ data }) => {
             <li key={`${item.img}-${index}`} className="w-36 xl:w-44 bg-white rounded-xl mr-4 list-none">
               <Link href={item.href} passHref legacyBehavior>
                 <a target="_blank" rel="noopener noreferrer">
-                  <img className="filter grayscale hover:grayscale-0 transition duration-300" src={item.img} alt="" />
+                  <Image
+                    className="filter grayscale hover:grayscale-0 transition duration-300"
+                    src={item.img}
+                    alt=""
+                    width={176}
+                    height={64}
+                    layout="responsive"
+                  />
                 </a>
               </Link>
             </li>
@@ -946,7 +1003,13 @@ const CommunityMember = ({ data }) => {
           {communityMember.map((item) => (
             <div key={item.name} className="rounded-2xl snap-always snap-start w-90 bg-white mr-8 p-5 list-none">
               <div className="flex items-center">
-                <img className="rounded-full w-16" src={item.img} alt="" />
+                <Image 
+                  className="rounded-full"
+                  src={item.img}
+                  alt={item.name}
+                  width={64}
+                  height={64}
+                />
                 <div className="ml-2">
                   <div className="text-xl font-semibold">
                     {item.name}
@@ -968,7 +1031,13 @@ const CommunityMember = ({ data }) => {
           {communityMember.map((item) => (
             <li key={item.name} className="rounded-2xl snap-always snap-center w-96 bg-white mr-8 p-5 list-none">
               <div className="flex items-center">
-                <img className="rounded-full w-16" src={item.img} alt="" />
+                <Image 
+                  className="rounded-full"
+                  src={item.img}
+                  alt={item.name}
+                  width={64}
+                  height={64}
+                />
                 <div className="ml-2">
                   <div className="text-xl font-semibold">
                     {item.name}
@@ -990,9 +1059,15 @@ const CommunityMember = ({ data }) => {
 };
 
 // Main component
-const Home: React.FC<{ props: any }> = ({ props }) => {
-  console.log("Raw props:", props); // 添加这行来查看原始 props
-  
+const Home = ({ props }: { props: any }) => {
+  console.log("Raw props:", props);
+  console.log("course_details:", props.course_details);
+  console.log("media_details:", props.media_details);
+  console.log("community_details:", props.community_details);
+  console.log("communityMember_details:", props.communityMember_details);
+  console.log("hackathons_details:", props.hackathons_details);
+  console.log("activity_details:", props.activity_details);
+
   const { t } = useTranslation('common');
   const [isClient, setIsClient] = useState(false);
 
@@ -1000,13 +1075,12 @@ const Home: React.FC<{ props: any }> = ({ props }) => {
     setIsClient(true);
   }, []);
 
-  const courseInfo = parseJsonSafely(props?.course_details);
-  const hackathonsData = parseJsonSafely(props?.hackathons_details);
-  console.log("Hackathons data in Home component:", hackathonsData);
-  const activityData = parseJsonSafely(props?.activity_details);
-  const mediaData = parseJsonSafely(props?.media_details);
-  const communityData = parseJsonSafely(props?.community_details);
-  const communityMemberData = parseJsonSafely(props?.communityMember_details);
+  const course_details = parseJsonSafely(props.course_details, 'course_details');
+  const media_details = parseJsonSafely(props.media_details, 'media_details');
+  const community_details = parseJsonSafely(props.community_details, 'community_details');
+  const communityMember_details = parseJsonSafely(props.communityMember_details, 'communityMember_details');
+  const hackathons_details = parseJsonSafely(props.hackathons_details, 'hackathons_details');
+  const activity_details = parseJsonSafely(props.activity_details, 'activity_details');
 
   if (!isClient) {
     return null; // or a loading spinner
@@ -1028,19 +1102,19 @@ const Home: React.FC<{ props: any }> = ({ props }) => {
             <div>{t("通过聚集、培育、输送开发者到各开放网络，共同定义并构建未来")}</div>
           </p>
         </section>
-        <Course data={courseInfo} />
-        <Hackathons data={hackathonsData} />
-        <Activity data={activityData} />
+        <Course data={course_details} />
+        <Hackathons data={hackathons_details} />
+        <Activity data={activity_details} />
       </main>
        <section className="relative">
-        <Media data={mediaData} />
-        <Community data={communityData} />
+        <Media data={media_details} />
+        <Community data={community_details} />
       </section>
       <section className="lg:px-10 xl:px-20 relative px-5 mx-auto">
         <AboutUs />
       </section>
       <section className="lg:px-10 xl:px-20 relative px-5 pt-16 mx-auto">
-        <CommunityMember data={communityMemberData} />
+        <CommunityMember data={communityMember_details} />
       </section>
       <Loading/>
       <Tail/>

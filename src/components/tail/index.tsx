@@ -1,7 +1,8 @@
 import {Dialog, Popover, Transition } from "@headlessui/react"
 import Link from "next/link"
 import React, { Fragment, useState } from "react"
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next"
+import Image from 'next/image'
 
 
 const WeiXinImg = {
@@ -52,8 +53,8 @@ const Tail=()=>{
         <div className="relative border-t border-gray-400 pt-4 2xl:pt-12 pb-1 px-10   bg-stone-900  rounded-t-3xl">
             <div className="md:hidden">
                 <div className="md:flex justify-between  items-center  mx-auto  ">
-                    <div  className="flex justify-center  " >
-                        <img className="" src="/tintin_color_horizontal2.svg" alt=""/>
+                    <div className="flex justify-center  " >
+                        <Image src="/tintin_color_horizontal2.svg" alt="" width={200} height={50} />
                     </div>
                 </div>
                 <div className="    mx-auto ">
@@ -157,7 +158,12 @@ const Tail=()=>{
                                                             <div className=" rounded-lg  ">
 
                                                                 <div className="bg-gray-50 p-2 rounded-2xl">
-                                                                    <img className="w-24" src={WeiXinImg.img} alt=""/>
+                                                                    <Image 
+                                                                        src={WeiXinImg.img} 
+                                                                        alt="WeChat QR Code"
+                                                                        width={96}
+                                                                        height={96}
+                                                                    />
                                                                 </div>
                                                             </div>
                                                         </Popover.Panel>
@@ -172,8 +178,8 @@ const Tail=()=>{
                 </div>
 
                 <div className="md:flex justify-between  items-center  mx-auto md:mr-14 ">
-                    <div  className="flex justify-center md:justify-end " >
-                        <img className="" src="/tintin_color_horizontal2.svg" alt=""/>
+                    <div className="flex justify-center md:justify-end " >
+                        <Image src="/tintin_color_horizontal2.svg" alt="" width={200} height={50} />
                     </div>
                 </div>
 
@@ -206,7 +212,12 @@ const Tail=()=>{
                             >
                                 <div  className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl items-center transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6">
                                         <div>
-                                            <img src={WeiXinImg.img} alt=""/>
+                                            <Image 
+                                                src={WeiXinImg.img} 
+                                                alt="WeChat QR Code"
+                                                width={200}
+                                                height={200}
+                                            />
                                         </div>
                                 </div>
                             </Transition.Child>

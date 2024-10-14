@@ -15,6 +15,7 @@ import Loading from "../../components/loading";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
 import {https} from "../../constants";
+import Image from 'next/image';
 
 
 function classNames(...classes) {
@@ -62,7 +63,7 @@ const Course = ({ course_details }) =>{
                     </div>
                     <div className="text-xl ">
                         {t("生态官方合作课程，项目 CTO &核心开发者亲自授课")}
-                        <br/> {t("配套高质量社群，全球一线开发助教全程陪伴，社区同学交流讨论")}
+                        <br/> {t("配套高质量社群，全球一线开发助���全程陪伴，社区同学交流讨论")}
                     </div>
                     <button className="bg-black text-white px-4 py-2 rounded-full mt-5">
                         TinTin EDU
@@ -116,7 +117,15 @@ const CourseCard = ({ item, t }) => {
 
     return (
         <div className="rounded-2xl">
-            <img className="rounded-t-2xl w-full" src={item.img} alt={item.name} />
+            <div className="relative w-full h-48">
+                <Image
+                    className="rounded-t-2xl"
+                    src={item.img}
+                    alt={item.name}
+                    layout="fill"
+                    objectFit="cover"
+                />
+            </div>
             <div className="px-10 py-8 bg-white rounded-b-2xl">
                 <div className="flex flex-wrap h-20 overflow-hidden">
                     {item.type.map(list => (

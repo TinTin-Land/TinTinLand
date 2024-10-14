@@ -9,6 +9,7 @@ import {useAtom} from "jotai";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import { https} from "../../constants";
 import {useTranslation} from "next-i18next";
+import Image from 'next/image';
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -48,7 +49,17 @@ const Meeting = ({ activity_details }: { activity_details: string }) => {
                     <div className="xl:w-9/12  xl:ml-4 mt-10 xl:mt-0 ">
                         <div className="" >
                             <div className="md:flex  w-full   py-8 md:bg-white rounded-2xl">
-                                <img className="rounded-t-2xl md:rounded-xl md:mx-8 md:w-7/12  " src={activityList.activityList[0].poster_1} alt=""/>
+                                <div className="md:mx-8 md:w-7/12 relative">
+                                    <Image 
+                                        className="rounded-t-2xl md:rounded-xl"
+                                        src={activityList.activityList[0].poster_1}
+                                        alt=""
+                                        layout="responsive"
+                                        width={700}
+                                        height={475}
+                                        objectFit="cover"
+                                    />
+                                </div>
                                 <div className=" bg-white p-5 xl:p-0  rounded-b-2xl ">
                                     <div className="pt-4 md:pt-0 flex ">
                                         <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
@@ -105,12 +116,20 @@ const Meeting = ({ activity_details }: { activity_details: string }) => {
                 </div>
                 <div>
                     <div className="text-indigo-700 text-2xl">
-                        {t("往期回顾")}
+                        {t("往��回顾")}
                     </div>
                     <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
                         {activityList.activityList.map((item, index: number) => (
                             <div key={item.activity} className={index === 0 ? "hidden" : "rounded-2xl"}>
-                                <img className="rounded-t-2xl w-full md:h-64 xl:h-72 2xl:h-80" src={item.poster_1} alt=""/>
+                                <div className="relative w-full md:h-64 xl:h-72 2xl:h-80">
+                                    <Image 
+                                        className="rounded-t-2xl"
+                                        src={item.poster_1}
+                                        alt=""
+                                        layout="fill"
+                                        objectFit="cover"
+                                    />
+                                </div>
                                 <div className="px-10 py-8 bg-white rounded-b-2xl">
                                     <div className="flex flex-wrap">
                                         <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >

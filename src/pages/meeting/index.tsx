@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Image from 'next/image';
 
 import Header from "../../components/header";
 import Tail from "../../components/tail";
@@ -97,7 +98,15 @@ const Meeting = ({ activity_details }) => {
 
 const ActivityCard = ({ item, t }) => (
   <div className="rounded-2xl">
-    <img className="rounded-t-2xl w-full md:h-64 xl:h-72 2xl:h-80" src={item.poster_1} alt="" />
+    <div className="relative w-full md:h-64 xl:h-72 2xl:h-80">
+      <Image
+        className="rounded-t-2xl"
+        src={item.poster_1}
+        alt=""
+        layout="fill"
+        objectFit="cover"
+      />
+    </div>
     <div className="px-10 py-8 bg-white rounded-b-2xl">
       <div className="flex flex-wrap">
         <div className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm">

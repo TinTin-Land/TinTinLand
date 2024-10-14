@@ -17,6 +17,7 @@ import {GetStaticPaths, InferGetStaticPropsType} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
 import { ChevronUpIcon } from '@heroicons/react/solid';
+import Image from 'next/image';
 
 // Optimize classNames function
 const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
@@ -33,7 +34,7 @@ const  Details = () =>{
                 {courseDetail.method.map(item=>(
                     <div key={item.name} className="text-center text-gray-500 items-center ">
                         <div className="flex justify-center  ">
-                            <img className="" src={item.img} alt=""/>
+                            <Image className="" src={item.img} alt="" width={50} height={50} />
                         </div>
                         <div className="flex justify-center mx-auto mt-2 w-32 ">
                             {item.name}
@@ -46,7 +47,7 @@ const  Details = () =>{
                 {courseDetail.method.map(item=>(
                 <div key={item.name} className="text-center text-gray-500 items-center ">
                     <div className="flex justify-center  ">
-                        <img className="" src={item.img} alt=""/>
+                        <Image className="" src={item.img} alt="" width={50} height={50} />
                     </div>
                     <div className="flex justify-center mx-auto mt-2 w-32 ">
                         {item.name}
@@ -62,7 +63,7 @@ const  Details = () =>{
                 {courseDetail.teacher.map(item=>(
                     <div key={item.name} className="rounded-2xl   p-5">
                         <div className="flex items-center">
-                            <img className="rounded-full w-16 h-16" src={item.img} alt=""/>
+                            <Image className="rounded-full w-16 h-16" src={item.img} alt="" width={64} height={64} />
                             <div className="ml-2">
                                 <div className='text-xl font-semibold'>
                                     {item.name}
@@ -134,7 +135,7 @@ const CourseInfo = () =>{
                     <div className="flex w-full grid grid-cols-2  xl:grid-cols-3 gap-4 mt-3 ">
                         {courseDetail.project_provider.map(item=>(
                             <div key={item.name} className="flex items-center ">
-                                <img className="rounded-full w-8 xl:w-10 " src={item.img} alt=""/>
+                                <Image className="rounded-full w-8 xl:w-10 " src={item.img} alt="" width={40} height={40} />
                                 <div className="ml-2 text-black font-semibold">
                                     {item.name}
                                 </div>
@@ -186,7 +187,7 @@ const CourseInfo = () =>{
                             <div key={item.text} className={item.name== ""?"hidden":"rounded-2xl   "}>
                                 <div className="grid xl:grid-cols-2 gap-4">
                                     <div className="flex items-center">
-                                    <img className="rounded-full w-10 h-10 " src={item.img} alt=""/>
+                                    <Image className="rounded-full w-10 h-10 " src={item.img} alt="" width={40} height={40} />
                                     <div className="ml-2">
                                         <div className=' font-semibold'>
                                             {item.name}
@@ -197,7 +198,7 @@ const CourseInfo = () =>{
                                     </div>
                                     </div>
                                     <div className={item.img2==""?"hidden":"flex items-center"}>
-                                        <img className="rounded-full w-10 h-10" src={item.img2} alt=""/>
+                                        <Image className="rounded-full w-10 h-10" src={item.img2} alt="" width={40} height={40} />
                                         <div className="ml-2">
                                             <div className=' font-semibold'>
                                                 {item.name2}
@@ -245,7 +246,7 @@ const CourseDetails: React.FC<GspPageProps> = (props) =>{
                 const project_details_list = JSON.parse(props.project_details)
                 const project_details = project_details_list[0]
                 setCourseDetail(project_details)
-    },[])
+    },[props.project_details, setCourseDetail])
     return (
 
         <div className="mx-auto relative bg-fixed overflow-hidden"
@@ -254,7 +255,7 @@ const CourseDetails: React.FC<GspPageProps> = (props) =>{
             <Header/>
             <div className=" lg:px-10 xl:px-20 relative px-5 pt-24    mx-auto ">
                 <button onClick={()=>{setOpen(true)}} className="fixed  z-30 bottom-6 right-6  ">
-                    <img className="w-10 h-10 " src="/tintinlogo.svg" alt=""/>
+                    <Image className="w-10 h-10 " src="/tintinlogo.svg" alt="" width={40} height={40} />
                 </button>
                 <div className="pb-10 md:flex justify-between " >
 
@@ -269,7 +270,7 @@ const CourseDetails: React.FC<GspPageProps> = (props) =>{
                         </div>
                         <div className="md:hidden md:w-1/2 md:ml-10 mb-10">
                             <div className="" >
-                                <img className="rounded-t-2xl  w-full  mt-10 md:mt-0" src={courseDetail.img} alt=""/>
+                                <Image className="rounded-t-2xl  w-full  mt-10 md:mt-0" src={courseDetail.img} alt="" width={500} height={300} />
                                 <div className="bg-white p-10 xl:flex justify-between rounded-b-2xl items-center">
                                     <div className="flex justify-between items-center">
                                         <div className="xl:pr-20">
@@ -326,7 +327,7 @@ const CourseDetails: React.FC<GspPageProps> = (props) =>{
 
                     <div className="hidden md:block md:w-1/2 md:ml-10 ">
                         <div className="" >
-                            <img className="rounded-t-2xl  w-full  mt-10 md:mt-0" src={courseDetail.img} alt=""/>
+                            <Image className="rounded-t-2xl  w-full  mt-10 md:mt-0" src={courseDetail.img} alt="" width={500} height={300} />
                             <div className="bg-white p-10 xl:flex justify-between rounded-b-2xl items-center">
                                 <div className="flex justify-between items-center">
                                     <div className="xl:pr-20">
@@ -403,14 +404,14 @@ const CourseDetails: React.FC<GspPageProps> = (props) =>{
                                    <div className="flex justify-end">
                                        <button onClick={()=>{setOpen(false)}}
                                                className=" text-2xl  font-light">
-                                           <img className="w-8" src="/common_icons/close.png" alt=""/>
+                                           <Image className="w-8" src="/common_icons/close.png" alt="" width={32} height={32} />
                                        </button>
                                    </div>
                                     <div>
                                         <div className="text-center mt-2 text-xl font-semibold">
                                             {t("加入Web3技术社区，与全球10000+开发者共同交流")}
                                         </div>
-                                        <img src={WeiXinImg.img} alt=""/>
+                                        <Image src={WeiXinImg.img} alt="" width={200} height={200} />
                                     </div>
                                 </div>
                             </Transition.Child>
