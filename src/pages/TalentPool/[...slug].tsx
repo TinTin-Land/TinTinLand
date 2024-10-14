@@ -136,7 +136,6 @@ const JobFair: React.FC = () => {
 
 
     return (
-
         <div className="mx-auto relative  bg-fixed overflow-hidden"
              style={{backgroundImage:"url('/tintin-bg.png')"}}>
             <Heads/>
@@ -229,7 +228,7 @@ const JobFair: React.FC = () => {
                     <div className="w-full xl:w-8/12 mt-10 h-new-1 xl:h-new 2xl:h-106  overflow-y-auto xl:scrollbar-thin  scrollbar-thumb-fuchsia-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full  xl:pr-4 ">
                      <div className="grid md:grid-cols-2 2xl:grid-cols-3 gap-4">
                         {People.map(item=>(
-                            <Link  key={item.name} href="/homepage">
+                            <Link key={item.name} href="/homepage" legacyBehavior>
                             <div className="cursor-pointer bg-white rounded-xl p-4 ">
                                 <div className="flex justify-between ">
                                     <div className="flex items-center">
@@ -314,9 +313,7 @@ const JobFair: React.FC = () => {
             </div>
             <Tail/>
         </div>
-
-
-    )
+    );
 }
 
 export default JobFair

@@ -11,7 +11,7 @@ import { Course_data, SignUpCourseBoxState, SignUpCourseBoxData, Activity_Alldet
 import HackathonsState from "../../components/state";
 import Loading from "../../components/loading";
 import Tail from "../../components/tail";
-
+import { Keyboard, Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -20,102 +20,106 @@ import "swiper/css/pagination";
 const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
 const parseJsonSafely = (jsonString: string | undefined, defaultValue: any[] = []) => {
-  if (!jsonString) return defaultValue;
+  if (!jsonString) {
+    console.warn("JSON string is empty or undefined");
+    return defaultValue;
+  }
   try {
     return JSON.parse(jsonString);
   } catch (error) {
-    console.error("Failed to parse JSON:", error);
+    console.error("Failed to parse JSON:", error, "Raw data:", jsonString);
     return defaultValue;
   }
 };
 
 // Components
-const Course = ({ data }: { data: any }) => {
-  const [course_info, setCourse_info] = useAtom(Course_data);
-  const [, setSignUpCourseBox] = useAtom(SignUpCourseBoxState);
-  const [, setSignUpCourseData] = useAtom(SignUpCourseBoxData);
+const Course = ({ data }: { data: any[] }) => {
   const { t } = useTranslation('common');
-
-  useEffect(() => {
-    setCourse_info(Array.isArray(data) ? data : parseJsonSafely(data));
-  }, [data, setCourse_info]);
-
-  const handleSignup = (img, courseName) => {
-    setSignUpCourseBox(true);
-    setSignUpCourseData({ img, courseName, price: "100" });
-  };
+  const course_info = data; // Directly use the data passed as prop
 
   return (
     <div id="Educate" className="pt-20">
-      {/* Course header */}
-      <div className="text-indigo-700 text-2xl">{t("TinTin课程")}</div>
-      <div className="text-2xl md:text-4xl my-5">
-        <div>{t("学习最前沿的 Web3 技术")}</div>
-        <div>{t("创造未来开放网络")}</div>
-      </div>
-      <div className="mb-5 text-sm md:text-base">
-        <div>{t("生态官方合作课程，项目 CTO &核心开发者亲自授课")}</div>
-        <div>{t("配套高质量社群，全球一线开发者助教全程陪伴，社区同学交流讨论")}</div>
+      <div className="text-indigo-700 text-2xl">
+        {t("TinTin课程")}
       </div>
       
-      {/* View more link */}
-      <div className="flex justify-end md:-mt-10">
-        <Link href="/course">
-          <div className="flex bg-white text-black rounded-full cursor-pointer text-sm items-center px-4 py-1.5">
-            <div className="mr-1">{t("查看更多")}</div>
-            <i className="fa fa-arrow-right" aria-hidden="true"></i>
-          </div>
-        </Link>
+      <div className="text-2xl md:text-4xl my-5">
+        <div>
+          {t("学习最前沿的 Web3 技术")}
+          <br/>
+          {t("创造未来开放网络")}
+        </div>
       </div>
 
-      {/* Course swiper for large screens */}
+      <div className="mb-5 text-sm md:text-base">
+        <div>
+          {t("生态官方合作课程，项目 CTO &核心开发者亲自授课")}
+        </div>
+        <div>
+          {t("配套高质量社群，全球一线开发者助教全程陪伴，社区同学交流讨论")}
+        </div>
+
+        <div className="flex justify-end md:-mt-10">
+          <Link href="/course">
+            <div className="flex bg-white text-black rounded-full cursor-pointer text-sm items-center px-4 py-1.5">
+              <div className="mr-1">
+                {t("查看更多")}
+              </div>
+              <div>
+                <i className="fa fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      {/* Desktop view */}
       <div className="w-full relative hidden overflow-hidden xl:flex">
-        <Swiper
-          rewind={true}
-          slidesPerView={1}
-          centeredSlides={false}
-          slidesPerGroupSkip={1}
-          grabCursor={false}
-          keyboard={{ enabled: true }}
-          breakpoints={{ 769: { slidesPerView: 3, slidesPerGroup: 3 } }}
-          autoplay={{ delay: 7000, disableOnInteraction: false }}
-          navigation={true}
-          pagination={{ clickable: true }}
-          className="swiper-container gap-4"
-        >
-          {course_info.map(item => (
-            <SwiperSlide key={item.id} className={item.homeDisplay === "False" ? "hidden" : ""}>
-              {/* Course card content */}
-              {/* ... (Keep the existing course card content) */}
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        {/* Swiper styles */}
-        <style>{`
-          .swiper-button-next,
-          .swiper-button-prev {
-            border-radius: 9999px;
-            background-color: rgba(255, 255, 255, 0.5);
-            padding: 1.5rem;
-            color: #000 !important;
-          }  
-          .swiper-button-prev:after, .swiper-button-next:after {
-            font-size: 1.5rem !important;
-          }
-          .swiper-pagination-bullet-active {
-            background: black;
-          }
-        `}</style>
+        <div className="w-full h-full relative transition-all duration-700" id="carousel">
+          <Swiper
+            rewind={true}
+            slidesPerView={1}
+            centeredSlides={false}
+            slidesPerGroupSkip={1}
+            grabCursor={false}
+            keyboard={{
+              enabled: true,
+            }}
+            breakpoints={{
+              769: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+              },
+            }}
+            autoplay={{
+              delay: 7000,
+              disableOnInteraction: false,
+            }}
+            scrollbar={false}
+            navigation={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Autoplay, Keyboard, Scrollbar, Navigation, Pagination]}
+            className="swiper-container gap-4"
+          >
+            {course_info.map(item => (
+              <SwiperSlide key={item.id} className={item.homeDisplay === "False" ? "hidden" : ""}>
+                <CourseCard item={item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <SwiperStyles />
+        </div>
       </div>
 
-      {/* Course list for small screens */}
+      {/* Mobile view */}
       <div className="w-full xl:hidden">
         <div className="w-full flex relative overflow-x-auto snap-x snap-mandatory">
           <div className="flex">
             {course_info.map(item => (
               <div key={item.id} className={item.homeDisplay === "False" ? "hidden" : "rounded-2xl snap-always snap-center md:snap-start w-90 mx-5"}>
-                {/* Course card content for small screens */}
-                {/* ... (Keep the existing course card content for small screens) */}
+                <CourseCard item={item} />
               </div>
             ))}
           </div>
@@ -125,23 +129,91 @@ const Course = ({ data }: { data: any }) => {
   );
 };
 
-const Hackathons = (data) => {
+const CourseCard = ({ item }) => (
+  <div className="rounded-2xl mr-4">
+    <img className="rounded-t-2xl w-full" src={item.img} alt=""/>
+    <div className="px-10 py-8 bg-white rounded-b-2xl">
+      <div className="flex h-20 overflow-hidden flex-wrap">
+        {item.type.map(list => (
+          <div key={list.content} className="bg-gray-200 rounded-full text-center text-gray-700 h-7 px-3 py-1 mr-2 mb-4 text-sm">
+            {list.content}
+          </div>
+        ))}
+      </div>
+      <div className="line-clamp-2 text-xl h-14 mt-2">
+        {item.name}
+      </div>
+      <div className="flex mt-5">
+        <CourseButton item={item} />
+      </div>
+    </div>
+  </div>
+);
+
+const CourseButton = ({ item }) => {
+  const { t } = useTranslation('common');
+  
+  if (item.state === "In progress") {
+    return (
+      <Link href={item.link}>
+        <a target="_blank" className="text-xs 2xl:text-xl bg-black text-white rounded-full px-4 2xl:px-8 py-2.5 mr-5">
+          {t("立刻报名")}
+        </a>
+      </Link>
+    );
+  }
+  
+  if (item.state === "About to start") {
+    return (
+      <Link href={item.link}>
+        <a target="_blank" className="text-xs 2xl:text-xl bg-black text-white rounded-full px-4 2xl:px-8 py-2.5 mr-5">
+          {t("即将开始")}
+        </a>
+      </Link>
+    );
+  }
+  
+  return (
+    <Link href={`/course_details/${item.id}`}>
+      <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5">
+        {t("了解更多")}
+      </a>
+    </Link>
+  );
+};
+
+const SwiperStyles = () => (
+  <style jsx global>{`
+    .swiper-button-next,
+    .swiper-button-prev {
+      border-radius: 9999px;
+      background-color: white;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 1.5rem;
+      color: #000 !important;
+    }  
+    .swiper-button-prev:after, .swiper-button-next:after {
+      font-size: 1.5rem !important;
+    }
+    .swiper-pagination-bullet-active {
+      background: black;
+    }
+  `}</style>
+);
+
+const Hackathons = ({ data }) => {
   const { t } = useTranslation('common')
-  const [hackathonsData, setHackathonsData] = useAtom(Hackathons_detail)
+  const [hackathonsData, setHackathonsData] = useState([])
   
   useEffect(() => {
-    if (data.data) {
-      try {
-        const parsedData = JSON.parse(data.data);
-        setHackathonsData(parsedData);
-      } catch (error) {
-        console.error("Failed to parse hackathons data:", error);
-        setHackathonsData([]);
-      }
+    if (data && Array.isArray(data)) {
+      console.log("Hackathons data:", data);
+      setHackathonsData(data);
     } else {
+      console.warn("Hackathons data is not an array:", data);
       setHackathonsData([]);
     }
-  }, [data.data, setHackathonsData])
+  }, [data])
 
   if (hackathonsData.length === 0) {
     return null; // or return a loading state or placeholder
@@ -169,7 +241,7 @@ const Hackathons = (data) => {
         </div>
       </div>
       <div className="flex justify-end md:-mt-10">
-        <Link href="/hackathons">
+        <Link href="/hackathons" legacyBehavior>
           <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
             <div className="mr-1" >
               {t("查看更多")}
@@ -180,62 +252,64 @@ const Hackathons = (data) => {
           </div>
         </Link>
       </div>
-      <div className={hackathonsData.length > 0 && hackathonsData[0].name !== "" ? " xl:flex mt-4 justify-between " : "hidden"}>
+      <div className={hackathonsData.length > 0 ? "xl:flex mt-4 justify-between" : "hidden"}>
         {/* Large hackathon card */}
-        <div className="relative  xl:w-full" >
-          <div className={classNames(HackathonsState[hackathonsData[0].state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
-            {hackathonsData[0].state}
+        <div className="relative xl:w-full" >
+          <div className={classNames(HackathonsState[hackathonsData[0]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1 border absolute")}>
+            {hackathonsData[0]?.state || ""}
           </div>
-          <img className="rounded-t-2xl w-full xl:h-96 2xl:h-99" src={hackathonsData[0].img} alt=""/>
+          <img className="rounded-t-2xl w-full xl:h-96 2xl:h-99" src={hackathonsData[0]?.img || ""} alt=""/>
           <div className="px-10 py-8 bg-white rounded-b-2xl">
             <div className="2xl:text-xl font-semibold xl:w-72 truncate">
-              {hackathonsData[0].name}
+              {hackathonsData[0]?.name || ""}
             </div>
             <div className="font-light">
-              {hackathonsData[0].time}
+              {hackathonsData[0]?.time || ""}
             </div>
             <div className="flex mt-5 2xl:mt-10 items-center">
-              <Link href={hackathonsData[0].registrationLink}>
-                <a className={classNames(hackathonsData[0].state=="ComingSoon" || hackathonsData[0].state=="OnGoing" ?"":"hidden","text-xs 2xl:text-xl bg-black text-white rounded-full  px-8 py-2.5 mr-5")} target="_blank">
-                  {t("立刻报名")}
-                </a>
+              <Link
+                href={hackathonsData[0]?.registrationLink || "#"}
+                className={classNames(hackathonsData[0]?.state === "ComingSoon" || hackathonsData[0]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
+                target="_blank">
+                {t("立刻报名")}
               </Link>
-
-              <Link href={hackathonsData[0].activityLink}>
-                <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5" target="_blank">
-                  {t("了解更多")}
-                </a>
+              <Link
+                href={hackathonsData[0]?.activityLink || "#"}
+                className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"
+                target="_blank">
+                {t("了解更多")}
               </Link>
             </div>
           </div>
         </div>
 
+        {/* Medium hackathon card */}
         <div className="mt-5 xl:mt-0 xl:w-full  xl:ml-5     ">
-          {/* Medium hackathon card */}
           <div className="">
             <div className="relative ">
-              <div className={classNames(HackathonsState[hackathonsData[1].state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
-                {hackathonsData[1].state}
+              <div className={classNames(HackathonsState[hackathonsData[1]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1 border  absolute")}>
+                {hackathonsData[1]?.state || ""}
               </div>
-              <img className="rounded-t-2xl  w-full xl:h-56  2xl:h-80" src={hackathonsData[1].img} alt=""/>
+              <img className="rounded-t-2xl  w-full xl:h-56  2xl:h-80" src={hackathonsData[1]?.img || ""} alt=""/>
               <div className="px-10 py-3  bg-white rounded-b-2xl">
                 <div className="2xl:text-xl font-semibold  truncate">
-                  {hackathonsData[1].name}
+                  {hackathonsData[1]?.name || ""}
                 </div>
                 <div className="font-light">
-                  {hackathonsData[1].time}
+                  {hackathonsData[1]?.time || ""}
                 </div>
                 <div className="flex my-5  items-center">
-                  <Link href={hackathonsData[1].registrationLink}>
-                    <a className={classNames(hackathonsData[1].state=="ComingSoon" || hackathonsData[1].state=="OnGoing" ?"":"hidden","text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")} target="_blank">
-                      {t("立刻报名")}
-                    </a>
+                  <Link
+                    href={hackathonsData[1]?.registrationLink || "#"}
+                    className={classNames(hackathonsData[1]?.state === "ComingSoon" || hackathonsData[1]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
+                    target="_blank">
+                    {t("刻报名")}
                   </Link>
-
-                  <Link href={hackathonsData[1].activityLink}>
-                    <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5" target="_blank">
-                      {t("了解更多")}
-                    </a>
+                  <Link
+                    href={hackathonsData[1]?.activityLink || "#"}
+                    className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"
+                    target="_blank">
+                    {t("了解更多")}
                   </Link>
                 </div>
               </div>
@@ -244,34 +318,35 @@ const Hackathons = (data) => {
           {/* Small hackathon card */}
           <div className="mt-5  rounded-2xl overflow-hidden">
             <div className="relative w-full ">
-              <div className={classNames(HackathonsState[hackathonsData[2].state]," flex justify-end right-4 mt-5 rounded-full px-3 py-1  border absolute")}>
-                {hackathonsData[2].state}
+              <div className={classNames(HackathonsState[hackathonsData[2]?.state] || "", "flex justify-end right-4 mt-5 rounded-full px-3 py-1  border absolute")}>
+                {hackathonsData[2]?.state || ""}
               </div>
               <div className="xl:flex  xl:items-center xl:justify-between bg-white rounded-2xl">
 
-                <img className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl  w-full " src={hackathonsData[2].img} alt=""/>
+                <img className="xl:hidden rounded-t-2xl xl:rounded-t-none xl:rounded-r-2xl  w-full " src={hackathonsData[2]?.img || ""} alt=""/>
                 <div className="pl-10 py-3 xl:py-0    ">
                   <div className="2xl:text-xl font-semibold xl:w-48 2xl:w-56  truncate">
-                    {hackathonsData[2].name}
+                    {hackathonsData[2]?.name || ""}
                   </div>
                   <div className="font-light">
-                    {hackathonsData[2].time}
+                    {hackathonsData[2]?.time || ""}
                   </div>
                   <div className="flex mt-5 ">
-                    <Link href={hackathonsData[2].registrationLink}>
-                      <a className={classNames(hackathonsData[2].state=="ComingSoon" || hackathonsData[2].state=="OnGoing" ?"":"hidden","text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")} target="_blank">
-                        {t("立刻报名")}
-                      </a>
+                    <Link
+                      href={hackathonsData[2]?.registrationLink || "#"}
+                      className={classNames(hackathonsData[2]?.state === "ComingSoon" || hackathonsData[2]?.state === "OnGoing" ? "" : "hidden", "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5")}
+                      target="_blank">
+                      {t("立刻报名")}
                     </Link>
-
-                    <Link href={hackathonsData[2].activityLink}>
-                      <a className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5" target="_blank">
-                        {t("了解更多")}
-                      </a>
+                    <Link
+                      href={hackathonsData[2]?.activityLink || "#"}
+                      className="text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"
+                      target="_blank">
+                      {t("了解更多")}
                     </Link>
                   </div>
                 </div>
-                <img className="rounded-t-2xl hidden xl:flex xl:rounded-t-none xl:rounded-r-2xl  xl:w-5/12 xl:h-40 2xl:h-44" src={hackathonsData[2].img} alt=""/>
+                <img className="rounded-t-2xl hidden xl:flex xl:rounded-t-none xl:rounded-r-2xl  xl:w-5/12 xl:h-40 2xl:h-44" src={hackathonsData[2]?.img || ""} alt=""/>
               </div>
 
             </div>
@@ -279,16 +354,39 @@ const Hackathons = (data) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 const Activity = ({ data }: { data: string }) => {
   const { t } = useTranslation('common');
   const [activityList, setActivityList] = useAtom(Activity_Alldetail);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setActivityList(parseJsonSafely(data));
+    try {
+      const parsedData = parseJsonSafely(data);
+      console.log("Parsed activity data:", parsedData);
+      setActivityList(parsedData);
+      setIsLoading(false);
+    } catch (err) {
+      console.error("Error parsing activity data:", err);
+      setError("Failed to load activity data");
+      setIsLoading(false);
+    }
   }, [data, setActivityList]);
+
+  if (isLoading) {
+    return <div>Loading activities...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!activityList || activityList.length === 0) {
+    return <div>No activities available</div>;
+  }
 
   return (
     <div id="Activities" className="pt-20">
@@ -297,7 +395,7 @@ const Activity = ({ data }: { data: string }) => {
       </div>
       <div className="text-2xl md:text-4xl my-5">
         <div>
-          {t("与顶尖项目面对面讨论")}
+          {t("顶尖项目面对面讨论")}
         </div>
         <div>
           {t("获得热点趋势与开发实战经验")}
@@ -312,7 +410,7 @@ const Activity = ({ data }: { data: string }) => {
         </div>
       </div>
       <div className="flex justify-end md:-mt-10">
-        <Link href="/meeting">
+        <Link href="/meeting" legacyBehavior>
           <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
             <div className="mr-1 " >
               {t("查看更多")}
@@ -330,34 +428,38 @@ const Activity = ({ data }: { data: string }) => {
             <div className="my-auto  w-full">
               <div className=" flex ">
                 <div className="rounded-full bg-gray-100 text-gray-700 px-2.5 py-0.5 text-sm">
-                  {activityList[0].activityList[0].activity}
+                  {activityList[0]?.activityList?.[0]?.activity || t("No activity")}
                 </div>
               </div>
               <div className="text-2xl font-light mt-5">
-                {activityList[0].activityList[0].time}
+                {activityList[0]?.activityList?.[0]?.time || t("No time specified")}
               </div>
               <div className="font-semibold ">
-                {activityList[0].activityList[0].date}
+                {activityList[0]?.activityList?.[0]?.date || t("No date specified")}
               </div>
               <div className=" mt-4 mb-9 xl:my-9   items-center  xl:text-xl font-semibold line-clamp-4 h-20 xl:line-clamp-2  w-full  ">
-                {activityList[0].activityList[0].name}
+                {activityList[0]?.activityList?.[0]?.name || t("No name specified")}
               </div>
               <div className="xl:flex 2xl:block w-full">
-                <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 h-98" src={activityList[0].activityList[0].poster_2} alt=""/>
-                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100 h-97 " src={activityList[0].activityList[0].poster_1} alt=""/>
+                <img className="xl:flex 2xl:hidden rounded-xl mt-5   md:mt-0  md:mr-5 w-82 h-98" src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt=""/>
+                <img className="xl:hidden 2xl:flex rounded-2xl w-82 2xl:w-100 h-97 " src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt=""/>
                 <div className="xl:ml-5  2xl:ml-0  flex  xl:mt-9 xl:justify-end  2xl:justify-start xl:items-end items-center">
                   <div className="">
-                    <Link href={activityList[0].activityList[0].subLink}>
-                      <a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}>
-                        {t("订阅")}
-                      </a>
+                    <Link
+                      href={activityList[0]?.activityList?.[0]?.subLink || ""}
+                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7  py-2.5 mr-5 ":"hidden"}>
+
+                      {t("订阅")}
+
                     </Link>
                   </div>
                   <div className=" text-sm">
-                    <Link href={`/meetingList/${activityList[0].id}`}>
-                      <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5">
-                        {t("了解更多")}
-                      </a>
+                    <Link
+                      href={`/meetingList/${activityList[0]?.id}`}
+                      className="text-xs 2xl:text-xl text-black border border-black rounded-full px-4  py-2.5">
+
+                      {t("了解更多")}
+
                     </Link>
                   </div>
                 </div>
@@ -369,59 +471,67 @@ const Activity = ({ data }: { data: string }) => {
           <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl  items-center">
             <div className="">
               <div className="items-end ">
-                <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[0].activityList[0].poster_2} alt=""/>
+                <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[0]?.activityList?.[0]?.poster_2 || ""} alt=""/>
                 <div className="md:hidden flex   mt-9  items-end items-center ">
                   <div className="">
-                    <Link href={activityList[0].activityList[0].subLink}>
-                      <a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
-                        {t("订阅")}
-                      </a>
+                    <Link
+                      href={activityList[0]?.activityList?.[0]?.subLink || ""}
+                      className={activityList[0]?.activityList?.[0]?.status == "In progress"||activityList[0]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+
+                      {t("订阅")}
+
                     </Link>
                   </div>
                   <div className="xl:w-52 text-sm">
-                    <Link href={`/meetingList/${activityList[0].id}`}>
-                      <a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
-                        {t("了解更多")}
-                      </a>
+                    <Link
+                      href={`/meetingList/${activityList[0]?.id}`}
+                      className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5"}>
+
+                      {t("了解更多")}
+
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="w-full hidden  md:block xl:hidden">
-              <img className=" rounded-xl mt-5  md:mt-0  md:mr-5 h-98 " src={activityList[0].activityList[0].poster_1} alt=""/>
+            <div className="w-full hidden md:block xl:hidden">
+              <img className="rounded-xl mt-5 md:mt-0 md:mr-5 h-98" src={activityList[0]?.activityList?.[0]?.poster_1 || ""} alt=""/>
             </div>
 
-            <div className=" w-full md:pl-6">
-              <div className=" flex ">
+            <div className="w-full md:pl-6">
+              <div className="flex">
                 <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                  {activityList[0].activityList[0].activity}
+                  {activityList[0]?.activityList?.[0]?.activity || t("No activity")}
                 </div>
               </div>
               <div className="text-2xl font-light mt-5">
-                {activityList[0].activityList[0].time}
+                {activityList[0]?.activityList?.[0]?.time || t("No time specified")}
               </div>
               <div className="font-semibold">
-                {activityList[0].activityList[0].date}
+                {activityList[0]?.activityList?.[0]?.date || t("No date specified")}
               </div>
 
-              <div className=" xl:text-xl font-semibold">
-                <div className=' mt-4 md:mb-8 items-center line-clamp-4 md:h-24 xl:line-clamp-3   2xl:w-90'>
-                  {activityList[0].activityList[0].name}
+              <div className="xl:text-xl font-semibold">
+                <div className='mt-4 md:mb-8 items-center line-clamp-4 md:h-24 xl:line-clamp-3 2xl:w-90'>
+                  {activityList[0]?.activityList?.[0]?.name || t("No name specified")}
                 </div>
 
               </div>
-              <div className="hidden md:flex justify-between items-end ">
-                <div className="flex   items-center">
-                  <Link href={activityList[0].activityList[0].subLink}>
-                    <a className={activityList[0].activityList[0].status == "In progress"||activityList[0].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5 ":"hidden"}>
-                      {t("订阅")}
-                    </a>
+              <div className="hidden md:flex justify-between items-end">
+                <div className="flex items-center">
+                  <Link
+                    href={activityList[0]?.activityList?.[0]?.subLink || ""}
+                    className={activityList[0]?.activityList?.[0]?.status == "In progress" || activityList[0]?.activityList?.[0]?.status == "Not started" ? "text-xs 2xl:text-xl bg-black text-white rounded-full px-8 xl:px-10 py-2.5 mr-5" : "hidden"}>
+
+                    {t("订阅")}
+
                   </Link>
-                  <Link href={`/meetingList/${activityList[0].id}`}>
-                    <a className={activityList[0].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4 xl:px-8 py-2.5"}>
-                      {t("了解更多")}
-                    </a>
+                  <Link
+                    href={`/meetingList/${activityList[0]?.id}`}
+                    className={activityList[0]?.activityList?.[0]?.status !== "Done" ? "hidden" : "text-xs 2xl:text-xl text-black border border-black rounded-full px-8 xl:px-10 py-2.5"}>
+
+                    {t("了解更多")}
+
                   </Link>
                 </div>
               </div>
@@ -435,62 +545,70 @@ const Activity = ({ data }: { data: string }) => {
             <div className="flex flex-col-reverse md:flex-row p-8 bg-white rounded-2xl mx-auto items-center">
               <div className="">
                 <div className="    items-end ">
-                  <img className=" md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={activityList[1].activityList[0].poster_2} alt=""/>
+                  <img className=" md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82" src={activityList[1]?.activityList?.[0]?.poster_2 || ""} alt=""/>
                   <div className="md:hidden flex mt-9  items-end items-center ">
                     <div className="">
-                      <Link href={activityList[1].activityList[0].subLink}>
-                        <a className={activityList[1].activityList[0].status == "In progress"||activityList[1].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
-                          {t("订阅")}
-                        </a>
+                      <Link
+                        href={activityList[1]?.activityList?.[0]?.subLink || ""}
+                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+
+                        {t("订阅")}
+
                       </Link>
                     </div>
                     <div className="xl:w-52 text-sm">
-                      <Link href={`/meetingList/${activityList[1].id}`}>
-                        <a className={activityList[1].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
-                          {t("了解更多")}
-                        </a>
+                      <Link
+                        href={`/meetingList/${activityList[1]?.id}`}
+                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
+
+                        {t("了解更多")}
+
                       </Link>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="w-full hidden  md:block xl:hidden">
-                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[1].activityList[0].poster_1} alt=""/>
+                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[1]?.activityList?.[0]?.poster_1 || ""} alt=""/>
               </div>
 
               <div className=" w-full md:pl-6">
                 <div className=" flex ">
                   <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                    {activityList[1].activityList[0].activity}
+                    {activityList[1]?.activityList?.[0]?.activity || t("No activity")}
                   </div>
                 </div>
                 <div className="text-2xl font-light mt-5">
-                  {activityList[1].activityList[0].time}
+                  {activityList[1]?.activityList?.[0]?.time || t("No time specified")}
                 </div>
                 <div className="font-semibold">
-                  {activityList[1].activityList[0].date}
+                  {activityList[1]?.activityList?.[0]?.date || t("No date specified")}
                 </div>
 
                 <div className=" xl:text-xl font-semibold">
                   <div className=' mt-4 md:mb-8 xl:my-10 items-center line-clamp-4 md:h-24 xl:line-clamp-3   2xl:w-90'>
-                    {activityList[1].activityList[0].name}
+                    {activityList[1]?.activityList?.[0]?.name || t("No name specified")}
                   </div>
 
                 </div>
                 <div className="hidden md:flex justify-between items-end  ">
                   <div className="flex   items-center">
                     <div className="  ">
-                      <Link href={activityList[1].activityList[0].subLink}>
-                        <a className={activityList[1].activityList[0].status == "In progress"||activityList[1].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
-                          {t("订阅")}
-                        </a>
+                      <Link
+                        href={activityList[1]?.activityList?.[0]?.subLink || ""}
+                        className={activityList[1]?.activityList?.[0]?.status == "In progress"||activityList[1]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
+
+                        {t("订阅")}
+
                       </Link>
                     </div>
                     <div className="  ">
-                      <Link href={`/meetingList/${activityList[1].id}`}>
-                        <a className={activityList[1].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
-                          {t("了解更多")}
-                        </a>
+                      <Link
+                        href={`/meetingList/${activityList[1]?.id}`}
+                        className={activityList[1]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
+
+                        {t("了解更多")}
+
                       </Link>
                     </div>
                   </div>
@@ -503,60 +621,68 @@ const Activity = ({ data }: { data: string }) => {
           <div className="relative mt-5 2xl:mt-10  " >
             <div className="flex flex-col-reverse md:flex-row 2xl:mt-0.5 p-8 bg-white rounded-2xl  items-center">
               <div className="">
-                <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[2].activityList[0].poster_2} alt=""/>
+                <img className="md:hidden xl:block rounded-xl mt-5  md:mt-0  md:mr-5 md:w-82 " src={activityList[2]?.activityList?.[0]?.poster_2 || ""} alt=""/>
                 <div className="md:hidden flex   mt-9  items-end items-center ">
                   <div className="">
-                    <Link href={activityList[2].activityList[0].subLink}>
-                      <a className={activityList[2].activityList[0].status == "In progress"||activityList[2].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
-                        {t("订阅")}
-                      </a>
+                    <Link
+                      href={activityList[2]?.activityList?.[0]?.subLink || ""}
+                      className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+
+                      {t("订阅")}
+
                     </Link>
                   </div>
                   <div className="xl:w-52 text-sm">
-                    <Link href={`/meetingList/${activityList[2].id}`}>
-                      <a className={activityList[2].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
-                        {t("了解更多")}
-                      </a>
+                    <Link
+                      href={`/meetingList/${activityList[2]?.id}`}
+                      className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-8 py-2.5"}>
+
+                      {t("了解更多")}
+
                     </Link>
                   </div>
                 </div>
               </div>
               <div className="w-full hidden  md:block xl:hidden">
-                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[2].activityList[0].poster_1} alt=""/>
+                <img className=" rounded-xl mt-5  md:mt-0  md:mr-5  " src={activityList[2]?.activityList?.[0]?.poster_1 || ""} alt=""/>
               </div>
               <div className="w-full md:pl-6">
                 <div className=" flex ">
                   <div className="rounded-full bg-gray-200 text-gray-700 px-2.5 py-0.5 text-sm">
-                    {activityList[2].activityList[0].activity}
+                    {activityList[2]?.activityList?.[0]?.activity || t("No activity")}
                   </div>
                 </div>
                 <div className="text-2xl font-light mt-5">
-                  {activityList[2].activityList[0].time}
+                  {activityList[2]?.activityList?.[0]?.time || t("No time specified")}
                 </div>
                 <div className="font-semibold">
-                  {activityList[2].activityList[0].date}
+                  {activityList[2]?.activityList?.[0]?.date || t("No date specified")}
                 </div>
 
                 <div className=" xl:text-xl font-semibold">
                   <div className=' mt-4 md:mb-8 xl:my-10 items-center line-clamp-4 md:h-24 xl:line-clamp-3   2xl:w-90'>
-                    {activityList[2].activityList[0].name}
+                    {activityList[2]?.activityList?.[0]?.name || t("No name specified")}
                   </div>
 
                 </div>
                 <div className="hidden md:flex justify-between items-end ">
                   <div className="flex   items-center">
                     <div className="  ">
-                      <Link href={activityList[2].activityList[0].subLink}>
-                        <a className={activityList[2].activityList[0].status == "In progress"||activityList[2].activityList[0].status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
-                          {t("订阅")}
-                        </a>
+                      <Link
+                        href={activityList[2]?.activityList?.[0]?.subLink || ""}
+                        className={activityList[2]?.activityList?.[0]?.status == "In progress"||activityList[2]?.activityList?.[0]?.status =="Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-7   py-2.5 mr-5 ":"hidden"}>
+
+                        {t("订阅")}
+
                       </Link>
                     </div>
                     <div className="">
-                      <Link href={`/meetingList/${activityList[2].id}`}>
-                        <a className={activityList[2].activityList[0].status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
-                          {t("了解更多")}
-                        </a>
+                      <Link
+                        href={`/meetingList/${activityList[2]?.id}`}
+                        className={activityList[2]?.activityList?.[0]?.status !== "Done"?"hidden":"text-xs 2xl:text-xl text-black border border-black rounded-full  px-4  py-2.5"}>
+
+                        {t("了解更多")}
+
                       </Link>
                     </div>
                   </div>
@@ -586,10 +712,10 @@ const AboutUs = ()=>{
                     </div>
                     <div className="2xl:mt-14 text-base 2xl:text-xl">
                         <div>
-                            {t("TinTinLand 是赋能下一代开发者的技术社区，能够通过聚集、培育、输送 开发者到各放网络，共同定义并构建未来")}
+                            {t("TinTinLand 是赋下一代开发的技术社区，能够通过聚集、培育、输送 开发者到各放网络，共同定义并构建未来")}
                         </div>
                         <div className="mt-5">
-                            {t("我们也将和行业有商业洞察力、有经验的开发者、社区、媒体合作，提供 技术课程、技术内容解读、AMA、线下开发者活动等")}
+                            {t("我们也将和行业有商业洞察力、有经验的��发者、社区、媒体合作，提供 技术课程、技术内容解读、AMA、线下开发者活动等")}
                         </div>
                     </div>
                     <p className="mt-4 flex">
@@ -831,12 +957,26 @@ const CommunityMember = ({ data }) => {
 
 // Main component
 const Home: React.FC<{ props: any }> = ({ props }) => {
+  console.log("Raw props:", props); // 添加这行来查看原始 props
+  
   const { t } = useTranslation('common');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const courseInfo = parseJsonSafely(props?.course_details);
-  const mediaData = parseJsonSafely(props?.media_details);
-  const communityData = parseJsonSafely(props?.community_details);
-  const communityMemberData = parseJsonSafely(props?.communityMember_details);
+  const hackathonsData = parseJsonSafely(props?.hackathons_details);
+  console.log("Hackathons data in Home component:", hackathonsData);
+  const activityData = parseJsonSafely(props?.activity_details);
+  // const mediaData = parseJsonSafely(props?.media_details);
+  // const communityData = parseJsonSafely(props?.community_details);
+  // const communityMemberData = parseJsonSafely(props?.communityMember_details);
+
+  if (!isClient) {
+    return null; // or a loading spinner
+  }
 
   return (
     <div className="mx-auto relative sm:bg-fixed overflow-hidden" style={{backgroundImage: "url('/tintin-bg.png')"}}>
@@ -855,21 +995,21 @@ const Home: React.FC<{ props: any }> = ({ props }) => {
           </p>
         </section>
         <Course data={courseInfo} />
-        <Hackathons data={props?.hackathons_details} />
-        <Activity data={props?.activity_details} />
+        <Hackathons data={hackathonsData} />
+        <Activity data={activityData} />
       </main>
-      <section className="relative">
-        <Media data={mediaData} />
-        <Community data={communityData} />
+       <section className="relative">
+        {/* <Media data={mediaData} /> */}
+        {/* <Community data={communityData} /> */}
       </section>
-      <section className="lg:px-10 xl:px-20 relative px-5 mx-auto">
+      {/* <section className="lg:px-10 xl:px-20 relative px-5 mx-auto">
         <AboutUs />
       </section>
       <section className="lg:px-10 xl:px-20 relative px-5 pt-16 mx-auto">
         <CommunityMember data={communityMemberData} />
       </section>
       <Loading/>
-      <Tail/>
+      <Tail/>  */}
     </div>
   );
 };

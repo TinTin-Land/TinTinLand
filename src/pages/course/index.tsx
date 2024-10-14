@@ -90,7 +90,6 @@ const Course = ({ course_details }) =>{
                 </div>
             </div>
             <Loading/>
-            <WaitPayPoPUpBox/>
             <Tail/>
         </div>
     )
@@ -132,21 +131,26 @@ const CourseCard = ({ item, t }) => {
                 <div className="flex mt-5">
                     {activeButton && (
                         activeButton.isLink ? (
-                            <Link href={activeButton.href}>
-                                <a target="_blank" className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5">
-                                    {activeButton.text}
-                                </a>
-                            </Link>
+                            (<Link
+                                href={activeButton.href}
+                                target="_blank"
+                                className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5">
+
+                                {activeButton.text}
+
+                            </Link>)
                         ) : (
                             <button className="text-xs 2xl:text-xl bg-black text-white rounded-full px-8 py-2.5 mr-5">
                                 {activeButton.text}
                             </button>
                         )
                     )}
-                    <Link href={`/course_details/${item.id}`}>
-                        <a className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5">
-                            {t("了解更多")}
-                        </a>
+                    <Link
+                        href={`/course_details/${item.id}`}
+                        className="text-xs 2xl:text-xl text-black border border-black rounded-full px-8 py-2.5">
+
+                        {t("了解更多")}
+
                     </Link>
                 </div>
             </div>
@@ -171,8 +175,8 @@ export async function getStaticProps({locale}){
     return {
         props: {
             course_details,
-            ...await serverSideTranslations(locale, ['common', 'footer','header']),
+            ...(await serverSideTranslations(locale, ['common', 'footer','header'])),
         }
-    }
+    };
 
 }

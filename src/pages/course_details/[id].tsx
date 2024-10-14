@@ -470,9 +470,9 @@ export async function getStaticProps({params:{ id },locale}){
     return {
         props:{
             project_details,
-            ...await serverSideTranslations(locale, ['common', 'footer','header']),
+            ...(await serverSideTranslations(locale, ['common', 'footer','header'])),
         }
-    }
+    };
 }
 
 export default CourseDetails

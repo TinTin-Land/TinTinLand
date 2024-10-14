@@ -70,30 +70,35 @@ const TalentPool: React.FC = () => {
 
     const renderTalentPoolItem = useMemo(() => (item: typeof Talent_pool_navigation[0]) => (
         <div key={item.title}>
-            <Link href={`/projects/${item.title}`}>
-                <a className={classNames(
+            <Link
+                href={`/projects/${item.title}`}
+                className={classNames(
                     `/projects/${item.title}` === `/projects/${pathname}` 
                         ? 'bg-white shadow-[0_2px_16px_-1px_rgb(0,0,0,0.1)] shadow-rose-500/50' 
                         : '',
                     "flex justify-between p-2 text-sm md:text-xl text-black rounded-xl px-4"
                 )}>
-                    <div className="font-semibold">{item.title}</div>
-                    <div className="font-normal">{item.number}</div>
-                </a>
+
+                <div className="font-semibold">{item.title}</div>
+                <div className="font-normal">{item.number}</div>
+
             </Link>
             <div>
                 {item.sort.map((list) => (
-                    <Link key={list.list} href={`/projects/${list.list}`}>
-                        <a className={classNames(
+                    (<Link
+                        key={list.list}
+                        href={`/projects/${list.list}`}
+                        className={classNames(
                             `/projects/${list.list}` === `/projects/${pathname}`
                                 ? 'bg-white shadow-[0_2px_16px_-1px_rgb(0,0,0,0.1)] shadow-rose-500/50'
                                 : '',
                             "flex justify-between p-2 text-sm md:text-base text-black rounded-xl px-4"
                         )}>
-                            <div className="mr-3">{list.list}</div>
-                            <div className="font-normal">{list.number}</div>
-                        </a>
-                    </Link>
+
+                        <div className="mr-3">{list.list}</div>
+                        <div className="font-normal">{list.number}</div>
+
+                    </Link>)
                 ))}
             </div>
         </div>

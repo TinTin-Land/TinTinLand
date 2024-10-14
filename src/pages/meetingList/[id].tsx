@@ -70,17 +70,23 @@ const Meeting = ({ activity_details }: { activity_details: string }) => {
 
                                         <div className="flex justify-between  items-center">
                                             <div className="">
-                                                <Link href={activityList.activityList[0].subLink}>
-                                                    <a className={classNames(activityList.activityList[0].status =="In progress"|| activityList.activityList[0].status =="Not started"?"bg-black text-white rounded-full  px-8 py-2.5":"hidden")} target="_blank">
-                                                        {t("订阅")}
-                                                    </a>
+                                                <Link
+                                                    href={activityList.activityList[0].subLink}
+                                                    className={classNames(activityList.activityList[0].status =="In progress"|| activityList.activityList[0].status =="Not started"?"bg-black text-white rounded-full  px-8 py-2.5":"hidden")}
+                                                    target="_blank">
+
+                                                    {t("订阅")}
+
                                                 </Link>
                                             </div>
                                             <div className="">
-                                                <Link href={activityList.activityList[0].videoLink}>
-                                                    <a className={activityList.activityList[0].status !=="Done"?"hidden":" text-black border border-black rounded-full  px-4 py-2.5"} target="_blank">
-                                                        {t("了解更多")}
-                                                    </a>
+                                                <Link
+                                                    href={activityList.activityList[0].videoLink}
+                                                    className={activityList.activityList[0].status !=="Done"?"hidden":" text-black border border-black rounded-full  px-4 py-2.5"}
+                                                    target="_blank">
+
+                                                    {t("了解更多")}
+
                                                 </Link>
 
                                             </div>
@@ -112,16 +118,21 @@ const Meeting = ({ activity_details }: { activity_details: string }) => {
                                     </div>
                                     <div className="flex mt-5 items-center ">
                                         <div className="mt-4">
-                                            <Link href={item.subLink}>
-                                                <a className={item.status == "In progress"||item.status == "Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
-                                                    {t("订阅")}
-                                                </a>
+                                            <Link
+                                                href={item.subLink}
+                                                className={item.status == "In progress"||item.status == "Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+
+                                                {t("订阅")}
+
                                             </Link>
                                         </div>
-                                        <Link href={item.videoLink}>
-                                            <a className={item.status !== "Done"?"hidden":" text-black border border-black rounded-full  px-8 py-2.5"} target="_blank">
-                                                {t("了解更多")}
-                                            </a>
+                                        <Link
+                                            href={item.videoLink}
+                                            className={item.status !== "Done"?"hidden":" text-black border border-black rounded-full  px-8 py-2.5"}
+                                            target="_blank">
+
+                                            {t("了解更多")}
+
                                         </Link>
                                     </div>
                                 </div>
@@ -133,7 +144,7 @@ const Meeting = ({ activity_details }: { activity_details: string }) => {
             </div>
             <Tail/>
        </div>
-    )
+    );
 }
 
 export default Meeting
@@ -184,8 +195,8 @@ export async function getStaticProps({params:{id} ,locale}){
     return {
         props: {
             activity_details,
-            ...await serverSideTranslations(locale, ['common', 'footer','header']),
+            ...(await serverSideTranslations(locale, ['common', 'footer','header'])),
         }
-    }
+    };
 
 }

@@ -15,7 +15,21 @@ const Meeting = ({ activity_details }) => {
   const [activityList, setActivityList] = useAtom(Activity_Alldetail);
 
   useEffect(() => {
-    setActivityList(JSON.parse(activity_details));
+    try {
+      // 检查 activity_details 是否为有效的 JSON 字符串
+      if (typeof activity_details === 'string') {
+        const parsedDetails = JSON.parse(activity_details);
+        setActivityList(parsedDetails);
+        console.log("Parsed activity details:", parsedDetails);
+      } else {
+        // 如果 activity_details 已经是对象，直接使用
+        setActivityList(activity_details);
+        console.log("Activity details:", activity_details);
+      }
+    } catch (error) {
+      console.error("Error parsing activity details:", error);
+      setActivityList([]);
+    }
   }, [activity_details, setActivityList]);
 
   return (
@@ -45,31 +59,35 @@ const Meeting = ({ activity_details }) => {
           </div>
         </div>
         <div>
-          {activityList.map((items) => (
-            <div key={items.id} className={items.id ? "mt-10" : "hidden"}>
-              <div className="text-indigo-700 text-xl flex justify-between">
-                {items.name}
-                <Link href={`/meetingList/${items.id}`}>
-                  <div className="flex bg-white text-black rounded-full cursor-pointer text-sm items-center px-4 py-1.5">
-                    <div className="mr-1" >
-                      {t("查看更多")}
+          {Array.isArray(activityList) && activityList.length > 0 ? (
+            activityList.map((items) => (
+              <div key={items.id} className={items.id ? "mt-10" : "hidden"}>
+                <div className="text-indigo-700 text-xl flex justify-between">
+                  {items.name}
+                  <Link href={`/meetingList/${items.id}`} legacyBehavior>
+                    <div className="flex bg-white text-black rounded-full cursor-pointer text-sm items-center px-4 py-1.5">
+                      <div className="mr-1" >
+                        {t("查看更多")}
+                      </div>
+                      <div>
+                        <i className="fa fa-arrow-right" aria-hidden="true"></i>
+                      </div>
                     </div>
-                    <div>
-                      <i className="fa fa-arrow-right" aria-hidden="true"></i>
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
+                <div className="md:w-2/3 text-sm mt-2">
+                  {items.des}
+                </div>
+                <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+                  {items.activityList.slice(0, 3).map((item) => (
+                    <ActivityCard key={item.activity} item={item} t={t} />
+                  ))}
+                </div>
               </div>
-              <div className="md:w-2/3 text-sm mt-2">
-                {items.des}
-              </div>
-              <div className="mt-5 mb-20 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {items.activityList.slice(0, 3).map((item) => (
-                  <ActivityCard key={item.activity} item={item} t={t} />
-                ))}
-              </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="text-xl text-center mt-10">{t("No activities available")}</p>
+          )}
         </div>
       </div>
       <Tail />
@@ -81,27 +99,34 @@ const ActivityCard = ({ item, t }) => (
   <div className="rounded-2xl">
     <img className="rounded-t-2xl w-full md:h-64 xl:h-72 2xl:h-80" src={item.poster_1} alt="" />
     <div className="px-10 py-8 bg-white rounded-b-2xl">
-      <div className="flex   flex-wrap">
-        <div  className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm" >
+      <div className="flex flex-wrap">
+        <div className="bg-gray-200 rounded-full text-center text-gray-700 px-3 py-1 mr-2 mb-4 text-sm">
           {item.activity}
         </div>
       </div>
-      <div className=" text-2xl line-clamp-2 h-16">
+      <div className="text-2xl line-clamp-2 h-16">
         {item.name}
       </div>
-      <div className="flex mt-5 items-center ">
+      <div className="flex mt-5 items-center">
         <div className="mt-4">
-          <Link href={item.subLink}>
-            <a className={item.status == "In progress"||item.status == "Not started"?"text-xs 2xl:text-xl bg-black text-white rounded-full  px-10 py-2.5 mr-5 ":"hidden"}>
+          {item.subLink && (item.status === "In progress" || item.status === "Not started") && (
+            <Link
+              href={item.subLink}
+              className="text-xs 2xl:text-xl bg-black text-white rounded-full px-10 py-2.5"
+            >
               {t("订阅")}
-            </a>
-          </Link>
+            </Link>
+          )}
         </div>
-        <Link href={item.videoLink}>
-          <a className={item.status !== "Done"?"hidden":" text-black border border-black rounded-full  px-8 py-2.5"} target="_blank">
+        {item.videoLink && item.status === "Done" && (
+          <Link
+            href={item.videoLink}
+            className="text-black border border-black rounded-full px-8 py-2.5"
+            target="_blank"
+          >
             {t("了解更多")}
-          </a>
-        </Link>
+          </Link>
+        )}
       </div>
     </div>
   </div>
@@ -110,19 +135,36 @@ const ActivityCard = ({ item, t }) => (
 export default Meeting;
 
 export async function getStaticProps({ locale }) {
-  const response = await fetch(`${https}/v1/Activity/GetActivityAllDetails?value=no-cache`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ locale }),
-  });
-  
-  const result = await response.json();
-  const activity_details = JSON.stringify(result.res.project_details);
+  try {
+    const response = await fetch(`${https}/v1/Activity/GetActivityAllDetails?value=no-cache`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ locale }),
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-  return {
-    props: {
-      activity_details,
-      ...(await serverSideTranslations(locale, ['common', 'footer', 'header'])),
-    },
-  };
+    const result = await response.json();
+    console.log("API response:", result); // 保留此行用于调试
+
+    // 直接传递 project_details，不进行 JSON 字符串化
+    const activity_details = result.res.project_details;
+
+    return {
+      props: {
+        activity_details,
+        ...(await serverSideTranslations(locale, ['common', 'footer', 'header'])),
+      },
+    };
+  } catch (error) {
+    console.error("Failed to fetch activity details:", error);
+    return {
+      props: {
+        activity_details: [],
+        ...(await serverSideTranslations(locale, ['common', 'footer', 'header'])),
+      },
+    };
+  }
 }

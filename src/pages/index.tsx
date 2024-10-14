@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Home from './home';
 import Heads from '../components/head';
@@ -9,6 +9,10 @@ import { https } from '../constants';
 
 const IndexPage: NextPage = (props) => {
   const { t } = useTranslation('common');
+
+  useEffect(() => {
+    // Client-side only code
+  }, []);
 
   return (
     <main>
@@ -68,18 +72,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       communityMember_details,
       hackathons_details,
       activity_details,
-      ...await serverSideTranslations(locale, ['common', 'footer', 'header']),
+      ...(await serverSideTranslations(locale, ['common', 'footer', 'header'])),
     },
   };
 };
 
-const parseJsonSafely = (jsonString: string | undefined, defaultValue: any[] = []) => {
-  if (!jsonString) return defaultValue;
-  try {
-    return JSON.parse(jsonString);
-  } catch (error) {
-    console.error("Failed to parse JSON:", error);
-    return defaultValue;
-  }
-};
 
