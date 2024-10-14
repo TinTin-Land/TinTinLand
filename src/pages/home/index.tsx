@@ -4,7 +4,6 @@ import { useAtom } from "jotai";
 import { useTranslation } from "next-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from 'next/image';
-
 import Header from "../../components/header";
 import Heads from "../../components/head";
 import { Activity_Alldetail} from "../../jotai";
@@ -255,7 +254,7 @@ const Hackathons = ({ data }) => {
         <Link href="/hackathons" legacyBehavior>
           <div className="flex  bg-white text-black rounded-full cursor-pointer text-sm items-center  px-4 py-1.5">
             <div className="mr-1" >
-              {t("��看多")}
+              {t("查看更多")}
             </div>
             <div>
               <i className="fa fa-arrow-right" aria-hidden="true"></i>
@@ -438,7 +437,7 @@ const Activity = ({ data }: { data: any[] }) => {
       </div>
       <div className="text-2xl md:text-4xl my-5">
         <div>
-          {t("顶尖项目面对面讨论")}
+          {t("与顶尖项目面对面讨论")}
         </div>
         <div>
           {t("获得热点趋势与开发实战经验")}
@@ -773,14 +772,14 @@ const AboutUs = ()=>{
                         {t("关于我们")}
                     </div>
                     <div className="text-2xl xl:text-4xl 2xl:text-5xl my-5">
-                        {t("赋能下一代开发者��技术社区")}
+                        {t("赋能下一代开发者的技术社区")}
                     </div>
                     <div className="2xl:mt-14 text-base 2xl:text-xl">
                         <div>
-                            {t("TinTinLand 是赋下一代开的技术社区，能够通过聚集、培育、输送 开发者到各放网络，共同定义并构建未来")}
+                            {t("TinTinLand 是赋能下一代开发者的技术社区，能够通过聚集、培育、输送 开发者到各开放网络，共同定义并构建未来")}
                         </div>
                         <div className="mt-5">
-                            {t("我们也将和行业有商业洞察力、有经验的发者、社区、媒体合作，提供 技术课程、技术内容解读、AMA、线下开发者活动等")}
+                            {t("我们也将和行业有商业洞察力、有经验的开发者、社区、媒体合作，提供 技术课程、技术内容解读、AMA、线下开发者活动等")}
                         </div>
                     </div>
                     <p className="mt-4 flex">
@@ -886,8 +885,18 @@ const Community = ({ data }) => {
     const initializeScroll = () => {
       if (community.length > 0) {
         const oDiv = document.getElementById('div2');
-        const oUl = document.getElementsByTagName('h3')[0];
-        const Li = oUl.getElementsByTagName('li');
+        const oUl = oDiv.querySelector('h3'); // 使用 querySelector 替代 getElementsByTagName
+        if (!oUl) {
+          console.warn("Could not find h3 element");
+          return;
+        }
+        const Li = oUl.querySelectorAll('li'); // 使用 querySelectorAll 替代 getElementsByTagName
+
+        // 检查是否有足够的 li 元素
+        if (Li.length === 0) {
+          console.warn("No li elements found");
+          return;
+        }
 
         oUl.innerHTML = oUl.innerHTML + oUl.innerHTML;
         oUl.style.width = (Li[0].offsetWidth * Li.length) / 16 + 'rem';

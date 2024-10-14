@@ -4,7 +4,7 @@ import { Switch } from '@headlessui/react'
 import {ChevronDownIcon, Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import React, {Fragment, useEffect, useState} from "react";
 import {useAtom} from "jotai";
-import {Language, LoginState, UserEmail} from "../../jotai";
+import {Language} from "../../jotai";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Image from 'next/image';
@@ -75,10 +75,7 @@ const Media = () =>{
 const Header = () =>{
     const router = useRouter();
     const { pathname, query, asPath } = router
-    const [loginState,SetLoginState] = useAtom(LoginState)
     const [scroll,setScroll]=useState(false)
-    const [,setLoginState] = useAtom(LoginState)
-    const [userEmail,setUserEmail] =useAtom(UserEmail)
     const [language,setLanguage] =useAtom(Language)
     const { t } = useTranslation('header')
 
@@ -98,12 +95,6 @@ const Header = () =>{
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    const loginOut = () => {
-        setLoginState(false);
-        setUserEmail({ user_email: "", username: "" });
-        router.push('/');
-    }
 
     const languageChange = () => {
         const newLanguage = language === "cn" ? "en" : "cn";

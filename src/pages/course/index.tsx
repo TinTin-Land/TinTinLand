@@ -42,7 +42,7 @@ const Course = ({ course_details }) =>{
                     </div>
                     <div className="text-xl ">
                         {t("生态官方合作课程，项目 CTO &核心开发者亲自授课")}
-                        <br/> {t("配套高质量社群，全球一线开发助���全程陪伴，社区同学交流讨论")}
+                        <br/> {t("配套高质量社群，全球一线开发者助教全程陪伴，社区同学交流讨论")}
                     </div>
                     <button className="bg-black text-white px-4 py-2 rounded-full mt-5">
                         TinTin EDU
