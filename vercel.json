@@ -1,6 +1,6 @@
 {
-  "crons": [{
-    "path": "https://api.vercel.com/v1/integrations/deploy/prj_mq1ZF54euDWiCw3IOl3c4iodWI2d/FIJzlsPGdY",
-    "schedule": "0 * * * *"
-  }]
-}
+    "crons": [{
+      "path": "/api/cron",
+      "schedule": "0 * * * *"
+    }]
+  }
